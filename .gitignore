@@ -1,0 +1,15 @@
+# Virtuální prostředí
+venv/
+.env/
+
+# Dočasné soubory
+__pycache__/
+*.py[cod]
+*.log
+
+# Data a výstupy
+data/
+output/
+
+# Konfigurace s citlivými údaji
+config.py
