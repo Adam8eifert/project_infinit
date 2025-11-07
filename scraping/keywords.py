@@ -1,6 +1,8 @@
-# scraping/keywords.py
+# 📁 scraping/keywords.py
+# Centralizované klíčové slova a filtry pro všechny spidery
 
-KEYWORDS = [
+# Základní klíčová slova pro vyhledávání
+SEARCH_TERMS = [
     "sekta",
     "nové náboženské hnutí",
     "nová náboženská hnutí",
@@ -15,8 +17,60 @@ KEYWORDS = [
     "nové spirituální hnutí"
 ]
 
+# Slova k vyloučení z vyhledávání
 EXCLUDE_TERMS = [
-    "-politika", "-film", "-hudba", "-hra", "-počítačová"
+    "-politika",
+    "-film",
+    "-hudba",
+    "-hra",
+    "-počítačová"
 ]
 
-"ROBOTSTXT_OBEY": True
+# Známé náboženské skupiny pro lepší identifikaci
+KNOWN_MOVEMENTS = [
+    "Hnutí Grálu",
+    "Církev sjednocení",
+    "Scientologická církev",
+    "Svědkové Jehovovi",
+    "Hare Kršna",
+    "Církev Ježíše Krista Svatých posledních dnů",
+    "Buddhismus Diamantové cesty",
+    "Satanská církev",
+    "Imanuelité",
+    "Svobodná církev reformovaná"
+]
+
+# Regulární výrazy pro hledání datumů založení
+YEAR_PATTERNS = [
+    r"založen[aáoý]\s+v\s+roce\s+(\d{4})",
+    r"vznik(?:lo|la|l)\s+v\s+roce\s+(\d{4})",
+    r"od\s+roku\s+(\d{4})",
+    r"registrován[aáoý]\s+v\s+(?:ČR|České\s+republice)\s+v\s+roce\s+(\d{4})"
+]
+
+def contains_relevant_keywords(text: str) -> bool:
+    """
+    Kontroluje, zda text obsahuje relevantní klíčová slova.
+    
+    Args:
+        text: Text k analýze
+    
+    Returns:
+        bool: True pokud text obsahuje relevantní klíčová slova
+    """
+    text = text.lower()
+    return any(keyword.lower() in text for keyword in SEARCH_TERMS + KNOWN_MOVEMENTS)
+
+def is_excluded_content(text: str) -> bool:
+    """
+    Kontroluje, zda text obsahuje vyloučená slova.
+    
+    Args:
+        text: Text k analýze
+    
+    Returns:
+        bool: True pokud text obsahuje vyloučená slova
+    """
+    text = text.lower()
+    exclude_words = [term.strip("-").lower() for term in EXCLUDE_TERMS]
+    return any(word in text for word in exclude_words)

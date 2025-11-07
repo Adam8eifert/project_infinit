@@ -64,15 +64,20 @@ class DBConnector:
 
     def insert_sources(self, sources: list):
         session = self.Session()
-        for src in sources:
-            s = Source(
-                movement_id=src.get("movement_id"),
-                source_name=src.get("source_name"),
-                source_type=src.get("source_type"),
-                publication_date=src.get("publication_date"),
-                sentiment_rating=src.get("sentiment_rating"),
-                url=src.get("url")
-            )
-            session.add(s)
-        session.commit()
-        session.close()
+        try:
+            for src in sources:
+                s = Source(
+                    movement_id=src.get("movement_id"),
+                    source_name=src.get("source_name"),
+                    source_type=src.get("source_type"),
+                    publication_date=src.get("publication_date"),
+                    sentiment_rating=src.get("sentiment_rating"),
+                    url=src.get("url")
+                )
+                session.add(s)
+            session.commit()
+        except Exception as e:
+            session.rollback()
+            raise
+        finally:
+            session.close()

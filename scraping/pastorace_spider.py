@@ -1,49 +1,77 @@
 # 📁 scraping/pastorace_spider.py
-# Scrapy spider pro pastorace.cz – kategorie Sekty a kulty
+# Scrapy spider pro pastorace.cz - sekce Sekty a kulty
 
 import scrapy
-import datetime
+from datetime import datetime
+from .spider_settings import ETHICAL_SCRAPING_SETTINGS, CSV_EXPORT_SETTINGS
 
 class PastoraceSpider(scrapy.Spider):
     name = "pastorace"
     allowed_domains = ["pastorace.cz"]
     start_urls = ["https://www.pastorace.cz/Clanky/Nabozenstvi/Sekty-a-kulty"]
 
+    # Kombinace etického nastavení s vlastním nastavením
     custom_settings = {
+        **ETHICAL_SCRAPING_SETTINGS,
         "FEEDS": {
-            "export/csv/pastorace_raw.csv": {
-                "format": "csv",
-                "overwrite": True,
-                "encoding": "utf8",
-            }
+            "export/csv/pastorace_raw.csv": CSV_EXPORT_SETTINGS
         },
         "LOG_LEVEL": "INFO"
     }
 
-    keywords = [
-        "sekta", "nové náboženské hnutí", "nová náboženská hnutí",
-        "nové duchovní hnutí", "nová duchovní hnutí",
-        "náboženská skupina", "náboženská komunita",
-        "alternativní náboženství", "kontroverzní náboženská společnost",
-        "destruktivní kult", "kult", "nové spirituální hnutí"
-    ]
+    def start_requests(self):
+        """Inicializace s meta daty o zdroji"""
+        for url in self.start_urls:
+            yield scrapy.Request(
+                url=url,
+                callback=self.parse,
+                meta={
+                    'source_name': 'Pastorace.cz',
+                    'source_type': 'Náboženský web'
+                },
+                errback=self.handle_error
+            )
 
     def parse(self, response):
-        links = response.css(".list-articles a::attr(href)").getall()
-        for href in links:
-            full_url = response.urljoin(href)
-            yield response.follow(full_url, callback=self.parse_article)
+        """Parsování seznamu článků"""
+        try:
+            links = response.css(".list-articles a::attr(href)").getall()
+            for href in links:
+                full_url = response.urljoin(href)
+                yield response.follow(
+                    full_url,
+                    callback=self.parse_article,
+                    meta=response.meta,
+                    errback=self.handle_error
+                )
+        except Exception as e:
+            self.logger.error(f"Chyba při parsování seznamu: {e}")
 
     def parse_article(self, response):
-        title = response.css("h1::text").get()
-        content = response.css("div.article *::text").getall()
-        full_text = " ".join([t.strip() for t in content if t.strip()])
+        """Parsování jednotlivého článku s validací"""
+        try:
+            # Extrakce dat
+            title = response.css("h1::text").get()
+            content = response.css("div.article *::text").getall()
+            full_text = " ".join([t.strip() for t in content if t.strip()])
 
-        yield {
-            "source_name": "pastorace.cz",
-            "source_type": "web",
-            "title": title,
-            "url": response.url,
-            "text": full_text,
-            "scraped_at": datetime.datetime.now().isoformat()
-        }
+            # Validace
+            if not all([title, full_text]):
+                self.logger.warning(f"Nekompletní data v článku: {response.url}")
+                return
+
+            # Výstup ve formátu kompatibilním s DB schématem
+            yield {
+                "source_name": response.meta.get('source_name', 'Pastorace.cz'),
+                "source_type": response.meta.get('source_type', 'Náboženský web'),
+                "title": title.strip(),
+                "url": response.url,
+                "text": full_text,
+                "scraped_at": datetime.utcnow().isoformat()
+            }
+        except Exception as e:
+            self.logger.error(f"Chyba při parsování článku {response.url}: {e}")
+
+    def handle_error(self, failure):
+        """Zpracování chyb při stahování"""
+        self.logger.error(f"Chyba při stahování {failure.request.url}: {failure.value}")

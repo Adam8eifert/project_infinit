@@ -1,3 +1,0 @@
-volumes:
-  - ./project_infinit:/opt/airflow/project
-  - ./dags:/opt/airflow/dags

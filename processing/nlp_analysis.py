@@ -7,7 +7,6 @@ from transformers import pipeline
 class CzechTextAnalyzer:
     def __init__(self):
         # Inicializace Stanza pipeline pro češtinu
-        stanza.download('cs')
         self.nlp = stanza.Pipeline(
             lang='cs', 
             processors='tokenize,mwt,pos,lemma,ner', 
