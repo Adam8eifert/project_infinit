@@ -1,10 +1,12 @@
 # 📁 database/db_loader.py
 # Připojení k PostgreSQL + definice tabulek podle uživatelského schématu
 
-from sqlalchemy import create_engine, Column, Integer, String, Text, ForeignKey, DateTime
+from sqlalchemy import create_engine, Column, Integer, String, Text, ForeignKey, DateTime, event
 from sqlalchemy.orm import declarative_base, sessionmaker, relationship
+from sqlalchemy.engine import Engine
 import datetime
 import config
+import sqlite3
 
 Base = declarative_base()
 
@@ -56,7 +58,11 @@ class Source(Base):
 
 class DBConnector:
     def __init__(self):
-        self.engine = create_engine(config.DB_URI)
+        # If using SQLite, pass connect_args and allow usage from different threads
+        connect_args = {}
+        if config.DB_URI.startswith("sqlite"):
+            connect_args = {"check_same_thread": False}
+        self.engine = create_engine(config.DB_URI, connect_args=connect_args)
         self.Session = sessionmaker(bind=self.engine)
 
     def create_tables(self):
@@ -81,3 +87,12 @@ class DBConnector:
             raise
         finally:
             session.close()
+
+
+# Ensure SQLite enforces foreign key constraints when a sqlite3 connection is used
+@event.listens_for(Engine, "connect")
+def _set_sqlite_pragma(dbapi_connection, connection_record):
+    if isinstance(dbapi_connection, sqlite3.Connection):
+        cursor = dbapi_connection.cursor()
+        cursor.execute("PRAGMA foreign_keys=ON")
+        cursor.close()
