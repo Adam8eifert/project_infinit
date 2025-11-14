@@ -4,74 +4,73 @@
 
 sources:
   sekty_tv:
-    name: "Sekty.TV"
-    description: "Specialistický web o sektách a náboženských hnutích v ČR"
+    name: "Sekty.TV (RSS Feed)"
+    description: "Specialistický web o sektách a náboženských hnutích v ČR (RSS)"
     domain: "sekty.tv"
-    url: "https://sekty.tv/"
+    url: "https://sekty.tv/feed/"
     enabled: true
+    type: "rss"
     selectors:
-      article: "article"
-      title: "h2.entry-title a::text"
-      link: "h2.entry-title a::attr(href)"
-      content: "div.entry-content *::text"
-      author: ".author-name::text"
-      date: "time::attr(datetime)"
-    output_csv: "export/csv/sekty_tv_raw.csv"
-    delay: 3
+      item: "item"
+      title: "title::text"
+      link: "link::text"
+      content: "content:encoded::text"
+      date: "pubDate::text"
+      author: "dc:creator::text"
+    output_csv: "export/csv/sekty_tv_rss_raw.csv"
+    delay: 2
     retries: 3
 
   sekty_cz:
-    name: "Sekty.cz"
-    description: "Informační web o nových náboženských hnutích"
+    name: "Sekty.cz (RSS Feed)"
+    description: "Informační web o nových náboženských hnutích (RSS Feed)"
     domain: "sekty.cz"
-    url: "https://sekty.cz/prehled"
+    url: "https://sekty.cz/feed/"
     enabled: true
+    type: "rss"
     selectors:
-      article: "div.tdb_module_loop article"
-      title: "h3 a::text"
-      link: "h3 a::attr(href)"
-      excerpt: "div.td-excerpt::text"
-      content: "div.td-post-content p::text, div.td-post-content li::text"
-      author: ".td-post-author-name a::text"
-      date: ".td-post-date time::attr(datetime)"
-      categories: ".td-category a::text"
-      tags: "ul.td-tags li a::text"
-    output_csv: "export/csv/sekty_cz_raw.csv"
-    delay: 3
+      item: "item"
+      title: "title::text"
+      link: "link::text"
+      content: "content:encoded::text"
+      date: "pubDate::text"
+      categories: "category::text"
+    output_csv: "export/csv/sekty_cz_rss_raw.csv"
+    delay: 2
     retries: 3
 
   info_dingir:
-    name: "Dingir.cz"
-    description: "Odborný web věnovaný novým náboženským hnutím"
+    name: "Dingir.cz (RSS Feed)"
+    description: "Odborný web věnovaný novým náboženským hnutím (RSS)"
     domain: "info.dingir.cz"
-    url: "https://info.dingir.cz/"
+    url: "https://info.dingir.cz/feed/"
     enabled: true
+    type: "rss"
     selectors:
-      article: "article"
-      title: "h2.entry-title a::text"
-      link: "h2.entry-title a::attr(href)"
-      excerpt: ".entry-summary p::text"
-      content: "div.entry-content p::text"
-      author: ".author-name::text"
-      date: "time::attr(datetime)"
-    output_csv: "export/csv/info_dingir_raw.csv"
+      item: "item"
+      title: "title::text"
+      link: "link::text"
+      content: "content:encoded::text"
+      date: "pubDate::text"
+      author: "dc:creator::text"
+    output_csv: "export/csv/info_dingir_rss_raw.csv"
     delay: 2
     retries: 3
 
   pastorace:
-    name: "Pastorální péče"
-    description: "Články o sektách a kultech na webu Pastorace.cz"
+    name: "Pastorální péče (RSS Feed)"
+    description: "Články o sektách a kultech na webu Pastorace.cz (RSS)"
     domain: "pastorace.cz"
-    url: "https://www.pastorace.cz/Clanky/Nabozenstvi/Sekty-a-kulty"
+    url: "https://www.pastorace.cz/Clanky/Nabozenstvi/Sekty-a-kulty/rss"
     enabled: true
+    type: "rss"
     selectors:
-      article: ".article-item"
-      title: "h3 a::text"
-      link: "h3 a::attr(href)"
-      content: ".article-content p::text"
-      author: ".article-author::text"
-      date: ".article-date::text"
-    output_csv: "export/csv/pastorace_raw.csv"
+      item: "item"
+      title: "title::text"
+      link: "link::text"
+      content: "description::text"
+      date: "pubDate::text"
+    output_csv: "export/csv/pastorace_rss_raw.csv"
     delay: 2
     retries: 3
 
@@ -81,6 +80,7 @@ sources:
     domain: "medium.seznam.cz"
     url: "https://medium.seznam.cz/"
     enabled: true
+    type: "web"
     selectors:
       article: "article"
       title: "h3::text"
@@ -95,41 +95,40 @@ sources:
     retries: 3
 
   soccas:
-    name: "Sociologický ústav AVČR"
-    description: "Encyklopedie Sociologického ústavu AV ČR"
+    name: "Sociologický ústav AVČR (MediaWiki API)"
+    description: "Encyklopedie Sociologického ústavu AV ČR (API)"
     domain: "rg-encyklopedie.soc.cas.cz"
-    url: "https://rg-encyklopedie.soc.cas.cz/index.php/Hlavní_strana"
+    url: "https://rg-encyklopedie.soc.cas.cz/api.php"
     enabled: true
+    type: "api"
+    api_method: "parse"
+    api_page: "Hlavní_strana"
+    api_params:
+      action: "parse"
+      format: "json"
+      prop: "wikitext|categories"
     selectors:
-      article: "div.mw-parser-output"
-      title: "h1::text"
-      content: "p::text"
-      links: "a::attr(href)"
-    output_csv: "export/csv/soccas_raw.csv"
+      content: "parse.wikitext.*::text"
+    output_csv: "export/csv/soccas_api_raw.csv"
     delay: 3
     retries: 3
+
 
   google_news:
     name: "Google News"
     description: "Vyhledávání zpráv přes Google News (dynamicky)"
     domain: "news.google.com"
     url: "https://news.google.com/search"
-    enabled: true
+    enabled: false
     type: "search_api"
     search_terms:
       - "sekta"
       - "nové náboženské hnutí"
       - "kult"
-      - "nová spirituální hnutí"
     search_params:
       hl: "cs"
       gl: "CZ"
       ceid: "CZ:cs"
-    selectors:
-      article: "article"
-      title: "h3::text"
-      link: "a::attr(href)"
-      snippet: ".PO9Qpe::text"
     output_csv: "export/csv/google_news_raw.csv"
     delay: 2
     retries: 3
@@ -139,15 +138,95 @@ sources:
     description: "Wikipedia API pro články o náboženských hnutích"
     domain: "cs.wikipedia.org"
     url: "https://cs.wikipedia.org/w/api.php"
-    enabled: true
+    enabled: false
     type: "api"
     api_method: "parse"
     api_page: "Seznam_církví_a_náboženských_společností_v_Česku"
-    selectors:
-      content: "wikitext"
     output_csv: "export/csv/wikipedia_raw.csv"
     delay: 3
     retries: 3
+
+  reddit:
+    name: "Reddit"
+    description: "Reddit API pro příspěvky o sektách a novích náboženských hnutích"
+    domain: "reddit.com"
+    url: "https://oauth.reddit.com"
+    enabled: true
+    type: "social_api"
+    api_method: "search"
+    subreddits:
+      - "r/occult"
+      - "r/spirituality"
+      - "r/religion"
+      - "r/cults"
+    search_terms:
+      - "sekta"
+      - "kult"
+      - "nové náboženské hnutí"
+      - "spirituální hnutí"
+    api_params:
+      sort: "new"
+      t: "all"
+      limit: 100
+    auth:
+      client_id: ""  # Nastavit ze secrets
+      client_secret: ""  # Nastavit ze secrets
+      user_agent: "ProjectInfinit/1.0 (by Your_Reddit_Username)"
+    selectors:
+      title: "title"
+      content: "selftext"
+      author: "author"
+      score: "score"
+      created: "created_utc"
+      url: "permalink"
+    output_csv: "export/csv/reddit_raw.csv"
+    delay: 2
+    retries: 3
+
+  x_twitter:
+    name: "X (Twitter) API"
+    description: "X API v2 pro tweety o sektách a náboženských hnutích"
+    domain: "x.com"
+    url: "https://api.twitter.com/2"
+    enabled: true
+    type: "social_api"
+    api_method: "search_tweets"
+    search_queries:
+      - "sekta lang:cs"
+      - "kult lang:cs"
+      - "nové náboženské hnutí lang:cs"
+      - "spirituální hnutí lang:cs"
+      - "new religious movement Czech"
+    api_params:
+      max_results: 100
+      tweet_fields: "created_at,author_id,public_metrics"
+      expansions: "author_id"
+      user_fields: "username,created_at,verified"
+    auth:
+      bearer_token: ""  # Nastavit ze secrets
+    selectors:
+      text: "text"
+      author: "author_id"
+      created: "created_at"
+      metrics: "public_metrics"
+      url: "id"
+    output_csv: "export/csv/x_twitter_raw.csv"
+    delay: 1
+    retries: 3
+    rate_limit_reset: 900  # 15 minut pro Twitter API v2
+
+# Metoda pro nastavení API klíčů:
+# 1. Vytvořit .env soubor v root projektu:
+#    REDDIT_CLIENT_ID=xxx
+#    REDDIT_CLIENT_SECRET=xxx
+#    REDDIT_USER_AGENT=ProjectInfinit/1.0
+#    X_BEARER_TOKEN=xxx
+#
+# 2. Nebo nastavit přes systémové proměnné:
+#    export REDDIT_CLIENT_ID="xxx"
+#    export X_BEARER_TOKEN="xxx"
+#
+# 3. nebo upravit přímo v tomto souboru (NENÍ BEZPEČNÉ pro veřejné repo)
 
 # Nastavení globálního scrapingu
 scraping_settings:

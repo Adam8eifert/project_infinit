@@ -1,6 +1,7 @@
 # Virtuální prostředí
 venv/
 .env/
+.env
 
 # Dočasné soubory
 __pycache__/
@@ -13,3 +14,21 @@ output/
 
 # Konfigurace s citlivými údaji
 config.py
+
+# Sociální média API klíče a tokeny
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db
+

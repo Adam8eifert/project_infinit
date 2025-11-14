@@ -107,7 +107,8 @@ scrapy runspider scraping/sekty_cz_spider.py
 ## 🔄 Pipeline Steps
 
 1. **Data Collection**
-   - Scrape articles from configured sources
+   - Scrape articles from configured RSS feeds and APIs
+   - Collect posts from Reddit and X (Twitter)
    - Extract text from PDFs
    - Convert XLSX files to CSV
 
@@ -117,9 +118,62 @@ scrapy runspider scraping/sekty_cz_spider.py
    - Extract entities and relationships
 
 3. **Storage**
-   - Import to PostgreSQL database
+   - Import to SQLite database
    - Generate CSV exports
    - Update analysis results
+
+### Data Sources
+
+The pipeline collects data from multiple sources configured in `scraping/sources_config.yaml`:
+
+| Type | Source | Method | Status |
+|------|--------|--------|--------|
+| RSS | Sekty.tv | Feed parser | ✅ Active |
+| RSS | Sekty.cz | Feed parser | ✅ Active |
+| RSS | Info Dingir | Feed parser | ✅ Active |
+| RSS | Pastorace | Feed parser | ✅ Active |
+| RSS | Medium/Seznam | Feed parser | ✅ Active |
+| API | Wikipedia | MediaWiki API | ✅ Active |
+| API | SOCCAS | REST API | ✅ Active |
+| Social API | Reddit | Official API (PRAW) | ✅ Configured |
+| Social API | X/Twitter | API v2 | ✅ Configured |
+| Web | Google News | Web scraping | ⏸️ Legacy |
+
+### Setting Up Social Media Sources
+
+To enable Reddit and X (Twitter) data collection:
+
+1. **Create `.env` file**
+   ```bash
+   cp .env.example .env
+   ```
+
+2. **Reddit API Setup**
+   - Go to https://www.reddit.com/prefs/apps
+   - Create a "script" application
+   - Copy `client_id` and `client_secret` to `.env`:
+     ```
+     REDDIT_CLIENT_ID=your_client_id
+     REDDIT_CLIENT_SECRET=your_client_secret
+     REDDIT_USER_AGENT=ProjectInfinit/1.0 (by your_username)
+     ```
+
+3. **X/Twitter API Setup**
+   - Register at https://developer.twitter.com/
+   - Create an app with API v2 access
+   - Copy Bearer Token to `.env`:
+     ```
+     X_BEARER_TOKEN=your_bearer_token
+     ```
+
+4. **Run Social Media Spiders**
+   ```bash
+   # Run all spiders including social media
+   python main.py
+   
+   # Or run specific social media spider
+   scrapy runspider scraping/social_media_spider.py
+   ```
 
 ## 🇨🇿 Rychlý start
 
@@ -148,13 +202,41 @@ python -m stanza.download cs
 
 ### 3. Konfigurace databáze
 
-Vytvoření `config.py`:
+Databáze se automaticky vytvoří při prvním spuštění. Používáme SQLite (data/project_infinit.db).
 
 ```python
-DB_URI = "postgresql+psycopg2://username:password@localhost/nsm_db"
+# config.py (standardně)
+DB_URI = "sqlite:///data/project_infinit.db"
 ```
 
-### 4. Spuštění
+### 4. Konfigurace sociálních médií
+
+Chcete-li sbírat data z Redditu a X (Twitter):
+
+1. **Vytvoření `.env` souboru**
+   ```bash
+   cp .env.example .env
+   ```
+
+2. **Reddit API Setup**
+   - Jděte na https://www.reddit.com/prefs/apps
+   - Vytvořte "script" aplikaci
+   - Zkopírujte `client_id` a `client_secret` do `.env`:
+     ```
+     REDDIT_CLIENT_ID=váš_client_id
+     REDDIT_CLIENT_SECRET=váš_client_secret
+     REDDIT_USER_AGENT=ProjectInfinit/1.0 (od vašeho_uživatele)
+     ```
+
+3. **X/Twitter API Setup**
+   - Zaregistrujte se na https://developer.twitter.com/
+   - Vytvořte aplikaci s API v2 přístupem
+   - Zkopírujte Bearer Token do `.env`:
+     ```
+     X_BEARER_TOKEN=váš_bearer_token
+     ```
+
+### 5. Spuštění
 
 ```bash
 # Spuštění celého ETL pipeline

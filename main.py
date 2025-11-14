@@ -6,24 +6,26 @@ from processing.nlp_analysis import CzechTextAnalyzer
 from processing.import_csv_to_db import CSVtoDatabaseLoader
 
 def run_spiders():
-    """Spustí všechny definované Scrapy spidery"""
+    """Spustí všechny definované Scrapy spidery (RSS, API, web a sociální média)"""
     spiders = [
-        "sekty_tv_spider.py",
-        "sekty_cz_spider.py",
-        "info_dingir_spider.py",
-        "pastorace_spider.py",
-        "wikipedia_spider.py",
-        "soccas_spider.py",
-        "google_spider.py"
+        # Nové RSS spidery
+        "scraping/rss_spider.py",           # Univerzální RSS spider
+        # Nové API spidery
+        "scraping/api_spider.py",            # Univerzální API spider
+        # Sociální média spidery
+        "scraping/social_media_spider.py",   # Reddit + X/Twitter API
+        # Starší web spidery (stále podporované)
+        "scraping/medium_seznam_spider.py",
+        "scraping/google_spider.py"
     ]
     for spider in spiders:
         try:
-            path = os.path.join("scraping", spider)
             print(f"🚀 Spouštím spider: {spider}")
-            subprocess.run(["scrapy", "runspider", path], check=True)
+            subprocess.run(["scrapy", "runspider", spider], check=True)
         except subprocess.CalledProcessError as e:
             print(f"❌ Chyba při spuštění {spider}: {e}")
-            raise
+            # Pokračuj dál i když jeden spider selže
+            continue
 
 def create_db():
     """Inicializuje databázi"""
