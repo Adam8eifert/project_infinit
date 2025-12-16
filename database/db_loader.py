@@ -1,93 +1,103 @@
-# 📁 database/db_loader.py
-# Připojení k PostgreSQL + definice tabulek podle uživatelského schématu
-
-from sqlalchemy import create_engine, Column, Integer, String, Text, ForeignKey, DateTime, event
-from sqlalchemy.orm import declarative_base, sessionmaker, relationship
+# database/db_connector.py
+from sqlalchemy import create_engine, event
+from sqlalchemy.orm import sessionmaker, scoped_session
 from sqlalchemy.engine import Engine
-import datetime
-import config
 import sqlite3
+import datetime
 
-Base = declarative_base()
-
-class Movement(Base):
-    __tablename__ = 'movements'
-
-    id = Column(Integer, primary_key=True)
-    canonical_name = Column(String, nullable=False)
-    registration = Column(Integer)
-    rating = Column(String)
-
-    aliases = relationship("Alias", back_populates="movement")
-    locations = relationship("Location", back_populates="movement")
-    sources = relationship("Source", back_populates="movement")
-
-class Alias(Base):
-    __tablename__ = 'aliases'
-
-    id = Column(Integer, primary_key=True)
-    movement_id = Column(Integer, ForeignKey('movements.id'))
-    alias = Column(String)
-
-    movement = relationship("Movement", back_populates="aliases")
-
-class Location(Base):
-    __tablename__ = 'locations'
-
-    id = Column(Integer, primary_key=True)
-    movement_id = Column(Integer, ForeignKey('movements.id'))
-    municipality = Column(String)
-    district = Column(String)
-    region = Column(String)
-    year_founded = Column(Integer)
-
-    movement = relationship("Movement", back_populates="locations")
-
-class Source(Base):
-    __tablename__ = 'sources'
-
-    id = Column(Integer, primary_key=True)
-    movement_id = Column(Integer, ForeignKey('movements.id'))
-    source_name = Column(String)
-    source_type = Column(String)
-    publication_date = Column(DateTime, default=datetime.datetime.utcnow)
-    sentiment_rating = Column(String)
-    url = Column(String, unique=True)
-
-    movement = relationship("Movement", back_populates="sources")
+from .models import Base, Movement, Alias, Location, Source
+import config  # expects config.DB_URI
 
 class DBConnector:
-    def __init__(self):
-        # If using SQLite, pass connect_args and allow usage from different threads
+    """
+    Portable DB connector using SQLAlchemy. Works with both SQLite and PostgreSQL.
+    Exposes:
+      - create_tables()
+      - get_session()
+      - helper methods for common inserts
+    """
+    def __init__(self, uri: str = None):
+        self.db_uri = uri or getattr(config, "DB_URI", "sqlite:///data.db")
         connect_args = {}
-        if config.DB_URI.startswith("sqlite"):
+        if self.db_uri.startswith("sqlite"):
             connect_args = {"check_same_thread": False}
-        self.engine = create_engine(config.DB_URI, connect_args=connect_args)
-        self.Session = sessionmaker(bind=self.engine)
+        self.engine = create_engine(self.db_uri, connect_args=connect_args, future=True)
+        self.SessionFactory = scoped_session(sessionmaker(bind=self.engine, autoflush=False, expire_on_commit=False))
 
     def create_tables(self):
-        Base.metadata.create_all(self.engine)
+        Base.metadata.create_all(self.engine, checkfirst=True)
 
-    def insert_sources(self, sources: list):
-        session = self.Session()
+    def drop_tables(self):
+        Base.metadata.drop_all(self.engine)
+
+    def get_session(self):
+        return self.SessionFactory()
+
+    # Example helper: upsert movement by canonical_name
+    def upsert_movement(self, canonical_name: str, **kwargs):
+        session = self.get_session()
         try:
-            for src in sources:
-                s = Source(
-                    movement_id=src.get("movement_id"),
-                    source_name=src.get("source_name"),
-                    source_type=src.get("source_type"),
-                    publication_date=src.get("publication_date"),
-                    sentiment_rating=src.get("sentiment_rating"),
-                    url=src.get("url")
-                )
-                session.add(s)
+            m = session.query(Movement).filter(Movement.canonical_name == canonical_name).one_or_none()
+            if m is None:
+                m = Movement(canonical_name=canonical_name, **kwargs)
+                session.add(m)
+            else:
+                for k, v in kwargs.items():
+                    if hasattr(m, k) and v is not None:
+                        setattr(m, k, v)
+                m.updated_at = datetime.datetime.utcnow()
             session.commit()
-        except Exception as e:
+            return m
+        except Exception:
             session.rollback()
             raise
         finally:
             session.close()
 
+    def add_source(self, source_dict: dict):
+        """
+        source_dict should contain keys: movement_id (or canonical_name), url, source_name, domain, content_full, etc.
+        If movement_id not provided, we can try to resolve by canonical_name.
+        """
+        session = self.get_session()
+        try:
+            movement_id = source_dict.get("movement_id")
+            canonical_name = source_dict.get("canonical_name")
+            if not movement_id and canonical_name:
+                m = session.query(Movement).filter(Movement.canonical_name == canonical_name).one_or_none()
+                if m:
+                    movement_id = m.id
+                else:
+                    m = Movement(canonical_name=canonical_name)
+                    session.add(m)
+                    session.flush()  # assign id
+                    movement_id = m.id
+
+            src = Source(
+                movement_id=movement_id,
+                source_name=source_dict.get("source_name"),
+                source_type=source_dict.get("source_type"),
+                author=source_dict.get("author"),
+                domain=source_dict.get("domain"),
+                language=source_dict.get("language"),
+                publication_date=source_dict.get("publication_date"),
+                url=source_dict.get("url"),
+                content_excerpt=source_dict.get("content_excerpt"),
+                content_full=source_dict.get("content_full"),
+                lemma_text=source_dict.get("lemma_text"),
+                keywords_found=source_dict.get("keywords_found"),
+                sentiment_score=source_dict.get("sentiment_score"),
+                toxicity_score=source_dict.get("toxicity_score"),
+                classification_label=source_dict.get("classification_label"),
+            )
+            session.add(src)
+            session.commit()
+            return src
+        except Exception:
+            session.rollback()
+            raise
+        finally:
+            session.close()
 
 # Ensure SQLite enforces foreign key constraints when a sqlite3 connection is used
 @event.listens_for(Engine, "connect")

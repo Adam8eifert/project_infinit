@@ -1,0 +1,4 @@
+2025-12-16 22:32:08,160 - INFO - Načítám 2 řádků z export/csv/sample_data.csv
+2025-12-16 22:32:08,179 - ERROR - Chyba při zpracování řádku: 'sentiment_rating' is an invalid keyword argument for Source
+2025-12-16 22:32:08,181 - ERROR - Chyba při zpracování řádku: 'sentiment_rating' is an invalid keyword argument for Source
+2025-12-16 22:32:08,181 - INFO - Import dokončen: 0 importováno, 2 přeskočeno

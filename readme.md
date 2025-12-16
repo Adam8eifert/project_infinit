@@ -13,8 +13,9 @@ An ETL pipeline for collecting, analyzing, and visualizing information about new
   - Wikipedia API
   - Specialized websites about religious movements
 - Natural Language Processing:
-  - Czech language support via Stanza
-  - Named Entity Recognition for organizations and locations
+  - Czech language support via spaCy
+  - Named Entity Recognition via Hugging Face
+  - Sentiment analysis via Transformers
   - Movement classification and relationship analysis
 - Structured data storage in PostgreSQL
 - Export capabilities for further analysis
@@ -23,7 +24,8 @@ An ETL pipeline for collecting, analyzing, and visualizing information about new
 
 - **Python 3.10+** - Core programming language
 - **Scrapy** - Web scraping framework
-- **Stanza** - NLP toolkit for Czech language
+- **spaCy** - NLP toolkit for Czech language
+- **Hugging Face Transformers** - Advanced NLP models
 - **SQLAlchemy** - Database ORM
 - **PostgreSQL** - Data storage
 - **Apache Airflow** - ETL orchestration (optional)
@@ -82,8 +84,8 @@ source venv/bin/activate
 ```bash
 pip install -r requirements.txt
 
-# Download Czech language model for Stanza
-python -m stanza.download cs
+# Download Czech language model for spaCy
+python -m spacy download cs_core_news_md
 ```
 
 ### 3. Configure Database
@@ -196,8 +198,8 @@ source venv/bin/activate
 ```bash
 pip install -r requirements.txt
 
-# Stažení českého jazykového modelu pro Stanza
-python -m stanza.download cs
+# Stažení českého jazykového modelu pro spaCy
+python -m spacy download cs_core_news_md
 ```
 
 ### 3. Konfigurace databáze
@@ -320,7 +322,8 @@ scrapy runspider scraping/sekty_cz_spider.py
 - SQLAlchemy 2.0+
 - psycopg2-binary
 - pandas
-- stanza
+- spaCy
+- transformers
 
 ### Zpracování
 - openpyxl (Excel)

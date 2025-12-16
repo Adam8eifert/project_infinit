@@ -4,8 +4,8 @@
 import scrapy
 from datetime import datetime
 import re
-from .spider_settings import ETHICAL_SCRAPING_SETTINGS, CSV_EXPORT_SETTINGS
-from .keywords import contains_relevant_keywords, KNOWN_MOVEMENTS, YEAR_PATTERNS
+from scraping.spider_settings import ETHICAL_SCRAPING_SETTINGS, CSV_EXPORT_SETTINGS
+from scraping.keywords import contains_relevant_keywords, KNOWN_MOVEMENTS, YEAR_PATTERNS
 
 class SektyCZSpider(scrapy.Spider):
     name = "sekty_cz"

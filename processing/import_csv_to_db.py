@@ -12,7 +12,7 @@ class CSVtoDatabaseLoader:
 
     def __init__(self):
         self.db = DBConnector()
-        self.session = self.db.Session()
+        self.session = self.db.get_session()
         self.setup_logging()
 
     def setup_logging(self):
@@ -60,11 +60,11 @@ class CSVtoDatabaseLoader:
             "movement_id": None,  # bude doplněno později
             "source_name": str(row.get("source_name", "")).strip(),
             "source_type": str(row.get("source_type", "")).strip(),
-            "publication_date": pd.to_datetime(row.get("scraped_at"), errors="coerce"),
-            "sentiment_rating": None,  # bude doplněno při NLP
             "url": str(row.get("url", "")).strip(),
-            "title": str(row.get("title", "")).strip(),
-            "text": str(row.get("text", "")).strip()
+            "content_excerpt": str(row.get("title", "")).strip(),  # map title to content_excerpt
+            "content_full": str(row.get("text", "")).strip(),      # map text to content_full
+            "sentiment_score": None,  # bude doplněno při NLP
+            "publication_date": pd.to_datetime(row.get("scraped_at"), errors="coerce")
         }
 
     def load_csv_to_sources(self, csv_path: str):

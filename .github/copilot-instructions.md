@@ -15,7 +15,7 @@ source venv/bin/activate
 pip install -r requirements.txt
 
 # stanza models (Czech) — recommended before running NLP-heavy code
-python -m stanza.download cs
+python -m spacy download cs_core_news_md
 
 # run the whole pipeline
 python main.py
