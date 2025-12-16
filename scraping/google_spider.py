@@ -4,8 +4,8 @@
 import scrapy
 from urllib.parse import quote
 from datetime import datetime
-from .spider_settings import ETHICAL_SCRAPING_SETTINGS, CSV_EXPORT_SETTINGS
-from .keywords import SEARCH_TERMS, EXCLUDE_TERMS
+from scraping.spider_settings import ETHICAL_SCRAPING_SETTINGS, CSV_EXPORT_SETTINGS
+from scraping.keywords import SEARCH_TERMS, EXCLUDE_TERMS
 
 class GoogleNewsSpider(scrapy.Spider):
     name = "google_news_spider"

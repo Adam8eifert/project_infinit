@@ -41,8 +41,6 @@ def process_csv():
     """Importuje CSV soubory do databáze"""
     try:
         importer = CSVtoDatabaseLoader()
-        # Import všech CSV
-        importer.import_all()
         # Import konkrétních CSV pokud existují
         csv_files = [
             "export/csv/info_dingir_raw.csv",
