@@ -134,35 +134,3 @@ class WikipediaSpider(scrapy.Spider):
         self.logger.error(f"Meta: {request.meta}")
         if hasattr(failure.value, 'response') and failure.value.response:
             self.logger.error(f"Response body: {failure.value.response.body}")
-        try:
-            data = json.loads(response.text)
-            wikitext = data.get("parse", {}).get("wikitext", "")
-            
-            if not wikitext:
-                self.logger.error("Prázdná odpověď z API")
-                return
-
-            # Extrakce názvů organizací
-            lines = wikitext.split("\n")
-            for line in lines:
-                if line.startswith("*"):
-                    name = line.lstrip("* ").strip()
-                    if name:
-                        # Generování čistého výstupu
-                        yield {
-                            "source_name": response.meta['source_name'],
-                            "source_type": response.meta['source_type'],
-                            "title": name,
-                            "url": response.meta['base_url'] + "Seznam_církví_a_náboženských_společností_v_Česku",
-                            "text": f"Registrovaná církev/náboženská společnost: {name}",
-                            "scraped_at": datetime.utcnow().isoformat()
-                        }
-        except json.JSONDecodeError as e:
-            self.logger.error(f"Chyba při parsování JSON: {e}")
-        except Exception as e:
-            self.logger.error(f"Neočekávaná chyba: {e}")
-
-    def handle_error(self, failure):
-        """Zpracování chyb při API requestech"""
-        self.logger.error(f"Chyba při API requestu: {failure.value}")
-                    }

@@ -6,6 +6,7 @@ from sqlalchemy.exc import IntegrityError
 from database.db_loader import DBConnector, Source
 from datetime import datetime
 import logging
+from typing import Union
 
 class CSVtoDatabaseLoader:
     """Bezpečný import CSV dat do databáze s validací a logováním"""
@@ -67,7 +68,7 @@ class CSVtoDatabaseLoader:
             "publication_date": pd.to_datetime(row.get("scraped_at"), errors="coerce")
         }
 
-    def load_csv_to_sources(self, csv_path: str):
+    def load_csv_to_sources(self, csv_path: Union[str, Path]):
         """Import CSV do databáze s validací a error handlingem"""
         csv_path = Path(csv_path)
         if not csv_path.exists():

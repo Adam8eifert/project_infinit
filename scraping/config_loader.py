@@ -13,7 +13,7 @@ class SourcesConfigLoader:
         self.config_path = Path(config_path)
         self.config = self._load_config()
     
-    def _load_config(self) -> Dict[str, Any]:
+    def _load_config(self) -> Any:
         """Načte YAML konfiguraci."""
         if not self.config_path.exists():
             raise FileNotFoundError(f"Konfiguační soubor nenalezen: {self.config_path}")

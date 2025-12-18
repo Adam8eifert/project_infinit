@@ -67,7 +67,7 @@ class CzechTextAnalyzer:
         """
         Analyze text using spaCy for tokenization, POS tagging, and lemmatization.
         """
-        if not self.spacy_available:
+        if not self.spacy_available or self.nlp is None:
             # Fallback: basic tokenization
             return [{'text': word, 'lemma': word.lower(), 'pos': 'UNK', 'tag': 'UNK', 'dep': 'UNK', 'is_stop': False, 'is_alpha': word.isalpha()}
                    for word in text.split()]
@@ -92,26 +92,31 @@ class CzechTextAnalyzer:
         """
         Extract named entities using Hugging Face NER model for Czech.
         """
-        if self.ner_available:
-            try:
-                entities = self.ner_analyzer(text)
-                result = []
+        if not self.ner_available or self.ner_analyzer is None:
+            # Fallback: return empty list
+            return []
 
+        try:
+            entities = self.ner_analyzer(text)
+            result = []
+
+            if entities and isinstance(entities, list):
                 for entity in entities:
-                    result.append({
-                        'text': entity['word'],
-                        'label': entity['entity_group'],
-                        'confidence': entity['score'],
-                        'start': entity['start'],
-                        'end': entity['end']
-                    })
+                    if isinstance(entity, dict) and all(key in entity for key in ['word', 'entity_group', 'score', 'start', 'end']):
+                        result.append({
+                            'text': entity['word'],
+                            'label': entity['entity_group'],
+                            'confidence': entity['score'],
+                            'start': entity['start'],
+                            'end': entity['end']
+                        })
 
-                return result
-            except Exception as e:
+            return result
+        except Exception as e:
                 print(f"⚠️ NER analysis failed: {e}")
 
         # Fallback to spaCy NER or basic fallback
-        if self.spacy_available:
+        if self.spacy_available and self.nlp is not None:
             doc = self.nlp(text)
             result = []
             for ent in doc.ents:
@@ -131,24 +136,29 @@ class CzechTextAnalyzer:
         """
         Analyze sentiment using Hugging Face sentiment model.
         """
-        if self.sentiment_available:
-            try:
-                # Truncate text to first 512 characters for sentiment analysis
-                truncated_text = text[:512]
-                result = self.sentiment_analyzer(truncated_text)
+        if not self.sentiment_available or self.sentiment_analyzer is None:
+            # Fallback sentiment
+            return {'label': 'neutral', 'score': 0.5, 'confidence': 0.5}
 
-                if result and len(result) > 0:
-                    # result is a list of sentiment predictions
-                    sentiments = result[0]  # First item in batch
+        try:
+            # Truncate text to first 512 characters for sentiment analysis
+            truncated_text = text[:512]
+            result = self.sentiment_analyzer(truncated_text)
+
+            if result and isinstance(result, list) and len(result) > 0:
+                # result is a list of sentiment predictions
+                sentiments = result[0]  # First item in batch
+                if isinstance(sentiments, list) and sentiments:
                     # Find the sentiment with highest score
-                    best_sentiment = max(sentiments, key=lambda x: x['score'])
-                    return {
-                        'label': best_sentiment['label'],
-                        'score': best_sentiment['score'],
-                        'confidence': best_sentiment['score']
-                    }
-            except Exception as e:
-                print(f"⚠️ Sentiment analysis failed: {e}")
+                    best_sentiment = max(sentiments, key=lambda x: x.get('score', 0) if isinstance(x, dict) else 0)
+                    if isinstance(best_sentiment, dict) and 'label' in best_sentiment and 'score' in best_sentiment:
+                        return {
+                            'label': best_sentiment['label'],
+                            'score': best_sentiment['score'],
+                            'confidence': best_sentiment['score']
+                        }
+        except Exception as e:
+            print(f"⚠️ Sentiment analysis failed: {e}")
 
         # Fallback - neutral sentiment
         return {
@@ -161,7 +171,7 @@ class CzechTextAnalyzer:
         """
         Extract keywords using spaCy (nouns, proper nouns, adjectives).
         """
-        if self.spacy_available:
+        if self.spacy_available and self.nlp is not None:
             try:
                 doc = self.nlp(text)
                 keywords = []
@@ -188,7 +198,7 @@ class CzechTextAnalyzer:
         """
         Get basic text statistics.
         """
-        if self.spacy_available:
+        if self.spacy_available and self.nlp is not None:
             try:
                 doc = self.nlp(text)
 

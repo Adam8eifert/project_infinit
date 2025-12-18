@@ -344,8 +344,8 @@ class TestSocialMediaSpidersConfig:
         
         spider = RedditSpider()
         
-        assert spider.source_config == expected_config
-        assert 'r/occult' in spider.source_config['subreddits']
+        assert spider.source_config == expected_config  # type: ignore
+        assert 'r/occult' in spider.source_config['subreddits']  # type: ignore
     
     @patch('scraping.social_media_spider.get_config_loader')
     @patch.dict('os.environ', {'X_BEARER_TOKEN': 'test_token'})
@@ -365,8 +365,8 @@ class TestSocialMediaSpidersConfig:
         
         spider = XTwitterSpider()
         
-        assert spider.source_config == expected_config
-        assert 'sekta lang:cs' in spider.source_config['search_queries']
+        assert spider.source_config == expected_config  # type: ignore
+        assert 'sekta lang:cs' in spider.source_config['search_queries']  # type: ignore
 
 
 if __name__ == "__main__":

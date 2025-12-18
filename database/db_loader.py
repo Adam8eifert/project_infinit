@@ -4,6 +4,7 @@ from sqlalchemy.orm import sessionmaker, scoped_session
 from sqlalchemy.engine import Engine
 import sqlite3
 import datetime
+from typing import Optional
 
 from .models import Base, Movement, Alias, Location, Source
 import config  # expects config.DB_URI
@@ -16,7 +17,7 @@ class DBConnector:
       - get_session()
       - helper methods for common inserts
     """
-    def __init__(self, uri: str = None):
+    def __init__(self, uri: Optional[str] = None):
         self.db_uri = uri or getattr(config, "DB_URI", "sqlite:///data.db")
         connect_args = {}
         if self.db_uri.startswith("sqlite"):
@@ -45,7 +46,7 @@ class DBConnector:
                 for k, v in kwargs.items():
                     if hasattr(m, k) and v is not None:
                         setattr(m, k, v)
-                m.updated_at = datetime.datetime.utcnow()
+                # updated_at will be set automatically by SQLAlchemy onupdate
             session.commit()
             return m
         except Exception:

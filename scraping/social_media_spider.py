@@ -31,6 +31,9 @@ class RedditSpider(scrapy.Spider):
         if not self.source_config or self.source_config.get('type') != 'social_api':
             raise ValueError("Reddit zdroj není nakonfigurován nebo není typu social_api")
         
+        # At this point, source_config is guaranteed to be not None
+        assert self.source_config is not None
+        
         # Načti API klíče z environment nebo config
         client_id = os.getenv('REDDIT_CLIENT_ID') or self.source_config.get('auth', {}).get('client_id')
         client_secret = os.getenv('REDDIT_CLIENT_SECRET') or self.source_config.get('auth', {}).get('client_secret')
@@ -56,7 +59,6 @@ class RedditSpider(scrapy.Spider):
         yield scrapy.Request(
             'https://www.reddit.com/r/occult/.json',
             callback=self.parse_reddit,
-            dont_download=True,
             dont_filter=True
         )
     
@@ -65,9 +67,9 @@ class RedditSpider(scrapy.Spider):
         try:
             self.logger.info("📱 Hledám příspěvky na Redditu...")
             
-            subreddits = self.source_config.get('subreddits', [])
-            search_terms = self.source_config.get('search_terms', [])
-            output_csv = self.source_config.get('output_csv', 'export/csv/reddit_raw.csv')
+            subreddits = self.source_config.get('subreddits', [])  # type: ignore
+            search_terms = self.source_config.get('search_terms', [])  # type: ignore
+            output_csv = self.source_config.get('output_csv', 'export/csv/reddit_raw.csv')  # type: ignore
             
             submissions = []
             
@@ -152,6 +154,9 @@ class XTwitterSpider(scrapy.Spider):
         if not self.source_config or self.source_config.get('type') != 'social_api':
             raise ValueError("X/Twitter zdroj není nakonfigurován nebo není typu social_api")
         
+        # At this point, source_config is guaranteed to be not None
+        assert self.source_config is not None
+        
         # Načti bearer token
         self.bearer_token = os.getenv('X_BEARER_TOKEN') or self.source_config.get('auth', {}).get('bearer_token')
         
@@ -165,14 +170,14 @@ class XTwitterSpider(scrapy.Spider):
     
     def start_requests(self):
         """Generuje požadavky pro X API."""
-        search_queries = self.source_config.get('search_queries', [])
+        search_queries = self.source_config.get('search_queries', [])  # type: ignore
         
         for query in search_queries:
             search_url = f"{self.base_url}/tweets/search/recent"
             
             params = {
                 'query': query,
-                **self.source_config.get('api_params', {})
+                **self.source_config.get('api_params', {})  # type: ignore
             }
             
             headers = self._get_headers()

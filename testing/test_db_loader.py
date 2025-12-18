@@ -23,12 +23,12 @@ def test_dbconnector_insert_and_query(monkeypatch):
     }]
 
     # insert and verify
-    db.insert_sources(sample)
+    db.add_source(sample[0])
 
-    session = db.Session()
+    session = db.get_session()
     try:
         res = session.query(Source).filter_by(url='http://example.test/1').one()
-        assert res.source_name == 'unit-test'
-        assert res.source_type == 'test'
+        assert res.source_name == 'unit-test'  # type: ignore
+        assert res.source_type == 'test'  # type: ignore
     finally:
         session.close()

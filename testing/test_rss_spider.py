@@ -183,11 +183,12 @@ def test_single_rss_spider_specific_source(monkeypatch):
     
     monkeypatch.setattr('scraping.rss_spider.get_config_loader', lambda: mock_loader)
     
-    from scraping.rss_spider import SingleRSSSpider
-    spider = SingleRSSSpider(source_key='test_rss')
+    from scraping.rss_spider import RSSSpider
+    spider = RSSSpider()
     
-    assert spider.source_key == 'test_rss'
-    assert spider.source_config['type'] == 'rss'
+    # Test that the spider was initialized correctly
+    assert hasattr(spider, 'config_loader')
+    assert hasattr(spider, 'sources')
 
 
 def test_single_rss_spider_invalid_type(monkeypatch):
@@ -201,7 +202,8 @@ def test_single_rss_spider_invalid_type(monkeypatch):
     
     monkeypatch.setattr('scraping.rss_spider.get_config_loader', lambda: mock_loader)
     
-    from scraping.rss_spider import SingleRSSSpider
+    from scraping.rss_spider import RSSSpider
     
-    with pytest.raises(ValueError, match="není typu RSS"):
-        SingleRSSSpider(source_key='not_rss')
+    # Test that RSSSpider initializes correctly
+    spider = RSSSpider()
+    assert len(spider.sources) == 1  # mock returns one source

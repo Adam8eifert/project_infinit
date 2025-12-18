@@ -141,11 +141,18 @@ class SingleAPISpider(scrapy.Spider):
         
         if self.source_config.get('type') != 'api':
             raise ValueError(f"Zdroj '{source_key}' není typu API")
+        
+        # At this point, source_config is guaranteed to be not None
+        assert self.source_config is not None
     
     def start_requests(self):
         """Generuje požadavek pro API."""
-        api_url = self.source_config.get('url')
-        api_params = self.source_config.get('api_params', {})
+        api_url = self.source_config.get('url')  # type: ignore
+        if not api_url:
+            self.logger.error(f"No URL configured for source {self.source_config.get('name', 'Unknown')}")  # type: ignore
+            return
+            
+        api_params = self.source_config.get('api_params', {})  # type: ignore
         
         params_str = '&'.join([f"{k}={v}" for k, v in api_params.items()])
         full_url = f"{api_url}?{params_str}" if params_str else api_url
@@ -154,8 +161,8 @@ class SingleAPISpider(scrapy.Spider):
             full_url,
             callback=self.parse,
             meta={
-                'source_config': self.source_config,
-                'source_name': self.source_config['name']
+                'source_config': self.source_config,  # type: ignore
+                'source_name': self.source_config['name']  # type: ignore
             }
         )
     

@@ -82,7 +82,11 @@ class RSSSpider(scrapy.Spider):
                 link = entry.get('link', '')
                 
                 # Obsah - zkušíme více polí
-                content = entry.get('content', [{}])[0].get('value', '')
+                content_data = entry.get('content')
+                if content_data and isinstance(content_data, list) and len(content_data) > 0:
+                    content = content_data[0].get('value', '')
+                else:
+                    content = ''
                 if not content:
                     content = entry.get('summary', '')
                 if not content:
@@ -97,7 +101,8 @@ class RSSSpider(scrapy.Spider):
                 date_published = entry.get('published', '')
                 
                 # Kategorie
-                categories = [tag.get('term', '') for tag in entry.get('tags', [])]
+                tags = entry.get('tags', []) or []
+                categories = [tag.get('term', '') for tag in tags if isinstance(tag, dict)]
                 
                 # Kontrola relevance
                 combined_text = f"{title} {content}"
@@ -109,11 +114,11 @@ class RSSSpider(scrapy.Spider):
                 yield {
                     'source_name': response.meta['source_name'],
                     'source_type': response.meta['source_type'],
-                    'title': title.strip(),
+                    'title': str(title).strip() if title else '',
                     'url': link,
-                    'text': content.strip(),
+                    'text': str(content).strip() if content else '',
                     'scraped_at': datetime.utcnow().isoformat(),
-                    'author': author.strip(),
+                    'author': str(author).strip() if author else '',
                     'published_at': date_published,
                     'categories': categories
                 }

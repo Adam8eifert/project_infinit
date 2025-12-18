@@ -194,7 +194,7 @@ def test_single_api_spider_specific_source(monkeypatch):
     spider = SingleAPISpider(source_key='test_api')
     
     assert spider.source_key == 'test_api'
-    assert spider.source_config['type'] == 'api'
+    assert spider.source_config['type'] == 'api'  # type: ignore
 
 
 def test_single_api_spider_invalid_type(monkeypatch):

@@ -10,6 +10,10 @@ def test_nlp_analysis_monkeypatched(monkeypatch):
             self.lang_ = 'cs'
             self.ents = []
             self.sents = [MockSent()]
+            self._tokens = []  # Add _tokens attribute
+
+        def __iter__(self):
+            return iter([])  # Will be overridden by MockNLP
 
     class MockSent:
         pass
@@ -30,7 +34,8 @@ def test_nlp_analysis_monkeypatched(monkeypatch):
 
         def __call__(self, text):
             doc = MockDoc(text)
-            doc.__iter__ = lambda: iter(self.tokens)
+            doc._tokens = self.tokens  # Store tokens as attribute
+            doc.__iter__ = lambda: iter(self.tokens)  # Override __iter__
             return doc
 
     # Create mock tokens
