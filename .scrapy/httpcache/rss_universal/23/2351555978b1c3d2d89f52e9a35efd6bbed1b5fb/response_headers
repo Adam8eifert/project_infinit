@@ -1,0 +1,19 @@
+Content-Length: 0
+Date: Thu, 18 Dec 2025 21:45:40 GMT
+Nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+Link: <https://a.centrum.cz/>; rel=preconnect, <https://fonts.googleapis.com/>; rel=preconnect, <https://asset.stdout.cz/>; rel=dns-prefetch, <https://prod-snowly-sasic.stdout.cz/>; rel=dns-prefetch, <https://pagead2.googlesyndication.com/>; rel=preconnect, <https://asset.stdout.cz/fe/appc/js/appc.5098b556.js>; rel=preload, <https://content.aimatch.com/>; rel=dns-prefetch
+Host: www.aktualne.cz
+Location: https://ecoid-ts.id-eco.cz/pid?sid=BajoCNx9zLr1VpspVoD7m&origin-url=https%3A%2F%2Fwww.aktualne.cz%2Fexport-rss
+Cf-Ray: 9b01d93b2da80a1b-PRG
+Accept-Encoding: gzip, br
+Accept-Language: en
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Set-Cookie: SID=BajoCNx9zLr1VpspVoD7m; Path=/; Expires=Fri, 18 Dec 2026 21:45:40 GMT; Secure; SameSite=None
+User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36
+Cf-Connecting-Ip: 78.80.80.248
+Cf-Ipcountry: CZ
+Cf-Visitor: {"scheme":"https"}
+X-Worker-Pass: aktualneCfWorker
+Vary: accept-encoding
+Report-To: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=vBYxMUEFEPqeYX1%2FcVKPkzUDLafmFsdSd5yn6FF4fI91B%2Fb7NUkeBxRGAdMWZZSjL0LPD7mvqLzkD9uKTrs2lvqq6vZgxVW7B6b5glfX"}]}
+Server: cloudflare

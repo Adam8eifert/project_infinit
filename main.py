@@ -41,15 +41,19 @@ def process_csv():
     """Importuje CSV soubory do databáze"""
     try:
         importer = CSVtoDatabaseLoader()
-        # Import konkrétních CSV pokud existují
-        csv_files = [
-            "export/csv/info_dingir_raw.csv",
-            "export/csv/sekty_tv_raw.csv",
-            "export/csv/google_news_raw.csv"
-        ]
+        # Dynamicky načti všechny *_raw.csv soubory z export/csv/
+        csv_dir = Path("export/csv")
+        csv_files = list(csv_dir.glob("*_raw.csv"))
+        
+        if not csv_files:
+            print("⚠️  Žádné CSV soubory k importu nenalezeny")
+            return
+            
+        print(f"📁 Nalezeno {len(csv_files)} CSV souborů k importu")
         for csv_file in csv_files:
-            if Path(csv_file).exists():
-                importer.load_csv_to_sources(csv_file)
+            csv_path = str(csv_file)
+            print(f"📄 Importuji: {csv_path}")
+            importer.load_csv_to_sources(csv_path)
     except Exception as e:
         print(f"❌ Chyba při zpracování CSV: {e}")
         raise

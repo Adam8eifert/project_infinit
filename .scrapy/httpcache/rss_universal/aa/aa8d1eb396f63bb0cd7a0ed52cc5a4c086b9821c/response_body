@@ -1,0 +1,470 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:szn="https://www.seznam.cz" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0">
+  <channel>
+    <title>Seznam Zprávy - nejnovější články</title>
+    <link>https://www.seznamzpravy.cz</link>
+    <description>Seznam Zprávy - nejnovější články</description>
+    <docs>http://www.rssboard.org/rss-specification</docs>
+    <generator>python-feedgen</generator>
+    <lastBuildDate>Thu, 18 Dec 2025 21:45:03 +0000</lastBuildDate>
+    <item>
+      <title>Potyčka albánských poslanců. V parlamentu zapálili i světlici</title>
+      <link>https://www.seznamzpravy.cz/clanek/zahranicni-potycka-albanskych-poslancu-v-parlamentu-zapalili-i-svetlici-294645</link>
+      <description>Bouřlivé zasedání parlamentu zažila Albánie. Během hlasování o ombudsmanovi vzduchem letěla i lahev s vodou.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294645</guid>
+      <pubDate>Thu, 18 Dec 2025 22:08:01 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/nDJ4VEZEqx7ONLI6FPkpxl/3b4f/albanie-parlament.jpeg?fl=cro,0,72,1400,787|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Potyčka albánských poslanců. V parlamentu zapálili i světlici</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>294645</szn:uid>
+    </item>
+    <item>
+      <title>Demokraté zveřejnili další fotky z kauzy Epstein. Je na nich i pas české ženy</title>
+      <link>https://www.seznamzpravy.cz/clanek/zahranicni-demokrate-zverejnili-dalsi-fotky-z-kauzy-epstein-je-na-nich-i-pas-ceske-zeny-294636</link>
+      <description>Demokraté zveřejnili desítky nových fotek ke kauze kolem Jeffreyho Epsteina. Kromě dalších známých osobností odhalují i doklady žen, patrně Epsteinových společnic. Je mezi nimi i jeden český.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294636</guid>
+      <pubDate>Thu, 18 Dec 2025 21:50:04 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/nDJ4VEZEqBMnoOKnaFPfxD9/4865/epstein-bill-gates.jpeg?fl=cro,0,381,3300,1856|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Demokraté zveřejnili další fotky z kauzy Epstein. Je na nich i pas české ženy</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>294636</szn:uid>
+    </item>
+    <item>
+      <title>Ústav pod ministerstvem zrušil objednávky u Agrofertu, uznal Babišův střet zájmů</title>
+      <link>https://www.seznamzpravy.cz/clanek/domaci-politika-ustav-pod-ministerstvem-zrusil-objednavky-u-agrofertu-uznal-babisuv-stret-zajmu-294643</link>
+      <description>Ústav, který spadá pod Ministerstvo zemědělství, nakonec zrušil objednávky, které si objednal u holdingu Agrofert. Učinil tak poté, co média upozornila na to, že k jejich uzavření došlo po jmenování Andreje Babiše premiérem.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294643</guid>
+      <pubDate>Thu, 18 Dec 2025 21:56:45 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_gT_s/CVtJL/sula-agrofert-petrimex-pomnik.jpeg?fl=cro,0,95,3000,1687|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Ústav pod ministerstvem zrušil objednávky u Agrofertu, uznal Babišův střet zájmů</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>294643</szn:uid>
+    </item>
+    <item>
+      <title>Unijní lídři se shodli na závěrech summitu. Zbývá jim se domluvit na Ukrajině</title>
+      <link>https://www.seznamzpravy.cz/clanek/zahranicni-unijni-lidri-se-shodli-na-zaverech-summitu-zbyva-jim-se-domluvit-na-ukrajine-294642</link>
+      <description>Evropští lídři dokázali na summitu EU dobrat shody. Jasno mají například ohledně bezpečnosti, důrazně odsoudili hybridní útoky ze strany Ruska a Běloruska. Zbývá jim se domluvit na částech o Ukrajině.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294642</guid>
+      <pubDate>Thu, 18 Dec 2025 21:16:09 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/kOzkBkwYBTCNNSBGv7FPjbbS/7456/summit-eu-emmanuel-macron-robert-golob.jpeg?fl=cro,0,213,4096,2304|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Unijní lídři se shodli na závěrech summitu. Zbývá jim se domluvit na Ukrajině</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>294642</szn:uid>
+    </item>
+    <item>
+      <title>Česko se nemůže starat jen samo o sebe, apeloval Vystrčil ve svém poselství</title>
+      <link>https://www.seznamzpravy.cz/clanek/domaci-politika-cesko-se-nemuze-starat-jen-samo-o-sebe-apeloval-vystrcil-ve-svem-poselstvi-294640</link>
+      <description>Šéf Senátu Miloš Vystrčil (ODS) ve svém adventním projevu vyzval k budování důvěry ve společnosti. O Česku mluvil jako o krásné, bezpečné a svobodné zemi, chválil také kroky minulé vlády. Dále vyzdvihl členství země v NATO a EU.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294640</guid>
+      <pubDate>Thu, 18 Dec 2025 21:07:40 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_m1_A/kO1SI6eo54DRpQjXszqAw/97d2.jpeg?fl=cro,0,156,3000,1687|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Česko se nemůže starat jen samo o sebe, apeloval Vystrčil ve svém poselství</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>294640</szn:uid>
+    </item>
+    <item>
+      <title>V USA přejmenovali Kennedyho centrum. Nově ponese i Trumpovo jméno</title>
+      <link>https://www.seznamzpravy.cz/clanek/zahranicni-v-usa-prejmenovali-kennedyho-centrum-nove-ponese-i-trumpovo-jmeno-294641</link>
+      <description>Kennedyho centrum ve Washingtonu se bude nově jmenovat Trumpovo a Kennedyho centrum. Rozhodla o tom správní rada, kterou kompletně dosadil stávající americký prezident.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294641</guid>
+      <pubDate>Thu, 18 Dec 2025 21:05:30 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/kOzkBkwYBTCNNSBFURFMf3ZY/6b5e/donald-trump.jpeg?fl=cro,0,200,4096,2304|res,1200,,3|jpg,80</szn:url>
+        <szn:title>V USA přejmenovali Kennedyho centrum. Nově ponese i Trumpovo jméno</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>294641</szn:uid>
+    </item>
+    <item>
+      <title>Fotky: Vzali si svíčky a vyrazili na Hrad. Pochod vyjádřil podporu Pavlovi</title>
+      <link>https://www.seznamzpravy.cz/clanek/domaci-zivot-v-cesku-fotky-dlouhy-pochod-se-svickami-na-hrad-podporil-prezidenta-pavla-294634</link>
+      <description>V den výročí úmrtí bývalého prezidenta republiky Václava Havla uspořádal spolek Milion chvilek pro demokracii akci Světlo na Hrad. Její účastníci společným pochodem na Hrad symbolicky předali výzvu na podporu prezidenta Pavla.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294634</guid>
+      <pubDate>Thu, 18 Dec 2025 20:33:20 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/nDJ4VEZEqx7ONLIxFPgyv2/2540/milion-chvilek.jpeg?fl=cro,0,156,3000,1687|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Fotky: Vzali si svíčky a vyrazili na Hrad. Pochod vyjádřil podporu Pavlovi</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>294634</szn:uid>
+    </item>
+    <item>
+      <title>Polský ústavní soud není nezávislý, ani nestranný, uvedl Soudní dvůr EU</title>
+      <link>https://www.seznamzpravy.cz/clanek/zahranicni-polsky-ustavni-soud-neni-nezavisly-ani-nestranny-uvedl-soudni-dvur-eu-294557</link>
+      <description>Soudní dvůr EU rozhodl, že ústavní soud v Polsku porušil některé základní zásady evropského práva. Podle dvora je ale problém i nesplnění některých dalších požadavků.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294557</guid>
+      <pubDate>Thu, 18 Dec 2025 10:28:55 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/kOzkBkwYBTDq3nMGo2FPUEnb/f640/soudni-dvur-eu.jpeg?fl=cro,0,213,4096,2304|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Polský ústavní soud není nezávislý, ani nestranný, uvedl Soudní dvůr EU</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>294557</szn:uid>
+    </item>
+    <item>
+      <title>Bezpečný odstup při předjíždění musí dodržovat i cyklisté, rozhodl soud</title>
+      <link>https://www.seznamzpravy.cz/clanek/domaci-zivot-v-cesku-bezpecny-odstup-pri-predjizdeni-musi-dodrzovat-i-cykliste-rozhodl-soud-294622</link>
+      <description>I cyklisté, kteří předjíždějí jiného cyklistu, musí dodržovat bezpečný odstup, uvedl ve svém rozhodnutí Nejvyšší soud. Tenhle bezpečný rozestup ale nemusí být nutně jeden a půl metru, jako musí dodržovat řidiči aut.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294622</guid>
+      <pubDate>Thu, 18 Dec 2025 20:03:36 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_gZ_g/6Oyi/shutterstock-1489910201.jpeg?fl=cro,0,204,4738,2665|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Bezpečný odstup při předjíždění musí dodržovat i cyklisté, rozhodl soud</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>294622</szn:uid>
+    </item>
+    <item>
+      <title>V Severní Karolíně se zřítil letoun, několik lidí zahynulo</title>
+      <link>https://www.seznamzpravy.cz/clanek/zahranicni-v-severni-karoline-se-zritil-letoun-nekolik-lidi-zahynulo-294630</link>
+      <description>Na regionálním letišti v Severní Karolíně se zřítilo malé letadlo. Zemřelo několik lidí, přesný počet obětí úřady neuvedly. Letoun se zřítil při pokusu o přistání.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294630</guid>
+      <pubDate>Thu, 18 Dec 2025 19:23:27 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/kOzkBkwYBTxrzzG42FPgkWy/a0db/pad-letadla-severni-karolina.jpeg?fl=cro,0,145,1400,787|res,1200,,3|jpg,80</szn:url>
+        <szn:title>V Severní Karolíně se zřítil letoun, několik lidí zahynulo</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>294630</szn:uid>
+    </item>
+    <item>
+      <title>Poslanci koalice a ODS navrhli změny sněmovních pravidel k omezení obstrukcí</title>
+      <link>https://www.seznamzpravy.cz/clanek/domaci-politika-poslanci-koalice-a-ods-navrhli-zmeny-snemovnich-pravidel-k-omezeni-obstrukci-294629</link>
+      <description>Poslanci vládní koalici a ODS navrhují změnit pravidla ve Sněmovně. Nově by se omezila doba, po kterou mohou jednotliví řečníci hovořit.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294629</guid>
+      <pubDate>Thu, 18 Dec 2025 19:11:25 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_of_A/kPRtHkVQLlDN44abeE0d5Ka/bd96.jpeg?fl=cro,0,267,3600,2025|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Poslanci koalice a ODS navrhli změny sněmovních pravidel k omezení obstrukcí</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>294629</szn:uid>
+    </item>
+    <item>
+      <title>Inflace v USA zvolnila víc, než se čekalo</title>
+      <link>https://www.seznamzpravy.cz/clanek/ekonomika-finance-inflace-v-usa-zvolnila-vic-nez-se-cekalo-294624</link>
+      <description>Míra inflace ve Spojených státech v listopadu zvolnila na 2,7 procenta, oznámilo ve čtvrtek americké ministerstvo práce.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294624</guid>
+      <pubDate>Thu, 18 Dec 2025 19:00:00 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_QR_y/5pmOa/jerome-powell.jpeg?fl=cro,0,0,1200,675|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Inflace v USA zvolnila víc, než se čekalo</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>294624</szn:uid>
+    </item>
+    <item>
+      <title>TMBK: Fiala prozradil své vánoční přání. Santu zaskočil</title>
+      <link>https://www.seznamzpravy.cz/clanek/tmbk-tmbk-fialovo-tajne-prani-k-vanocum-294628</link>
+      <description>Bývalý premiér Fiala v rozhovoru pro iDnes.cz laškuje s tím, že by se za pár nechal zvolit prezidentem. TMBK pro SZ.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294628</guid>
+      <pubDate>Thu, 18 Dec 2025 18:47:09 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/kOzkBkwYBTqAqfHWmFPfUph/2789/tmbk.jpeg?fl=cro,3,113,1196,673|res,1200,,3|jpg,80</szn:url>
+        <szn:title>TMBK: Fiala prozradil své vánoční přání. Santu zaskočil</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>294628</szn:uid>
+    </item>
+    <item>
+      <title>Trump chce pomoci najít svatý grál energetiky</title>
+      <link>https://www.seznamzpravy.cz/clanek/ekonomika-firmy-trump-chce-pomoci-najit-svaty-gral-energetiky-294620</link>
+      <description>Jen několik dní poté, co americká vláda ohlásila podporu výzkumu fúzních elektráren, oznámila společnost Trump Media &amp; Technology, že se spojuje s jednou z firem v oboru.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294620</guid>
+      <pubDate>Thu, 18 Dec 2025 18:45:00 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_QN_h/yvAWV/jet-fotoeurofusion.jpeg?fl=cro,0,0,3505,1972|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Trump chce pomoci najít svatý grál energetiky</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>294620</szn:uid>
+    </item>
+    <item>
+      <title>Česko se bude i příští rok podílet na ochraně slovenského vzdušného prostoru</title>
+      <link>https://www.seznamzpravy.cz/clanek/domaci-zivot-v-cesku-cesko-se-bude-i-pristi-rok-podilet-na-ochrane-slovenskeho-vzdusneho-prostoru-294596</link>
+      <description>Česko se Slovenskem prodloužilo dohodu o ochraně slovenského vzdušného prostoru. Ten budou i příští rok pomáhat chránit české letouny.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294596</guid>
+      <pubDate>Thu, 18 Dec 2025 14:47:55 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/nDJ4VEZEqBMnoOKjpFPZFkV/ca44/jaromir-zuna.jpeg?fl=cro,0,50,900,506|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Česko se bude i příští rok podílet na ochraně slovenského vzdušného prostoru</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>294596</szn:uid>
+    </item>
+    <item>
+      <title>Cheb odmítl nabídku od Accolade, průmyslovou zónu připraví se státem</title>
+      <link>https://www.seznamzpravy.cz/clanek/ekonomika-byznys-reality-cheb-odmitl-nabidku-od-accolade-prumyslovou-zonu-pripravi-se-statem-294619</link>
+      <description>Zastupitelé města Cheb měli na stole dvě nabídky na novou průmyslovou zónu. Společnost Accolade sice slibovala Chebu víc peněz, přesto byla jednomyslně odmítnuta.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294619</guid>
+      <pubDate>Thu, 18 Dec 2025 18:15:00 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_of_A/kOzkBkwYBTBv5vzkUE9iqnI/2010/prumyslovy-park-cheb-ii.webp?fl=cro,328,0,2097,1180|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Cheb odmítl nabídku od Accolade, průmyslovou zónu připraví se státem</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>294619</szn:uid>
+    </item>
+    <item>
+      <title>Austrálie chce po střelbě zpřísnit opatření proti nenávistným projevům a násilí</title>
+      <link>https://www.seznamzpravy.cz/clanek/zahranicni-australie-chce-po-strelbe-zprisnit-opatreni-proti-nenavistnym-projevum-a-nasili-294537</link>
+      <description>Australský premiér Anthony Albanese slíbil zavést přísnější zákony postihující šíření nenávistných projevů a propagovaní násilí. Albanese je dlouhodobě kritizován za podcenění boje proti antisemitismu v zemi.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294537</guid>
+      <pubDate>Thu, 18 Dec 2025 07:36:11 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/kOzkBkwYBTqAqfHMwFPO2q2/6992/anthony-albanese-australie-premier.jpeg?fl=cro,0,213,4096,2304|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Austrálie chce po střelbě zpřísnit opatření proti nenávistným projevům a násilí</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>294537</szn:uid>
+    </item>
+    <item>
+      <title>EU a Belgie jednají o využití zmrazených ruských aktiv mimo hlavní sál</title>
+      <link>https://www.seznamzpravy.cz/clanek/zahranicni-eu-a-belgie-jednaji-o-vyuziti-zmrazenych-ruskych-aktiv-mimo-hlavni-sal-294621</link>
+      <description>Zatímco na schůzce evropských prezidentů a premiérů se řeší například rozšíření EU či rozpočet, Evropská komise s Belgičany řeší v ústraní využití zmrazených ruských aktiv na pomoc Ukrajině.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294621</guid>
+      <pubDate>Thu, 18 Dec 2025 18:03:29 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/nDJ4VEZEqCemGmH5wFPedYp/adf7/summit-eu.jpeg?fl=cro,0,213,4096,2304|res,1200,,3|jpg,80</szn:url>
+        <szn:title>EU a Belgie jednají o využití zmrazených ruských aktiv mimo hlavní sál</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>294621</szn:uid>
+    </item>
+    <item>
+      <title>Při výběru trhů sledujeme i podíl věřících, říká šéf kosmetické značky</title>
+      <link>https://www.seznamzpravy.cz/clanek/ekonomika-byznys-rozhovory-pri-vyberu-trhu-sledujeme-i-podil-vericich-rika-sef-kosmeticke-znacky-294365</link>
+      <description>CEO kosmetické značky Angry Beards v rozhovoru popisuje, kam fousáči míří dál, proč je pro ně Polsko výzvou a také že nejsou jenom pro muže.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294365</guid>
+      <pubDate>Thu, 18 Dec 2025 18:00:00 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/nDJ4VEZEqD86wCKeZFO1C2b/2694/jan-trval-angry-beards.jpeg?fl=cro,0,56,1086,610|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Při výběru trhů sledujeme i podíl věřících, říká šéf kosmetické značky</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>294365</szn:uid>
+    </item>
+    <item>
+      <title>Hořící pneumatiky a brambory do oken. Farmáři protestovali v Bruselu</title>
+      <link>https://www.seznamzpravy.cz/clanek/ekonomika-byznys-trendy-analyzy-horici-pneumatiky-a-brambory-do-oken-farmari-protestovali-v-bruselu-294615</link>
+      <description>Tisíce zemědělců protestovaly v Bruselu proti levným dovozům a zemědělské politice EU. Při demonstraci došlo i na střety s policií, která použila vodní děla.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294615</guid>
+      <pubDate>Thu, 18 Dec 2025 17:35:00 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/nDJ4VEZEqxQDMKlKFPeSry/a125/protesty-brusel.jpeg?fl=cro,0,93,1800,1012|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Hořící pneumatiky a brambory do oken. Farmáři protestovali v Bruselu</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>294615</szn:uid>
+    </item>
+    <item>
+      <title>Česká škola si pozvala proruský gang, aby dětem přednášel o druhé světové válce</title>
+      <link>https://www.seznamzpravy.cz/clanek/domaci-kauzy-prednaseli-jsme-v-cesku-detem-na-skole-chlubil-se-prorusky-gang-ze-slovenska-294585</link>
+      <description>Na Slovensku chce proputinovský motorkářský gang Brat za brata zakládat tajnou službu a jít „po škůdcích“. V Česku si spolupracovníka spolku pozvala základka v Novém Jičíně, aby dětem přednášel o druhé světové válce a roli Ruska.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294585</guid>
+      <pubDate>Thu, 18 Dec 2025 17:32:10 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/kOzkBkwYBTxrzzG1rFPXZTj/e703/dezinfogang.jpeg?fl=cro,0,192,2048,1152|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Česká škola si pozvala proruský gang, aby dětem přednášel o druhé světové válce</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>294585</szn:uid>
+    </item>
+    <item>
+      <title>Caracasu sloužila k vývozu ropy „flotila duchů“, Trumpova blokáda to má zarazit</title>
+      <link>https://www.seznamzpravy.cz/clanek/zahranicni-caracasu-slouzila-k-vyvozu-ropy-flotila-duchu-trumpova-blokada-to-ma-zarazit-294552</link>
+      <description>Operace na zabavení tankerů, vedené mimo jiné z letadlové lodi USS Gerald Ford, naznačují, že schopnost vlády venezuelského prezidenta Nicoláse Madura spoléhat se na flotilu lodí duchů by mohla být výrazně omezena.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294552</guid>
+      <pubDate>Thu, 18 Dec 2025 17:30:00 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/nDJ4VEZEqCemGmFNDFLLBXZ/e136.jpeg?fl=cro,257,107,1483,834|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Caracasu sloužila k vývozu ropy „flotila duchů“, Trumpova blokáda to má zarazit</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>294552</szn:uid>
+      <szn:video>
+        <szn:_cls>Video</szn:_cls>
+        <szn:customId>693a75b7ece464a6ec67bf84</szn:customId>
+        <szn:duration>49767</szn:duration>
+        <szn:expiration></szn:expiration>
+        <szn:sources></szn:sources>
+        <szn:url>https://v39-a.sdn.cz/~SEC1~expire-1766179575~scope-video~CsbsVJQ2n2e/v_39/vmd/693a75b7ece464a6ec67bf84?fl=mdk,113310a9|</szn:url>
+      </szn:video>
+    </item>
+    <item>
+      <title>V Bělorusku je rozmístěná ruská raketa Orešnik, oznámil Lukašenko</title>
+      <link>https://www.seznamzpravy.cz/clanek/zahranicni-v-belorusku-je-rozmistena-ruska-raketa-oresnik-oznamil-lukasenko-294611</link>
+      <description>V Bělorusku se podle prezidenta země Alexandra Lukašenka nachází hypersonická raketa Orešnik, která je schopná nést jaderné zbraně.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294611</guid>
+      <pubDate>Thu, 18 Dec 2025 16:35:05 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_QR_x/KzFGB/alexandr-lukasenko-belorusko-diktator.jpeg?fl=cro,0,88,2048,1152|res,1200,,3|jpg,80</szn:url>
+        <szn:title>V Bělorusku je rozmístěná ruská raketa Orešnik, oznámil Lukašenko</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>294611</szn:uid>
+    </item>
+    <item>
+      <title>Nawrocki nechal odstranit stůl, u kterého se dohodli komunisté s opozicí</title>
+      <link>https://www.seznamzpravy.cz/clanek/zahranicni-nawrocki-nechal-odstranit-stul-u-ktereho-se-dohodli-komuniste-s-opozici-294613</link>
+      <description>Ze sídla polského prezidenta zmizí stůl, kde se před lety domluvil komunistický režim s opozicí na prvních částečně svobodných volbách. Podle prezidenta Karola Nawrockého stůl patří do muzea.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294613</guid>
+      <pubDate>Thu, 18 Dec 2025 17:09:37 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_oZ_A/kBkJRwehYBvTPBFBiDVUEhp/83cc/karol-nawrocki-polsko.jpeg?fl=cro,0,129,1600,900|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Nawrocki nechal odstranit stůl, u kterého se dohodli komunisté s opozicí</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>294613</szn:uid>
+    </item>
+    <item>
+      <title>Turek k prezidentovi a nedobrovolný defibrilátor</title>
+      <link>https://www.seznamzpravy.cz/clanek/domaci-zivot-v-cesku-petka-sz-turek-k-prezidentovi-a-nedobrovolny-defibrilator-294574</link>
+      <description>Denní přehled Seznam Zpráv.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294574</guid>
+      <pubDate>Thu, 18 Dec 2025 17:00:00 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_of_A/nOztZkD4ZlC2Y2EbLE0UspT/5a04/petka-sz.jpeg?fl=cro,0,0,1920,1080|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Pětka SZ: Turek k prezidentovi a nedobrovolný defibrilátor</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>294574</szn:uid>
+    </item>
+    <item>
+      <title>Ukrajinci hlásí, že Rusům na Krymu poškodili techniku za stamiliony dolarů</title>
+      <link>https://www.seznamzpravy.cz/clanek/zahranicni-ukrajinci-hlasi-ze-rusum-na-krymu-poskodili-techniku-za-stamiliony-dolaru-294589</link>
+      <description>Zničeno či poškozeno mělo být vybavení protivzdušné obrany a jeden letoun.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294589</guid>
+      <pubDate>Thu, 18 Dec 2025 16:30:00 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/nDJ4VEZEqD86wCKzgFPX3iT/553a/krym-belbek-letiste.jpeg?fl=cro,184,0,912,513|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Ukrajinci hlásí, že Rusům na Krymu poškodili techniku za stamiliony dolarů</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>294589</szn:uid>
+    </item>
+    <item>
+      <title>Pod Macinkou skončí sekce ochrany klimatu</title>
+      <link>https://www.seznamzpravy.cz/clanek/domaci-politika-ministerstva-cekaji-skrty-pod-macinkou-skonci-sekce-ochrany-klimatu-294601</link>
+      <description>Nová vláda po přebrání ministerstev postupuje rychle. V pondělí plánuje schvalovat systematizaci resortů, v rámci které může dojít i k osekání odborů. Od ledna má například na životním prostředí zaniknout sekce ochrany klimatu.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294601</guid>
+      <pubDate>Thu, 18 Dec 2025 15:41:55 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/kOzkBkwYBTxrzzGEUFNvMxl/366d.jpeg?fl=cro,0,166,3200,1800|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Pod Macinkou skončí sekce ochrany klimatu</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>294601</szn:uid>
+    </item>
+    <item>
+      <title>Domácí trh už je probraný. Realitní investoři se vydali za hranice</title>
+      <link>https://www.seznamzpravy.cz/clanek/ekonomika-byznys-reality-domaci-trh-uz-je-probrany-realitni-investori-se-vydali-za-hranice-294504</link>
+      <description>Vyšší výnos, více příležitostí a velký objem kapitálu na investice. To je důvod, proč čeští investoři do realit nakupují stále více v cizině. Láká je zejména Polsko i další sousední země jako Německo, Rakousko či Slovensko.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294504</guid>
+      <pubDate>Thu, 18 Dec 2025 16:15:00 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_ob_A/kBj94XhVwDkOB2BLvDwNs9J/da0d/investika-viden-letiste-cae-vycvik-pilotu.jpeg?fl=cro,0,208,4000,2250|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Domácí trh už je probraný. Realitní investoři se vydali za hranice</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>294504</szn:uid>
+    </item>
+    <item>
+      <title>Ani s Turkem, ani bez Turka. Pavel životní prostředí nezachrání</title>
+      <link>https://www.seznamzpravy.cz/clanek/domaci-politika-komentar-ani-s-turkem-ani-bez-turka-pavel-zivotni-prostredi-nezachrani-294600</link>
+      <description>Na Ministerstvu životního prostředí už pevně sedí Motoristé. Ministr buď bude jejich člověk, anebo se musí změnit koaliční smlouva a vláda. Prezident nemá pravomoci to ovlivnit.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294600</guid>
+      <pubDate>Thu, 18 Dec 2025 16:00:00 +0100</pubDate>
+      <szn:additionalType>Commentary</szn:additionalType>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_of_A/kOzkBkwYBTBCGZ91vFCrQna/4bbe.jpeg?fl=cro,0,244,3000,1687|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Komentář: Ani s Turkem, ani bez Turka. Pavel životní prostředí nezachrání</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>294600</szn:uid>
+    </item>
+    <item>
+      <title>EU zruší sankce zavedené na Kosovo v roce 2023 kvůli obcím se srbskou většinou</title>
+      <link>https://www.seznamzpravy.cz/clanek/zahranicni-eu-zrusi-sankce-zavedene-na-kosovo-v-roce-2023-kvuli-obcim-se-srbskou-vetsinou-294603</link>
+      <description>Evropská unie zruší sankce na Kosovo, které mimo jiné vedly ke zmrazení velké části unijních peněz pro balkánskou zemi.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294603</guid>
+      <pubDate>Thu, 18 Dec 2025 15:28:01 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/nDJ4VEZEqCemGmH2YFPaYSR/f214/vjosa-osmaniova.jpeg?fl=cro,0,0,2034,1144|res,1200,,3|jpg,80</szn:url>
+        <szn:title>EU zruší sankce zavedené na Kosovo v roce 2023 kvůli obcím se srbskou většinou</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>294603</szn:uid>
+    </item>
+  </channel>
+</rss>

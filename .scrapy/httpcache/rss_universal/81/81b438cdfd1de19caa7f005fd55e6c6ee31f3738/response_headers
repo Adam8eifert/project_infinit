@@ -1,0 +1,34 @@
+Content-Length: 203
+Date: Thu, 18 Dec 2025 21:39:24 GMT
+Server: Apache
+Last-Modified: Thu, 26 Jan 2023 09:09:38 GMT
+Etag: "36e-5f3271bc13af0-gzip"
+Cache-Control: max-age=3600, public
+Expires: Thu, 18 Dec 2025 21:44:24 GMT
+Content-Encoding: gzip
+Referrer-Policy: no-referrer-when-downgrade
+Pragma: public
+Content-Type: text/plain
+X-Accel-Start: 1
+Vary: Accept-Encoding
+Age: 359
+Accept-Ranges: bytes
+X-Cacheable: YES
+X-Client-Geo-Country: CZ
+X-Client-Geo-Continent: EU
+X-Client-Asn: AS2819
+X-Location: ac76-Prague
+X-Anycast-Ip: 185.8.237.6
+X-Anycast-Port: 443
+X-Forwarded-Proto: https
+X-Forwarded-Port: 443
+X-Visitor-Ip: 78.80.80.248
+X-Request-Id: 8d199a36-be72-49c9-9fca-62cb007e0e64
+X-Provider: WEDOS - WE DO Security (WEDOS.com)
+X-Cdn-Provider: WEDOS Global CDN (WEDOS.delivery)
+X-Protected-By: WEDOS Global Protection (WEDOS.protection)
+X-Dns-By: WEDOS anycast DNS servers as a service (WEDOS.zone)
+X-Status-Page: WEDOS Status (WEDOS.status.online)
+X-Monitored-By: WEDOS Online Monitoring (WEDOS.online)
+X-Tagline: Born in Europe / EU, securing the future and safety worldwide.
+Alt-Svc: h3=":443"; ma=86400

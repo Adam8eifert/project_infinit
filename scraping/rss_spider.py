@@ -1,13 +1,10 @@
-# 📁 scraping/rss_spider.py
-# Univerzální Scrapy spider pro RSS/Atom feedy
-# Dynamicky čte konfiguraci ze sources_config.yaml
-
 import scrapy
 import feedparser
 from datetime import datetime
 from pathlib import Path
 from scraping.config_loader import get_config_loader
 from scraping.keywords import contains_relevant_keywords
+from scraping.spider_settings import ETHICAL_SCRAPING_SETTINGS, CSV_EXPORT_SETTINGS
 
 
 class RSSSpider(scrapy.Spider):
@@ -17,6 +14,15 @@ class RSSSpider(scrapy.Spider):
     """
     name = "rss_universal"
     allowed_domains = []
+    
+    # Nastavení pro export všech RSS dat do jednoho CSV
+    custom_settings = {
+        **ETHICAL_SCRAPING_SETTINGS,
+        "FEEDS": {
+            "export/csv/rss_combined_raw.csv": CSV_EXPORT_SETTINGS
+        },
+        "LOG_LEVEL": "INFO"
+    }
     
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -51,6 +57,11 @@ class RSSSpider(scrapy.Spider):
                     },
                     errback=self.handle_error
                 )
+    
+    async def start(self):
+        """Async start metoda pro Scrapy 2.13+ kompatibilitu."""
+        for request in self.start_requests():
+            yield request
     
     def parse_rss(self, response):
         """
@@ -118,54 +129,55 @@ class RSSSpider(scrapy.Spider):
 
 
 # Alternativní spider pro jednotlivý zdroj (pokud potřebujete spustit konkrétní RSS)
-class SingleRSSSpider(scrapy.Spider):
-    """Spider pro spuštění jednoho konkrétního RSS feedu."""
-    name = "rss_single"
-    
-    def __init__(self, source_key='sekty_cz', *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.source_key = source_key
-        config_loader = get_config_loader()
-        self.source_config = config_loader.get_source(source_key)
-        
-        if not self.source_config:
-            raise ValueError(f"Zdroj '{source_key}' nenalezen v konfiguraci")
-        
-        if self.source_config.get('type') != 'rss':
-            raise ValueError(f"Zdroj '{source_key}' není typu RSS")
-        
-        self.allowed_domains = [self.source_config.get('domain', '')]
-        self.start_urls = [self.source_config.get('url', '')]
-    
-    def parse(self, response):
-        """Totéž jako RSSSpider.parse_rss."""
-        try:
-            feed = feedparser.parse(response.text)
-            self.logger.info(f"📰 Nalezeno {len(feed.entries)} položek")
-            
-            for entry in feed.entries:
-                title = entry.get('title', '')
-                link = entry.get('link', '')
-                content = entry.get('content', [{}])[0].get('value', '') or entry.get('summary', '')
-                author = entry.get('author', 'Unknown')
-                date_published = entry.get('published', '')
-                categories = [tag.get('term', '') for tag in entry.get('tags', [])]
-                
-                combined_text = f"{title} {content}"
-                if not contains_relevant_keywords(combined_text):
-                    continue
-                
-                yield {
-                    'source_name': self.source_config['name'],
-                    'source_type': 'RSS',
-                    'title': title.strip(),
-                    'url': link,
-                    'text': content.strip(),
-                    'scraped_at': datetime.utcnow().isoformat(),
-                    'author': author.strip(),
-                    'published_at': date_published,
-                    'categories': categories
-                }
-        
-        except Exception as e:
-            self.logger.error(f"❌ Chyba při parsování RSS: {e}")
+# Tento spider je zakomentovaný, protože hlavní RSSSpider zpracovává všechny zdroje
+# class SingleRSSSpider(scrapy.Spider):
+#     """Spider pro spuštění jednoho konkrétního RSS feedu."""
+#     name = "rss_single"
+#     
+#     def __init__(self, source_key='sekty_cz', *args, **kwargs):
+#         super().__init__(*args, **kwargs)
+#         self.source_key = source_key
+#         config_loader = get_config_loader()
+#         self.source_config = config_loader.get_source(source_key)
+#         
+#         if not self.source_config:
+#             raise ValueError(f"Zdroj '{source_key}' nenalezen v konfiguraci")
+#         
+#         if self.source_config.get('type') != 'rss':
+#            raise ValueError(f"Zdroj '{source_key}' není typu RSS")
+#         
+#         self.allowed_domains = [self.source_config.get('domain', '')]
+#         self.start_urls = [self.source_config.get('url', '')]
+#     
+#     def parse(self, response):
+#         """Totéž jako RSSSpider.parse_rss."""
+#         try:
+#             feed = feedparser.parse(response.text)
+#             self.logger.info(f"📰 Nalezeno {len(feed.entries)} položek")
+#             
+#             for entry in feed.entries:
+#                 title = entry.get('title', '')
+#                 link = entry.get('link', '')
+#                 content = entry.get('content', [{}])[0].get('value', '') or entry.get('summary', '')
+#                 author = entry.get('author', 'Unknown')
+#                 date_published = entry.get('published', '')
+#                 categories = [tag.get('term', '') for tag in entry.get('tags', [])]
+#                 
+#                 combined_text = f"{title} {content}"
+#                 if not contains_relevant_keywords(combined_text):
+#                     continue
+#                 
+#                 yield {
+#                     'source_name': self.source_config['name'],
+#                     'source_type': 'RSS',
+#                     'title': title.strip(),
+#                     'url': link,
+#                     'text': content.strip(),
+#                     'scraped_at': datetime.utcnow().isoformat(),
+#                     'author': author.strip(),
+#                     'published_at': date_published,
+#                     'categories': categories
+#                 }
+#         
+#         except Exception as e:
+#             self.logger.error(f"❌ Chyba při parsování RSS: {e}")
