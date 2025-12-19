@@ -11,7 +11,7 @@ Important commands (copyable):
 ```bash
 # create venv, install deps
 python -m venv venv
-source venv/bin/activate
+source venv/bin/activatev
 pip install -r requirements.txt
 
 # stanza models (Czech) — recommended before running NLP-heavy code
