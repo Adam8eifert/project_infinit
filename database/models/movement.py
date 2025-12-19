@@ -23,6 +23,14 @@ class Movement(Base):
     sentiment_overall = Column(Float, nullable=True)      # aggregated sentiment across sources
     risk_level = Column(Integer, nullable=True)           # internal score 1-5
 
+    # NEW: Enhanced analytics fields
+    follower_estimate = Column(Integer, nullable=True)    # estimated number of followers
+    social_media_presence = Column(Text, nullable=True)   # JSON: {"twitter": "handle", "facebook": "url"}
+    legal_status = Column(String(64), nullable=True)      # registered, unregistered, banned, monitored
+    controversy_level = Column(Integer, nullable=True)    # 1-5 scale of public controversy
+    influence_score = Column(Float, nullable=True)        # calculated influence metric 0-1
+    growth_trend = Column(String(32), nullable=True)      # growing, stable, declining, unknown
+
     # Timestamps
     created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow, nullable=False)
@@ -31,9 +39,10 @@ class Movement(Base):
     aliases = relationship("Alias", back_populates="movement", cascade="all, delete-orphan")
     locations = relationship("Location", back_populates="movement", cascade="all, delete-orphan")
     sources = relationship("Source", back_populates="movement", cascade="all, delete-orphan")
+    temporal_analyses = relationship("TemporalAnalysis", back_populates="movement", cascade="all, delete-orphan")
 
     def __repr__(self):
         return f"<Movement(id={self.id}, canonical_name={self.canonical_name})>"
 
 # Additional indexes if desired
-Index("ix_movements_canonical_name", Movement.canonical_name)
+# Index("ix_movements_canonical_name", Movement.canonical_name)  # Commented out to avoid conflicts

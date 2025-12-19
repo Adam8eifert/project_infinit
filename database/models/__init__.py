@@ -8,5 +8,8 @@ from .movement import Movement
 from .alias import Alias
 from .location import Location
 from .source import Source
+from .temporal_analysis import TemporalAnalysis
+from .geographic_analysis import GeographicAnalysis
+from .source_quality import SourceQuality
 
-__all__ = ["Base", "Movement", "Alias", "Location", "Source"]
+__all__ = ["Base", "Movement", "Alias", "Location", "Source", "TemporalAnalysis", "GeographicAnalysis", "SourceQuality"]

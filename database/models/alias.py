@@ -22,4 +22,4 @@ class Alias(Base):
     def __repr__(self):
         return f"<Alias(id={self.id}, alias={self.alias})>"
 
-Index("ix_aliases_alias", Alias.alias)
+# Index("ix_aliases_alias", Alias.alias)  # Commented out to avoid conflicts
