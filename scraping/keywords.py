@@ -1,7 +1,7 @@
 # 📁 scraping/keywords.py
-# Centralizované klíčové slova a filtry pro všechny spidery
+# Centralized keywords and filters for all spiders
 
-# Základní klíčová slova pro vyhledávání
+# Basic keywords for searching
 SEARCH_TERMS = [
     "sekta",
     "nové náboženské hnutí",
@@ -17,7 +17,7 @@ SEARCH_TERMS = [
     "nové spirituální hnutí"
 ]
 
-# Slova k vyloučení z vyhledávání
+# Words to exclude from searching
 EXCLUDE_TERMS = [
     "-politika",
     "-film",
@@ -26,7 +26,7 @@ EXCLUDE_TERMS = [
     "-počítačová"
 ]
 
-# Známé náboženské skupiny pro lepší identifikaci
+# Known religious groups for better identification
 KNOWN_MOVEMENTS = [
     "Hnutí Grálu",
     "Církev sjednocení",
@@ -40,7 +40,7 @@ KNOWN_MOVEMENTS = [
     "Svobodná církev reformovaná"
 ]
 
-# Regulární výrazy pro hledání datumů založení
+# Regular expressions for finding founding dates
 YEAR_PATTERNS = [
     r"založen[aáoý]\s+v\s+roce\s+(\d{4})",
     r"vznik(?:lo|la|l)\s+v\s+roce\s+(\d{4})",

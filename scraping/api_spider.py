@@ -1,6 +1,6 @@
 # 📁 scraping/api_spider.py
-# Univerzální spider pro API zdroje (MediaWiki, REST API, atd.)
-# Dynamicky čte konfiguraci ze sources_config.yaml
+# Universal spider for API sources (MediaWiki, REST API, etc.)
+# Dynamically reads configuration from sources_config.yaml
 
 import scrapy
 import json
@@ -11,8 +11,8 @@ from scraping.keywords import contains_relevant_keywords
 
 class APISpider(scrapy.Spider):
     """
-    Univerzální spider pro API zdroje.
-    Podporuje MediaWiki API a ostatní REST API.
+    Universal spider for API sources.
+    Supports MediaWiki API and other REST APIs.
     """
     name = "api_universal"
     
@@ -20,10 +20,10 @@ class APISpider(scrapy.Spider):
         super().__init__(*args, **kwargs)
         self.config_loader = get_config_loader()
         self.sources = self._get_api_sources()
-        self.logger.info(f"🔌 Inicializuji API spider s {len(self.sources)} zdroji")
+        self.logger.info(f"🔌 Initializing API spider with {len(self.sources)} sources")
     
     def _get_api_sources(self):
-        """Vrátí seznam všech povolených API zdrojů z konfigurace."""
+        """Returns a list of all enabled API sources from configuration."""
         all_sources = self.config_loader.get_enabled_sources()
         api_sources = {
             key: source for key, source in all_sources.items()
@@ -32,15 +32,15 @@ class APISpider(scrapy.Spider):
         return api_sources
     
     def start_requests(self):
-        """Generuje požadavky pro každý API endpoint."""
+        """Generates requests for each API endpoint."""
         for source_key, source_config in self.sources.items():
             api_url = source_config.get('url')
             api_params = source_config.get('api_params', {})
             
             if api_url:
-                self.logger.info(f"🔗 Zpracovávám API: {source_config['name']} ({api_url})")
+                self.logger.info(f"🔗 Processing API: {source_config['name']} ({api_url})")
                 
-                # Přidej parametry do URL
+                # Add parameters to URL
                 params_str = '&'.join([f"{k}={v}" for k, v in api_params.items()])
                 full_url = f"{api_url}?{params_str}" if params_str else api_url
                 
@@ -58,44 +58,44 @@ class APISpider(scrapy.Spider):
     
     def parse_api(self, response):
         """
-        Parsuje API odpověď (JSON).
-        Extrahuje relevantní obsah a ukládá do CSV.
+        Parses API response (JSON).
+        Extracts relevant content and saves to CSV.
         """
         try:
             data = json.loads(response.text)
             source_config = response.meta['source_config']
             api_method = source_config.get('api_method', 'parse')
             
-            self.logger.info(f"📄 Zpracovávám API odpověď pro {response.meta['source_name']}")
+            self.logger.info(f"📄 Processing API response for {response.meta['source_name']}")
             
-            # Zpracování podle API metody
+            # Processing according to API method
             if api_method == 'parse' and 'parse' in data:
                 # MediaWiki API response
                 parse_data = data['parse']
                 title = parse_data.get('title', '')
                 
-                # Extrakce textu
+                # Text extraction
                 wikitext = parse_data.get('wikitext', '')
                 if isinstance(wikitext, dict):
                     wikitext = wikitext.get('*', '')
                 
-                # Kategorie
+                # Categories
                 categories = [cat.get('*', '') for cat in parse_data.get('categories', [])]
                 
-                # Kontrola relevance
+                # Relevance check
                 if contains_relevant_keywords(wikitext):
                     yield {
                         'source_name': response.meta['source_name'],
                         'source_type': 'API',
                         'title': title,
                         'url': response.url,
-                        'text': wikitext[:5000],  # Omezit délku
+                        'text': wikitext[:5000],  # Limit length
                         'scraped_at': datetime.utcnow().isoformat(),
                         'categories': categories
                     }
             
             elif api_method == 'query' and 'query' in data:
-                # Jiný MediaWiki API response
+                # Other MediaWiki API response
                 query_data = data['query']
                 pages = query_data.get('pages', {})
                 
@@ -114,20 +114,20 @@ class APISpider(scrapy.Spider):
                         }
         
         except json.JSONDecodeError as e:
-            self.logger.error(f"❌ Chyba při parsování JSON: {e}")
+            self.logger.error(f"❌ Error parsing JSON: {e}")
         except Exception as e:
-            self.logger.error(f"❌ Chyba při zpracování API: {e}")
+            self.logger.error(f"❌ Error processing API: {e}")
     
     def handle_error(self, failure):
-        """Zpracování chyb při API požadavku."""
+        """Handling errors in API request."""
         request = failure.request
         source_name = request.meta.get('source_name', 'Unknown')
-        self.logger.error(f"❌ Chyba při API požadavku na {source_name}: {failure.value}")
+        self.logger.error(f"❌ Error in API request to {source_name}: {failure.value}")
 
 
-# Alternativní spider pro jednotlivý API zdroj
+# Alternative spider for a single API source
 class SingleAPISpider(scrapy.Spider):
-    """Spider pro spuštění jednoho konkrétního API."""
+    """Spider for running one specific API."""
     name = "api_single"
     
     def __init__(self, source_key='soccas', *args, **kwargs):
@@ -137,16 +137,16 @@ class SingleAPISpider(scrapy.Spider):
         self.source_config = config_loader.get_source(source_key)
         
         if not self.source_config:
-            raise ValueError(f"Zdroj '{source_key}' nenalezen v konfiguraci")
+            raise ValueError(f"Source '{source_key}' not found in configuration")
         
         if self.source_config.get('type') != 'api':
-            raise ValueError(f"Zdroj '{source_key}' není typu API")
+            raise ValueError(f"Source '{source_key}' is not of type API")
         
         # At this point, source_config is guaranteed to be not None
         assert self.source_config is not None
     
     def start_requests(self):
-        """Generuje požadavek pro API."""
+        """Generates request for API."""
         api_url = self.source_config.get('url')  # type: ignore
         if not api_url:
             self.logger.error(f"No URL configured for source {self.source_config.get('name', 'Unknown')}")  # type: ignore
@@ -167,7 +167,7 @@ class SingleAPISpider(scrapy.Spider):
         )
     
     def parse(self, response):
-        """Totéž jako APISpider.parse_api."""
+        """Same as APISpider.parse_api."""
         try:
             data = json.loads(response.text)
             
@@ -190,4 +190,4 @@ class SingleAPISpider(scrapy.Spider):
                         'categories': categories
                     }
         except Exception as e:
-            self.logger.error(f"❌ Chyba při zpracování API: {e}")
+            self.logger.error(f"❌ Error processing API: {e}")

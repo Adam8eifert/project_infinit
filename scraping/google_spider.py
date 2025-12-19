@@ -1,5 +1,5 @@
 # 📁 scraping/google_spider.py
-# Scrapy spider pro Google News (raw export bez NLP)
+# Scrapy spider for Google News (raw export without NLP)
 
 import scrapy
 from urllib.parse import quote
@@ -11,10 +11,10 @@ class GoogleNewsSpider(scrapy.Spider):
     name = "google_news_spider"
     allowed_domains = ["news.google.com"]
     
-    # Kombinace etického nastavení s vlastním nastavením
+    # Combination of ethical settings with custom settings
     custom_settings = {
         **ETHICAL_SCRAPING_SETTINGS,
-        'ROBOTSTXT_OBEY': True,  # Explicitně respektujeme robots.txt
+        'ROBOTSTXT_OBEY': True,  # Explicitly respect robots.txt
         'FEEDS': {
             'export/csv/google_news_raw.csv': CSV_EXPORT_SETTINGS
         },
@@ -22,12 +22,12 @@ class GoogleNewsSpider(scrapy.Spider):
     }
 
     def start_requests(self):
-        """Generuje požadavky pro každý vyhledávací termín"""
+        """Generates requests for each search term"""
         for term in SEARCH_TERMS:
             query = quote(term + ' ' + ' '.join(EXCLUDE_TERMS))
             url = f"https://news.google.com/search?q={query}&hl=cs&gl=CZ&ceid=CZ%3Acs"
             
-            # Přidáváme informace o zdroji do meta
+            # Add source information to meta
             yield scrapy.Request(
                 url=url,
                 callback=self.parse,
@@ -52,15 +52,15 @@ class GoogleNewsSpider(scrapy.Spider):
                 })
 
     def parse_article(self, response):
-        """Zpracuje jednotlivý článek a extrahuje jeho obsah."""
+        """Process individual article and extract its content."""
         title = response.meta['title']
         url = response.meta['url']
         query = response.meta['query']
         
-        # Extrahujeme text z článku (zkusíme několik běžných selektorů)
+        # Extract text from article (try several common selectors)
         text_parts = []
         text_parts.extend(response.css('article p::text').getall())
-        if not text_parts:  # Záložní selektory
+        if not text_parts:  # Fallback selectors
             text_parts.extend(response.css('.article-content p::text').getall())
             text_parts.extend(response.css('.entry-content p::text').getall())
             text_parts.extend(response.css('.post-content p::text').getall())

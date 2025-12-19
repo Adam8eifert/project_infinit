@@ -1,6 +1,6 @@
 # 📁 processing/nlp_analysis.py
-# NLP analýza pomocí Hugging Face Transformers a spaCy
-# Lemmatizace, POS tagging, NER a základní sentiment
+# NLP analysis using Hugging Face Transformers and spaCy
+# Lemmatization, POS tagging, NER and basic sentiment
 
 import spacy
 from transformers import pipeline

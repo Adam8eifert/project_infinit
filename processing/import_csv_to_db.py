@@ -9,7 +9,7 @@ import logging
 from typing import Union
 
 class CSVtoDatabaseLoader:
-    """Bezpečný import CSV dat do databáze s validací a logováním"""
+    """Safe import of CSV data to database with validation and logging"""
 
     def __init__(self):
         self.db = DBConnector()
@@ -17,7 +17,7 @@ class CSVtoDatabaseLoader:
         self.setup_logging()
 
     def setup_logging(self):
-        """Nastavení logování pro sledování importu"""
+        """Setup logging for import tracking"""
         logging.basicConfig(
             level=logging.INFO,
             format='%(asctime)s - %(levelname)s - %(message)s',
@@ -29,63 +29,63 @@ class CSVtoDatabaseLoader:
         self.logger = logging.getLogger(__name__)
 
     def validate_row(self, row, csv_path):
-        """Validace jednotlivých řádků dat"""
+        """Validate individual data rows"""
         errors = []
         
-        # Kontrola prázdných hodnot
+        # Check for empty values
         if not row.get("url"):
-            errors.append("Chybí URL")
+            errors.append("Missing URL")
         if not row.get("title"):
-            errors.append("Chybí titulek")
+            errors.append("Missing title")
         if not row.get("text") or len(str(row.get("text", "")).strip()) < 10:
-            errors.append("Chybí nebo příliš krátký text")
+            errors.append("Missing or too short text")
             
-        # Validace URL
+        # URL validation
         if row.get("url") and not row["url"].startswith(("http://", "https://")):
-            errors.append("Neplatné URL")
+            errors.append("Invalid URL")
             
-        # Validace data
+        # Date validation
         try:
             pd.to_datetime(row.get("scraped_at"))
         except:
-            errors.append("Neplatné datum")
+            errors.append("Invalid date")
             
         if errors:
-            self.logger.warning(f"Validační chyby v {csv_path}: {', '.join(errors)}")
+            self.logger.warning(f"Validation errors in {csv_path}: {', '.join(errors)}")
             return False
         return True
 
     def clean_row(self, row):
-        """Čištění a normalizace dat"""
+        """Clean and normalize data"""
         return {
-            "movement_id": None,  # bude doplněno později
+            "movement_id": None,  # will be filled later
             "source_name": str(row.get("source_name", "")).strip(),
             "source_type": str(row.get("source_type", "")).strip(),
             "url": str(row.get("url", "")).strip(),
             "content_excerpt": str(row.get("title", "")).strip(),  # map title to content_excerpt
             "content_full": str(row.get("text", "")).strip(),      # map text to content_full
-            "sentiment_score": None,  # bude doplněno při NLP
+            "sentiment_score": None,  # will be filled during NLP
             "publication_date": pd.to_datetime(row.get("scraped_at"), errors="coerce")
         }
 
     def load_csv_to_sources(self, csv_path: Union[str, Path]):
-        """Import CSV do databáze s validací a error handlingem"""
+        """Import CSV to database with validation and error handling"""
         csv_path = Path(csv_path)
         if not csv_path.exists():
-            self.logger.error(f"Soubor neexistuje: {csv_path}")
+            self.logger.error(f"File does not exist: {csv_path}")
             return
 
         try:
             df = pd.read_csv(csv_path)
-            self.logger.info(f"Načítám {len(df)} řádků z {csv_path}")
+            self.logger.info(f"Loading {len(df)} rows from {csv_path}")
 
-            # Kontrola požadovaných sloupců
+            # Check required columns
             required_columns = {"source_name", "source_type", "title", "url", "text", "scraped_at"}
             if not required_columns.issubset(df.columns):
                 missing = required_columns - set(df.columns)
-                raise ValueError(f"Chybí sloupce: {missing}")
+                raise ValueError(f"Missing columns: {missing}")
 
-            # Import po batches pro lepší výkon a možnost rollbacku
+            # Import in batches for better performance and rollback capability
             batch_size = 100
             imported = 0
             skipped = 0
@@ -95,7 +95,7 @@ class CSVtoDatabaseLoader:
                 
                 for _, row in batch.iterrows():
                     try:
-                        # Validace a čištění
+                        # Validation and cleaning
                         if not self.validate_row(row, csv_path):
                             skipped += 1
                             continue
@@ -106,7 +106,7 @@ class CSVtoDatabaseLoader:
                         imported += 1
                         
                     except Exception as e:
-                        self.logger.error(f"Chyba při zpracování řádku: {e}")
+                        self.logger.error(f"Error processing row: {e}")
                         skipped += 1
                         continue
                 
@@ -114,19 +114,19 @@ class CSVtoDatabaseLoader:
                     self.session.commit()
                 except IntegrityError:
                     self.session.rollback()
-                    self.logger.warning("Duplicitní URL - přeskakuji batch")
+                    self.logger.warning("Duplicate URL - skipping batch")
                     skipped += len(batch)
                 except Exception as e:
                     self.session.rollback()
-                    self.logger.error(f"Chyba při ukládání batch: {e}")
+                    self.logger.error(f"Error saving batch: {e}")
                     skipped += len(batch)
 
-            self.logger.info(f"Import dokončen: {imported} importováno, {skipped} přeskočeno")
+            self.logger.info(f"Import completed: {imported} imported, {skipped} skipped")
         except IntegrityError:
             self.session.rollback()
-            print("⚠️ Duplicitní URL – některé záznamy již existují.")
+            print("⚠️ Duplicate URL – some records already exist.")
         except Exception as e:
             self.session.rollback()
-            print(f"❌ Chyba při načítání CSV: {e}")
+            print(f"❌ Error loading CSV: {e}")
         finally:
             self.session.close()

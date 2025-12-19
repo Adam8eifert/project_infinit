@@ -4,7 +4,7 @@ from scraping.keywords import contains_relevant_keywords, is_excluded_content
 
 class MediumSeznamSpider(scrapy.Spider):
     """
-    Spider pro scraping článků z Medium.seznam.cz týkajících se náboženských hnutí.
+    Spider for scraping articles from Medium.seznam.cz related to religious movements.
     """
     name = "medium_seznam"
     allowed_domains = ["medium.seznam.cz"]
@@ -21,43 +21,43 @@ class MediumSeznamSpider(scrapy.Spider):
         },
         "ROBOTSTXT_OBEY": True,
         "AUTOTHROTTLE_ENABLED": True,
-        "AUTOTHROTTLE_START_DELAY": 2.0,  # Více etický start delay
-        "AUTOTHROTTLE_MAX_DELAY": 10.0,   # Větší max delay pro lepší rozložení requestů
+        "AUTOTHROTTLE_START_DELAY": 2.0,  # More ethical start delay
+        "AUTOTHROTTLE_MAX_DELAY": 10.0,   # Larger max delay for better request distribution
         "AUTOTHROTTLE_TARGET_CONCURRENCY": 1.0,
-        "DOWNLOAD_DELAY": 3,  # Základní delay mezi requesty
+        "DOWNLOAD_DELAY": 3,  # Base delay between requests
         "LOG_LEVEL": "INFO",
         "USER_AGENT": "Mozilla/5.0 (compatible; ProjectInfinit/1.0; +https://github.com/yourusername/project_infinit)"
     }
 
     def parse(self, response):
-        """Prochází seznam článků a následuje relevantní odkazy."""
+        """Browses article list and follows relevant links."""
         articles = response.css("article")
         for article in articles:
             title = article.css("h3::text").get() or ""
             link = article.css("a::attr(href)").get()
             
-            # Přeskočíme články, které zjevně nejsou relevantní
+            # Skip articles that are obviously not relevant
             if not contains_relevant_keywords(title) or is_excluded_content(title):
                 continue
                 
             if link:
                 yield response.follow(link, callback=self.parse_article)
 
-        # Následuj další stránku, pokud existuje
+        # Follow next page if it exists
         next_page = response.css("a.pagination__next::attr(href)").get()
         if next_page:
             yield response.follow(next_page, callback=self.parse)
 
     def parse_article(self, response):
-        """Extrahuje data z článku a kontroluje relevanci obsahu."""
+        """Extracts data from article and checks content relevance."""
         title = response.css("h1::text").get() or ""
         text = " ".join(response.css("article p::text").getall()).strip()
         
-        # Přeskočíme články, které po přečtení nejsou relevantní
+        # Skip articles that are not relevant after reading
         if not contains_relevant_keywords(text) or is_excluded_content(text):
             return
             
-        # Extrahuj metadata
+        # Extract metadata
         author = response.css("span.author-name::text").get() or "Unknown"
         date_published = response.css("time::attr(datetime)").get()
         

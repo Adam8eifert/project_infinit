@@ -1,5 +1,5 @@
 # 🧪 testing/test_social_media_spider.py
-# Testy pro Reddit a X/Twitter spidery
+# Tests for Reddit and X/Twitter spiders
 
 import pytest
 from unittest.mock import Mock, patch, MagicMock
@@ -8,11 +8,11 @@ from scraping.social_media_spider import RedditSpider, XTwitterSpider
 
 
 # ============================================================================
-# REDDIT SPIDER TESTY
+# REDDIT SPIDER TESTS
 # ============================================================================
 
 class TestRedditSpider:
-    """Testy pro Reddit spider."""
+    """Tests for Reddit spider."""
     
     @patch('scraping.social_media_spider.praw.Reddit')
     @patch('scraping.social_media_spider.get_config_loader')
@@ -22,7 +22,7 @@ class TestRedditSpider:
         'REDDIT_USER_AGENT': 'test_agent'
     })
     def test_reddit_spider_init(self, mock_config_loader, mock_reddit):
-        """Test inicializace Reddit spideru."""
+        """Test Reddit spider initialization."""
         mock_loader = Mock()
         mock_loader.get_source.return_value = {
             'type': 'social_api',
@@ -59,7 +59,19 @@ class TestRedditSpider:
         'REDDIT_USER_AGENT': 'test_agent'
     })
     def test_reddit_spider_start_requests(self, mock_config_loader, mock_reddit):
-        """Test generování počátečních requestů."""
+        """Test generating initial requests."""
+        mock_loader = Mock()
+        mock_loader.get_source.return_value = {
+            'type': 'social_api',
+            'auth': {'client_id': 'test_id', 'client_secret': 'test_secret'}
+        }
+        mock_config_loader.return_value = mock_loader
+        
+        spider = RedditSpider()
+        requests = list(spider.start_requests())
+        
+        assert len(requests) > 0
+        assert 'reddit.com' in requests[0].url
         mock_loader = Mock()
         mock_loader.get_source.return_value = {
             'type': 'social_api',
@@ -111,24 +123,24 @@ class TestRedditSpider:
         mock_response = Mock()
         mock_response.meta = {}
         
-        # Testuji parse metodu
+        # Test parse method
         results = list(spider.parse_reddit(mock_response))
         
-        # Alespoň struktura by měla být správná (i když je mock prázdný)
+        # At least structure should be correct (even if mock is empty)
         assert isinstance(results, list)
 
 
 # ============================================================================
-# X/TWITTER SPIDER TESTY
+# X/TWITTER SPIDER TESTS
 # ============================================================================
 
 class TestXTwitterSpider:
-    """Testy pro X/Twitter spider."""
+    """Tests for X/Twitter spider."""
     
     @patch('scraping.social_media_spider.get_config_loader')
     @patch.dict('os.environ', {'X_BEARER_TOKEN': 'test_token'})
     def test_x_spider_init(self, mock_config_loader):
-        """Test inicializace X spideru."""
+        """Test X spider initialization."""
         mock_loader = Mock()
         mock_loader.get_source.return_value = {
             'type': 'social_api',
@@ -306,7 +318,7 @@ class TestXTwitterSpider:
         
         results = list(spider.parse_x(mock_response))
         
-        # Měl by projít jen relevantní tweet
+        # Should only pass relevant tweet
         assert len(results) == 1
         assert 'sekta' in results[0]['text'].lower()
 
@@ -350,7 +362,7 @@ class TestSocialMediaSpidersConfig:
     @patch('scraping.social_media_spider.get_config_loader')
     @patch.dict('os.environ', {'X_BEARER_TOKEN': 'test_token'})
     def test_x_spider_loads_config(self, mock_config_loader):
-        """Test že X spider správně načítá konfiguraci."""
+        """Test that X spider correctly loads configuration."""
         expected_config = {
             'type': 'social_api',
             'url': 'https://api.twitter.com/2',

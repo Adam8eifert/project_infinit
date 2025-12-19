@@ -1,6 +1,6 @@
 # 📁 scraping/social_media_spider.py
-# Univerzální spider pro sociální média (Reddit, X/Twitter API)
-# Dynamicky čte konfiguraci ze sources_config.yaml
+# Universal spider for social media (Reddit, X/Twitter API)
+# Dynamically reads configuration from sources_config.yaml
 
 import scrapy
 import praw
@@ -12,14 +12,14 @@ from scraping.config_loader import get_config_loader
 from scraping.keywords import contains_relevant_keywords
 
 
-# Načtení .env souboru
+# Load .env file
 load_dotenv()
 
 
 class RedditSpider(scrapy.Spider):
     """
-    Spider pro Reddit API.
-    Hledá příspěvky o sektách a náboženských hnutích.
+    Spider for Reddit API.
+    Searches for posts about cults and religious movements.
     """
     name = "reddit_spider"
     
@@ -29,33 +29,33 @@ class RedditSpider(scrapy.Spider):
         self.source_config = self.config_loader.get_source('reddit')
         
         if not self.source_config or self.source_config.get('type') != 'social_api':
-            raise ValueError("Reddit zdroj není nakonfigurován nebo není typu social_api")
+            raise ValueError("Reddit source is not configured or is not of type social_api")
         
         # At this point, source_config is guaranteed to be not None
         assert self.source_config is not None
         
-        # Načti API klíče z environment nebo config
+        # Load API keys from environment or config
         client_id = os.getenv('REDDIT_CLIENT_ID') or self.source_config.get('auth', {}).get('client_id')
         client_secret = os.getenv('REDDIT_CLIENT_SECRET') or self.source_config.get('auth', {}).get('client_secret')
         user_agent = os.getenv('REDDIT_USER_AGENT') or self.source_config.get('auth', {}).get('user_agent')
         
         if not all([client_id, client_secret, user_agent]):
-            self.logger.warning("⚠️ Reddit API klíče nejsou nastaveny. Nastavte env proměnné:")
+            self.logger.warning("⚠️ Reddit API keys are not set. Set environment variables:")
             self.logger.warning("   REDDIT_CLIENT_ID, REDDIT_CLIENT_SECRET, REDDIT_USER_AGENT")
-            raise ValueError("Chybějí Reddit API klíče")
+            raise ValueError("Missing Reddit API keys")
         
-        # Inicializuj Reddit API
+        # Initialize Reddit API
         self.reddit = praw.Reddit(
             client_id=client_id,
             client_secret=client_secret,
             user_agent=user_agent
         )
         
-        self.logger.info("✅ Reddit API inicializován")
+        self.logger.info("✅ Reddit API initialized")
     
     def start_requests(self):
-        """Pro Reddit používáme přímé API místo HTTP requestů."""
-        # V Scrapymu musíme vrátit alespoň jeden request
+        """For Reddit we use direct API instead of HTTP requests."""
+        # In Scrapy we must return at least one request
         yield scrapy.Request(
             'https://www.reddit.com/r/occult/.json',
             callback=self.parse_reddit,
@@ -63,9 +63,9 @@ class RedditSpider(scrapy.Spider):
         )
     
     def parse_reddit(self, response):
-        """Extrahuje příspěvky z Redditu a filtruje relevantní obsah."""
+        """Extracts posts from Reddit and filters relevant content."""
         try:
-            self.logger.info("📱 Hledám příspěvky na Redditu...")
+            self.logger.info("📱 Searching for posts on Reddit...")
             
             subreddits = self.source_config.get('subreddits', [])  # type: ignore
             search_terms = self.source_config.get('search_terms', [])  # type: ignore
@@ -73,24 +73,24 @@ class RedditSpider(scrapy.Spider):
             
             submissions = []
             
-            # Hledej v konkrétních subredditech
+            # Search in specific subreddits
             for subreddit_name in subreddits:
                 subreddit_name = subreddit_name.replace('r/', '')
                 try:
                     subreddit = self.reddit.subreddit(subreddit_name)
                     
-                    # Hledej nové příspěvky
+                    # Search for new posts
                     for submission in subreddit.new(limit=50):
                         combined_text = f"{submission.title} {submission.selftext}"
                         
-                        # Kontrola relevance
+                        # Relevance check
                         if contains_relevant_keywords(combined_text):
                             submissions.append({
                                 'source_name': 'Reddit',
                                 'source_type': 'Social Media',
                                 'title': submission.title,
                                 'url': f"https://reddit.com{submission.permalink}",
-                                'text': submission.selftext[:5000],  # Omezení délky
+                                'text': submission.selftext[:5000],  # Length limit
                                 'scraped_at': datetime.utcnow().isoformat(),
                                 'author': str(submission.author),
                                 'score': submission.score,
@@ -101,10 +101,10 @@ class RedditSpider(scrapy.Spider):
                             self.logger.info(f"✓ Reddit: {submission.title[:50]}")
                 
                 except Exception as e:
-                    self.logger.error(f"❌ Chyba při hledání v r/{subreddit_name}: {e}")
+                    self.logger.error(f"❌ Error searching in r/{subreddit_name}: {e}")
                     continue
             
-            # Také hledej podle klíčových slov
+            # Also search by keywords
             for term in search_terms:
                 try:
                     for submission in self.reddit.subreddit('all').search(term, time_filter='month', limit=30):
@@ -124,25 +124,25 @@ class RedditSpider(scrapy.Spider):
                                 'created': datetime.fromtimestamp(submission.created_utc).isoformat(),
                                 'search_term': term
                             })
-                            self.logger.info(f"✓ Reddit (hledání '{term}'): {submission.title[:50]}")
+                            self.logger.info(f"✓ Reddit (search '{term}'): {submission.title[:50]}")
                 
                 except Exception as e:
-                    self.logger.error(f"❌ Chyba při hledání '{term}': {e}")
+                    self.logger.error(f"❌ Error searching '{term}': {e}")
                     continue
             
-            self.logger.info(f"📊 Nalezeno {len(submissions)} relevantních příspěvků na Redditu")
+            self.logger.info(f"📊 Found {len(submissions)} relevant posts on Reddit")
             
             for submission in submissions:
                 yield submission
         
         except Exception as e:
-            self.logger.error(f"❌ Chyba při parsování Redditu: {e}")
+            self.logger.error(f"❌ Error parsing Reddit: {e}")
 
 
 class XTwitterSpider(scrapy.Spider):
     """
-    Spider pro X (Twitter) API v2.
-    Hledá tweety o sektách a náboženských hnutích.
+    Spider for X (Twitter) API v2.
+    Searches for tweets about cults and religious movements.
     """
     name = "x_twitter_spider"
     
@@ -152,24 +152,24 @@ class XTwitterSpider(scrapy.Spider):
         self.source_config = self.config_loader.get_source('x_twitter')
         
         if not self.source_config or self.source_config.get('type') != 'social_api':
-            raise ValueError("X/Twitter zdroj není nakonfigurován nebo není typu social_api")
+            raise ValueError("X/Twitter source is not configured or is not of type social_api")
         
         # At this point, source_config is guaranteed to be not None
         assert self.source_config is not None
         
-        # Načti bearer token
+        # Load bearer token
         self.bearer_token = os.getenv('X_BEARER_TOKEN') or self.source_config.get('auth', {}).get('bearer_token')
         
         if not self.bearer_token:
-            self.logger.warning("⚠️ X/Twitter API token není nastaven. Nastavte env proměnnou:")
+            self.logger.warning("⚠️ X/Twitter API token is not set. Set environment variable:")
             self.logger.warning("   X_BEARER_TOKEN")
-            raise ValueError("Chybí X/Twitter API token")
+            raise ValueError("Missing X/Twitter API token")
         
         self.base_url = self.source_config.get('url', 'https://api.twitter.com/2')
-        self.logger.info("✅ X/Twitter API inicializován")
+        self.logger.info("✅ X/Twitter API initialized")
     
     def start_requests(self):
-        """Generuje požadavky pro X API."""
+        """Generates requests for X API."""
         search_queries = self.source_config.get('search_queries', [])  # type: ignore
         
         for query in search_queries:
@@ -193,20 +193,20 @@ class XTwitterSpider(scrapy.Spider):
             )
     
     def _get_headers(self):
-        """Vrátí headers s bearer token."""
+        """Returns headers with bearer token."""
         return {
             'Authorization': f'Bearer {self.bearer_token}',
             'User-Agent': 'ProjectInfinit/1.0'
         }
     
     def parse_x(self, response):
-        """Parsuje odpověď z X API a extrahuje tweety."""
+        """Parses response from X API and extracts tweets."""
         try:
             import json
             data = json.loads(response.text)
             
             query = response.meta.get('query')
-            self.logger.info(f"📱 Zpracovávám tweety pro dotaz: '{query}'")
+            self.logger.info(f"📱 Processing tweets for query: '{query}'")
             
             tweets = data.get('data', [])
             includes = data.get('includes', {})
@@ -215,7 +215,7 @@ class XTwitterSpider(scrapy.Spider):
             for tweet in tweets:
                 text = tweet.get('text', '')
                 
-                # Kontrola relevance
+                # Relevance check
                 if contains_relevant_keywords(text):
                     author_id = tweet.get('author_id', '')
                     author_name = users.get(author_id, 'Unknown')
@@ -234,13 +234,13 @@ class XTwitterSpider(scrapy.Spider):
                     }
                     self.logger.info(f"✓ X: @{author_name}: {text[:50]}")
             
-            self.logger.info(f"📊 Nalezeno {len([t for t in tweets if contains_relevant_keywords(t.get('text', ''))])} relevantních tweetů")
+            self.logger.info(f"📊 Found {len([t for t in tweets if contains_relevant_keywords(t.get('text', ''))])} relevant tweets")
         
         except Exception as e:
-            self.logger.error(f"❌ Chyba při parsování X API: {e}")
+            self.logger.error(f"❌ Error parsing X API: {e}")
     
     def handle_error(self, failure):
-        """Zpracování chyb API."""
-        self.logger.error(f"❌ X API chyba: {failure.value}")
+        """Handling API errors."""
+        self.logger.error(f"❌ X API error: {failure.value}")
         query = failure.request.meta.get('query', 'Unknown')
-        self.logger.error(f"   Dotaz: {query}")
+        self.logger.error(f"   Query: {query}")

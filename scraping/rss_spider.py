@@ -9,13 +9,13 @@ from scraping.spider_settings import ETHICAL_SCRAPING_SETTINGS, CSV_EXPORT_SETTI
 
 class RSSSpider(scrapy.Spider):
     """
-    Univerzální spider pro parsování RSS/Atom feedů.
-    Čte konfiguraci z sources_config.yaml a zpracovává všechny RSS zdroje.
+    Universal spider for parsing RSS/Atom feeds.
+    Reads configuration from sources_config.yaml and processes all RSS sources.
     """
     name = "rss_universal"
     allowed_domains = []
     
-    # Nastavení pro export všech RSS dat do jednoho CSV
+    # Settings for exporting all RSS data to one CSV
     custom_settings = {
         **ETHICAL_SCRAPING_SETTINGS,
         "FEEDS": {
@@ -28,10 +28,10 @@ class RSSSpider(scrapy.Spider):
         super().__init__(*args, **kwargs)
         self.config_loader = get_config_loader()
         self.sources = self._get_rss_sources()
-        self.logger.info(f"📡 Inicializuji RSS spider s {len(self.sources)} zdroji")
+        self.logger.info(f"📡 Initializing RSS spider with {len(self.sources)} sources")
     
     def _get_rss_sources(self):
-        """Vrátí seznam všech povolených RSS zdrojů z konfigurace."""
+        """Returns a list of all enabled RSS sources from configuration."""
         all_sources = self.config_loader.get_enabled_sources()
         rss_sources = {
             key: source for key, source in all_sources.items()
@@ -40,11 +40,11 @@ class RSSSpider(scrapy.Spider):
         return rss_sources
     
     def start_requests(self):
-        """Generuje požadavky pro každý RSS feed."""
+        """Generates requests for each RSS feed."""
         for source_key, source_config in self.sources.items():
             feed_url = source_config.get('url')
             if feed_url:
-                self.logger.info(f"🔗 Zpracovávám RSS feed: {source_config['name']} ({feed_url})")
+                self.logger.info(f"🔗 Processing RSS feed: {source_config['name']} ({feed_url})")
                 yield scrapy.Request(
                     feed_url,
                     callback=self.parse_rss,
@@ -59,29 +59,29 @@ class RSSSpider(scrapy.Spider):
                 )
     
     async def start(self):
-        """Async start metoda pro Scrapy 2.13+ kompatibilitu."""
+        """Async start method for Scrapy 2.13+ compatibility."""
         for request in self.start_requests():
             yield request
     
     def parse_rss(self, response):
         """
-        Parsuje RSS/Atom feed pomocí feedparser.
-        Extrahuje články a ukládá do CSV.
+        Parses RSS/Atom feed using feedparser.
+        Extracts articles and saves to CSV.
         """
         try:
-            # Parsuj RSS obsah
+            # Parse RSS content
             feed = feedparser.parse(response.text)
             source_config = response.meta['source_config']
             selectors = source_config.get('selectors', {})
             
-            self.logger.info(f"📰 Nalezeno {len(feed.entries)} položek v {response.meta['source_name']}")
+            self.logger.info(f"📰 Found {len(feed.entries)} items in {response.meta['source_name']}")
             
             for entry in feed.entries:
-                # Extrakce dat z RSS položky
+                # Data extraction from RSS item
                 title = entry.get('title', '')
                 link = entry.get('link', '')
                 
-                # Obsah - zkušíme více polí
+                # Content - try multiple fields
                 content_data = entry.get('content')
                 if content_data and isinstance(content_data, list) and len(content_data) > 0:
                     content = content_data[0].get('value', '')
@@ -92,25 +92,25 @@ class RSSSpider(scrapy.Spider):
                 if not content:
                     content = entry.get('description', '')
                 
-                # Autor
+                # Author
                 author = entry.get('author', 'Unknown')
                 if isinstance(author, dict):
                     author = author.get('name', 'Unknown')
                 
-                # Datum publikace
+                # Publication date
                 date_published = entry.get('published', '')
                 
-                # Kategorie
+                # Categories
                 tags = entry.get('tags', []) or []
                 categories = [tag.get('term', '') for tag in tags if isinstance(tag, dict)]
                 
-                # Kontrola relevance
+                # Relevance check
                 combined_text = f"{title} {content}"
                 if not contains_relevant_keywords(combined_text):
-                    self.logger.debug(f"⏭️  Článek není relevantní: {title}")
+                    self.logger.debug(f"⏭️  Article is not relevant: {title}")
                     continue
                 
-                # Výstup
+                # Output
                 yield {
                     'source_name': response.meta['source_name'],
                     'source_type': response.meta['source_type'],
@@ -124,19 +124,19 @@ class RSSSpider(scrapy.Spider):
                 }
         
         except Exception as e:
-            self.logger.error(f"❌ Chyba při parsování RSS: {e}")
+            self.logger.error(f"❌ Error parsing RSS: {e}")
     
     def handle_error(self, failure):
-        """Zpracování chyb při stahování feedu."""
+        """Handling errors when downloading feed."""
         request = failure.request
         source_name = request.meta.get('source_name', 'Unknown')
-        self.logger.error(f"❌ Chyba při stahování {source_name}: {failure.value}")
+        self.logger.error(f"❌ Error downloading {source_name}: {failure.value}")
 
 
-# Alternativní spider pro jednotlivý zdroj (pokud potřebujete spustit konkrétní RSS)
-# Tento spider je zakomentovaný, protože hlavní RSSSpider zpracovává všechny zdroje
+# Alternative spider for a single source (if you need to run a specific RSS)
+# This spider is commented out because the main RSSSpider processes all sources
 # class SingleRSSSpider(scrapy.Spider):
-#     """Spider pro spuštění jednoho konkrétního RSS feedu."""
+#     """Spider for running one specific RSS feed."""
 #     name = "rss_single"
 #     
 #     def __init__(self, source_key='sekty_cz', *args, **kwargs):
@@ -146,19 +146,19 @@ class RSSSpider(scrapy.Spider):
 #         self.source_config = config_loader.get_source(source_key)
 #         
 #         if not self.source_config:
-#             raise ValueError(f"Zdroj '{source_key}' nenalezen v konfiguraci")
+#             raise ValueError(f"Source '{source_key}' not found in configuration")
 #         
 #         if self.source_config.get('type') != 'rss':
-#            raise ValueError(f"Zdroj '{source_key}' není typu RSS")
+#            raise ValueError(f"Source '{source_key}' is not of type RSS")
 #         
 #         self.allowed_domains = [self.source_config.get('domain', '')]
 #         self.start_urls = [self.source_config.get('url', '')]
 #     
 #     def parse(self, response):
-#         """Totéž jako RSSSpider.parse_rss."""
+#         """Same as RSSSpider.parse_rss."""
 #         try:
 #             feed = feedparser.parse(response.text)
-#             self.logger.info(f"📰 Nalezeno {len(feed.entries)} položek")
+#             self.logger.info(f"📰 Found {len(feed.entries)} items")
 #             
 #             for entry in feed.entries:
 #                 title = entry.get('title', '')
@@ -185,4 +185,4 @@ class RSSSpider(scrapy.Spider):
 #                 }
 #         
 #         except Exception as e:
-#             self.logger.error(f"❌ Chyba při parsování RSS: {e}")
+#             self.logger.error(f"❌ Error parsing RSS: {e}")

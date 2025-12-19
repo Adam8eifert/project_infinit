@@ -1,5 +1,5 @@
 # 📁 scraping/config_loader.py
-# Načítání a správa konfigurace zdrojů z YAML
+# Loading and managing source configuration from YAML
 
 import yaml
 from pathlib import Path
@@ -7,26 +7,26 @@ from typing import Dict, List, Any, Optional
 
 
 class SourcesConfigLoader:
-    """Nahraje a zpracuje konfiguraci zdrojů ze YAML souboru."""
+    """Load and process source configuration from YAML file."""
     
     def __init__(self, config_path: str = "scraping/sources_config.yaml"):
         self.config_path = Path(config_path)
         self.config = self._load_config()
     
     def _load_config(self) -> Any:
-        """Načte YAML konfiguraci."""
+        """Load YAML configuration."""
         if not self.config_path.exists():
-            raise FileNotFoundError(f"Konfiguační soubor nenalezen: {self.config_path}")
+            raise FileNotFoundError(f"Configuration file not found: {self.config_path}")
         
         with open(self.config_path, 'r', encoding='utf-8') as f:
             return yaml.safe_load(f)
     
     def get_all_sources(self) -> Dict[str, Any]:
-        """Vrátí všechny zdroje."""
+        """Return all sources."""
         return self.config.get('sources', {})
     
     def get_enabled_sources(self) -> Dict[str, Any]:
-        """Vrátí pouze povolené zdroje."""
+        """Return only enabled sources."""
         return {
             key: source
             for key, source in self.config.get('sources', {}).items()
@@ -34,19 +34,19 @@ class SourcesConfigLoader:
         }
     
     def get_source(self, source_key: str) -> Optional[Dict[str, Any]]:
-        """Vrátí konfiguraci konkrétního zdroje."""
+        """Return configuration of specific source."""
         return self.config.get('sources', {}).get(source_key)
     
     def get_scraping_settings(self) -> Dict[str, Any]:
-        """Vrátí globální nastavení scrapingu."""
+        """Return global scraping settings."""
         return self.config.get('scraping_settings', {})
     
     def get_content_filters(self) -> Dict[str, Any]:
-        """Vrátí filtry obsahu."""
+        """Return content filters."""
         return self.config.get('content_filters', {})
     
     def get_source_urls(self) -> Dict[str, str]:
-        """Vrátí všechny URL zdroje (jméno -> URL)."""
+        """Return all source URLs (name -> URL)."""
         return {
             key: source.get('url', '')
             for key, source in self.config.get('sources', {}).items()
@@ -54,7 +54,7 @@ class SourcesConfigLoader:
         }
     
     def get_source_list_as_table(self) -> List[Dict[str, Any]]:
-        """Vrátí seznam zdrojů ve formátu tabulky."""
+        """Return list of sources in table format."""
         result = []
         for key, source in self.config.get('sources', {}).items():
             result.append({
@@ -89,17 +89,17 @@ class SourcesConfigLoader:
         for key, source in self.get_enabled_sources().items():
             print(f"  • {source.get('name', key)}")
             print(f"    URL: {source.get('url', 'N/A')}")
-            print(f"    Doména: {source.get('domain', 'N/A')}")
-            print(f"    Typ: {source.get('type', 'web')}")
+            print(f"    Domain: {source.get('domain', 'N/A')}")
+            print(f"    Type: {source.get('type', 'web')}")
             print()
 
 
-# Jednoduchá globální instance pro snadný přístup
+# Simple global instance for easy access
 _default_loader = None
 
 
 def get_config_loader(config_path: str = "scraping/sources_config.yaml") -> SourcesConfigLoader:
-    """Vrátí nebo vytvoří globální instanci loaderu."""
+    """Return or create global loader instance."""
     global _default_loader
     if _default_loader is None:
         _default_loader = SourcesConfigLoader(config_path)
@@ -108,7 +108,7 @@ def get_config_loader(config_path: str = "scraping/sources_config.yaml") -> Sour
 
 if __name__ == "__main__":
     loader = SourcesConfigLoader()
-    print("✅ Konfigurace úspěšně načtena")
-    print(f"Celkem zdrojů: {len(loader.get_all_sources())}")
-    print(f"Povolených zdrojů: {len(loader.get_enabled_sources())}")
+    print("✅ Configuration loaded successfully")
+    print(f"Total sources: {len(loader.get_all_sources())}")
+    print(f"Enabled sources: {len(loader.get_enabled_sources())}")
     loader.print_enabled_sources()
