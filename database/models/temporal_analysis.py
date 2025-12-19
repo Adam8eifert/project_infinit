@@ -45,5 +45,5 @@ class TemporalAnalysis(Base):
         return f"<TemporalAnalysis(movement_id={self.movement_id}, date={self.analysis_date}, mentions={self.mention_count})>"
 
 # Indexes for efficient time-series queries
-Index("ix_temporal_movement_date", TemporalAnalysis.movement_id, TemporalAnalysis.analysis_date, unique=True)
-Index("ix_temporal_date", TemporalAnalysis.analysis_date)
+# Index("ix_temporal_movement_date", TemporalAnalysis.movement_id, TemporalAnalysis.analysis_date)
+# Index("ix_temporal_date", TemporalAnalysis.analysis_date)
