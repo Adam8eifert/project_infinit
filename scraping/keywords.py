@@ -1,76 +1,192 @@
 # 📁 scraping/keywords.py
-# Centralized keywords and filters for all spiders
+# Centralized keywords, filters and patterns for all spiders
+# Project: Database of New Religious Movements in the Czech Republic
 
-# Basic keywords for searching
-SEARCH_TERMS = [
+from typing import List
+import re
+
+# ============================================================
+# SEARCH TERMS (neutral + critical + academic)
+# ============================================================
+
+SEARCH_TERMS: List[str] = [
+    # Critical / media-used
     "sekta",
-    "nové náboženské hnutí",
-    "nová náboženská hnutí",
-    "nové duchovní hnutí",
-    "nová duchovní hnutí",
+    "kult",
+    "destruktivní kult",
+    "kontroverzní náboženská společnost",
+
+    # Neutral / academic
+    "náboženské hnutí",
+    "duchovní hnutí",
+    "spirituální hnutí",
+    "nové náboženství",
+    "nová religiozita",
+    "alternativní náboženství",
+    "alternativní religiozita",
+    "ezoterické hnutí",
+    "esoterické hnutí",
+
+    # Institutional / legal
     "náboženská skupina",
     "náboženská komunita",
-    "alternativní náboženství",
-    "kontroverzní náboženská společnost",
-    "destruktivní kult",
-    "kult",
+    "náboženská společnost",
+    "registrovaná náboženská společnost",
+    "neregistrovaná náboženská společnost",
+    "církev a náboženská společnost",
+    "duchovní centrum",
+    "náboženský směr",
+
+    # Sociological / abbreviations
+    "nová náboženská hnutí",
+    "nové náboženské hnutí",
+    "NNH",
+    "NRM",
+    "nové duchovní hnutí",
+    "nová duchovní hnutí",
     "nové spirituální hnutí"
 ]
 
-# Words to exclude from searching
-EXCLUDE_TERMS = [
-    "-politika",
-    "-film",
-    "-hudba",
-    "-hra",
-    "-počítačová"
+# ============================================================
+# EXCLUDED TERMS (noise filtering)
+# ============================================================
+
+EXCLUDE_TERMS: List[str] = [
+    # Entertainment & pop culture
+    "film",
+    "seriál",
+    "videohra",
+    "pc hra",
+    "hudební skupina",
+    "kapela",
+    "album",
+    "festival",
+
+    # Tech / unrelated
+    "software",
+    "aplikace",
+    "počítačová hra",
+
+    # Politics & current events (noise reduction)
+    "politika",
+    "politiky",
+    "volby",
+    "prezident",
+    "vláda",
+    "parlament"
 ]
 
-# Known religious groups for better identification
-KNOWN_MOVEMENTS = [
-    "Hnutí Grálu",
-    "Církev sjednocení",
-    "Scientologická církev",
-    "Svědkové Jehovovi",
-    "Hare Kršna",
-    "Církev Ježíše Krista Svatých posledních dnů",
-    "Buddhismus Diamantové cesty",
-    "Satanská církev",
-    "Imanuelité",
-    "Svobodná církev reformovaná"
+# Contextual exclude patterns (regex)
+EXCLUDE_CONTEXT_PATTERNS: List[str] = [
+    r"recenze\s+filmu",
+    r"hra\s+roku",
+    r"herní\s+recenze",
+    r"soundtrack",
+    r"trailer"
 ]
 
-# Regular expressions for finding founding dates
-YEAR_PATTERNS = [
+# ============================================================
+# KNOWN RELIGIOUS MOVEMENTS (for entity boosting)
+# ============================================================
+
+KNOWN_MOVEMENTS = {
+    "new_religious_movements": [
+        "Hnutí Grálu",
+        "Církev sjednocení",
+        "Scientologická církev",
+        "Buddhismus Diamantové cesty",
+        "Imanuelité",
+        "Hnutí Nového věku",
+        "Raeliáni",
+        "Osho",
+        "Sahadža jóga",
+        "Univerzální život"
+    ],
+    "established_but_relevant": [
+        "Svědkové Jehovovi",
+        "Hare Kršna",
+        "Církev Ježíše Krista Svatých posledních dnů"
+    ],
+    "controversial_or_borderline": [
+        "Satanská církev",
+        "Chrám Satanův",
+        "Rodina",
+        "Dvanáct kmenů"
+    ]
+}
+
+# Flattened list for easier matching
+ALL_KNOWN_MOVEMENTS: List[str] = [
+    movement
+    for group in KNOWN_MOVEMENTS.values()
+    for movement in group
+]
+
+# ============================================================
+# YEAR / FOUNDING DATE REGEX PATTERNS
+# ============================================================
+
+YEAR_PATTERNS: List[str] = [
     r"založen[aáoý]\s+v\s+roce\s+(\d{4})",
     r"vznik(?:lo|la|l)\s+v\s+roce\s+(\d{4})",
+    r"vznikl[ao]?\s+kolem\s+roku\s+(\d{4})",
     r"od\s+roku\s+(\d{4})",
-    r"registrován[aáoý]\s+v\s+(?:ČR|České\s+republice)\s+v\s+roce\s+(\d{4})"
+    r"působí\s+od\s+roku\s+(\d{4})",
+    r"činnost\s+zahájena\s+v\s+roce\s+(\d{4})",
+    r"registrován[aáoý]\s+v\s+(?:ČR|České\s+republice)\s+v\s+roce\s+(\d{4})",
+    r"zaregistrován[ao]?\s+dne\s+\d{1,2}\.\s*\d{1,2}\.\s*(\d{4})"
 ]
 
-def contains_relevant_keywords(text: str) -> bool:
+# ============================================================
+# HELPER FUNCTIONS
+# ============================================================
+
+def contains_relevant_keywords(text: str, min_hits: int = 1) -> bool:
     """
-    Kontroluje, zda text obsahuje relevantní klíčová slova.
-    
-    Args:
-        text: Text k analýze
-    
-    Returns:
-        bool: True pokud text obsahuje relevantní klíčová slova
+    Checks whether text contains relevant religious movement keywords.
+    Known movements have higher weight.
     """
     text = text.lower()
-    return any(keyword.lower() in text for keyword in SEARCH_TERMS + KNOWN_MOVEMENTS)
+    hits = 0
+
+    for kw in SEARCH_TERMS:
+        if kw.lower() in text:
+            hits += 1
+
+    for movement in ALL_KNOWN_MOVEMENTS:
+        if movement.lower() in text:
+            hits += 2  # boost known entities
+
+    return hits >= min_hits
+
 
 def is_excluded_content(text: str) -> bool:
     """
-    Kontroluje, zda text obsahuje vyloučená slova.
-    
-    Args:
-        text: Text k analýze
-    
-    Returns:
-        bool: True pokud text obsahuje vyloučená slova
+    Checks whether text should be excluded based on noise terms or context patterns.
     """
     text = text.lower()
-    exclude_words = [term.strip("-").lower() for term in EXCLUDE_TERMS]
-    return any(word in text for word in exclude_words)
+
+    # Simple term exclusion
+    for term in EXCLUDE_TERMS:
+        if term in text:
+            return True
+
+    # Contextual regex exclusion
+    for pattern in EXCLUDE_CONTEXT_PATTERNS:
+        if re.search(pattern, text):
+            return True
+
+    return False
+
+
+def extract_years(text: str) -> List[str]:
+    """
+    Extracts founding or registration years from text.
+    """
+    years = []
+
+    for pattern in YEAR_PATTERNS:
+        matches = re.findall(pattern, text.lower())
+        years.extend(matches)
+
+    return list(set(years))
