@@ -4,6 +4,7 @@ from pathlib import Path
 from database.db_loader import DBConnector
 from processing.nlp_analysis import CzechTextAnalyzer
 from processing.import_csv_to_db import CSVtoDatabaseLoader
+from extracting.keywords import ALL_KNOWN_MOVEMENTS
 
 def run_spiders():
     """Run all defined Scrapy spiders (RSS, API, web and social media)"""
@@ -116,15 +117,7 @@ def process_entities():
         ]
         
         # Known Czech NSM names
-        known_nsm = [
-            'Hnutí Grálu', 'Svědkové Jehovovi', 'Scientologie', 'Děti Boží', 'Rodina', 'Bhakti Marga',
-            'Církev Satanova', 'New Age', 'Ezoterika', 'Okultismus', 'Mormoni', 'Buddhismus',
-            'Hinduismus', 'Islám', 'Křesťanství', 'Židovství', 'Paganismus', 'Wicca', 'Druidismus',
-            'Teosofie', 'Antroposofie', 'Rudolf Steiner', 'Gurdjieff', 'Osho', 'Rajneesh',
-            'Transcendentální meditace', 'Hare Krišna', 'Mezinárodní společnost pro vědomí Krišny',
-            'Církev sjednocení', 'Moonova církev', 'Unifikace', 'Církev Kristova', 'Mesiáš',
-            'Sikhismus', 'Baháismus', 'Unitářství', 'Quakeri', 'Adventisté', 'Svědkové adventisté'
-        ]
+        known_nsm = ALL_KNOWN_MOVEMENTS
         
         for source in sources:
             text = (source.content_full or "") + " " + (source.content_excerpt or "")
