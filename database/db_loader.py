@@ -54,7 +54,7 @@ class DBConnector:
         normalized = " ".join(text.lower().split())
         return hashlib.sha256(normalized.encode('utf-8')).hexdigest()
 
-    def find_duplicates(self, content_hash: str = None, url: str = None, title: str = None) -> List[Source]:
+    def find_duplicates(self, content_hash: Optional[str] = None, url: Optional[str] = None, title: Optional[str] = None) -> List[Source]:
         """
         Find duplicate sources based on content hash, URL, or title similarity.
         Returns list of duplicate sources (excluding the most recent one).

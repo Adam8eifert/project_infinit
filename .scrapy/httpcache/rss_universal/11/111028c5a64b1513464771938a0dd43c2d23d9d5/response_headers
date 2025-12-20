@@ -1,12 +1,12 @@
 Content-Length: 509
-Date: Thu, 18 Dec 2025 21:45:23 GMT
+Date: Sat, 20 Dec 2025 20:47:30 GMT
 Server: ATS
 Link: <https://sekty.cz/wp-json/>; rel="https://api.w.org/"
 Vary: User-Agent,Accept-Encoding
 Last-Modified: Thu, 03 Jul 2025 10:21:01 GMT
 Etag: "cf9014ea02d70b0c0fa91c96bad738f1-gzip"
 Cache-Control: max-age=600
-Expires: Thu, 18 Dec 2025 21:55:23 GMT
+Expires: Sat, 20 Dec 2025 20:57:30 GMT
 Content-Encoding: gzip
 Content-Type: application/rss+xml; charset=UTF-8
-Age: 2
+Age: 0

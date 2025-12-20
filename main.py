@@ -21,7 +21,10 @@ def run_spiders():
     for spider in spiders:
         try:
             print(f"🚀 Running spider: {spider}")
-            subprocess.run(["scrapy", "runspider", spider], check=True)
+            # Set PYTHONPATH to include project root for proper imports
+            env = os.environ.copy()
+            env['PYTHONPATH'] = str(Path(__file__).parent)
+            subprocess.run(["scrapy", "runspider", spider], check=True, env=env)
         except subprocess.CalledProcessError as e:
             print(f"❌ Error running {spider}: {e}")
             # Continue even if one spider fails

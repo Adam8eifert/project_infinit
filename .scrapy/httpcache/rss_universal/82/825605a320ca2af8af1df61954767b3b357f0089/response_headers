@@ -1,15 +1,15 @@
 Content-Length: 0
-Date: Thu, 18 Dec 2025 21:45:34 GMT
-Report-To: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=RQLbSTOOX3NRKKdBleoR67%2FOpXzn2fhysInaXWlgDf131%2Fp88Gy5rkRPd%2FvvkBthG9AssRyZrybjUeHkWphkXFt3k0WkKRmSBXlAxpoH"}]}
+Date: Sat, 20 Dec 2025 20:47:42 GMT
+Report-To: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=kAIlNr2GMLuy93ngN4%2F08GMPTIbAQZwauHnn8TmTSiMzLU9lScFj4TTF6euJwUg%2FckNhAcE6S9Nv5KV%2BAcq3rGYTiDDS82HokyrIMw%3D%3D"}]}
 Nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
 Host: www.aktualne.cz
-Location: https://ecoid-ts.id-eco.cz/pid?sid=v755g0zKXP9XoUm8UROIj&origin-url=https%3A%2F%2Fwww.aktualne.cz%2Frobots.txt
-Cf-Ray: 9b01d9151e490a1b-PRG
+Location: https://ecoid-ts.id-eco.cz/pid?sid=kf84nLfu-wqxChcZx5NSA&origin-url=https%3A%2F%2Fwww.aktualne.cz%2Frobots.txt
+Cf-Ray: 9b11ff124aa6b34d-PRG
 Accept-Encoding: gzip, br
 Accept-Language: en
 Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Set-Cookie: SID=v755g0zKXP9XoUm8UROIj; Path=/; Expires=Fri, 18 Dec 2026 21:45:34 GMT; Secure; SameSite=None
-User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36
+Set-Cookie: SID=kf84nLfu-wqxChcZx5NSA; Path=/; Expires=Sun, 20 Dec 2026 20:47:42 GMT; Secure; SameSite=None
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.5 Safari/605.1.15
 Cf-Connecting-Ip: 78.80.80.248
 Cf-Ipcountry: CZ
 Cf-Visitor: {"scheme":"https"}

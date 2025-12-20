@@ -1,9 +1,11 @@
 Server: nginx
-Date: Thu, 18 Dec 2025 21:45:21 GMT
+Date: Sat, 20 Dec 2025 20:47:27 GMT
 Content-Type: application/rss+xml; charset=UTF-8
-Vary: Accept-Encoding,Cookie
-Content-Encoding: gzip
+Permissions-Policy: private-state-token-redemption=(self "https://www.google.com" "https://www.gstatic.com" "https://recaptcha.net" "https://challenges.cloudflare.com" "https://hcaptcha.com"), private-state-token-issuance=(self "https://www.google.com" "https://www.gstatic.com" "https://recaptcha.net" "https://challenges.cloudflare.com" "https://hcaptcha.com")
 X-Robots-Tag: noindex, follow
 Link: <https://sekty.tv/wp-json/>; rel="https://api.w.org/"
-Etag: "2751d17fe3401c9f974e4eb8396867dd"
+Content-Encoding: gzip
+Vary: Accept-Encoding,Cookie
+Last-Modified: Fri, 19 Dec 2025 18:15:51 GMT
+Etag: "68755341aee9d9152273324d87d7e545"
 X-Vhost-Debug: ef19c561e0da40919bf12ff2a445d0b493b147fcdee170738dae45f746c6a07b

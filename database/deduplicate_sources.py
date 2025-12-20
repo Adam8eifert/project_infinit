@@ -93,8 +93,8 @@ def show_stats(args):
             func.count(Source.id).label('count')
         ).group_by(Source.content_hash).all()
 
-        duplicate_groups = [h for h in hash_counts if h.count > 1]
-        total_duplicates = sum(h.count - 1 for h in duplicate_groups)
+        duplicate_groups = [h for h in hash_counts if h.count > 1]  # type: ignore
+        total_duplicates = sum(h.count - 1 for h in duplicate_groups)  # type: ignore
 
         print("📊 Database Statistics:")
         print(f"   • Total sources: {total_sources}")
@@ -109,7 +109,7 @@ def show_stats(args):
 
         if duplicate_groups:
             print("\n🔍 Largest duplicate groups:")
-            sorted_groups = sorted(duplicate_groups, key=lambda x: x.count, reverse=True)[:5]
+            sorted_groups = sorted(duplicate_groups, key=lambda x: x.count, reverse=True)[:5]  # type: ignore
             for i, group in enumerate(sorted_groups, 1):
                 print(f"   {i}. Hash group with {group.count} sources")
 

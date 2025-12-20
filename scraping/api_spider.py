@@ -5,8 +5,8 @@
 import scrapy
 import json
 from datetime import datetime
-from scraping.config_loader import get_config_loader
-from scraping.keywords import contains_relevant_keywords
+from config_loader import get_config_loader
+from keywords import contains_relevant_keywords
 
 
 class APISpider(scrapy.Spider):

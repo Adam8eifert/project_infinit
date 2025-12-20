@@ -2,9 +2,9 @@ import scrapy
 import feedparser
 from datetime import datetime
 from pathlib import Path
-from scraping.config_loader import get_config_loader
-from scraping.keywords import contains_relevant_keywords
-from scraping.spider_settings import ETHICAL_SCRAPING_SETTINGS, CSV_EXPORT_SETTINGS
+from config_loader import get_config_loader
+from keywords import contains_relevant_keywords
+from spider_settings import ETHICAL_SCRAPING_SETTINGS, CSV_EXPORT_SETTINGS
 
 
 class RSSSpider(scrapy.Spider):

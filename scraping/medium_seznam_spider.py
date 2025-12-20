@@ -1,6 +1,6 @@
 import scrapy
 import datetime
-from scraping.keywords import contains_relevant_keywords, is_excluded_content
+from keywords import contains_relevant_keywords, is_excluded_content
 
 class MediumSeznamSpider(scrapy.Spider):
     """

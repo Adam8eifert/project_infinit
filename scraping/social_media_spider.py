@@ -8,8 +8,8 @@ import requests
 from datetime import datetime
 import os
 from dotenv import load_dotenv
-from scraping.config_loader import get_config_loader
-from scraping.keywords import contains_relevant_keywords
+from config_loader import get_config_loader
+from keywords import contains_relevant_keywords
 
 
 # Load .env file

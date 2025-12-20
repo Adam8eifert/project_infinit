@@ -7,7 +7,7 @@ Adds new tables, columns, and views for advanced analytics.
 
 import os
 import sys
-from pathlib import Path
+from sqlalchemy import text
 
 # Add project root to path
 project_root = Path(__file__).parent.parent
@@ -47,7 +47,7 @@ def run_migration():
                 for statement in statements:
                     if statement:
                         try:
-                            session.execute(statement)
+                            session.execute(text(statement))
                         except Exception as e:
                             print(f"⚠️  Warning executing statement: {e}")
                             # Continue with other statements
@@ -66,7 +66,7 @@ def run_migration():
                     views_sql = f.read()
 
                 with db.get_session() as session:
-                    session.execute(views_sql)
+                    session.execute(text(views_sql))
                     session.commit()
 
                 print("✅ Views created successfully")
@@ -80,7 +80,7 @@ def run_migration():
             tables_to_check = ['temporal_analysis', 'geographic_analysis', 'source_quality']
             for table in tables_to_check:
                 try:
-                    result = session.execute(f"SELECT COUNT(*) FROM {table}")
+                    result = session.execute(text(f"SELECT COUNT(*) FROM {table}"))
                     count = result.scalar()
                     print(f"✅ Table '{table}' exists with {count} records")
                 except Exception as e:
