@@ -90,12 +90,150 @@ def run_nlp(text="Hnutí Grálu bylo registrováno v Praze."):
         print(f"❌ Error in NLP analysis: {e}")
         raise
 
+def process_entities():
+    """Extract entities from sources and populate movements, locations, etc."""
+    try:
+        from database.db_loader import DBConnector, Movement, Alias, Location, Source
+        from processing.nlp_analysis import CzechTextAnalyzer
+        import re
+        
+        db = DBConnector()
+        session = db.get_session()
+        analyzer = CzechTextAnalyzer()
+        
+        # Get all sources with content
+        sources = session.query(Source).filter(Source.content_full.isnot(None)).all()
+        print(f"📊 Processing {len(sources)} sources for entity extraction")
+        
+        movements_created = 0
+        locations_created = 0
+        
+        # Czech NSM keywords
+        nsm_keywords = [
+            'hnutí', 'sekta', 'kult', 'církev', 'společenství', 'grál', 'svědkové', 'jehova',
+            'satanist', 'okult', 'ezoter', 'myst', 'duchovn', 'nábožensk', 'fundamental',
+            'mormon', 'buddh', 'hindu', 'islam', 'křesťan', 'žid', 'pagan', 'new age'
+        ]
+        
+        # Known Czech NSM names
+        known_nsm = [
+            'Hnutí Grálu', 'Svědkové Jehovovi', 'Scientologie', 'Děti Boží', 'Rodina', 'Bhakti Marga',
+            'Církev Satanova', 'New Age', 'Ezoterika', 'Okultismus', 'Mormoni', 'Buddhismus',
+            'Hinduismus', 'Islám', 'Křesťanství', 'Židovství', 'Paganismus', 'Wicca', 'Druidismus',
+            'Teosofie', 'Antroposofie', 'Rudolf Steiner', 'Gurdjieff', 'Osho', 'Rajneesh',
+            'Transcendentální meditace', 'Hare Krišna', 'Mezinárodní společnost pro vědomí Krišny',
+            'Církev sjednocení', 'Moonova církev', 'Unifikace', 'Církev Kristova', 'Mesiáš',
+            'Sikhismus', 'Baháismus', 'Unitářství', 'Quakeri', 'Adventisté', 'Svědkové adventisté'
+        ]
+        
+        for source in sources:
+            text = (source.content_full or "") + " " + (source.content_excerpt or "")
+            if not text or len(text.strip()) < 50:
+                continue
+                
+            # Extract named entities (fallback if available)
+            entities = analyzer.extract_named_entities(text)
+            
+            # Extract potential movement names
+            potential_movements = []
+            
+            # First, check for known NSM names
+            text_lower = text.lower()
+            for nsm_name in known_nsm:
+                if nsm_name.lower() in text_lower:
+                    potential_movements.append(nsm_name)
+            
+            # From NER entities (if available)
+            for entity in entities:
+                if entity['label'] in ['ORG', 'MISC', 'PER']:
+                    entity_text = entity['text'].strip()
+                    if len(entity_text) > 3 and any(keyword in entity_text.lower() for keyword in nsm_keywords):
+                        potential_movements.append(entity_text)
+            
+            # From regex patterns - look for "sekta X", "hnutí Y", etc.
+            for keyword in nsm_keywords:
+                # Pattern: keyword + words after it
+                pattern = r'\b' + keyword + r'\s+([A-ZÁ-Ž][a-zá-ž]+(?:\s+[A-ZÁ-Ž][a-zá-ž]+)*)'
+                matches = re.findall(pattern, text, re.IGNORECASE)
+                for match in matches:
+                    # Clean and capitalize
+                    clean_name = match.strip()
+                    if len(clean_name) > 3 and len(clean_name.split()) <= 4:  # Max 4 words
+                        capitalized = ' '.join(word.capitalize() for word in clean_name.split())
+                        potential_movements.append(f"{keyword.capitalize()} {capitalized}")
+            
+            # Remove duplicates and filter
+            potential_movements = list(set(potential_movements))
+            potential_movements = [m for m in potential_movements if len(m) > 5 and not any(char.isdigit() for char in m)]
+            
+            # Create movements
+            for movement_name in potential_movements[:3]:  # Limit to 3 per source
+                # Check if movement already exists (exact match, case-insensitive)
+                existing = session.query(Movement).filter(
+                    Movement.canonical_name.ilike(movement_name)
+                ).first()
+                
+                if not existing:
+                    movement = Movement(
+                        canonical_name=movement_name,
+                        category="religious",
+                        description=f"Extracted from source: {source.url}",
+                        active_status="unknown"
+                    )
+                    session.add(movement)
+                    movements_created += 1
+                    print(f"  ➕ Created movement: {movement_name}")
+                else:
+                    print(f"  ⏭️  Movement already exists: {movement_name}")
+            locations = []
+            czech_cities = ['praha', 'brno', 'ostrava', 'plzeň', 'liberec', 'olomouc', 'české budějovice', 'hradec králové', 'pardubice', 'zlín']
+            
+            for entity in entities:
+                if entity['label'] in ['LOC', 'GPE']:
+                    locations.append(entity['text'].strip())
+            
+            # Also check for Czech cities in text
+            text_lower = text.lower()
+            for city in czech_cities:
+                if city in text_lower:
+                    locations.append(city.capitalize())
+            
+            for location_name in set(locations):
+                # Check if location exists
+                existing = session.query(Location).filter(Location.municipality.ilike(f"%{location_name}%")).first()
+                if not existing:
+                    location = Location(
+                        movement_id=1,  # Default movement
+                        municipality=location_name,
+                        region="Czech Republic" if any(city in location_name.lower() for city in czech_cities + ['česk', 'praha']) else None
+                    )
+                    session.add(location)
+                    locations_created += 1
+            
+            # Update source with sentiment if not set
+            if source.sentiment_score is None:
+                sentiment = analyzer.analyze_sentiment(text[:512])  # First 512 chars
+                source.sentiment_score = sentiment.get('score', 0.5)
+                source.classification_label = sentiment.get('label', 'neutral')
+        
+        session.commit()
+        session.close()
+        
+        print(f"✅ Entity extraction completed:")
+        print(f"   • Movements created: {movements_created}")
+        print(f"   • Locations created: {locations_created}")
+        
+    except Exception as e:
+        print(f"❌ Error in entity processing: {e}")
+        raise
+
 if __name__ == "__main__":
     try:
         print("🎬 Starting ETL pipeline...")
         create_db()
         run_spiders()
         process_csv()
+        process_entities()
         run_nlp()
         print("✅ ETL process completed")
     except Exception as e:

@@ -8,7 +8,7 @@ class Movement(Base):
     __tablename__ = "movements"
 
     id = Column(Integer, primary_key=True, autoincrement=True)
-    canonical_name = Column(String(255), nullable=False, index=True)
+    canonical_name = Column(String(255), nullable=False, unique=True, index=True)
     registration = Column(Integer, nullable=True)
     rating = Column(String(64), nullable=True)
 
