@@ -35,6 +35,22 @@ def create_db():
     try:
         db = DBConnector()
         db.create_tables()
+        
+        # Seed default movement if not exists
+        session = db.get_session()
+        from database.db_loader import Movement
+        if session.query(Movement).count() == 0:
+            default_movement = Movement(
+                canonical_name="Náboženské hnutí (obecně)",
+                category="religious",
+                description="Obecné náboženské hnutí pro testování",
+                active_status="active"
+            )
+            session.add(default_movement)
+            session.commit()
+            print("✅ Default movement created")
+        session.close()
+        
         print("✅ Database tables ready")
     except Exception as e:
         print(f"❌ Error creating database: {e}")
