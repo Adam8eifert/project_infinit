@@ -1,4 +1,4 @@
-# 📁 scraping/google_spider.py
+# 📁 extracting/google_spider.py
 # Scrapy spider for Google News (raw export without NLP)
 
 import scrapy

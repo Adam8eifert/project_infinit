@@ -39,7 +39,7 @@ An ETL pipeline for collecting, analyzing, and visualizing information about new
 
 ```
 project_infinit/
-├── scraping/              # Web scrapers and configurations
+├── extracting/              # Web scrapers and configurations
 │   ├── sources_config.yaml    # Centralized source configuration
 │   ├── spider_settings.py     # Ethical scraping settings
 │   ├── keywords.py           # Keyword filtering utilities
@@ -138,9 +138,9 @@ cp .env.example .env
 python main.py
 
 # Or run individual components
-scrapy runspider scraping/rss_spider.py
-scrapy runspider scraping/api_spider.py
-scrapy runspider scraping/social_media_spider.py
+scrapy runspider extracting/rss_spider.py
+scrapy runspider extracting/api_spider.py
+scrapy runspider extracting/social_media_spider.py
 ```
 
 ## 🔄 Pipeline Steps
@@ -167,7 +167,7 @@ scrapy runspider scraping/social_media_spider.py
 
 ## 📊 Data Sources
 
-The pipeline collects data from multiple sources configured in `scraping/sources_config.yaml`:
+The pipeline collects data from multiple sources configured in `extracting/sources_config.yaml`:
 
 | Type       | Source                      | Method        | Status        | Description                  |
 | ---------- | --------------------------- | ------------- | ------------- | ---------------------------- |
@@ -262,8 +262,8 @@ pytest testing/test_nlp_analysis.py -v
 
 ### Adding New Sources
 
-1. Add configuration to `scraping/sources_config.yaml`
-2. Implement spider in `scraping/` directory
+1. Add configuration to `extracting/sources_config.yaml`
+2. Implement spider in `extracting/` directory
 3. Add tests in `testing/` directory
 4. Update main.py orchestration
 
@@ -328,7 +328,7 @@ ETL pipeline pro sběr, analýzu a vizualizaci informací o nových nábožensk�
 
 ```
 project_infinit/
-├── scraping/              # Web scrapery a konfigurace
+├── extracting/              # Web scrapery a konfigurace
 │   ├── sources_config.yaml    # Centralizovaná konfigurace zdrojů
 │   ├── spider_settings.py     # Etická scraping nastavení
 │   ├── keywords.py           # Utility pro filtrování klíčových slov
@@ -427,9 +427,9 @@ cp .env.example .env
 python main.py
 
 # Nebo spuštění jednotlivých komponent
-scrapy runspider scraping/rss_spider.py
-scrapy runspider scraping/api_spider.py
-scrapy runspider scraping/social_media_spider.py
+scrapy runspider extracting/rss_spider.py
+scrapy runspider extracting/api_spider.py
+scrapy runspider extracting/social_media_spider.py
 ```
 
 ## 🔄 Kroky zpracování
@@ -456,7 +456,7 @@ scrapy runspider scraping/social_media_spider.py
 
 ## 📊 Zdroje dat
 
-Pipeline sbírá data z více zdrojů nakonfigurovaných v `scraping/sources_config.yaml`:
+Pipeline sbírá data z více zdrojů nakonfigurovaných v `extracting/sources_config.yaml`:
 
 | Typ          | Zdroj                       | Metoda        | Status             | Popis                              |
 | ------------ | --------------------------- | ------------- | ------------------ | ---------------------------------- |
@@ -551,8 +551,8 @@ pytest testing/test_nlp_analysis.py -v
 
 ### Přidání nových zdrojů
 
-1. Přidání konfigurace do `scraping/sources_config.yaml`
-2. Implementace spideru v adresáři `scraping/`
+1. Přidání konfigurace do `extracting/sources_config.yaml`
+2. Implementace spideru v adresáři `extracting/`
 3. Přidání testů v adresáři `testing/`
 4. Aktualizace main.py orchestrace
 
@@ -620,7 +620,7 @@ To enable Reddit and X (Twitter) data collection:
    python main.py
 
    # Or run specific social media spider
-   scrapy runspider scraping/social_media_spider.py
+   scrapy runspider extracting/social_media_spider.py
    ```
 
 ## 🇨🇿 Rychlý start
@@ -693,7 +693,7 @@ Chcete-li sbírat data z Redditu a X (Twitter):
 python main.py
 
 # Nebo spuštění jednotlivých spiderů
-scrapy runspider scraping/sekty_cz_spider.py
+scrapy runspider extracting/sekty_cz_spider.py
 ```
 
 ## 🔄 Kroky zpracování

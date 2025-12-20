@@ -1,4 +1,4 @@
-# 📁 scraping/api_spider.py
+# 📁 extracting/api_spider.py
 # Universal spider for API sources (MediaWiki, REST API, etc.)
 # Dynamically reads configuration from sources_config.yaml
 

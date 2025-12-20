@@ -1,4 +1,4 @@
-# 📁 scraping/social_media_spider.py
+# 📁 extracting/social_media_spider.py
 # Universal spider for social media (Reddit, X/Twitter API)
 # Dynamically reads configuration from sources_config.yaml
 

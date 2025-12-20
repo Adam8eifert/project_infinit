@@ -1,4 +1,4 @@
-# 📁 scraping/config_loader.py
+# 📁 extracting/config_loader.py
 # Loading and managing source configuration from YAML
 
 import yaml
@@ -9,7 +9,7 @@ from typing import Dict, List, Any, Optional
 class SourcesConfigLoader:
     """Load and process source configuration from YAML file."""
     
-    def __init__(self, config_path: str = "scraping/sources_config.yaml"):
+    def __init__(self, config_path: str = "extracting/sources_config.yaml"):
         self.config_path = Path(config_path)
         self.config = self._load_config()
     
@@ -98,7 +98,7 @@ class SourcesConfigLoader:
 _default_loader = None
 
 
-def get_config_loader(config_path: str = "scraping/sources_config.yaml") -> SourcesConfigLoader:
+def get_config_loader(config_path: str = "extracting/sources_config.yaml") -> SourcesConfigLoader:
     """Return or create global loader instance."""
     global _default_loader
     if _default_loader is None:

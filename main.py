@@ -9,14 +9,14 @@ def run_spiders():
     """Run all defined Scrapy spiders (RSS, API, web and social media)"""
     spiders = [
         # New RSS spiders
-        "scraping/rss_spider.py",           # Universal RSS spider
+        "extracting/rss_spider.py",           # Universal RSS spider
         # New API spiders
-        "scraping/api_spider.py",            # Universal API spider
+        "extracting/api_spider.py",            # Universal API spider
         # Social media spiders
-        "scraping/social_media_spider.py",   # Reddit + X/Twitter API
+        "extracting/social_media_spider.py",   # Reddit + X/Twitter API
         # Older web spiders (still supported)
-        "scraping/medium_seznam_spider.py",
-        "scraping/google_spider.py"
+        "extracting/medium_seznam_spider.py",
+        "extracting/google_spider.py"
     ]
     for spider in spiders:
         try:

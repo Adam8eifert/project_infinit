@@ -1,4 +1,4 @@
-# 📁 scraping/keywords.py
+# 📁 extracting/keywords.py
 # Centralized keywords, filters and patterns for all spiders
 # Project: Database of New Religious Movements in the Czech Republic
 

@@ -24,3 +24,6 @@
 2025-12-20 21:48:41,250 - INFO - Loading 14 rows from export/csv/rss_combined_raw.csv
 2025-12-20 21:48:41,310 - WARNING - Duplicate URL - skipping batch
 2025-12-20 21:48:41,310 - INFO - Import completed: 14 imported, 14 skipped
+2025-12-20 22:08:26,456 - INFO - Loading 14 rows from export/csv/rss_combined_raw.csv
+2025-12-20 22:08:26,516 - WARNING - Duplicate URL - skipping batch
+2025-12-20 22:08:26,516 - INFO - Import completed: 14 imported, 14 skipped
