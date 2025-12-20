@@ -98,7 +98,10 @@ def show_stats(args):
 
         print("📊 Database Statistics:")
         print(f"   • Total sources: {total_sources}")
-        print(f"   • Sources with content hash: {with_hashes} ({with_hashes/total_sources*100:.1f}%)")
+        if total_sources > 0:
+            print(f"   • Sources with content hash: {with_hashes} ({with_hashes/total_sources*100:.1f}%)")
+        else:
+            print(f"   • Sources with content hash: {with_hashes}")
         print(f"   • Sources without content hash: {without_hashes}")
         print(f"   • Unique content hashes: {unique_hashes}")
         print(f"   • Duplicate groups: {len(duplicate_groups)}")

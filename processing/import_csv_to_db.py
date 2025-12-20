@@ -58,7 +58,7 @@ class CSVtoDatabaseLoader:
     def clean_row(self, row):
         """Clean and normalize data"""
         return {
-            "movement_id": None,  # will be filled later
+            "movement_id": 1,  # temporary: assign to first movement for testing
             "source_name": str(row.get("source_name", "")).strip(),
             "source_type": str(row.get("source_type", "")).strip(),
             "url": str(row.get("url", "")).strip(),

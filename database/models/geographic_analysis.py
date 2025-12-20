@@ -47,5 +47,5 @@ class GeographicAnalysis(Base):
         return f"<GeographicAnalysis(location_id={self.location_id}, date={self.analysis_date}, movements={self.movement_count})>"
 
 # Indexes for efficient spatial queries
-Index("ix_geographic_location_date", GeographicAnalysis.location_id, GeographicAnalysis.analysis_date, unique=True)
-Index("ix_geographic_date", GeographicAnalysis.analysis_date)
+# Index("ix_geographic_location_date", GeographicAnalysis.location_id, GeographicAnalysis.analysis_date, unique=True)
+# Index("ix_geographic_date", GeographicAnalysis.analysis_date)

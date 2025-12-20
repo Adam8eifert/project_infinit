@@ -19,7 +19,10 @@ class DBConnector:
       - helper methods for common inserts
     """
     def __init__(self, uri: Optional[str] = None):
-        self.db_uri = uri or getattr(config, "DB_URI", "sqlite:///data.db")
+        if uri is not None:
+            self.db_uri = uri
+        else:
+            self.db_uri = getattr(config, "DB_URI", "sqlite:///data.db")
         connect_args = {}
         if self.db_uri.startswith("sqlite"):
             connect_args = {"check_same_thread": False}
@@ -165,9 +168,9 @@ class DBConnector:
 
                 for source in sources:
                     try:
-                        content_hash = self.calculate_content_hash(source.content_full)
+                        content_hash = self.calculate_content_hash(source.content_full)  # type: ignore
                         if content_hash:
-                            source.content_hash = content_hash
+                            source.content_hash = content_hash  # type: ignore
                             stats['updated'] += 1
                     except Exception as e:
                         print(f"Error calculating hash for source {source.id}: {e}")
@@ -256,7 +259,7 @@ class DBConnector:
         finally:
             session.close()
 
-    def insert_source_safe(self, movement_id: int, url: str, content_full: str = None,
+    def insert_source_safe(self, movement_id: int, url: str, content_full: Optional[str] = None,
                           check_duplicates: bool = True, **kwargs) -> Source:
         """
         Insert a new source with automatic duplicate detection.

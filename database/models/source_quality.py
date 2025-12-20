@@ -46,6 +46,6 @@ class SourceQuality(Base):
         return f"<SourceQuality(source_id={self.source_id}, credibility={self.credibility_score})>"
 
 # Indexes
-Index("ix_source_quality_source", SourceQuality.source_id, unique=True)
-Index("ix_source_quality_credibility", SourceQuality.credibility_score)
-Index("ix_source_quality_status", SourceQuality.fact_check_status)
+# Index("ix_source_quality_source", SourceQuality.source_id, unique=True)
+# Index("ix_source_quality_credibility", SourceQuality.credibility_score)
+# Index("ix_source_quality_status", SourceQuality.fact_check_status)

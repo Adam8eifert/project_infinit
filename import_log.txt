@@ -8,3 +8,14 @@
 2025-12-18 22:46:21,033 - INFO - Načítám 4 řádků z export/csv/rss_combined_raw.csv
 2025-12-18 22:46:21,060 - WARNING - Duplicitní URL - přeskakuji batch
 2025-12-18 22:46:21,061 - INFO - Import dokončen: 4 importováno, 4 přeskočeno
+2025-12-20 21:31:20,027 - INFO - Loading 2 rows from export/csv/sample_data.csv
+2025-12-20 21:31:20,072 - WARNING - Duplicate URL - skipping batch
+2025-12-20 21:31:20,073 - INFO - Import completed: 2 imported, 2 skipped
+2025-12-20 21:33:34,271 - INFO - Loading 2 rows from export/csv/sample_data.csv
+2025-12-20 21:33:34,308 - WARNING - Duplicate URL - skipping batch
+2025-12-20 21:33:34,308 - INFO - Import completed: 2 imported, 2 skipped
+2025-12-20 21:34:05,530 - INFO - Loading 4 rows from export/csv/test_data.csv
+2025-12-20 21:34:05,569 - WARNING - Duplicate URL - skipping batch
+2025-12-20 21:34:05,569 - INFO - Import completed: 4 imported, 4 skipped
+2025-12-20 21:34:25,445 - INFO - Loading 4 rows from export/csv/test_data.csv
+2025-12-20 21:34:25,497 - INFO - Import completed: 4 imported, 0 skipped
