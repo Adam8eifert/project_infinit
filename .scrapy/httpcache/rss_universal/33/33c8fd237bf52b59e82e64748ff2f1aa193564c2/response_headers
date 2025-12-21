@@ -8,7 +8,7 @@ Cache-Control: public, max-age=2592000
 Last-Modified: Thu, 11 Dec 2025 10:43:59 GMT
 Etag: W/"5db-19b0d02b198"
 Content-Type: text/plain; charset=UTF-8
-Date: Sat, 20 Dec 2025 20:47:37 GMT
-X-Envoy-Upstream-Service-Time: 12
+Date: Sun, 21 Dec 2025 21:19:49 GMT
+X-Envoy-Upstream-Service-Time: 9
 Server: envoy
-Set-Cookie: sznlbr=41107c20b2515c249a074410b0b0994fc7364c13484b2656a398c856452f5f88; HttpOnly; Secure; Max-Age=86400; Path=/
+Set-Cookie: sznlbr=80494526da0d679e0676e0e49576c2acf8201e092d164c0e4ba369d8dbd95abc; HttpOnly; Secure; Max-Age=86400; Path=/

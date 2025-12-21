@@ -143,7 +143,34 @@ KNOWN_MOVEMENTS = {
         "Ček Árya Sabhá – Árjasamádž",
         "Silvova metoda",
         "Zodiakální škola",
-        "Hnutí Šrí Činmoje"
+        "Poetrie",
+        "Kuřimská sekta"
+        "Škola Aria",
+        "Arnold Varvarinec",
+        "Zprávy z galaxie",
+        "Novija gána sepata",
+        "Science 21",
+        "Společenství legitimních věřitelů České republiky",
+        "Boží rodina",
+        "Radomír Wolf",
+        "Rezonance",
+        "AROPAL",
+        "Loving Hut",
+        "Bhakti Marga",
+        "Život v srdci",
+        "Zlatá éra",
+        "Plaváček",
+        "Slovanská košile",
+        "O9A",
+        "TVIND",
+        "Jarilo",
+        "Most ke svobodě",
+        "Alan Jarkovský",
+        "Jóga v denním životě",
+        "Ledvinový Kult",
+        "Dohnalité",
+        "Avenna",
+        "Ariadné"
     ]
 }
 

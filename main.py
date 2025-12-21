@@ -4,6 +4,7 @@ from pathlib import Path
 from database.db_loader import DBConnector
 from processing.nlp_analysis import CzechTextAnalyzer
 from processing.import_csv_to_db import CSVtoDatabaseLoader
+from processing.import_pdf_to_db import PDFtoDatabaseLoader
 from extracting.keywords import ALL_KNOWN_MOVEMENTS
 
 def run_spiders():
@@ -78,6 +79,25 @@ def process_csv():
         print(f"❌ Error processing CSV: {e}")
         raise
 
+def process_academic_pdfs():
+    """Import academic PDF papers to database"""
+    try:
+        importer = PDFtoDatabaseLoader()
+        pdf_dir = "academic_data"
+
+        print(f"📚 Processing academic PDFs from: {pdf_dir}")
+        stats = importer.load_pdfs_to_sources(pdf_dir)
+
+        print("📊 PDF Import Summary:")
+        print(f"   • Processed: {stats['processed']}")
+        print(f"   • Successful: {stats['successful']}")
+        print(f"   • Skipped: {stats['skipped']}")
+        print(f"   • Failed: {stats['failed']}")
+
+    except Exception as e:
+        print(f"❌ Error processing PDFs: {e}")
+        raise
+
 def run_nlp(text="Hnutí Grálu bylo registrováno v Praze."):
     """Sample NLP analysis"""
     try:
@@ -136,31 +156,40 @@ def process_entities():
                 if nsm_name.lower() in text_lower:
                     potential_movements.append(nsm_name)
             
-            # From NER entities (if available)
+            # From NER entities (if available) - only if they match known patterns
             for entity in entities:
-                if entity['label'] in ['ORG', 'MISC', 'PER']:
+                if entity['label'] in ['ORG', 'MISC']:
                     entity_text = entity['text'].strip()
-                    if len(entity_text) > 3 and any(keyword in entity_text.lower() for keyword in nsm_keywords):
+                    # Only accept if it looks like a real movement name
+                    if (len(entity_text) > 3 and len(entity_text) < 50 and 
+                        not any(char.isdigit() for char in entity_text) and
+                        any(keyword in entity_text.lower() for keyword in ['hnutí', 'sekta', 'církev', 'kult'])):
                         potential_movements.append(entity_text)
             
-            # From regex patterns - look for "sekta X", "hnutí Y", etc.
-            for keyword in nsm_keywords:
-                # Pattern: keyword + words after it
-                pattern = r'\b' + keyword + r'\s+([A-ZÁ-Ž][a-zá-ž]+(?:\s+[A-ZÁ-Ž][a-zá-ž]+)*)'
-                matches = re.findall(pattern, text, re.IGNORECASE)
-                for match in matches:
-                    # Clean and capitalize
-                    clean_name = match.strip()
-                    if len(clean_name) > 3 and len(clean_name.split()) <= 4:  # Max 4 words
-                        capitalized = ' '.join(word.capitalize() for word in clean_name.split())
-                        potential_movements.append(f"{keyword.capitalize()} {capitalized}")
+            # From regex patterns - look for "sekta X", "hnutí Y", etc. but only for known movements
+            for keyword in ['sekta', 'hnutí', 'církev', 'kult']:
+                # Pattern: keyword + known movement name
+                for known_movement in known_nsm:
+                    if f"{keyword} {known_movement}".lower() in text_lower:
+                        potential_movements.append(f"{keyword.capitalize()} {known_movement}")
             
             # Remove duplicates and filter
             potential_movements = list(set(potential_movements))
-            potential_movements = [m for m in potential_movements if len(m) > 5 and not any(char.isdigit() for char in m)]
+            # Filter out obviously wrong names (too long, contains strange words)
+            filtered_movements = []
+            for m in potential_movements:
+                words = m.split()
+                if (len(m) > 5 and len(m) < 80 and len(words) <= 5 and
+                    not any(word in m.lower() for word in ['jsou', 'je', 'byla', 'bylo', 'tak', 'prý', 'spíše', 'až', 'po', 'jako', 'má', 'vnímají', 'používány', 'patřil', 'navazuje', 'kritizovány', 'získává', 'stává', 'jednotný', 'nejsou', 'mohou', 'mají', 'spočívá', 'především', 'panuje', 'přísná', 'kázeň', 'pyramidová', 'ztrácí', 'vliv', 'nejednoznačné'])):
+                    filtered_movements.append(m)
+            
+            potential_movements = filtered_movements[:3]  # Limit to 3 per source
             
             # Create movements
             for movement_name in potential_movements[:3]:  # Limit to 3 per source
+                # Flush session to ensure previous additions are visible
+                session.flush()
+                
                 # Check if movement already exists (exact match, case-insensitive)
                 existing = session.query(Movement).filter(
                     Movement.canonical_name.ilike(movement_name)
@@ -226,6 +255,7 @@ if __name__ == "__main__":
         create_db()
         run_spiders()
         process_csv()
+        process_academic_pdfs()
         process_entities()
         run_nlp()
         print("✅ ETL process completed")

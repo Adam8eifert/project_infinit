@@ -1,10 +1,10 @@
 Content-Length: 203
-Date: Sat, 20 Dec 2025 20:47:31 GMT
+Date: Sun, 21 Dec 2025 21:19:41 GMT
 Server: Apache
 Last-Modified: Thu, 26 Jan 2023 09:09:38 GMT
 Etag: "36e-5f3271bc13af0-gzip"
 Cache-Control: max-age=3600, public
-Expires: Sat, 20 Dec 2025 20:52:31 GMT
+Expires: Sun, 21 Dec 2025 21:24:41 GMT
 Content-Encoding: gzip
 Referrer-Policy: no-referrer-when-downgrade
 Pragma: public
@@ -24,7 +24,7 @@ X-Anycast-Port: 443
 X-Forwarded-Proto: https
 X-Forwarded-Port: 443
 X-Visitor-Ip: 78.80.80.248
-X-Request-Id: efa5c8cb-0af9-4661-bff9-7f6e0e35ee1a
+X-Request-Id: 85465111-ef58-4885-9393-b83a6d85a2db
 X-Provider: WEDOS - WE DO Security (WEDOS.com)
 X-Cdn-Provider: WEDOS Global CDN (WEDOS.delivery)
 X-Protected-By: WEDOS Global Protection (WEDOS.protection)
@@ -32,4 +32,4 @@ X-Dns-By: WEDOS anycast DNS servers as a service (WEDOS.zone)
 X-Status-Page: WEDOS Status (WEDOS.status.online)
 X-Monitored-By: WEDOS Online Monitoring (WEDOS.online)
 X-Tagline: Born in Europe / EU, securing the future and safety worldwide.
-Alt-Svc: h3=":443"; ma=86400
+Alt-Svc: h3=":443"; ma=300

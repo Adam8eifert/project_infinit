@@ -1,4 +1,4 @@
-Date: Sat, 20 Dec 2025 20:47:33 GMT
+Date: Sun, 21 Dec 2025 21:19:44 GMT
 Server: Apache
 Strict-Transport-Security: max-age=63072000; includeSubDomains;preload
 X-Xss-Protection: 0
@@ -9,7 +9,7 @@ Link: <https://info.dingir.cz/wp-json/>; rel="https://api.w.org/"
 Last-Modified: Sat, 20 Dec 2025 10:00:20 GMT
 Etag: "1dffd689d7e1c0b3527116de000ff9ef"
 Cache-Control: max-age=600
-Expires: Sat, 20 Dec 2025 20:57:33 GMT
+Expires: Sun, 21 Dec 2025 21:29:44 GMT
 Referrer-Policy: no-referrer-when-downgrade
 Content-Type: application/rss+xml; charset=UTF-8
 X-Accel-Start: 1
@@ -26,7 +26,7 @@ X-Anycast-Port: 443
 X-Forwarded-Proto: https
 X-Forwarded-Port: 443
 X-Visitor-Ip: 78.80.80.248
-X-Request-Id: efa5c8cb-0af9-4661-bff9-7f6e0e35ee1a
+X-Request-Id: 85465111-ef58-4885-9393-b83a6d85a2db
 X-Provider: WEDOS - WE DO Security (WEDOS.com)
 X-Cdn-Provider: WEDOS Global CDN (WEDOS.delivery)
 X-Protected-By: WEDOS Global Protection (WEDOS.protection)
@@ -34,4 +34,4 @@ X-Dns-By: WEDOS anycast DNS servers as a service (WEDOS.zone)
 X-Status-Page: WEDOS Status (WEDOS.status.online)
 X-Monitored-By: WEDOS Online Monitoring (WEDOS.online)
 X-Tagline: Born in Europe / EU, securing the future and safety worldwide.
-Alt-Svc: h3=":443"; ma=86400
+Alt-Svc: h3=":443"; ma=300
