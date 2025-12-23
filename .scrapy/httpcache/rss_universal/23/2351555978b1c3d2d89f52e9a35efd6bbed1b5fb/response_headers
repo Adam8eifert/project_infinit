@@ -1,19 +1,19 @@
 Content-Length: 0
-Date: Sun, 21 Dec 2025 21:20:03 GMT
+Date: Tue, 23 Dec 2025 22:02:32 GMT
 Nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
 Link: <https://a.centrum.cz/>; rel=preconnect, <https://fonts.googleapis.com/>; rel=preconnect, <https://asset.stdout.cz/>; rel=dns-prefetch, <https://prod-snowly-sasic.stdout.cz/>; rel=dns-prefetch, <https://pagead2.googlesyndication.com/>; rel=preconnect, <https://asset.stdout.cz/fe/appc/js/appc.5098b556.js>; rel=preload, <https://content.aimatch.com/>; rel=dns-prefetch
 Host: www.aktualne.cz
-Location: https://ecoid-ts.id-eco.cz/pid?sid=cSpXTjMMocaKb5peuTjhB&origin-url=https%3A%2F%2Fwww.aktualne.cz%2Fexport-rss
-Cf-Ray: 9b1a6bd35c7bcd2b-PRG
+Location: https://ecoid-ts.id-eco.cz/pid?sid=A9LdYsLk0VkJCZIDztlg8&origin-url=https%3A%2F%2Fwww.aktualne.cz%2Fexport-rss
+Cf-Ray: 9b2b24d18f4687a4-PRG
 Accept-Encoding: gzip, br
 Accept-Language: en
 Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Set-Cookie: SID=cSpXTjMMocaKb5peuTjhB; Path=/; Expires=Mon, 21 Dec 2026 21:20:03 GMT; Secure; SameSite=None
-User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36
+Set-Cookie: SID=A9LdYsLk0VkJCZIDztlg8; Path=/; Expires=Wed, 23 Dec 2026 22:02:32 GMT; Secure; SameSite=None
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36
 Cf-Connecting-Ip: 78.80.80.248
 Cf-Ipcountry: CZ
 Cf-Visitor: {"scheme":"https"}
 X-Worker-Pass: aktualneCfWorker
 Vary: accept-encoding
-Report-To: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=Vz7euXQb6W7y5LoPy7huUBWv0MPP970ZTt4%2BxidqSKRqJNBg5yDQm6GwZnrzRtsHck1vIWMmLBFNRKtDUVszypIh2dE350rpjYiSc9lU"}]}
+Report-To: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=FnQjWOWvNsLcybvonqUBcOkUNY0Mf3XpQYz6FKfhxGC%2FJJ5%2Bl9QSf1qbN5DHVukMaeLIy6haQ0JPA3dk0nLqJfRRVLdbROm6spWMQx8M"}]}
 Server: cloudflare

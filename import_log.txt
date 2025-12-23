@@ -84,3 +84,28 @@
 2025-12-21 23:08:43,935 - INFO - PDF already exists in database: bakalarka_data.pdf
 2025-12-21 23:08:43,935 - INFO - Extracting text from: Promeny_clenske_zakladny_Ceskobratrske_cirkve_evangelicke_Archive_data.pdf
 2025-12-21 23:08:44,131 - INFO - PDF already exists in database: Promeny_clenske_zakladny_Ceskobratrske_cirkve_evangelicke_Archive_data.pdf
+2025-12-23 23:03:17,096 - INFO - Loading 16 rows from export/csv/rss_combined_raw.csv
+2025-12-23 23:03:17,173 - INFO - Import completed: 16 imported, 0 skipped
+2025-12-23 23:03:17,175 - INFO - Found 11 PDF files to process
+2025-12-23 23:03:17,175 - INFO - Extracting text from: adamík_2009_dp_data.pdf
+2025-12-23 23:03:17,455 - INFO - ✅ Successfully imported PDF: adamík_2009_dp_data.pdf
+2025-12-23 23:03:17,455 - INFO - Extracting text from: žáček_2013_dp_data.pdf
+2025-12-23 23:03:17,624 - INFO - ✅ Successfully imported PDF: žáček_2013_dp_data.pdf
+2025-12-23 23:03:17,624 - INFO - Extracting text from: sejharova_data.pdf
+2025-12-23 23:03:17,844 - INFO - ✅ Successfully imported PDF: sejharova_data.pdf
+2025-12-23 23:03:17,844 - INFO - Extracting text from: proftova_data.pdf
+2025-12-23 23:03:18,113 - INFO - ✅ Successfully imported PDF: proftova_data.pdf
+2025-12-23 23:03:18,113 - INFO - Extracting text from: 118531_data.pdf
+2025-12-23 23:03:18,213 - INFO - ✅ Successfully imported PDF: 118531_data.pdf
+2025-12-23 23:03:18,213 - INFO - Extracting text from: Sekty_clanek_data.pdf
+2025-12-23 23:03:18,324 - INFO - ✅ Successfully imported PDF: Sekty_clanek_data.pdf
+2025-12-23 23:03:18,324 - INFO - Extracting text from: 7692876_data.pdf
+2025-12-23 23:03:18,492 - INFO - ✅ Successfully imported PDF: 7692876_data.pdf
+2025-12-23 23:03:18,492 - INFO - Extracting text from: Bakalarska_prace_data.pdf
+2025-12-23 23:03:18,642 - INFO - ✅ Successfully imported PDF: Bakalarska_prace_data.pdf
+2025-12-23 23:03:18,642 - INFO - Extracting text from: sojchova_data.pdf
+2025-12-23 23:03:18,886 - INFO - ✅ Successfully imported PDF: sojchova_data.pdf
+2025-12-23 23:03:18,886 - INFO - Extracting text from: bakalarka_data.pdf
+2025-12-23 23:03:19,000 - INFO - ✅ Successfully imported PDF: bakalarka_data.pdf
+2025-12-23 23:03:19,001 - INFO - Extracting text from: Promeny_clenske_zakladny_Ceskobratrske_cirkve_evangelicke_Archive_data.pdf
+2025-12-23 23:03:19,244 - INFO - ✅ Successfully imported PDF: Promeny_clenske_zakladny_Ceskobratrske_cirkve_evangelicke_Archive_data.pdf

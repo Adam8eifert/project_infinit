@@ -1,10 +1,10 @@
 Content-Length: 203
-Date: Sun, 21 Dec 2025 21:19:41 GMT
+Date: Tue, 23 Dec 2025 22:02:13 GMT
 Server: Apache
 Last-Modified: Thu, 26 Jan 2023 09:09:38 GMT
 Etag: "36e-5f3271bc13af0-gzip"
 Cache-Control: max-age=3600, public
-Expires: Sun, 21 Dec 2025 21:24:41 GMT
+Expires: Tue, 23 Dec 2025 22:07:13 GMT
 Content-Encoding: gzip
 Referrer-Policy: no-referrer-when-downgrade
 Pragma: public
@@ -24,7 +24,7 @@ X-Anycast-Port: 443
 X-Forwarded-Proto: https
 X-Forwarded-Port: 443
 X-Visitor-Ip: 78.80.80.248
-X-Request-Id: 85465111-ef58-4885-9393-b83a6d85a2db
+X-Request-Id: 6c3daf86-aa47-4ddc-8e63-c006bf0cea0e
 X-Provider: WEDOS - WE DO Security (WEDOS.com)
 X-Cdn-Provider: WEDOS Global CDN (WEDOS.delivery)
 X-Protected-By: WEDOS Global Protection (WEDOS.protection)

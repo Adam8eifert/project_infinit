@@ -6,466 +6,467 @@
     <description>Seznam Zprávy - nejnovější články</description>
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
-    <lastBuildDate>Sun, 21 Dec 2025 21:19:28 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 23 Dec 2025 22:01:54 +0000</lastBuildDate>
     <item>
-      <title>Vrbětice či atentát na Skripala, důležitý Putinův sabotér je zřejmě po smrti</title>
-      <link>https://www.seznamzpravy.cz/clanek/zahranicni-vrbetice-ci-atentat-na-skripala-dulezity-putinuv-saboter-je-zrejme-po-smrti-294805</link>
-      <description>Ruský generál Andrej Averjanov je údajně po smrti. Jde o člověka, který svými akcemi Evropu opakovaně potrápil. Jednotka GRU, kterou vedl, je totiž zodpovědná za řadu sabotáží. Kromě Vrbětic působila i v Anglii nebo Černé Hoře.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294805</guid>
-      <pubDate>Sun, 21 Dec 2025 19:27:47 +0100</pubDate>
+      <title>Válka vychýlila rovnováhu moci na Ukrajině. Kyjev okleštil sílu regionů</title>
+      <link>https://www.seznamzpravy.cz/clanek/zahranicni-valka-vychylila-rovnovahu-moci-na-ukrajine-kyjev-oklestil-silu-regionu-293807</link>
+      <description>Regionální lídři, kteří se na začátku války stali hlavními tvářemi ukrajinské obrany, jsou dnes mnohem méně vidět. Centralizace moci a posílení vojensko-civilních správ oblastí mění způsob, jakým ukrajinský stát funguje.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/293807</guid>
+      <pubDate>Tue, 23 Dec 2025 17:15:00 +0100</pubDate>
       <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_QP_BE/Tkjag/andrej-averjanov-vrbetice-andrey-averyanov.png?fl=cro,0,422,915,515|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Vrbětice či atentát na Skripala, důležitý Putinův sabotér je zřejmě po smrti</szn:title>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/kOzkBkwYBTQzPhG7qFP9pBw/d9ae/vitalij-klicko.jpeg?fl=cro,0,116,4096,2304|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Válka vychýlila rovnováhu moci na Ukrajině. Kyjev okleštil sílu regionů</szn:title>
         <szn:height>40</szn:height>
         <szn:previewtype>common</szn:previewtype>
       </szn:image>
       <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>294805</szn:uid>
+      <szn:uid>293807</szn:uid>
     </item>
     <item>
-      <title>Za produktivní označil Witkoff rozhovory, které vedla ukrajinská delegace</title>
-      <link>https://www.seznamzpravy.cz/clanek/zahranicni-ukrajinske-vyjednavace-v-nedeli-ceka-v-usa-dalsi-kolo-jednani-o-ukonceni-valky-294814</link>
-      <description>Po nedělním setkání na Floridě mezi Stevem Witkoffem a ukrajinskou delegací končí třídenní snaha obou stran o nalezení cesty k míru. Za sdílenou prioritu dvou zemí označil Witkoff konec bojů nebo také garanci bezpečnosti.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294814</guid>
-      <pubDate>Sun, 21 Dec 2025 19:16:36 +0100</pubDate>
+      <title>Ve 27 letech zemřel norský biatlonista Bakken. Ještě o víkendu závodil</title>
+      <link>https://www.seznamzpravy.cz/clanek/sport-ve-27-letech-zemrel-norsky-biatlonista-bakken-jeste-o-vikendu-zavodil-294956</link>
+      <description>Ještě v neděli startoval Sivert Guttorm Bakken v hromadném závodě Světového poháru ve francouzském Le Grand-Bornan. O dva dny později našli sedmadvacetiletého norského biatlonistu mrtvého v hotelovém pokoji.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294956</guid>
+      <pubDate>Tue, 23 Dec 2025 22:31:33 +0100</pubDate>
       <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/nDJ4VEZEqCaOxZJ1dFOECv6/97b4/volodymyr-zelenskyj-steve-witkoff-ukrajina-usa.jpeg?fl=cro,0,213,4096,2304|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Za produktivní označil Witkoff rozhovory, které vedla ukrajinská delegace</szn:title>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/kOzkBkwYBTBCGZ9IKkFSgbnr/75de/sivert-guttorm-bakken.jpeg?fl=cro,0,93,1800,1012|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Ve 27 letech zemřel norský biatlonista Bakken. Ještě o víkendu závodil</szn:title>
         <szn:height>40</szn:height>
         <szn:previewtype>common</szn:previewtype>
       </szn:image>
       <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>294814</szn:uid>
+      <szn:uid>294956</szn:uid>
     </item>
     <item>
-      <title>Češi budou chránit Evropu před radiací z kosmu, která může stát biliony</title>
-      <link>https://www.seznamzpravy.cz/clanek/tech-technologie-cesi-postavi-vlastni-sit-druzic-budou-varovat-pred-solarni-bouri-294612</link>
-      <description>Skupina českých firem vyrábí kamery, které dodávají i pro NASA či Boeing a dokážou předpovědět nebezpečné a ničivé záření. Jejich rozpětí a možnosti využití jsou ale tak široké, že pomáhají i ve zdravotnictví při léčbě rakoviny.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294612</guid>
-      <pubDate>Sun, 21 Dec 2025 15:05:00 +0100</pubDate>
+      <title>V Turecku se zřítilo letadlo s libyjským generálem, předtím ztratilo kontakt</title>
+      <link>https://www.seznamzpravy.cz/clanek/zahranicni-po-ztrate-kontaktu-turecke-urady-nasly-vrak-letadla-s-libyjskym-generalem-294954</link>
+      <description>Turecký ministr vnitra Ali Yerlikaya oznámil nález vraku letadla, ve kterém cestoval náčelník štábu libyjské armády Muhammad Haddád. Řízení letového provozu ztratilo s letadlem kontakt krátce po jeho startu z Ankary.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294954</guid>
+      <pubDate>Tue, 23 Dec 2025 21:42:45 +0100</pubDate>
       <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/nDJ4VEZEqx7ONMK8FRIyr2/eb35/solarni-erupce-slunce-erupce.png?fl=cro,0,3,1362,766|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Češi budou chránit Evropu před radiací z kosmu, která může stát biliony</szn:title>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/kOzkBkwYBTBCGZ9IMoFSfPcD/d895/general.jpeg?fl=cro,0,78,1500,843|res,1200,,3|jpg,80</szn:url>
+        <szn:title>V Turecku se zřítilo letadlo s libyjským generálem, předtím ztratilo kontakt</szn:title>
         <szn:height>40</szn:height>
         <szn:previewtype>common</szn:previewtype>
       </szn:image>
       <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>294612</szn:uid>
+      <szn:uid>294954</szn:uid>
+    </item>
+    <item>
+      <title>Zemřel komentátor Českého rozhlasu Radko Kubičko</title>
+      <link>https://www.seznamzpravy.cz/clanek/domaci-zivot-v-cesku-zemrel-komentator-ceskeho-rozhlasu-radko-kubicko-294955</link>
+      <description>Zemřel rozhlasový publicista a komentátor Radko Kubičko, bylo mu 58 let. Působil jako kmenový komentátor Českého rozhlasu Plus a zpravodajství ČRo.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294955</guid>
+      <pubDate>Tue, 23 Dec 2025 21:51:38 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/nDJ4VEZEqCs9CyJy5FSfibD/58c8/radko-kubicko.jpeg?fl=cro,0,48,1600,900|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Zemřel komentátor Českého rozhlasu Radko Kubičko</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>294955</szn:uid>
+    </item>
+    <item>
+      <title>Za schvalování námořní blokády budou ve Venezuele hrozit vysoké tresty</title>
+      <link>https://www.seznamzpravy.cz/clanek/zahranicni-za-schvalovani-namorni-blokady-budou-ve-venezuele-hrozit-vysoke-tresty-294953</link>
+      <description>Patnáct až dvacet let vězení nově hrozí občanům Venezuely, kteří schvalují či podporují sílící námořní blokádu ze strany USA. Počítá s tím návrh zákona, který v úterý prošel tamním parlamentem.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294953</guid>
+      <pubDate>Tue, 23 Dec 2025 20:43:18 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/kOzkBkwYBTDq3nMGrwFPYWAf/4944/venezuela.jpeg?fl=cro,0,213,4096,2304|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Za schvalování námořní blokády budou ve Venezuele hrozit vysoké tresty</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>294953</szn:uid>
+    </item>
+    <item>
+      <title>Obrazem: Mladí Ukrajinci uvázli ve věčném lockdownu</title>
+      <link>https://www.seznamzpravy.cz/clanek/zahranicni-obrazem-mladi-ukrajinci-uvizli-ve-vecnem-lockdownu-294681</link>
+      <description>Válka má obrovský dopad na emocionální stav mladých lidí, kteří polovinu dne stráví v bunkru a zbytek výukou online. Při započtení covidu tak mladí Ukrajinci strávili už šest let v izolaci.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294681</guid>
+      <pubDate>Tue, 23 Dec 2025 19:45:00 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/nDJ4VEZEqCaOxZLCvFP5C1i/18ec/uk.jpeg?fl=cro,0,151,3507,1972|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Obrazem: Mladí Ukrajinci uvázli ve věčném lockdownu</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>294681</szn:uid>
+    </item>
+    <item>
+      <title>Britské odhady: Rusové za dva roky v bojích ztratili 400 tisíc mužů</title>
+      <link>https://www.seznamzpravy.cz/clanek/zahranicni-britske-odhady-rusove-za-dva-roky-v-bojich-ztratili-400-tisic-muzu-294951</link>
+      <description>Britské ministerstvo obrany odhaduje, že Rusko ztratilo za poslední dva roky na Ukrajině kolem 400 tisíc mužů. Číslo však nerozlišuje mezi mrtvými, zraněnými či zajatými vojáky. Do války Moskva mobilizuje etnické Rusy jen zřídka.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294951</guid>
+      <pubDate>Tue, 23 Dec 2025 19:31:35 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_gR_5/uSxB8/rusko-mobilizace-armada-vojaci.jpeg?fl=cro,0,213,4096,2304|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Britské odhady: Rusové za dva roky v bojích ztratili 400 tisíc mužů</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>294951</szn:uid>
+    </item>
+    <item>
+      <title>Hokej o Vánocích se hráčům nelíbí. Řešení mají v rukách sami</title>
+      <link>https://www.seznamzpravy.cz/clanek/sport-hokej-komentar-hokej-o-vanocich-se-hracum-nelibi-reseni-maji-v-rukou-sami-294938</link>
+      <description>Extraliga kolem Vánoc je zlaté vejce. Pěkný povyk tak způsobila reakce libereckého útočníka Radana Lence, že pro všechny je to fajn, jen pro hráče ani náhodou. Liga vyslala signál, že moc demokracie škodí. Příště ticho.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294938</guid>
+      <pubDate>Tue, 23 Dec 2025 19:00:00 +0100</pubDate>
+      <szn:additionalType>Commentary</szn:additionalType>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/nDJ4VEZEqDjvpWObpFSUvg6/beb0/extraliga.jpeg?fl=cro,0,93,1800,1012|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Komentář: Hokej o Vánocích se hráčům nelíbí. Jen o tom už nesmějí mluvit</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>294938</szn:uid>
+    </item>
+    <item>
+      <title>Jak a co darovat před Vánoci a proč je hotovost dobrá charita</title>
+      <link>https://www.seznamzpravy.cz/clanek/domaci-zivot-v-cesku-jak-a-co-darovat-pred-vanoci-a-proc-je-hotovost-dobra-charita-294258</link>
+      <description>Data z experimentů z různých koutů světa ukazují, že nejefektivnější pomocí může být to, co u nás vzbuzuje největší obavy: poslat peníze napřímo a bez jakýchkoliv podmínek.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294258</guid>
+      <pubDate>Tue, 23 Dec 2025 18:48:46 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_od_A/nPSV1TXV2nBaI13CKTEbsoDj/e675/neziskova-organizace.jpeg?fl=cro,0,138,4096,2304|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Jak a co darovat před Vánoci a proč je hotovost dobrá charita</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>294258</szn:uid>
+    </item>
+    <item>
+      <title>Babiš: Svěřenský fond RSVP Trust je neodvolatelný, akcie se mi nikdy nevrátí</title>
+      <link>https://www.seznamzpravy.cz/clanek/domaci-politika-babis-sverensky-fond-rsvp-trust-je-neodvolatelny-294950</link>
+      <description>Premiér Andrej Babiš odmítl zprávy médií, které upozornily na evidovaný popis účelu fondu, do kterého  vkládá holding Agrofert. Podle popisu se totiž omezení správy majetku týká pouze doby, kdy bude členem vlády.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294950</guid>
+      <pubDate>Tue, 23 Dec 2025 18:28:29 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/nDJ4VEZEqCemGmHFvFOMsN7/1475.jpeg?fl=cro,0,234,3200,1800|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Babiš: Svěřenský fond RSVP Trust je neodvolatelný, akcie se mi nikdy nevrátí</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>294950</szn:uid>
+    </item>
+    <item>
+      <title>Tohle vymysleli Češi a zlepšuje to svět</title>
+      <link>https://www.seznamzpravy.cz/clanek/ekonomika-byznys-tohle-vymysleli-cesi-a-zlepsuje-to-svet-294647</link>
+      <description>Virtuální brýle, co rozcvičí i „mrtvého“. Slepecký detektor proti úderům do hlavy. Zařízení pro včasné odhalení arytmie srdce. Lyžo-bruslo-sněžnice. Podívejte se na vychytávky, které vznikly díky českému talentu a zlepšují svět.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294647</guid>
+      <pubDate>Tue, 23 Dec 2025 18:15:00 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/kOzkBkwYBTqAqfHiCFP5K40/f5e5/vr.jpeg?fl=cro,0,309,3305,1859|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Tohle vymysleli Češi a zlepšuje to svět</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>294647</szn:uid>
+    </item>
+    <item>
+      <title>Recenze: Seriál Fallout ukazuje svět po jaderné katastrofě</title>
+      <link>https://www.seznamzpravy.cz/clanek/kultura-fallout-2-serial-recenze-294932</link>
+      <description>Hra Fallout představila svět po jaderné katastrofě, kde retrospotřebiče jako z 50. let doplňují moderní technologie. Stejnojmenný seriál odhaluje kontury prostředí, kde je civilizace v troskách a nadhled střídá extrémní násilí.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294932</guid>
+      <pubDate>Tue, 23 Dec 2025 18:00:00 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/kOzkBkwYBTxrzzID8FSROfI/4cce/fallout-ii.jpeg?fl=cro,0,85,3000,1687|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Recenze: Svět po jaderné katastrofě. Seriál Fallout ukazuje trosky civilizace</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>294932</szn:uid>
+    </item>
+    <item>
+      <title>Ujíždějící dům v Chomutově se zastavil. Část lidí oslaví Štědrý den doma</title>
+      <link>https://www.seznamzpravy.cz/clanek/domaci-ujizdejici-dum-v-chomutove-se-zastavil-cast-lidi-oslavi-stedry-den-doma-294668</link>
+      <description>Po téměř půl roce se část lidí z chomutovské bytovky mohla vrátit domů. Stavba se začala hroutit v srpnu. Podle obyvatel je na vině neřešený ujíždějící svah. Primátor města tvrdí, že problém je hlavně pod domem.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294668</guid>
+      <pubDate>Tue, 23 Dec 2025 17:50:00 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/kOzkBkwYBTCNNSBHoKFRv18s/2698/ve-stinu.jpeg?fl=cro,0,180,3456,1944|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Ujíždějící dům v Chomutově se zastavil. Část lidí oslaví Štědrý den doma</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>294668</szn:uid>
+    </item>
+    <item>
+      <title>V pražském DOX vystavuje španělský malíř Barceló</title>
+      <link>https://www.seznamzpravy.cz/clanek/kultura-miquel-barcelo-dox-vystava-294947</link>
+      <description>Osobité portréty slavných filozofů a spisovatelů nebo obraz s vraky lodí pojmenovaných po básnících, kteří si dobrovolně vzali život, obsahuje výstava v pražském Centru současného umění DOX.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294947</guid>
+      <pubDate>Tue, 23 Dec 2025 17:46:00 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/kOzkBkwYBTDq3nMICzFSYz1F/fcaa/miquel-barcelo.jpeg?fl=cro,0,93,1800,1012|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Básníci jako vraky lodí. V pražském DOX vystavuje španělský malíř Barceló</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>294947</szn:uid>
+    </item>
+    <item>
+      <title>Ukrajinští vojáci se stáhli ze Siversku. Rusové měli převahu</title>
+      <link>https://www.seznamzpravy.cz/clanek/zahranicni-ukrajinsti-vojaci-se-stahli-ze-siversku-rusove-meli-prevahu-294945</link>
+      <description>Ukrajinská armáda se stáhla z města Siversk v Doněcké oblasti. Moskva již 11. prosince tvrdila, že její armáda město dobyla, ukrajinské úřady to však tehdy odmítaly.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294945</guid>
+      <pubDate>Tue, 23 Dec 2025 17:38:34 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_of_A/kOzkBkwYBTDPt7Se7FB3L2d/42a0/ukrajina.jpeg?fl=cro,0,427,4096,2304|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Ukrajinští vojáci se stáhli ze Siversku. Rusové měli převahu</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>294945</szn:uid>
+    </item>
+    <item>
+      <title>Problém v zaparkování Agrofertu a ožehavý diplomatický případ</title>
+      <link>https://www.seznamzpravy.cz/clanek/domaci-zivot-v-cesku-petka-sz-problem-v-zaparkovani-agrofertu-a-ozehavy-diplomaticky-pripad-294877</link>
+      <description>Denní přehled Seznam Zpráv.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294877</guid>
+      <pubDate>Tue, 23 Dec 2025 17:00:00 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_of_A/nOztZkD4ZlC2Y2EbLE0UspT/5a04/petka-sz.jpeg?fl=cro,0,0,1920,1080|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Pětka SZ: Problém v zaparkování Agrofertu a ožehavý diplomatický případ</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>294877</szn:uid>
+    </item>
+    <item>
+      <title>Expert: Svěřenský fond Babišův střet zájmů neřeší</title>
+      <link>https://www.seznamzpravy.cz/clanek/ekonomika-expert-sverensky-fond-babisuv-stret-zajmu-neresi-294940</link>
+      <description>Premiér Andrej Babiš uvedl, že se mu Agrofert po vložení do svěřenského fondu nevrátí ani po odchodu z vlády. Tomu ale podle partnera poradenské V4 Group Michala Jelínka neodpovídá popis účelu svěřenského fondu.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294940</guid>
+      <pubDate>Tue, 23 Dec 2025 16:50:00 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/kOzkBkwYBTDPt7SGCCFNvF5t/407e.jpeg?fl=cro,0,166,3200,1800|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Expert: Svěřenský fond Babišův střet zájmů neřeší</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>294940</szn:uid>
+    </item>
+    <item>
+      <title>Vězení za zpochybňování Benešových dekretů. Pellegrini podepsal novelu</title>
+      <link>https://www.seznamzpravy.cz/clanek/zahranicni-vezeni-za-zpochybnovani-benesovych-dekretu-pellegrini-podepsal-novelu-294944</link>
+      <description>Kontroverzní novelu slovenského trestního zákoníku, kterou navrhla vládní koalice v čele s Robertem Ficem, nyní podepsal prezident Peter Pellegrini. Opozice se chce obrátit na ústavní soud.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294944</guid>
+      <pubDate>Tue, 23 Dec 2025 16:23:07 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_of_A/kPxr1WDRoIBXOaFZUE4fj5I/0f7c/karol-nawrocki.jpeg?fl=cro,0,212,4096,2304|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Vězení za zpochybňování Benešových dekretů. Pellegrini podepsal novelu</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>294944</szn:uid>
+    </item>
+    <item>
+      <title>Cena stříbra poprvé v historii přesáhla 70 dolarů za troyskou unci</title>
+      <link>https://www.seznamzpravy.cz/clanek/ekonomika-cena-stribra-poprve-v-historii-presahla-70-dolaru-za-troyskou-unci-294942</link>
+      <description>Geopolitická nejistota nadále vede k vyšší poptávce po vzácných kovech. To potvrzuje i cena stříbra, která poprvé v historii přesáhla 70 dolarů (1 444 korun) za troyskou unci. Na rekordu je i zlato.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294942</guid>
+      <pubDate>Tue, 23 Dec 2025 16:08:00 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_oe_A/kOzmiQlmfoC2bQRBm2EobAls/16ee/stribro.jpeg?fl=cro,0,213,4096,2304|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Cena stříbra poprvé v historii přesáhla 70 dolarů za troyskou unci</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>294942</szn:uid>
+    </item>
+    <item>
+      <title>Daňové novinky roku 2026: Přicházejí zaměstnanecké akcie, končí srážková daň</title>
+      <link>https://www.seznamzpravy.cz/clanek/ekonomika-finance-dane-danove-novinky-roku-2026-prichazeji-zamestnanecke-akcie-konci-srazkova-dan-293764</link>
+      <description>S novým rokem přichází i několik změn v daňových povinnostech. Týkají se zaměstnaneckých benefitů i možnosti zaměstnanců pořídit akcie společnosti.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/293764</guid>
+      <pubDate>Tue, 23 Dec 2025 16:00:00 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_QJ_5/xYGV/penize.jpeg?fl=cro,0,271,2665,1499|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Daňové novinky roku 2026: Přicházejí zaměstnanecké akcie, končí srážková daň</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>293764</szn:uid>
+    </item>
+    <item>
+      <title>Babiš v nemocnici podstoupil ambulantní zákrok ve tváři</title>
+      <link>https://www.seznamzpravy.cz/clanek/domaci-zivot-v-cesku-babis-v-nemocnici-podstoupil-ambulantni-zakrok-ve-tvari-294943</link>
+      <description>Den před Štědrým dnem podstoupil premiér Andrej Babiš drobný ambulantní zákrok v nemocnici.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294943</guid>
+      <pubDate>Tue, 23 Dec 2025 15:58:06 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/kOzkBkwYBTqAqfGcMFNvJ81/e112.jpeg?fl=cro,0,166,3200,1800|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Babiš v nemocnici podstoupil ambulantní zákrok ve tváři</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>294943</szn:uid>
+    </item>
+    <item>
+      <title>Obrazem: Noty a housle místo kufrů. „Rybovka“ znovu zněla na nádraží</title>
+      <link>https://www.seznamzpravy.cz/clanek/domaci-zivot-v-cesku-obrazem-noty-a-housle-misto-kufru-rybovka-na-hlavaku-znela-po-triadvacate-294941</link>
+      <description>Na pražském hlavním nádraží se den před Štědrým dnem kromě cestujících sešli také ti, kteří si přišli poslechnout tradiční Českou mši vánoční. „Rybovka“ tam tradičně zní už čtvrtstoletí, s výjimkou dvou let covidové epidemie.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294941</guid>
+      <pubDate>Tue, 23 Dec 2025 15:49:58 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/kOzkBkwYBTDPt7SIFvFSUpNk/04f3.jpeg?fl=cro,0,0,3200,1800|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Obrazem: Noty a housle místo kufrů. „Rybovka“ znovu zněla na nádraží</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>294941</szn:uid>
+    </item>
+    <item>
+      <title>Pokrok pro léky na hubnutí. První se začne prodávat ve formě pilulek</title>
+      <link>https://www.seznamzpravy.cz/clanek/ekonomika-firmy-pokrok-pro-leky-na-hubnuti-prvni-se-zacne-prodavat-ve-forme-pilulek-294922</link>
+      <description>Nová tabletová verze léku Wegovy na hubnutí by se mohla dostat na americký trh už počátkem příštího roku. Její výrobce, dánská farmaceutická společnost Novo Nordisk, si od ní slibuje posílení tržeb.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294922</guid>
+      <pubDate>Tue, 23 Dec 2025 15:42:00 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/nDJ4VEZEqx7ONM7CFSV4LU/bd8a/wegovy.jpeg?fl=cro,0,213,4096,2304|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Pokrok pro léky na hubnutí. První se začne prodávat ve formě pilulek</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>294922</szn:uid>
+    </item>
+    <item>
+      <title>Co je doma, to se počítá – i dobře přeparkovaný Agrofert</title>
+      <link>https://www.seznamzpravy.cz/clanek/domaci-politika-komentar-co-je-doma-to-se-pocita-i-dobre-preparkovany-agrofert-294915</link>
+      <description>Mělo to být řešení, které „daleko přesahuje požadavky zákonů“. Nově oznámený postup s převedením Agrofertu do českého fondu je ale jen šikovnější slalom skrz paragrafy než posledně. Podstata střetu zájmů trvá dál.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294915</guid>
+      <pubDate>Tue, 23 Dec 2025 15:30:00 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/nDJ4VEZEqxmIDB5dFKBUDx/a5d7/babis.jpeg?fl=cro,0,156,3000,1687|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Komentář: Co je doma, to se počítá – i dobře přeparkovaný Agrofert</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>294915</szn:uid>
+    </item>
+    <item>
+      <title>Růst ekonomiky USA ve třetím čtvrtletí překvapivě zrychlil na 4,3 procenta</title>
+      <link>https://www.seznamzpravy.cz/clanek/zahranicni-rust-ekonomiky-usa-ve-tretim-ctvrtleti-prekvapive-zrychlil-na-43-procenta-294939</link>
+      <description>Americké ministerstvo obchodu se zpožděním zveřejnilo svůj odhad o vývoji HDP ve třetím čtvrtletí. Čísla překvapivě ukázala, že se zvýšil o 4,3 procenta. Podle expertů však tento trend v dalším čtvrtletí pokračovat nebude.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294939</guid>
+      <pubDate>Tue, 23 Dec 2025 15:29:06 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_of_A/nDJ4VEZEqxQDMWcE9F1hs/5b3f/dolar.jpeg?fl=cro,0,250,4096,2304|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Růst ekonomiky USA ve třetím čtvrtletí překvapivě zrychlil na 4,3 procenta</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>294939</szn:uid>
+    </item>
+    <item>
+      <title>Podle stranického dresu. Jak politici reagují na „Babišův fond“</title>
+      <link>https://www.seznamzpravy.cz/clanek/domaci-politika-podle-stranickeho-dresu-jak-politici-reaguji-na-babisuv-fond-294934</link>
+      <description>Premiér Andrej Babiš oznámil další kroky v řešení střetu zájmů. Holding Agrofert plánuje vložit do fondu RSVP Trust. Vládní politici krok chválí, opozice však varuje před tím, aby se premiér dále nevměšoval do řízení firem.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294934</guid>
+      <pubDate>Tue, 23 Dec 2025 14:45:00 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/kOzkBkwYBTDqlCCGKuFNtT0A/8056.jpeg?fl=cro,0,166,3200,1800|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Podle stranického dresu. Jak politici reagují na „Babišův fond“</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>294934</szn:uid>
+    </item>
+    <item>
+      <title>Tatra dodá na Slovensko vojenské vozy až za 25 miliard</title>
+      <link>https://www.seznamzpravy.cz/clanek/ekonomika-firmy-tatra-doda-na-slovensko-vojenske-vozy-az-za-25-miliard-294937</link>
+      <description>Slovensko od firmy Tatra Defence Systems koupí téměř 1300 vojenských vozidel modelu Tatra Force, bude ho to stát více než 25 miliard korun. K rámcové smlouvě se údajně mohou přidávat i další členské státy EU a NATO.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294937</guid>
+      <pubDate>Tue, 23 Dec 2025 15:05:00 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_of_A/kPSgqAbxVYCbv7JBN8Ezqwh9/fa0b/armada-titus.jpeg?fl=cro,0,25,800,450|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Tatra dodá na Slovensko vojenské vozy až za 25 miliard</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>294937</szn:uid>
+    </item>
+    <item>
+      <title>Kde budou bílé Vánoce</title>
+      <link>https://www.seznamzpravy.cz/clanek/domaci-zivot-v-cesku-kde-budou-bile-vanoce-294936</link>
+      <description>Letošní Vánoce budou na sníh docela skoupé, přesto se v republice najdou místa, kde by nasněžit mohlo. Podle meteorologa Eduarda Novotného se to týká především jihu republiky. Znovu sněžit podle něj bude ke konci roku.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294936</guid>
+      <pubDate>Tue, 23 Dec 2025 14:30:00 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_oW_A/kObgaqJNMnDMhdn0kCVXkZp/b9dd.jpeg?fl=cro,0,166,3200,1800|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Kde budou bílé Vánoce</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>294936</szn:uid>
+    </item>
+    <item>
+      <title>Jak netloustnout o Vánocích, když nehrajete fotbal? MVP vám poradí</title>
+      <link>https://www.seznamzpravy.cz/clanek/audio-podcast-mvp-jak-netloustnout-o-vanocich-kdyz-nehrajete-fotbal-mvp-vam-poradi-294873</link>
+      <description>Nehrajete a netrénujete. Máte jen doporučené dávky, které byste měli splnit, pokud nechcete platit pokutu, když na konci zimní přestávky ztloustnete. Kolik? A za kolik! V předvánočním podcastu MVP poradíme nejen profesionálům.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294873</guid>
+      <pubDate>Tue, 23 Dec 2025 14:21:13 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/nDJ4VEZEqxmIDIxRFSOGQm/e784/mvp-diego-maradona.jpeg?fl=cro,0,0,1920,1080|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Jak netloustnout o Vánocích, když nehrajete fotbal? MVP vám poradí</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>294873</szn:uid>
       <szn:video>
         <szn:_cls>Video</szn:_cls>
-        <szn:customId>6947ea41e9c7af2590ac6aca</szn:customId>
-        <szn:duration>570000</szn:duration>
+        <szn:customId>694a6eeee6aa192727ba5258</szn:customId>
+        <szn:duration>4678080</szn:duration>
         <szn:expiration></szn:expiration>
-        <szn:sources></szn:sources>
-        <szn:url>https://v39-a.sdn.cz/~SEC1~expire-1766437442~scope-video~DPzwe0HX42L/v_39/vmd/6947ea41e9c7af2590ac6aca?fl=mdk,096e91e6|</szn:url>
+        <szn:sources>
+          <szn:source>5a6f1847c6ef994e0737d099</szn:source>
+        </szn:sources>
+        <szn:url>https://v39-a.sdn.cz/~SEC1~expire-1766612704~scope-video~CuJYSSUkVKq/v_39/vmd/694a6eeee6aa192727ba5258?fl=mdk,f1ec3357|</szn:url>
       </szn:video>
     </item>
     <item>
-      <title>„Někdy se ta traumata vrací.“ Tragické výročí si lidé připomínají celý den</title>
-      <link>https://www.seznamzpravy.cz/clanek/domaci-zivot-v-cesku-nesmime-zapomenout-lide-si-pripominaji-vyroci-tragicke-strelby-na-fakulte-294797</link>
-      <description>U pomníku na náměstí Jana Palacha si lidé připomínají utrpení těch, které událost zasáhla, fakulta se připojila k pietě a koncertu.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294797</guid>
-      <pubDate>Sun, 21 Dec 2025 11:30:13 +0100</pubDate>
+      <title>Otázky a odpovědi: Co víme o „Babišově“ svěřenském fondu pro Agrofert</title>
+      <link>https://www.seznamzpravy.cz/clanek/ekonomika-firmy-otazky-a-odpovedi-co-vime-o-babisove-sverenskem-fondu-pro-agrofert-294925</link>
+      <description>Agrofert Andreje Babiše míří do svěřenského fondu RSVP Trust. Přetrvávají však pochybnosti ohledně možného vlivu premiéra na jednu z největších českých byznysových skupin po Babišově odchodu z politiky.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294925</guid>
+      <pubDate>Tue, 23 Dec 2025 14:00:00 +0100</pubDate>
       <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/kOzkBkwYBTDq3nMHY5FRExSk/fe79.jpeg?fl=cro,0,166,3200,1800|res,1200,,3|jpg,80</szn:url>
-        <szn:title>„Někdy se ta traumata vrací.“ Tragické výročí si lidé připomínají celý den</szn:title>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/nDJ4VEZEqCs9CyCLwFKDYuS/122d/babis.jpeg?fl=cro,0,312,3000,1687|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Otázky a odpovědi: Co víme o „Babišově“ svěřenském fondu pro Agrofert</szn:title>
         <szn:height>40</szn:height>
         <szn:previewtype>common</szn:previewtype>
       </szn:image>
       <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>294797</szn:uid>
-    </item>
-    <item>
-      <title>Spojené státy u pobřeží Venezuely zasahují proti dalšímu plavidlu</title>
-      <link>https://www.seznamzpravy.cz/clanek/zahranicni-spojene-staty-u-pobrezi-venezuely-zasahuji-proti-dalsimu-plavidlu-294809</link>
-      <description>U pobřeží Venezuely zřejmě USA pronásledují další tanker. Přesné místo ani detailní informace o lodi nejsou známé. Spojené státy zadržely jeden tanker i v sobotu, venezuelská vláda to označila jako únos a pirátství.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294809</guid>
-      <pubDate>Sun, 21 Dec 2025 16:37:50 +0100</pubDate>
-      <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/nDJ4VEZEqCemGmHtXFPYVkx/510d/venezuela.jpeg?fl=cro,0,213,4096,2304|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Spojené státy u pobřeží Venezuely zasahují proti dalšímu plavidlu</szn:title>
-        <szn:height>40</szn:height>
-        <szn:previewtype>common</szn:previewtype>
-      </szn:image>
-      <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>294809</szn:uid>
-    </item>
-    <item>
-      <title>V Nigérii se podařilo osvobodit 130 žáků, v zajetí by už nemělo být žádné dítě</title>
-      <link>https://www.seznamzpravy.cz/clanek/zahranicni-v-nigerii-se-podarilo-osvobodit-130-zaku-v-zajeti-by-uz-nemelo-byt-zadne-dite-294818</link>
-      <description>Z nigerijské internátní katolické školy unesli ozbrojenci v listopadu přes tři stovky dětí. Nyní agentura AFP informuje o úspěšném osvobození zbývající skupiny 130 žáků. Žádné z dětí by již nemělo být v nebezpečí.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294818</guid>
-      <pubDate>Sun, 21 Dec 2025 21:30:05 +0100</pubDate>
-      <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/nDJ4VEZEqb3AyLcXFRTYSy/d233/nigerie-vlajka.jpeg?fl=cro,0,77,4096,2304|res,1200,,3|jpg,80</szn:url>
-        <szn:title>V Nigérii se podařilo osvobodit 130 žáků, v zajetí by už nemělo být žádné dítě</szn:title>
-        <szn:height>40</szn:height>
-        <szn:previewtype>common</szn:previewtype>
-      </szn:image>
-      <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>294818</szn:uid>
-    </item>
-    <item>
-      <title>Odešli poradci NSA sami, nebo tým pověřený předseda zrušil? Neshodnou se</title>
-      <link>https://www.seznamzpravy.cz/clanek/sport-odesli-poradci-nsa-sami-nebo-tym-povereny-predseda-zrusil-neshodnou-se-294817</link>
-      <description>Poradci Národní sportovní agentury rezignovali ve středu na své posty poté, co Babišova vláda z pozice předsedy odvolala Ondřeje Šebka. Pověřený šéf agentury Ivo Jebousek (STAN) však tvrdí, že tým sám v pátek zrušil.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294817</guid>
-      <pubDate>Sun, 21 Dec 2025 21:08:22 +0100</pubDate>
-      <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_E_M/vV1DGH.jpeg?fl=cro,0,131,2500,1406|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Odešli poradci NSA sami, nebo tým pověřený předseda zrušil? Neshodnou se</szn:title>
-        <szn:height>40</szn:height>
-        <szn:previewtype>common</szn:previewtype>
-      </szn:image>
-      <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>294817</szn:uid>
-    </item>
-    <item>
-      <title>Adventní nákupy v plném proudu. Obchody hlásí růst tržeb</title>
-      <link>https://www.seznamzpravy.cz/clanek/domaci-zivot-v-cesku-adventni-nakupy-v-plnem-proudu-obchody-hlasi-rust-trzeb-294811</link>
-      <description>Čeští obchodníci hlásí silnější adventní víkend než ten předchozí. Zájem byl o elektroniku, hračky i kosmetiku. Podle obchodníků lidé letos více kombinovali on-line nákupy s osobním odběrem na prodejnách.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294811</guid>
-      <pubDate>Sun, 21 Dec 2025 17:33:10 +0100</pubDate>
-      <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_E_M/eWvCe6.jpeg?fl=cro,0,80,4256,2394|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Adventní nákupy v plném proudu. Obchody hlásí růst tržeb</szn:title>
-        <szn:height>40</szn:height>
-        <szn:previewtype>common</szn:previewtype>
-      </szn:image>
-      <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>294811</szn:uid>
-    </item>
-    <item>
-      <title>Ve věku 96 let zemřel rakouský malíř Arnulf Rainer</title>
-      <link>https://www.seznamzpravy.cz/clanek/zahranicni-ve-veku-96-let-zemrel-rakousky-malir-arnulf-rainer-294815</link>
-      <description>Zemřel malíř Arnulf Rainer, podle agentury APA jeden z nejvýznamnějších představitelů poválečného umění v Rakousku. Svá díla vystavoval také v České republice.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294815</guid>
-      <pubDate>Sun, 21 Dec 2025 19:19:50 +0100</pubDate>
-      <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/kOzkBkwYBTCNNSBHcZFRQAAV/a47d/arnulf-rainer.jpeg?fl=cro,0,131,3008,1692|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Ve věku 96 let zemřel rakouský malíř Arnulf Rainer</szn:title>
-        <szn:height>40</szn:height>
-        <szn:previewtype>common</szn:previewtype>
-      </szn:image>
-      <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>294815</szn:uid>
-    </item>
-    <item>
-      <title>Jak donutit Putina, aby se „nikdy nedotkl Ukrajiny“. Šéf NATO Rutte recept zná</title>
-      <link>https://www.seznamzpravy.cz/clanek/zahranicni-jak-donutit-putina-aby-se-nikdy-nedotkl-ukrajiny-sef-nato-rutte-recept-zna-294810</link>
-      <description>Víc než milion - to je podle generálního tajemníka Marka Rutteho počet lidí, který padl nebo byl zraněn na ruské straně od začátku války na Ukrajině. Představil tři podmínky, které by měly Putina odradit od dalšího útoku.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294810</guid>
-      <pubDate>Sun, 21 Dec 2025 19:17:19 +0100</pubDate>
-      <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_oa_A/kPxAuWMbDHDsbvNBO9DkDNRs/63b1/mark-rutte.jpeg?fl=cro,0,182,3500,1968|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Jak donutit Putina, aby se „nikdy nedotkl Ukrajiny“. Šéf NATO Rutte recept zná</szn:title>
-        <szn:height>40</szn:height>
-        <szn:previewtype>common</szn:previewtype>
-      </szn:image>
-      <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>294810</szn:uid>
-    </item>
-    <item>
-      <title>Dánská pošta končí po 400 letech s doručováním dopisů</title>
-      <link>https://www.seznamzpravy.cz/clanek/zahranicni-danska-posta-konci-po-400-letech-s-dorucovanim-dopisu-294807</link>
-      <description>V Dánsku dlouhodobě klesá poptávka po listovních zásilkách. Společnost PostNord proto již na začátku roku oznámila, že doručování dopisů ke dni 30. prosince ukončí. Z ulic postupně mizí i typické červené poštovní schránky.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294807</guid>
-      <pubDate>Sun, 21 Dec 2025 17:52:23 +0100</pubDate>
-      <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_oX_A/kPWmeC9soBDmlC1jkChlqIT/4855/postnord-dansko.jpeg?fl=cro,0,0,4096,2304|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Dánská pošta končí po 400 letech s doručováním dopisů</szn:title>
-        <szn:height>40</szn:height>
-        <szn:previewtype>common</szn:previewtype>
-      </szn:image>
-      <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>294807</szn:uid>
-    </item>
-    <item>
-      <title>WHO chce víc zkoumat tradiční léčbu a začlenit ji do klasického zdravotnictví</title>
-      <link>https://www.seznamzpravy.cz/clanek/zahranicni-who-chce-vic-zkoumat-tradicni-lecbu-a-zaclenit-ji-do-klasickeho-zdravotnictvi-294784</link>
-      <description>Tradiční metody léčby, jakými jsou ájurvéda či akupunktura, mají podle WHO zatím neodhalený vědecký potenciál. Organizace proto spouští novou strategii, která má ověřit účinnost těchto metod a zapojit je do moderní zdravotní péče.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294784</guid>
-      <pubDate>Sun, 21 Dec 2025 17:30:00 +0100</pubDate>
-      <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_oa_A/kBkJRwehYBc0GnBLJDYLkkq/3ee5/gong-meditace-relax.jpeg?fl=cro,0,213,4096,2304|res,1200,,3|jpg,80</szn:url>
-        <szn:title>WHO chce víc zkoumat tradiční léčbu a začlenit ji do klasického zdravotnictví</szn:title>
-        <szn:height>40</szn:height>
-        <szn:previewtype>common</szn:previewtype>
-      </szn:image>
-      <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>294784</szn:uid>
-    </item>
-    <item>
-      <title>Peníze dělají peníze, čeští miliardáři měli další dobrý rok. Ale stačí to?</title>
-      <link>https://www.seznamzpravy.cz/clanek/ekonomika-firmy-penize-delaji-penize-cesti-miliardari-meli-dalsi-dobry-rok-ale-staci-to-294530</link>
-      <description>Výsledky největších tuzemských firem rostou a s nimi bohatství i vliv jejich majitelů. Z čísel vypadá Česko jako ideální přístaviště pro velký byznys. Možná by toho ale mohlo lépe využít.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294530</guid>
-      <pubDate>Sun, 21 Dec 2025 17:00:00 +0100</pubDate>
-      <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_oZ_A/kBkJRwehYz101drDHrXoj/c085/komarek-kellenrova-kretinsky.jpeg?fl=cro,0,0,1920,1080|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Peníze dělají peníze, čeští miliardáři měli další dobrý rok. Ale stačí to?</szn:title>
-        <szn:height>40</szn:height>
-        <szn:previewtype>common</szn:previewtype>
-      </szn:image>
-      <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>294530</szn:uid>
-    </item>
-    <item>
-      <title>Fotky: Slavný jeruzalémský kámen jde na dračku navzdory potížím</title>
-      <link>https://www.seznamzpravy.cz/clanek/zahranicni-fotky-slavny-jeruzalemsky-kamen-jde-na-dracku-navzdory-potizim-294337</link>
-      <description>Jeruzalémský kámen se roky používá v tradiční i moderní architektuře, zejména v Jeruzalémě. Tam jeho  použití někdy vyžaduje vyhláška, což z něj činí jeden z nejvyhledávanějších stavebních materiálů v této oblasti.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294337</guid>
-      <pubDate>Sun, 21 Dec 2025 16:30:00 +0100</pubDate>
-      <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/kOzkBkwYBTBCGZ9GOTFOIolJ/1900/wessels.jpeg?fl=cro,0,24,1400,787|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Fotky: Slavný jeruzalémský kámen jde na dračku navzdory potížím</szn:title>
-        <szn:height>40</szn:height>
-        <szn:previewtype>common</szn:previewtype>
-      </szn:image>
-      <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>294337</szn:uid>
-    </item>
-    <item>
-      <title>Švédští celníci v Baltském moři vstoupili na palubu sankcionované ruské lodě</title>
-      <link>https://www.seznamzpravy.cz/clanek/zahranicni-svedsti-celnici-v-baltskem-mori-vstoupili-na-palubu-sankcionovane-ruske-lode-294808</link>
-      <description>Ruskou nákladní loď s názvem Adler, která v minulosti zřejmě převážela zbraně, zastavili v neděli švédští celníci v Baltském moři. Členové posádky podle nich byli vstřícní.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294808</guid>
-      <pubDate>Sun, 21 Dec 2025 16:15:15 +0100</pubDate>
-      <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_gQ_z/EMLq/nakladni-lod-more-doprava-lodni.jpeg?fl=cro,147,367,3270,1839|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Švédští celníci v Baltském moři vstoupili na palubu sankcionované ruské lodě</szn:title>
-        <szn:height>40</szn:height>
-        <szn:previewtype>common</szn:previewtype>
-      </szn:image>
-      <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>294808</szn:uid>
-    </item>
-    <item>
-      <title>Brigáda pro stát? Zkusme to pro jednou jako Trump</title>
-      <link>https://www.seznamzpravy.cz/clanek/zahranicni-komentar-it-brigada-pro-stat-zkusme-to-projednou-jako-trump-294671</link>
-      <description>Americká Tech Force je experiment. Může skončit jako efektivní model získávání talentů pro stát, nebo jako další způsob, jak technologické korporace kolonizují veřejný sektor. Zkusit by se to ale mohlo.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294671</guid>
-      <pubDate>Sun, 21 Dec 2025 16:00:00 +0100</pubDate>
-      <szn:additionalType>Commentary</szn:additionalType>
-      <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_oa_A/nsLxLojIreywPsgDZh1J1/c1a4/donald-trump-trump.jpeg?fl=cro,170,321,2829,1591|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Komentář: IT brigáda pro stát? Zkusme to pro jednou jako Trump</szn:title>
-        <szn:height>40</szn:height>
-        <szn:previewtype>common</szn:previewtype>
-      </szn:image>
-      <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>294671</szn:uid>
-    </item>
-    <item>
-      <title>Krádež kabelů omezila provoz desítek vlaků v Praze, zpoždění bylo 2 až 3 hodiny</title>
-      <link>https://www.seznamzpravy.cz/clanek/domaci-zivot-v-cesku-kradez-kabelu-omezila-provoz-desitek-vlaku-v-centru-prahy-294790</link>
-      <description>Zloděj ukradl asi 70 metrů kabelů zabezpečovacího zařízení u hlavního nádraží. Provoz vlaků v Praze Správa železnic obnovila kolem 14:40.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294790</guid>
-      <pubDate>Sun, 21 Dec 2025 09:08:58 +0100</pubDate>
-      <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_G_C/V4ME5.jpeg?fl=cro,0,56,1000,562|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Krádež kabelů omezila provoz desítek vlaků v Praze, zpoždění bylo 2 až 3 hodiny</szn:title>
-        <szn:height>40</szn:height>
-        <szn:previewtype>common</szn:previewtype>
-      </szn:image>
-      <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>294790</szn:uid>
-    </item>
-    <item>
-      <title>TMBK: Jestřáb Zůna podniká další výrazné kroky na podporu Ukrajiny</title>
-      <link>https://www.seznamzpravy.cz/clanek/tmbk-tmbk-jestrab-zuna-podnika-dalsi-vyrazne-kroky-na-podporu-ukrajiny-294806</link>
-      <description>Ministr obrany Jaromír Zůna za SPD se projevil mimořádně chrabře. Chce podporovat Ukrajinu, pokračovat v muniční iniciativě. Že by pověsil na Sněmovnu Okamurou sejmutou vlajku? TMBK pro SZ.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294806</guid>
-      <pubDate>Sun, 21 Dec 2025 15:39:36 +0100</pubDate>
-      <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/nDJ4VEZEqxmIDH29FRKShV/325a/tmbk.jpeg?fl=cro,0,67,663,373|res,1200,,3|jpg,80</szn:url>
-        <szn:title>TMBK: Jestřáb Zůna podniká další výrazné kroky na podporu Ukrajiny</szn:title>
-        <szn:height>40</szn:height>
-        <szn:previewtype>common</szn:previewtype>
-      </szn:image>
-      <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>294806</szn:uid>
-    </item>
-    <item>
-      <title>Agresivní nádor jim vzal dceru. Ve zdravotnictví chybí empatie, říká otec a lékař</title>
-      <link>https://www.seznamzpravy.cz/clanek/audio-podcast-agresivni-nador-jim-vzal-dceru-ve-zdravotnictvi-chybi-empatie-rika-otec-a-lekar-294631</link>
-      <description>Ninu Chovancovou postihla jedna z nejagresivnějších forem rakoviny v dětském věku. Mozkový nádor se ji nepodařilo porazit. Před tím ještě stihli její rodiče založit nadační fond, který teď pomáhá lidem v podobné situaci.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294631</guid>
-      <pubDate>Sun, 21 Dec 2025 15:30:00 +0100</pubDate>
-      <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/nDJ4VEZEqD86wCK5CFPg1y5/5261/mudrovani-s-marii-martin-chovanec-kristyna-chovancova.jpeg?fl=cro,0,89,4096,2304|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Agresivní nádor jim vzal dceru. Ve zdravotnictví chybí empatie, říká otec a lékař</szn:title>
-        <szn:height>40</szn:height>
-        <szn:previewtype>common</szn:previewtype>
-      </szn:image>
-      <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>294631</szn:uid>
-    </item>
-    <item>
-      <title>Trumpova spojenkyně s českými kořeny končí v politice. Prezident ji nepodržel</title>
-      <link>https://www.seznamzpravy.cz/clanek/zahranicni-trumpova-spojenkyne-s-ceskymi-koreny-konci-v-politice-prezident-ji-nepodrzel-294766</link>
-      <description>Elise Stefaniková pro Donalda Trumpa vybojovala důležitá politická vítězství. On přesto zrušil její nominaci na post velvyslankyně při OSN, nepodpořil její kandidaturu na guvernérku a podrazil ji svými slovy o Zohranu Mamdanim.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294766</guid>
-      <pubDate>Sun, 21 Dec 2025 14:30:00 +0100</pubDate>
-      <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/nDJ4VEZEqxmIDHiHFQn5wZ/b412/elise-stefanik.jpeg?fl=cro,0,65,4096,2304|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Trumpova spojenkyně s českými kořeny končí v politice. Prezident ji nepodržel</szn:title>
-        <szn:height>40</szn:height>
-        <szn:previewtype>common</szn:previewtype>
-      </szn:image>
-      <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>294766</szn:uid>
-    </item>
-    <item>
-      <title>Levnější elektřina nestačí. Německá ekonomika v roce 2026 zůstane slabá</title>
-      <link>https://www.seznamzpravy.cz/clanek/ekonomika-firmy-levnejsi-elektrina-nestaci-nemecka-ekonomika-v-roce-2026-zustane-slaba-294804</link>
-      <description>Německá ekonomika se ani v roce 2026 nerozjede. Centrální banka zhoršila výhled a dává najevo, že stagnace pro Čechy klíčového trhu bude trvat déle, než se čekalo.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294804</guid>
-      <pubDate>Sun, 21 Dec 2025 14:20:00 +0100</pubDate>
-      <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_oc_A/kcukOQcMmBKdMECWwEDCvxq/d1f1/volkswagen-volkswagen-id-3-elektromobil.jpeg?fl=cro,0,3,1795,1009|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Levnější elektřina nestačí. Německá ekonomika v roce 2026 zůstane slabá</szn:title>
-        <szn:height>40</szn:height>
-        <szn:previewtype>common</szn:previewtype>
-      </szn:image>
-      <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>294804</szn:uid>
-    </item>
-    <item>
-      <title>Raději dám peníze na charitu než za kabelku, říká česká tenisová jednička</title>
-      <link>https://www.seznamzpravy.cz/clanek/sport-radeji-dam-penize-na-charitu-nez-za-kabelku-rika-ceska-tenisova-jednicka-293806</link>
-      <description>Rok zakončila na pozici třinácté tenistky světa. Také by chtěla být jedničkou, třeba někdy bude, avšak jednadvacetiletá naděje Linda Nosková má ještě důležitější cíl: zůstat normální.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/293806</guid>
-      <pubDate>Sun, 21 Dec 2025 14:00:00 +0100</pubDate>
-      <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/nDJ4VEZEqBMnoOHjqFKtC8o/910f/noskova-tenis.jpeg?fl=cro,0,60,1400,787|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Raději dám peníze na charitu než za kabelku, říká česká tenisová jednička</szn:title>
-        <szn:height>40</szn:height>
-        <szn:previewtype>common</szn:previewtype>
-      </szn:image>
-      <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>293806</szn:uid>
-    </item>
-    <item>
-      <title>Babiš chce na koaliční radě mluvit s Macinkou o reorganizaci ministerstva</title>
-      <link>https://www.seznamzpravy.cz/clanek/domaci-politika-babis-chce-na-koalicni-rade-mluvit-s-macinkou-o-reorganizaci-ministerstva-294802</link>
-      <description>Situaci kolem chystaných změn na ministerstvu zahraničí bude řešit pondělní koaliční rada. Premiér Andrej Babiš chce s ministrem Petrem Macinkou mluvit o rozsáhlé reorganizaci, která vyvolala kritiku opozice i odborů.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294802</guid>
-      <pubDate>Sun, 21 Dec 2025 13:43:39 +0100</pubDate>
-      <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/nDJ4VEZEqD86wCJjvFNnJdg/c651/macinka.jpeg?fl=cro,0,212,4096,2304|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Babiš chce na koaliční radě mluvit s Macinkou o reorganizaci ministerstva</szn:title>
-        <szn:height>40</szn:height>
-        <szn:previewtype>common</szn:previewtype>
-      </szn:image>
-      <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>294802</szn:uid>
-    </item>
-    <item>
-      <title>Poztrácené vánoční koledy: Dokážete na obrázku najít všech sedm?</title>
-      <link>https://www.seznamzpravy.cz/clanek/magazin-vanoce-nejznamejsi-koledy-kviz-293632</link>
-      <description>Nejznámější české koledy jsme tentokrát ukryli do obrázku. Klikněte na motiv, který se podle vás v nějaké koledě vyskytuje. Pokud se trefíte, objeví se vám miniplayer a můžete si koledu poslechnout. Hodně štěstí a krásné svátky!</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/293632</guid>
-      <pubDate>Sun, 21 Dec 2025 13:30:00 +0100</pubDate>
-      <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/nDJ4VEZEqCs9CyCOUFKE8pl/9daa/koledy-kviz-pozadi.png?fl=cro,0,254,1199,674|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Poztrácené vánoční koledy: Dokážete na obrázku najít všech sedm?</szn:title>
-        <szn:height>40</szn:height>
-        <szn:previewtype>common</szn:previewtype>
-      </szn:image>
-      <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>293632</szn:uid>
-    </item>
-    <item>
-      <title>Izrael schválil dalších 19 židovských osad na jím okupovaném Západním břehu</title>
-      <link>https://www.seznamzpravy.cz/clanek/zahranicni-izrael-schvalil-dalsich-19-zidovskych-osad-na-jim-okupovanem-zapadnim-brehu-294801</link>
-      <description>Izrael pokračuje v okupaci na Západním břehu Jordánu. Bezpečnostní kabinet schválil uznání 19 dalších osad, které podle kritiků dál komplikují vznik palestinského státu.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294801</guid>
-      <pubDate>Sun, 21 Dec 2025 12:46:44 +0100</pubDate>
-      <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_od_A/nO0bgvR9rXBDWR9EnAEP9vSX/d9ae/becalel-smotric.jpeg?fl=cro,0,97,3579,2013|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Izrael schválil dalších 19 židovských osad na jím okupovaném Západním břehu</szn:title>
-        <szn:height>40</szn:height>
-        <szn:previewtype>common</szn:previewtype>
-      </szn:image>
-      <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>294801</szn:uid>
-    </item>
-    <item>
-      <title>Z Epsteinových spisů záhadně zmizely fotky. Na jedné byl i Trump</title>
-      <link>https://www.seznamzpravy.cz/clanek/zahranicni-z-epsteinovych-spisu-zahadne-zmizely-fotky-na-jedne-byl-i-trump-294796</link>
-      <description>Sedm z deseti Američanů věří, že vláda informace o vazbách Donalda Trumpa na sexuálního delikventa Jeffreyho Epsteina záměrně skrývala. Zveřejnění první várky dokumentů jejich pochyby umocňuje.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294796</guid>
-      <pubDate>Sun, 21 Dec 2025 12:30:00 +0100</pubDate>
-      <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/kOzkBkwYBTCNNSBFURFMf3ZY/6b5e/donald-trump.jpeg?fl=cro,0,200,4096,2304|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Z Epsteinových spisů záhadně zmizely fotky. Na jedné byl i Trump</szn:title>
-        <szn:height>40</szn:height>
-        <szn:previewtype>common</szn:previewtype>
-      </szn:image>
-      <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>294796</szn:uid>
-    </item>
-    <item>
-      <title>Poučilo se Česko z tragédie? Co se změnilo dva roky od střelby na fakultě</title>
-      <link>https://www.seznamzpravy.cz/clanek/domaci-zivot-v-cesku-poucilo-se-cesko-z-tragedie-co-se-zmenilo-dva-roky-od-strelby-na-fakulte-294606</link>
-      <description>Česko si připomíná smutné výročí. Před dvěma lety došlo k nejtragičtější masové střelbě v novodobé historii země. Jak se stát z událostí poučil? Seznam Zprávy přinášejí shrnutí toho, jak tragédie ovlivnila české zákony.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294606</guid>
-      <pubDate>Sun, 21 Dec 2025 12:05:00 +0100</pubDate>
-      <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_QK_3/6xkGM.jpeg?fl=cro,0,311,3000,1687|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Poučilo se Česko z tragédie? Co se změnilo dva roky od střelby na fakultě</szn:title>
-        <szn:height>40</szn:height>
-        <szn:previewtype>common</szn:previewtype>
-      </szn:image>
-      <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>294606</szn:uid>
-    </item>
-    <item>
-      <title>Morální kázání z majáku, nic horšího už prý zažít nemůžete</title>
-      <link>https://www.seznamzpravy.cz/clanek/nazory-komentare-suplik-moralni-kazani-z-majaku-nic-horsiho-uz-pry-zazit-nemuzete-294263</link>
-      <description>Kázání opustilo církevní půdu a začalo se o něm mluvit s despektem. Dostat od někoho kázání - to nechcete.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294263</guid>
-      <pubDate>Sun, 21 Dec 2025 11:45:00 +0100</pubDate>
-      <szn:additionalType>Commentary</szn:additionalType>
-      <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/kOzkBkwYBTqAqfHS0FPYH99/8da5/suplik-kazatel.jpeg?fl=cro,0,0,1920,1080|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Šuplík: Morální kázání z majáku, nic horšího už prý zažít nemůžete</szn:title>
-        <szn:height>40</szn:height>
-        <szn:previewtype>common</szn:previewtype>
-      </szn:image>
-      <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>294263</szn:uid>
-    </item>
-    <item>
-      <title>Austrálie uctila památku 15 obětí střelby na pláži Bondi Beach</title>
-      <link>https://www.seznamzpravy.cz/clanek/zahranicni-australie-uctila-pamatku-15-obeti-strelby-na-plazi-bondi-beach-294798</link>
-      <description>Austrálie drží den smutku za 15 obětí střelby na Bondi Beach v Sydney. Země uctila památku minutou ticha a svíčkami, premiér Albanese oznámil audit bezpečnostních složek a varoval před extremismem.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294798</guid>
-      <pubDate>Sun, 21 Dec 2025 11:36:13 +0100</pubDate>
-      <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/nDJ4VEZEqCs9CyIjjFRE8Yf/ec76/bondi-beach.jpeg?fl=cro,0,344,4096,2304|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Austrálie uctila památku 15 obětí střelby na pláži Bondi Beach</szn:title>
-        <szn:height>40</szn:height>
-        <szn:previewtype>common</szn:previewtype>
-      </szn:image>
-      <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>294798</szn:uid>
-    </item>
-    <item>
-      <title>Pokud jste člověk, nepřekážejte. Superinteligence nás spasí, věří radikálové</title>
-      <link>https://www.seznamzpravy.cz/clanek/zahranicni-spasi-nas-singularita-veri-ai-sekta-kazde-zpomaleni-oznacuje-za-zradu-294156</link>
-      <description>Čím dříve přijde superinteligence, tím dříve budou „jako zázrakem“ vyřešeny všechny problémy lidstva. Zpomalit by bylo nebezpečné. V Americe začínají mít radikální technooptimisté navrch. Pokud jste člověk, hlavně nepřekážejte AI!</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294156</guid>
-      <pubDate>Sun, 21 Dec 2025 11:00:00 +0100</pubDate>
-      <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/nDJ4VEZEqBMnoOJJrFNV5bl/6068/serial.png?fl=cro,0,0,1920,1080|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Pokud jste člověk, nepřekážejte. Superinteligence nás spasí, věří radikálové</szn:title>
-        <szn:height>40</szn:height>
-        <szn:previewtype>common</szn:previewtype>
-      </szn:image>
-      <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>294156</szn:uid>
+      <szn:uid>294925</szn:uid>
     </item>
   </channel>
 </rss>
