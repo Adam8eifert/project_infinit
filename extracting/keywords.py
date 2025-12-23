@@ -170,7 +170,13 @@ KNOWN_MOVEMENTS = {
         "Ledvinový Kult",
         "Dohnalité",
         "Avenna",
-        "Ariadné"
+        "Ariadné",
+        "Happy Science",
+        "Tao Jóga",
+        "V lásce spolu",
+        "Mlýn Radunka",
+        "Farma Lovětín"
+    
     ]
 }
 
