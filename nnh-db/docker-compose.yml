@@ -1,0 +1,18 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:15
+    container_name: nsm_postgres
+    environment:
+      POSTGRES_DB: nsm_db
+      POSTGRES_USER: username
+      POSTGRES_PASSWORD: 20665166
+    ports:
+      - "5432:5432"
+    volumes:
+      - nsm_postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+volumes:
+  nsm_postgres_data:
