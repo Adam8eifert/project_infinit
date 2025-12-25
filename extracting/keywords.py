@@ -136,7 +136,6 @@ KNOWN_MOVEMENTS = {
         "The Revelation Spiritual Home",
         "Kruh přátel Bruna Gröninga",
         "Brahma Kumaris",
-        "Církev smíchu",
         "Protestantská církev Svaté korony",
         "Konopná církev",
         "Církev militantního ateismu",
