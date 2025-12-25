@@ -167,7 +167,7 @@ KNOWN_MOVEMENTS = {
         "Most ke svobodě",
         "Alan Jarkovský",
         "Jóga v denním životě",
-        "Ledvinový Kult",
+        "Život v Radosti",
         "Dohnalité",
         "Avenna",
         "Ariadné",

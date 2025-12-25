@@ -161,3 +161,29 @@
 2025-12-23 23:20:29,981 - INFO - PDF already exists in database: bakalarka_data.pdf
 2025-12-23 23:20:29,982 - INFO - Extracting text from: Promeny_clenske_zakladny_Ceskobratrske_cirkve_evangelicke_Archive_data.pdf
 2025-12-23 23:20:30,125 - INFO - PDF already exists in database: Promeny_clenske_zakladny_Ceskobratrske_cirkve_evangelicke_Archive_data.pdf
+2025-12-25 21:52:58,717 - INFO - Loading 14 rows from export/csv/rss_combined_raw.csv
+2025-12-25 21:52:58,772 - WARNING - Duplicate URL - skipping batch
+2025-12-25 21:52:58,773 - INFO - Import completed: 14 imported, 14 skipped
+2025-12-25 21:52:58,775 - INFO - Found 11 PDF files to process
+2025-12-25 21:52:58,775 - INFO - Extracting text from: adamík_2009_dp_data.pdf
+2025-12-25 21:52:59,006 - INFO - PDF already exists in database: adamík_2009_dp_data.pdf
+2025-12-25 21:52:59,006 - INFO - Extracting text from: žáček_2013_dp_data.pdf
+2025-12-25 21:52:59,139 - INFO - PDF already exists in database: žáček_2013_dp_data.pdf
+2025-12-25 21:52:59,139 - INFO - Extracting text from: sejharova_data.pdf
+2025-12-25 21:52:59,316 - INFO - PDF already exists in database: sejharova_data.pdf
+2025-12-25 21:52:59,317 - INFO - Extracting text from: proftova_data.pdf
+2025-12-25 21:52:59,422 - INFO - PDF already exists in database: proftova_data.pdf
+2025-12-25 21:52:59,422 - INFO - Extracting text from: 118531_data.pdf
+2025-12-25 21:52:59,498 - INFO - PDF already exists in database: 118531_data.pdf
+2025-12-25 21:52:59,498 - INFO - Extracting text from: Sekty_clanek_data.pdf
+2025-12-25 21:52:59,593 - INFO - PDF already exists in database: Sekty_clanek_data.pdf
+2025-12-25 21:52:59,593 - INFO - Extracting text from: 7692876_data.pdf
+2025-12-25 21:52:59,732 - INFO - PDF already exists in database: 7692876_data.pdf
+2025-12-25 21:52:59,733 - INFO - Extracting text from: Bakalarska_prace_data.pdf
+2025-12-25 21:52:59,882 - INFO - PDF already exists in database: Bakalarska_prace_data.pdf
+2025-12-25 21:52:59,883 - INFO - Extracting text from: sojchova_data.pdf
+2025-12-25 21:53:00,054 - INFO - PDF already exists in database: sojchova_data.pdf
+2025-12-25 21:53:00,054 - INFO - Extracting text from: bakalarka_data.pdf
+2025-12-25 21:53:00,179 - INFO - PDF already exists in database: bakalarka_data.pdf
+2025-12-25 21:53:00,179 - INFO - Extracting text from: Promeny_clenske_zakladny_Ceskobratrske_cirkve_evangelicke_Archive_data.pdf
+2025-12-25 21:53:00,333 - INFO - PDF already exists in database: Promeny_clenske_zakladny_Ceskobratrske_cirkve_evangelicke_Archive_data.pdf

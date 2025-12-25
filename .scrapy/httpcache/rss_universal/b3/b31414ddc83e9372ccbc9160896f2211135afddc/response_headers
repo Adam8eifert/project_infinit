@@ -1,4 +1,4 @@
-Date: Tue, 23 Dec 2025 22:02:24 GMT
+Date: Thu, 25 Dec 2025 20:52:04 GMT
 Content-Type: application/rss+xml; charset=utf-8
 Server: cloudflare
 Nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
@@ -10,14 +10,14 @@ X-Cache-Status: HIT
 Access-Control-Allow-Methods: PUT, GET, POST, DELETE, OPTIONS
 Access-Control-Allow-Origin: *
 Strict-Transport-Security: max-age=31536000; includeSubDomains
-Age: 4
+Age: 31
 Cf-Cache-Status: HIT
-Last-Modified: Tue, 23 Dec 2025 22:02:19 GMT
+Last-Modified: Thu, 25 Dec 2025 20:51:32 GMT
 Speculation-Rules: "/cdn-cgi/speculation"
 Vary: accept-encoding
 Server-Timing: cfCacheStatus;desc="HIT"
-Server-Timing: cfEdge;dur=7,cfOrigin;dur=0
-Report-To: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=l2rUwbz0hvwq7aC6pnbmTE7BjBJanuDyDGDdMoynuaPMmDUoc690i2xiUbchxjtq48ArAwPl3CYTJcYlr%2F%2BPxdVPYoQAK%2BSESLfV%2Fg%3D%3D"}]}
+Server-Timing: cfEdge;dur=5,cfOrigin;dur=0
+Report-To: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=bpiFmSwK6fagFbsOnaPfhkZ6%2FOm8kuxyYDsTLyXgERlGYuf4oaqHltbaJkX3TplK4n9N5MGPbs5ux1RsgMb42NFtEGXNqImlpjWUIAyx"}]}
 Content-Encoding: br
-Cf-Ray: 9b2b24a04a41b38b-PRG
+Cf-Ray: 9b3b38554f67bd70-PRG
 Alt-Svc: h3=":443"; ma=86400
