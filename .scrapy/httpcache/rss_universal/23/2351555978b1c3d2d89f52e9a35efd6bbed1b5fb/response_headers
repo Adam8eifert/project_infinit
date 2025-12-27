@@ -1,19 +1,19 @@
 Content-Length: 0
-Date: Thu, 25 Dec 2025 20:52:11 GMT
+Date: Sat, 27 Dec 2025 21:40:51 GMT
 Nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
 Link: <https://a.centrum.cz/>; rel=preconnect, <https://fonts.googleapis.com/>; rel=preconnect, <https://asset.stdout.cz/>; rel=dns-prefetch, <https://prod-snowly-sasic.stdout.cz/>; rel=dns-prefetch, <https://pagead2.googlesyndication.com/>; rel=preconnect, <https://asset.stdout.cz/fe/appc/js/appc.5098b556.js>; rel=preload, <https://content.aimatch.com/>; rel=dns-prefetch
 Host: www.aktualne.cz
-Location: https://ecoid-ts.id-eco.cz/pid?sid=XAnHOp4YHt50qGY00sarA&origin-url=https%3A%2F%2Fwww.aktualne.cz%2Fexport-rss
-Cf-Ray: 9b3b3883ca49ae58-PRG
+Location: https://ecoid-ts.id-eco.cz/pid?sid=kWR8lnbrEH6-NoMqh0dZx&origin-url=https%3A%2F%2Fwww.aktualne.cz%2Fexport-rss
+Cf-Ray: 9b4bfa8b39dea5dc-PRG
 Accept-Encoding: gzip, br
 Accept-Language: en
 Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Set-Cookie: SID=XAnHOp4YHt50qGY00sarA; Path=/; Expires=Fri, 25 Dec 2026 20:52:11 GMT; Secure; SameSite=None
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.5 Safari/605.1.15
+Set-Cookie: SID=kWR8lnbrEH6-NoMqh0dZx; Path=/; Expires=Sun, 27 Dec 2026 21:40:51 GMT; Secure; SameSite=None
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36
 Cf-Connecting-Ip: 78.80.80.248
 Cf-Ipcountry: CZ
 Cf-Visitor: {"scheme":"https"}
 X-Worker-Pass: aktualneCfWorker
 Vary: accept-encoding
-Report-To: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=8wz9MjxKY6%2F8nL8y9DZpuQFJnNOtEl%2Ft0%2F4pdUpZShbaiTLJL5YLZ02Q1ldO%2BQ9s%2FmEDghZORgEnaCflBS8LPlH%2FtRWAwB2FYeHIMNAD"}]}
+Report-To: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=mSlI9NY6pOHJ6ZozqG%2FEjJM3heZIk6CGu1u0NLhCOTlsYh2VwkWxmyiK0b4mL07HW7%2F%2BhLj%2B83mFuz6GSL3mHtfR4wDy070n60XEMnDD"}]}
 Server: cloudflare
