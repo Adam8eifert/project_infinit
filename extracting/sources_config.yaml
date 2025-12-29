@@ -61,7 +61,7 @@ sources:
     name: "Pastorální péče (RSS Feed)"
     description: "Články o sektách a kultech na webu Pastorace.cz (RSS)"
     domain: "pastorace.cz"
-    url: "https://www.pastorace.cz/Clanky/Nabozenstvi/Sekty-a-kulty/rss"
+    url: "https://www.pastorace.cz/rss/canal.xml
     enabled: true
     type: "rss"
     selectors:
