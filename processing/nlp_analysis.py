@@ -1,47 +1,47 @@
 # 📁 processing/nlp_analysis.py
 # NLP analysis using Hugging Face Transformers and spaCy
-# Lemmatization, POS tagging, NER and basic sentiment
+# Lemmatization, POS tagging, NER and basic sentiment processing
 
 import spacy
 from transformers import pipeline
 import re
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Optional
+from collections import Counter
 
 
 class CzechTextAnalyzer:
     """
-    NLP analyzer using spaCy for Czech language processing and Hugging Face for sentiment analysis.
+    NLP analyzer using spaCy for basic processing and Hugging Face for sentiment and NER.
+    Optimized to use multilingual fallback models.
     """
 
     def __init__(self):
-        # Load Czech spaCy model
+        # Load spaCy model
         self.spacy_available = False
-        try:
-            # Try different Czech models
-            for model_name in ['cs_core_news_md', 'cs_core_news_sm', 'en_core_web_sm']:
-                try:
-                    self.nlp = spacy.load(model_name)
-                    self.spacy_available = True
-                    print(f"✅ Loaded spaCy model: {model_name}")
-                    break
-                except OSError:
-                    continue
+        self.nlp = None
+        
+        # Priority list: Using the multilingual model you successfully installed
+        models_to_try = ['xx_ent_wiki_sm', 'xx_sent_ud_sm', 'cs_core_news_sm']
+        
+        for model_name in models_to_try:
+            try:
+                self.nlp = spacy.load(model_name)
+                self.spacy_available = True
+                print(f"✅ Loaded spaCy model: {model_name}")
+                break
+            except Exception:
+                continue
 
-            if not self.spacy_available:
-                print("⚠️ No spaCy model available, using fallback mode")
-                self.nlp = None
-        except ImportError:
-            print("⚠️ spaCy not available, using fallback mode")
-            self.nlp = None
-            self.spacy_available = False
+        if not self.spacy_available:
+            print("⚠️ No spaCy model available, using basic fallback mode")
 
-        # Load Hugging Face sentiment analysis pipeline (multilingual)
+        # Load Hugging Face sentiment analysis pipeline
+        # Using '# type: ignore' to suppress Pylance overloads issues
         try:
             self.sentiment_analyzer = pipeline(
-                "sentiment-analysis",
-                model="nlptown/bert-base-multilingual-uncased-sentiment",
-                top_k=None  # Get all scores instead of deprecated return_all_scores
-            )
+                task="sentiment-analysis",
+                model="nlptown/bert-base-multilingual-uncased-sentiment"
+            ) # type: ignore
             self.sentiment_available = True
             print("✅ Sentiment analysis model loaded")
         except Exception as e:
@@ -49,15 +49,15 @@ class CzechTextAnalyzer:
             self.sentiment_analyzer = None
             self.sentiment_available = False
 
-        # Load NER pipeline for Czech
+        # Load NER pipeline (WikiNeural works without authentication)
         try:
             self.ner_analyzer = pipeline(
-                "ner",
-                model="ufal/robeczech-ner",
+                task="ner",
+                model="Babelscape/wikineural-multilingual-ner",
                 aggregation_strategy="simple"
-            )
+            ) # type: ignore
             self.ner_available = True
-            print("✅ NER model loaded")
+            print("✅ NER model loaded (WikiNeural Multilingual)")
         except Exception as e:
             print(f"⚠️ NER pipeline not available: {e}")
             self.ner_analyzer = None
@@ -67,9 +67,12 @@ class CzechTextAnalyzer:
         """
         Analyze text using spaCy for tokenization, POS tagging, and lemmatization.
         """
+        if not text:
+            return []
+
         if not self.spacy_available or self.nlp is None:
-            # Fallback: basic tokenization
-            return [{'text': word, 'lemma': word.lower(), 'pos': 'UNK', 'tag': 'UNK', 'dep': 'UNK', 'is_stop': False, 'is_alpha': word.isalpha()}
+            # Fallback: basic tokenization if spaCy failed
+            return [{'text': word, 'lemma': word.lower(), 'pos': 'UNK'}
                    for word in text.split()]
 
         doc = self.nlp(text)
@@ -90,150 +93,77 @@ class CzechTextAnalyzer:
 
     def extract_named_entities(self, text: str) -> List[Dict[str, Any]]:
         """
-        Extract named entities using Hugging Face NER model for Czech.
+        Extract named entities using Hugging Face NER model or spaCy fallback.
         """
-        if not self.ner_available or self.ner_analyzer is None:
-            # Fallback: return empty list
+        if not text:
             return []
 
-        try:
-            entities = self.ner_analyzer(text)
-            result = []
-
-            if entities and isinstance(entities, list):
-                for entity in entities:
-                    if isinstance(entity, dict) and all(key in entity for key in ['word', 'entity_group', 'score', 'start', 'end']):
-                        result.append({
-                            'text': entity['word'],
-                            'label': entity['entity_group'],
-                            'confidence': entity['score'],
-                            'start': entity['start'],
-                            'end': entity['end']
-                        })
-
-            return result
-        except Exception as e:
+        # Try Hugging Face NER first
+        if self.ner_available and self.ner_analyzer is not None:
+            try:
+                # Truncate text to avoid model limits
+                entities = self.ner_analyzer(text[:512])
+                return [{
+                    'text': str(e['word']),
+                    'label': str(e['entity_group']),
+                    'confidence': float(e['score']),
+                    'start': int(e['start']),
+                    'end': int(e['end'])
+                } for e in entities]
+            except Exception as e:
                 print(f"⚠️ NER analysis failed: {e}")
 
-        # Fallback to spaCy NER or basic fallback
+        # Fallback to spaCy NER
         if self.spacy_available and self.nlp is not None:
             doc = self.nlp(text)
-            result = []
-            for ent in doc.ents:
-                result.append({
-                    'text': ent.text,
-                    'label': ent.label_,
-                    'confidence': 0.8,  # spaCy doesn't provide confidence
-                    'start': ent.start_char,
-                    'end': ent.end_char
-                })
-            return result
-        else:
-            # Basic fallback - no NER
-            return []
+            return [{
+                'text': ent.text,
+                'label': ent.label_,
+                'confidence': 0.8,
+                'start': ent.start_char,
+                'end': ent.end_char
+            } for ent in doc.ents]
+
+        return []
 
     def analyze_sentiment(self, text: str) -> Dict[str, Any]:
         """
-        Analyze sentiment using Hugging Face sentiment model.
+        Analyze sentiment (1-5 stars) and return label and score.
         """
-        if not self.sentiment_available or self.sentiment_analyzer is None:
-            # Fallback sentiment
-            return {'label': 'neutral', 'score': 0.5, 'confidence': 0.5}
+        if not text or not self.sentiment_available or self.sentiment_analyzer is None:
+            return {'label': 'neutral', 'score': 0.5}
 
         try:
-            # Truncate text to first 512 characters for sentiment analysis
-            truncated_text = text[:512]
-            result = self.sentiment_analyzer(truncated_text)
-
-            if result and isinstance(result, list) and len(result) > 0:
-                # result is a list of sentiment predictions
-                sentiments = result[0]  # First item in batch
-                if isinstance(sentiments, list) and sentiments:
-                    # Find the sentiment with highest score
-                    best_sentiment = max(sentiments, key=lambda x: x.get('score', 0) if isinstance(x, dict) else 0)
-                    if isinstance(best_sentiment, dict) and 'label' in best_sentiment and 'score' in best_sentiment:
-                        return {
-                            'label': best_sentiment['label'],
-                            'score': best_sentiment['score'],
-                            'confidence': best_sentiment['score']
-                        }
+            # BERT model limit is 512 tokens
+            result = self.sentiment_analyzer(text[:512])
+            if result:
+                # The model returns list like [{'label': '1 star', 'score': 0.99}]
+                best = result[0]
+                return {
+                    'label': str(best['label']),
+                    'score': float(best['score'])
+                }
         except Exception as e:
             print(f"⚠️ Sentiment analysis failed: {e}")
 
-        # Fallback - neutral sentiment
-        return {
-            'label': 'NEUTRAL',
-            'score': 0.5,
-            'confidence': 0.5
-        }
+        return {'label': 'neutral', 'score': 0.5}
 
     def extract_keywords(self, text: str, top_n: int = 10) -> List[str]:
         """
-        Extract keywords using spaCy (nouns, proper nouns, adjectives).
+        Extract most frequent keywords (nouns, proper nouns).
         """
         if self.spacy_available and self.nlp is not None:
-            try:
-                doc = self.nlp(text)
-                keywords = []
+            doc = self.nlp(text)
+            keywords = [t.lemma_.lower() for t in doc 
+                       if t.pos_ in ['NOUN', 'PROPN'] and not t.is_stop and len(t.text) > 2]
+            return [word for word, _ in Counter(keywords).most_common(top_n)]
 
-                for token in doc:
-                    if token.pos_ in ['NOUN', 'PROPN', 'ADJ'] and not token.is_stop and len(token.text) > 2:
-                        keywords.append(token.lemma_.lower())
-
-                # Return most frequent keywords
-                from collections import Counter
-                keyword_counts = Counter(keywords)
-                return [word for word, _ in keyword_counts.most_common(top_n)]
-            except Exception as e:
-                print(f"⚠️ Keyword extraction failed: {e}")
-
-        # Basic fallback - split by spaces and filter
-        words = text.lower().split()
-        keywords = [word for word in words if len(word) > 3 and word.isalpha()]
-        from collections import Counter
-        keyword_counts = Counter(keywords)
-        return [word for word, _ in keyword_counts.most_common(top_n)]
-
-    def get_text_stats(self, text: str) -> Dict[str, Any]:
-        """
-        Get basic text statistics.
-        """
-        if self.spacy_available and self.nlp is not None:
-            try:
-                doc = self.nlp(text)
-
-                return {
-                    'word_count': len([token for token in doc if token.is_alpha]),
-                    'sentence_count': len(list(doc.sents)),
-                    'avg_word_length': sum(len(token.text) for token in doc if token.is_alpha) / max(1, len([token for token in doc if token.is_alpha])),
-                    'unique_words': len(set(token.lemma_.lower() for token in doc if token.is_alpha and not token.is_stop)),
-                    'language': doc.lang_ if hasattr(doc, 'lang_') else 'cs'
-                }
-            except Exception as e:
-                print(f"⚠️ Text stats calculation failed: {e}")
-
-        # Basic fallback statistics
-        words = [word for word in text.split() if word.isalpha()]
-        sentences = text.split('.')
-
-        return {
-            'word_count': len(words),
-            'sentence_count': len(sentences),
-            'avg_word_length': sum(len(word) for word in words) / max(1, len(words)),
-            'unique_words': len(set(word.lower() for word in words)),
-            'language': 'cs'  # assumed Czech
-        }
+        return [w.lower() for w in text.split() if len(w) > 4][:top_n]
 
     def preprocess_text(self, text: str) -> str:
         """
-        Basic text preprocessing: lowercase, remove extra whitespace, normalize.
+        Clean text and normalize whitespaces.
         """
-        # Remove extra whitespace
+        if not text: return ""
         text = re.sub(r'\s+', ' ', text.strip())
-
-        # Basic normalization
-        text = text.lower()
-
         return text
-
-
