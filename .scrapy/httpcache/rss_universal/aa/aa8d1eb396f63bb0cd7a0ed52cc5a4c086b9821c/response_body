@@ -6,485 +6,480 @@
     <description>Seznam Zprávy - nejnovější články</description>
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
-    <lastBuildDate>Mon, 29 Dec 2025 21:01:02 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 02 Jan 2026 21:51:15 +0000</lastBuildDate>
     <item>
-      <title>Nakažlivější chřipka plní nemocnice. To hlavní však zřejmě teprve přijde</title>
-      <link>https://www.seznamzpravy.cz/clanek/domaci-zivot-v-cesku-nakazlivejsi-chripka-plni-nemocnice-to-hlavni-vsak-zrejme-teprve-prijde-295118</link>
-      <description>Chřipka letos udeřila dříve. V některých nemocnicích se plní lůžka i během svátků. Lékaři upozorňují, že problém je stále stejný – málo se očkujeme.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/295118</guid>
-      <pubDate>Mon, 29 Dec 2025 19:00:00 +0100</pubDate>
+      <title>Pražská zoo: obvinění ze šikany, stovky hodin práce zdarma, nízký plat</title>
+      <link>https://www.seznamzpravy.cz/clanek/domaci-prazska-zoo-obvineni-ze-sikany-stovky-hodin-prace-zdarma-nizky-plat-293829</link>
+      <description>Do dvou měsíců by měl být znám nový šéf pražské zoo. Přichází do skvěle fungující zahrady, jak opakovaně tvrdí politici? Nikoli. Prostředí je toxické a o zvířata se sice starají „srdcaři“, ale pracují za velmi nízké platy.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/293829</guid>
+      <pubDate>Fri, 02 Jan 2026 16:15:00 +0100</pubDate>
       <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_QQ_j/wI7u/shutterstock-1106354414.jpeg?fl=cro,0,372,6016,3384|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Nakažlivější chřipka plní nemocnice. To hlavní však zřejmě teprve přijde</szn:title>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/nDJ4VEZEqDjvpWMagFPbW8Q/4385/lachtan-zoo-praha-zoo-zoologicka-zahrada.jpeg?fl=cro,247,421,2401,1350|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Pražská zoo: obvinění ze šikany, stovky hodin práce zdarma, nízký plat</szn:title>
         <szn:height>40</szn:height>
         <szn:previewtype>common</szn:previewtype>
       </szn:image>
       <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>295118</szn:uid>
+      <szn:uid>293829</szn:uid>
     </item>
     <item>
-      <title>Obrazem: Před 50 lety padl Saigon, takto vypadají válečná místa dnes</title>
-      <link>https://www.seznamzpravy.cz/clanek/zahranicni-obrazem-pred-50-lety-padl-saigon-takto-vypadaji-valecna-mista-dnes-294507</link>
-      <description>Reportér Seznam Zpráv se vydal po stopách vietnamské války.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294507</guid>
-      <pubDate>Mon, 29 Dec 2025 19:52:17 +0100</pubDate>
+      <title>V královéhradeckém obchodním centru muž při konfliktu zranil dva lidi a sebe</title>
+      <link>https://www.seznamzpravy.cz/clanek/domaci-zivot-v-cesku-policie-patra-po-muzi-ktery-napadl-jineho-v-kralovehradeckem-obchodnim-centru-295280</link>
+      <description>V královéhradeckém obchodním centru Futurum muž napadl sečným nástrojem při konfliktu dva lidi, uvedla policie. Podle ní nejsou informace o hrozbě dalšího nebezpečí, útočník, který se zranil, byl zadržen.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/295280</guid>
+      <pubDate>Fri, 02 Jan 2026 18:00:13 +0100</pubDate>
       <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/kOzkBkwYBTDPt7SGiMFO1HPQ/7a13/vietnam.jpeg?fl=cro,0,1574,3023,1701|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Obrazem: Před 50 lety padl Saigon, takto vypadají válečná místa dnes</szn:title>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/kOzkBkwYBTBLrRlGbBFOHzd5/1079/policie-cesko.jpeg?fl=cro,0,213,4096,2304|res,1200,,3|jpg,80</szn:url>
+        <szn:title>V královéhradeckém obchodním centru muž při konfliktu zranil dva lidi a sebe</szn:title>
         <szn:height>40</szn:height>
         <szn:previewtype>common</szn:previewtype>
       </szn:image>
       <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>294507</szn:uid>
+      <szn:uid>295280</szn:uid>
     </item>
     <item>
-      <title>Rusko plánuje příští rok povolat k povinné vojenské službě 261 tisíc lidí</title>
-      <link>https://www.seznamzpravy.cz/clanek/zahranicni-rusko-planuje-pristi-rok-povolat-k-povinne-vojenske-sluzbe-261-tisic-lidi-295129</link>
-      <description>Rusko chce v roce 2026 povolat do vojenské služby 261 tisíc mužů. Branci budou předvolání dostávat po celý rok. Odvody v Rusku probíhají dvakrát do roka,  během letošního podzimu bylo povoláno 135 tisíc mužů, na jaře 160 tisíc.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/295129</guid>
-      <pubDate>Mon, 29 Dec 2025 21:44:44 +0100</pubDate>
+      <title>Zelenskyj si vybral. Jeho kancelář povede muž, který přežil 10 atentátů</title>
+      <link>https://www.seznamzpravy.cz/clanek/zahranicni-nesmrtelny-bojovnik-kdo-je-sef-ukrajinske-rozvedky-co-prezil-10-atentatu-272427</link>
+      <description>Do samotného centra politické moci se přesunul muž, který byl dosud symbolem ukrajinské vojenské rozvědky a jednou z nejvýraznějších tváří odporu proti ruské agresi.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/272427</guid>
+      <pubDate>Fri, 02 Jan 2026 14:06:00 +0100</pubDate>
       <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_oa_A/kPxAuWMbDHCL8cmBJyDjwQ7Z/4de1/rusko-vojaci-vojak-armada.jpeg?fl=cro,0,321,4096,2304|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Rusko plánuje příští rok povolat k povinné vojenské službě 261 tisíc lidí</szn:title>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_p7_A/kOzkBkwYBTDq3nMKg9FYKCZc/a8cc/kyrylo-budanov.jpeg?fl=cro,0,0,3000,1687|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Zelenskyj si vybral. Jeho kancelář povede muž, který přežil 10 atentátů</szn:title>
         <szn:height>40</szn:height>
         <szn:previewtype>common</szn:previewtype>
       </szn:image>
       <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>295129</szn:uid>
+      <szn:uid>272427</szn:uid>
     </item>
     <item>
-      <title>Trump chce brzy druhou fázi příměří v Gaze a odzbrojení Hamásu</title>
-      <link>https://www.seznamzpravy.cz/clanek/zahranicni-trump-chce-brzy-druhou-fazi-primeri-v-gaze-a-odzbrojeni-hamasu-295128</link>
-      <description>Americký prezident Donald Trump bude jednat s izraelským premiérem Benjaminem Netanjahuem. Přeje si brzké zahájení druhé fáze mírového plánu a odzbrojení Hamásu. Teroristická organizace to odmítá.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/295128</guid>
-      <pubDate>Mon, 29 Dec 2025 21:40:07 +0100</pubDate>
+      <title>Zelenskyj avizoval změny na obraně, Šmyhala má nahradit ministr digitalizace</title>
+      <link>https://www.seznamzpravy.cz/clanek/zahranicni-zelenskyj-avizoval-zmeny-na-obrane-smyhala-ma-nahradit-ministr-digitalizace-295285</link>
+      <description>Současného šéfa ukrajinského ministerstva obrany Denyse Šmyhala chce prezident nahradit nynějším ministrem digitalizace a vicepremiérem Mychajlem Fedorovem.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/295285</guid>
+      <pubDate>Fri, 02 Jan 2026 21:24:48 +0100</pubDate>
       <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/kOzkBkwYBTxrzzEB9FJhfJ1/01e1/donald-trump.jpeg?fl=cro,287,0,2425,1364|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Trump chce brzy druhou fázi příměří v Gaze a odzbrojení Hamásu</szn:title>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/kOzkBkwYBTDqlCCHSOFP9yaN/1347/zelenskyj.jpeg?fl=cro,0,213,4096,2304|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Zelenskyj avizoval změny na obraně, Šmyhala má nahradit ministr digitalizace</szn:title>
         <szn:height>40</szn:height>
         <szn:previewtype>common</szn:previewtype>
       </szn:image>
       <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>295128</szn:uid>
+      <szn:uid>295285</szn:uid>
     </item>
     <item>
-      <title>Zemřel klavírista Jan Novotný, který nahrál komplet Smetanova díla</title>
-      <link>https://www.seznamzpravy.cz/clanek/kultura-zemrel-uznavany-klavirista-jan-novotny-interpret-smetanova-dila-295127</link>
-      <description>Zemřel pianista Jan Novotný, bylo mu 90 let. Patřil k uznávaným interpretům klavírní hudby, specializoval se na dílo Bedřicha Smetany.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/295127</guid>
-      <pubDate>Mon, 29 Dec 2025 20:57:54 +0100</pubDate>
+      <title>Šéf ukrajinských poslanců se opřel do Okamury. Je příkladem nevzdělanosti, řekl</title>
+      <link>https://www.seznamzpravy.cz/clanek/domaci-politika-sef-ukrajinskych-poslancu-se-oprel-do-okamury-je-prikladem-nevzdelanosti-rekl-295238</link>
+      <description>Novoroční projev předsedy Poslanecké sněmovny Tomia Okamury zkritizoval předseda ukrajinského parlamentu Ruslan Stefančuk. Okamurovo vyjádření nicméně považuje za jeho osobní názor, nikoliv postoj českého národa.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/295238</guid>
+      <pubDate>Fri, 02 Jan 2026 11:02:26 +0100</pubDate>
       <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_QO_V/rX5H.jpeg?fl=cro,0,353,6720,3780|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Zemřel klavírista Jan Novotný, který nahrál komplet Smetanova díla</szn:title>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_of_A/kPRtHkVQLlCon8i2YE1cx6P/3296/stefancuk-ukrajina-ukrajinska-vlajka-vlajka-ukrajiny-ceska-vlajka.jpeg?fl=cro,0,107,2048,1152|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Šéf ukrajinských poslanců se opřel do Okamury. Je příkladem nevzdělanosti, řekl</szn:title>
         <szn:height>40</szn:height>
         <szn:previewtype>common</szn:previewtype>
       </szn:image>
       <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>295127</szn:uid>
+      <szn:uid>295238</szn:uid>
     </item>
     <item>
-      <title>USA zasáhly venezuelský přístav sloužící k pašování drog, řekl Trump</title>
-      <link>https://www.seznamzpravy.cz/clanek/zahranicni-usa-podnikly-uder-na-zarizeni-ve-venezuele-uvedl-trump-295115</link>
-      <description>Spojené státy podnikly první útok na pevninské Venezuele. Zasáhly přístavní oblast, kde jsou podle prezidenta Donalda Trumpa lodě nakládány drogami. Venezuela zasažení důležitého zařízení zatím nehlásí.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/295115</guid>
-      <pubDate>Mon, 29 Dec 2025 15:58:44 +0100</pubDate>
+      <title>Ruský úder v Charkově podle Ukrajinců zabil nejméně dva lidi, Moskva útok popírá</title>
+      <link>https://www.seznamzpravy.cz/clanek/zahranicni-ruske-utoky-balistickymi-zbranemi-si-v-charkove-vyzadaly-nejmene-15-ranenych-295276</link>
+      <description>Při ruských úderech, kdy střely zasáhly vícepodlažní budovu v Charkově, zemřeli dva lidé a 30 dalších bylo zraněno. Noční ruské útoky způsobily zranění nejméně dvěma lidem v Záporožské a dalším dvěma v Dněpropetrovské oblasti.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/295276</guid>
+      <pubDate>Fri, 02 Jan 2026 18:05:10 +0100</pubDate>
       <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/kOzkBkwYBTDq3nMGMXFOTUqK/fa76/donald-trump.jpeg?fl=cro,0,0,3264,1836|res,1200,,3|jpg,80</szn:url>
-        <szn:title>USA zasáhly venezuelský přístav sloužící k pašování drog, řekl Trump</szn:title>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_p7_A/nDJ4VEZEqBMnoOQJUFYQfLY/a802/utok-rusko-charkov-ukrajina-dron.jpeg?fl=cro,0,239,4096,2304|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Ruský úder v Charkově podle Ukrajinců zabil nejméně dva lidi, Moskva útok popírá</szn:title>
         <szn:height>40</szn:height>
         <szn:previewtype>common</szn:previewtype>
       </szn:image>
       <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>295115</szn:uid>
+      <szn:uid>295276</szn:uid>
     </item>
     <item>
-      <title>Muž podezřelý z umístění bomb v předvečer útoku na Kapitol se přiznal FBI</title>
-      <link>https://www.seznamzpravy.cz/clanek/zahranicni-muz-podezrely-z-umisteni-bomb-v-predvecer-utoku-na-kapitol-se-priznal-fbi-295125</link>
-      <description>Brian Cole se přiznal FBI k umístění bomb u amerického Kapitolu v předvečer útoku z roku 2021. Odmítl, že by čin souvisel s výsledky voleb. K jedné z bomb se na jednotky metrů přiblížila tehdejší viceprezidentka Kamala Harrisová.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/295125</guid>
-      <pubDate>Mon, 29 Dec 2025 20:23:11 +0100</pubDate>
+      <title>Tragédii ve Švýcarsku způsobily pyrotechnické svíčky, naznačuje vyšetřování</title>
+      <link>https://www.seznamzpravy.cz/clanek/zahranicni-fotka-ukazuje-okamzik-vzplanuti-svycarskeho-klubu-strop-zrejme-zapalila-svice-295258</link>
+      <description>Ve veřejném prostoru se objevují záběry, které ukazují průběh požáru ve švýcarském středisku Crans-Montana. Vše nasvědčuje tomu, že tragédii, během které zemřelo minimálně 40 lidí, způsobila pyrotechnika, potvrdily to i úřady.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/295258</guid>
+      <pubDate>Fri, 02 Jan 2026 13:38:22 +0100</pubDate>
       <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_od_A/nPSV1TXV2nBaI13voEYjCXS/02f4/kapitol.jpeg?fl=cro,0,163,4096,2304|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Muž podezřelý z umístění bomb v předvečer útoku na Kapitol se přiznal FBI</szn:title>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_p7_A/kOzkBkwYBTxrzzKZPFYE3ZO/c6d3/svycarsko-pozar-klub.png?fl=cro,0,687,1340,754|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Tragédii ve Švýcarsku způsobily pyrotechnické svíčky, naznačuje vyšetřování</szn:title>
         <szn:height>40</szn:height>
         <szn:previewtype>common</szn:previewtype>
       </szn:image>
       <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>295125</szn:uid>
-    </item>
-    <item>
-      <title>Německé dotování elektřiny pro průmysl: Nespokojení jsou všichni</title>
-      <link>https://www.seznamzpravy.cz/clanek/ekonomika-firmy-nemecke-dotovani-elektriny-pro-prumysl-nespokojeni-jsou-vsichni-293677</link>
-      <description>Německo chce už od 1. ledna zastropovat část elektřiny pro energeticky náročné podniky. Pořád ale čeká na posvěcení od Evropské unie a novinku zřejmě zavede až zpětně. Její přínos pro hospodářství navíc bude jen omezený.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/293677</guid>
-      <pubDate>Mon, 29 Dec 2025 20:00:00 +0100</pubDate>
-      <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_QN_x/imoMo/hut-hute-zelezo-prumysl-slevarna-metalurgie-hutnictvi.jpeg?fl=cro,0,50,960,540|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Německé dotování elektřiny pro průmysl: Nespokojení jsou všichni</szn:title>
-        <szn:height>40</szn:height>
-        <szn:previewtype>common</szn:previewtype>
-      </szn:image>
-      <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>293677</szn:uid>
-    </item>
-    <item>
-      <title>Moskva hlásí útok na Putinovu rezidenci. Zelenskyj to označil za lež</title>
-      <link>https://www.seznamzpravy.cz/clanek/zahranicni-ukrajina-podle-lavrova-zautocila-na-putinovu-rezidenci-kyjev-to-poprel-295120</link>
-      <description>Podle ruského ministra zahraničí Sergeje Lavrova zaútočila Ukrajina na rezidenci prezidenta Putina drony. Kyjev to rázně odmítl, Moskva mluví o tom, že přehodnotí přístup k mírovým jednáním.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/295120</guid>
-      <pubDate>Mon, 29 Dec 2025 17:26:33 +0100</pubDate>
-      <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_oe_A/kOzmiQlmfoDuFBcBojEogTrT/ce32/putin.jpeg?fl=cro,0,231,4096,2304|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Moskva hlásí útok na Putinovu rezidenci. Zelenskyj to označil za lež</szn:title>
-        <szn:height>40</szn:height>
-        <szn:previewtype>common</szn:previewtype>
-      </szn:image>
-      <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>295120</szn:uid>
-    </item>
-    <item>
-      <title>Brigitte Bardot bude pohřbena ve svém oblíbeném Saint-Tropez</title>
-      <link>https://www.seznamzpravy.cz/clanek/zahranicni-brigitte-bardotova-bude-pohrbena-ve-svem-oblibenem-saint-tropez-295124</link>
-      <description>Francouzská herečka Brigitte Bardot, která zemřela v neděli, bude podle svého přání pohřbena v Saint-Tropez. Pohřeb se uskuteční v kostele Nanebevzetí Panny Marie, následovat má pietní akce přístupná veřejnosti.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/295124</guid>
-      <pubDate>Mon, 29 Dec 2025 19:12:51 +0100</pubDate>
-      <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/nDJ4VEZEqb3AyOm0FV7G9g/03dc/bardotova.jpeg?fl=cro,0,91,1800,1012|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Brigitte Bardot bude pohřbena ve svém oblíbeném Saint-Tropez</szn:title>
-        <szn:height>40</szn:height>
-        <szn:previewtype>common</szn:previewtype>
-      </szn:image>
-      <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>295124</szn:uid>
-    </item>
-    <item>
-      <title>Průzkum: Trump je v Evropě nepopulární i mezi příznivci pravicového populismu</title>
-      <link>https://www.seznamzpravy.cz/clanek/zahranicni-pruzkum-trump-je-v-evrope-nepopularni-i-mezi-priznivci-pravicoveho-populismu-295107</link>
-      <description>Prezident USA má v největších zemích EU nízké sympatie, a to i mezi voliči AfD z Německa a Národního sdružení z Francie. Kladně hodnotí Trumpa pouze třetina lidí podporující tyto partaje. Vyplývá to z průzkumu serveru Politico.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/295107</guid>
-      <pubDate>Mon, 29 Dec 2025 19:00:00 +0100</pubDate>
-      <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_of_A/nPadKnN9M1EEOp8BNJE81Vgr/51e9/donald-trump-prezident-usa.jpeg?fl=cro,0,202,3905,2196|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Průzkum: Trump je v Evropě nepopulární i mezi příznivci pravicového populismu</szn:title>
-        <szn:height>40</szn:height>
-        <szn:previewtype>common</szn:previewtype>
-      </szn:image>
-      <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>295107</szn:uid>
-    </item>
-    <item>
-      <title>Nikdo nemusí pracovat, všeho bude dostatek. AI bossové téhle pohádce věří</title>
-      <link>https://www.seznamzpravy.cz/clanek/zahranicni-nikdo-nemusi-pracovat-vseho-bude-dostatek-ai-bossove-tehle-pohadce-veri-294158</link>
-      <description>První milion robotů postavíme ručně. A pak už jen samá pozitiva a sociální jistoty. Postará se o to umělá inteligence, která nám vezme práci a dá bezpodmínečný příjem. Tak malují budoucnost šéfové ze Silicon Valley. Kde je háček?</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294158</guid>
-      <pubDate>Mon, 29 Dec 2025 18:46:21 +0100</pubDate>
-      <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/kOzkBkwYBTxrzzF1hFNXtUb/1a96/serial.png?fl=cro,0,0,1920,1080|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Nikdo nemusí pracovat, všeho bude dostatek. AI bossové téhle pohádce věří</szn:title>
-        <szn:height>40</szn:height>
-        <szn:previewtype>common</szn:previewtype>
-      </szn:image>
-      <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>294158</szn:uid>
-    </item>
-    <item>
-      <title>Hory v Česku zasype sníh, bude větrno a mrznout může i přes den</title>
-      <link>https://www.seznamzpravy.cz/clanek/domaci-zivot-v-cesku-hory-v-cesku-zasype-snih-bude-vetrno-a-mrznout-muze-i-pres-den-295121</link>
-      <description>Předpověď Českého hydrometeorologického ústavu pro nadcházející týden ukazuje sněžení, mráz a teploty kolem nuly. Od úterý také silnější vítr, tvořit se mohou sněhové jazyky a v noci hrozí náledí.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/295121</guid>
-      <pubDate>Mon, 29 Dec 2025 17:54:18 +0100</pubDate>
-      <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/nDJ4VEZEqCaOxZN4GFUqad7/379c/lyzovani-snih-sjezdovky-pec-pod-snezkou-mala-upa-zahradky.jpeg?fl=cro,0,156,3000,1687|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Hory v Česku zasype sníh, bude větrno a mrznout může i přes den</szn:title>
-        <szn:height>40</szn:height>
-        <szn:previewtype>common</szn:previewtype>
-      </szn:image>
-      <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>295121</szn:uid>
-    </item>
-    <item>
-      <title>Nejen Palladium. Český kapitál definitivně ovládl velký realitní byznys</title>
-      <link>https://www.seznamzpravy.cz/clanek/ekonomika-byznys-reality-nejen-palladium-cesky-kapital-definitivne-ovladl-velky-realitni-byznys-293316</link>
-      <description>Realitnímu podnikání v Česku v roce 2025 dominovali domácí investoři. Postarali se také o vůbec největší transakci s pražským obchodním centrem Palladium. Celkem změnily majitele podnikatelské nemovitosti za 94 miliard korun.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/293316</guid>
-      <pubDate>Mon, 29 Dec 2025 17:38:11 +0100</pubDate>
-      <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/nDJ4VEZEqD86wCFWxFHPLjx/eaf3/port7-kancelare-holesovice-reality.jpeg?fl=cro,0,106,2048,1152|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Nejen Palladium. Český kapitál definitivně ovládl velký realitní byznys</szn:title>
-        <szn:height>40</szn:height>
-        <szn:previewtype>common</szn:previewtype>
-      </szn:image>
-      <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>293316</szn:uid>
-    </item>
-    <item>
-      <title>Čemu se divil Zelenskyj a protiúder seniorky ze Svitav</title>
-      <link>https://www.seznamzpravy.cz/clanek/domaci-zivot-v-cesku-petka-sz-cemu-se-divil-zelenskyj-a-protiuder-seniorky-ze-svitav-295094</link>
-      <description>Denní přehled Seznam Zpráv.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/295094</guid>
-      <pubDate>Mon, 29 Dec 2025 17:00:00 +0100</pubDate>
-      <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_of_A/kPRtHkVQLlBaYpXBrrE3tilc/515e/petka-sz-krasnicky.jpeg?fl=cro,0,0,1920,1080|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Pětka SZ: Čemu se divil Zelenskyj a protiúder seniorky ze Svitav</szn:title>
-        <szn:height>40</szn:height>
-        <szn:previewtype>common</szn:previewtype>
-      </szn:image>
-      <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>295094</szn:uid>
-    </item>
-    <item>
-      <title>Technologický pokrok českého stavebnictví v roce 2025: roboti a houby</title>
-      <link>https://www.seznamzpravy.cz/clanek/tech-technologie-technologicky-pokrok-ceskeho-stavebnictvi-v-roce-2025-roboti-a-houby-293762</link>
-      <description>Lék bytové krize se spojuje se zrychlením výstavby. Jenže stavební práce i materiály zdražují a chybí pracovníci. Pomoci tak může i technologický pokrok. České stavební firmy představily dvě zajímavé cesty - roboty a houby.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/293762</guid>
-      <pubDate>Mon, 29 Dec 2025 16:50:44 +0100</pubDate>
-      <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/kOzkBkwYBTDPt7SJkRFV13p7/ae90/samorost-greenbuild-ice-industrial-services.png?fl=cro,0,0,1920,1080|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Technologický pokrok českého stavebnictví v roce 2025: roboti a houby</szn:title>
-        <szn:height>40</szn:height>
-        <szn:previewtype>common</szn:previewtype>
-      </szn:image>
-      <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>293762</szn:uid>
+      <szn:uid>295258</szn:uid>
       <szn:video>
         <szn:_cls>Video</szn:_cls>
-        <szn:customId>6952382399960440a16fdf08</szn:customId>
-        <szn:duration>665000</szn:duration>
+        <szn:customId>69578dea73a8bab8038d4bc4</szn:customId>
+        <szn:duration>24880</szn:duration>
         <szn:expiration></szn:expiration>
         <szn:sources></szn:sources>
-        <szn:url>https://v39-a.sdn.cz/~SEC1~expire-1767127843~scope-video~O3Olu01BMeP/v_39/vmd/6952382399960440a16fdf08?fl=mdk,0472e317|</szn:url>
+        <szn:url>https://v39-a.sdn.cz/~SEC1~expire-1767475819~scope-video~H5Vx6JpcD02/v_39/vmd/69578dea73a8bab8038d4bc4?fl=mdk,4b420892|</szn:url>
       </szn:video>
     </item>
     <item>
-      <title>Obžalovali prezidentova řidiče, řídil s alkoholem a havaroval</title>
-      <link>https://www.seznamzpravy.cz/clanek/domaci-zivot-v-cesku-obzalovali-prezidentova-ridice-ridil-s-alkoholem-a-havaroval-295117</link>
-      <description>Řidič prezidenta Petra Pavla, který v únoru pod vlivem alkoholu zavinil dopravní nehodu, byl obžalován. V případě, že ho soud uzná vinným, mu hrozí až dva roky vězení.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/295117</guid>
-      <pubDate>Mon, 29 Dec 2025 16:38:08 +0100</pubDate>
+      <title>Rok 2025 byl v Česku třináctý nejteplejší za 65 let</title>
+      <link>https://www.seznamzpravy.cz/clanek/domaci-zivot-v-cesku-rok-2025-byl-v-cesku-trinacty-nejteplejsi-za-65-let-295277</link>
+      <description>Loňský rok, který se stal čtvrtým nejchladnějším v poslední dekádě, měl průměrnou teplotu 8,8 stupně Celsia. Zároveň ale patří k těm teplejším, jelikož se zařadil na třináctou příčku nejteplejších od roku 1961.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/295277</guid>
+      <pubDate>Fri, 02 Jan 2026 21:12:31 +0100</pubDate>
       <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/nDJ4VEZEqD86wCJp0FNtDWk/d4f6.jpeg?fl=cro,140,411,3059,1721|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Obžalovali prezidentova řidiče, řídil s alkoholem a havaroval</szn:title>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_QO_7/W4BM2/slunce-klima-oteplovani.jpeg?fl=cro,0,0,4608,2592|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Rok 2025 byl v Česku třináctý nejteplejší za 65 let</szn:title>
         <szn:height>40</szn:height>
         <szn:previewtype>common</szn:previewtype>
       </szn:image>
       <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>295117</szn:uid>
+      <szn:uid>295277</szn:uid>
     </item>
     <item>
-      <title>Novým náměstkem na MPO bude Jan Sechter z Hospodářské komory</title>
-      <link>https://www.seznamzpravy.cz/clanek/domaci-zivot-v-cesku-novym-namestkem-na-mpo-bude-jan-sechter-z-hospodarske-komory-295116</link>
-      <description>Náměstkem ministra průmyslu a obchodu Karla Havlíčka bude Jan Sechter. Ten doposud působil jako předseda dopravní sekce Hospodářské komory ČR, do nové funkce nastoupí 1. ledna.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/295116</guid>
-      <pubDate>Mon, 29 Dec 2025 16:19:30 +0100</pubDate>
+      <title>Trump pohrozil Íránu intervencí na ochranu pokojných demonstrantů</title>
+      <link>https://www.seznamzpravy.cz/clanek/zahranicni-trump-pohrozil-iranu-intervenci-na-ochranu-pokojnych-demonstrantu-295234</link>
+      <description>Donald Trump uvedl, že Spojené státy jsou připraveny zakročit, pokud bude Írán pokračovat v zabíjení pokojných demonstrantů na protestech kvůli nárůstu životních nákladů.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/295234</guid>
+      <pubDate>Fri, 02 Jan 2026 10:25:11 +0100</pubDate>
       <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/nDJ4VEZEqxQDMOkkFV2vu8/9da7/sechter.jpeg?fl=cro,0,93,1800,1012|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Novým náměstkem na MPO bude Jan Sechter z Hospodářské komory</szn:title>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/kOzkBkwYBTCNNSBFURFMf3ZY/6b5e/donald-trump.jpeg?fl=cro,0,200,4096,2304|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Trump pohrozil Íránu intervencí na ochranu pokojných demonstrantů</szn:title>
         <szn:height>40</szn:height>
         <szn:previewtype>common</szn:previewtype>
       </szn:image>
       <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>295116</szn:uid>
+      <szn:uid>295234</szn:uid>
     </item>
     <item>
-      <title>Sebevědomá AfD testuje hranice. Bojkot krajní pravice se drolí</title>
-      <link>https://www.seznamzpravy.cz/clanek/zahranicni-stredni-evropa-sebevedoma-afd-testuje-hranice-bojkot-krajni-pravice-se-droli-295104</link>
-      <description>Takzvaný sanitární kordon kolem německé AfD dostává trhliny. Strana posiluje v průzkumech, mění chování v parlamentu a získává prostor i tam, kde dříve narážela na jasné odmítnutí. To vše před zemskými volbami.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/295104</guid>
-      <pubDate>Mon, 29 Dec 2025 16:15:00 +0100</pubDate>
+      <title>Opozice chce vyvolat hlasování o odvolání předsedy Sněmovny Okamury</title>
+      <link>https://www.seznamzpravy.cz/clanek/domaci-politika-ods-chce-ve-snemovne-projednat-okamurovy-vyroky-podpori-jeho-odvolani-295260</link>
+      <description>ODS podpoří návrh na odvolání Tomia Okamury z funkce předsedy Sněmovny. Jeho projev kritizují i další opoziční strany.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/295260</guid>
+      <pubDate>Fri, 02 Jan 2026 14:06:34 +0100</pubDate>
       <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/kOzkBkwYBTQzPhJVdFVxATZ/6dd4/afd-nemecko.jpeg?fl=cro,0,151,3300,1856|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Sebevědomá AfD testuje hranice. Bojkot krajní pravice se drolí</szn:title>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_of_A/kPRtHkVQLlDN44aZsE0XHXm/882a.jpeg?fl=cro,0,0,3600,2025|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Opozice chce vyvolat hlasování o odvolání předsedy Sněmovny Okamury</szn:title>
         <szn:height>40</szn:height>
         <szn:previewtype>common</szn:previewtype>
       </szn:image>
       <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>295104</szn:uid>
+      <szn:uid>295260</szn:uid>
     </item>
     <item>
-      <title>Skutečný vrah ze Slopného běhá po svobodě. Justice chrání systém, říká obhájce</title>
-      <link>https://www.seznamzpravy.cz/clanek/domaci-kauzy-skutecny-vrah-ze-slopneho-beha-po-svobode-justice-chrani-system-rika-obhajce-294391</link>
-      <description>Podle advokáta Josefa Bartončíka česká justice při řešení případu vraždy ve Slopném zásadně selhala. Obhájce je přesvědčený, že za vraždu ve vězení sedí muži, kteří čin nespáchali, a že justice pouze chrání nefunkční systém.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294391</guid>
-      <pubDate>Mon, 29 Dec 2025 16:02:09 +0100</pubDate>
+      <title>Na 53 nevládních organizací varuje před zákazem humanitární činnosti v Gaze</title>
+      <link>https://www.seznamzpravy.cz/clanek/zahranicni-na-53-nevladnich-organizaci-varuje-pred-zakazem-humanitarni-cinnosti-v-gaze-295282</link>
+      <description>Ve společném prohlášení varovaly mezinárodní nevládní organizace před rozhodnutím Izraele zavést nové registrační požadavky pro organizace poskytující humanitární pomoc v Pásmu Gazy. Krok může vést k zastavení jejich činnosti.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/295282</guid>
+      <pubDate>Fri, 02 Jan 2026 20:51:09 +0100</pubDate>
       <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_od_A/nPXN5fAIwLBcsvaBgGEWeabk/b647/josef-bartoncik.jpeg?fl=cro,0,213,4096,2304|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Skutečný vrah ze Slopného běhá po svobodě. Justice chrání systém, říká obhájce</szn:title>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_oa_A/kPxAuWMbDHDsbvNBhVDlB5Yg/8f07/kamion-pasmo-gazy-humanitarnipomoc.jpeg?fl=cro,0,156,3000,1687|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Na 53 nevládních organizací varuje před zákazem humanitární činnosti v Gaze</szn:title>
         <szn:height>40</szn:height>
         <szn:previewtype>common</szn:previewtype>
       </szn:image>
       <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>294391</szn:uid>
+      <szn:uid>295282</szn:uid>
     </item>
     <item>
-      <title>Německo si odveze veškerý odpad z Brna-Horních Heršpic</title>
-      <link>https://www.seznamzpravy.cz/clanek/domaci-zivot-v-cesku-nemecko-si-odveze-veskery-odpad-z-brna-hornich-herspic-295114</link>
-      <description>Z Brna-Horních Heršpic zmizí všech 317 tun odpadu z Německa. Prvních 35 tun z nelegální skládky odvezla před Vánoci najatá firma. Odpad podle vyšetřování do Brna navezla německá firma Roth International.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/295114</guid>
-      <pubDate>Mon, 29 Dec 2025 15:42:05 +0100</pubDate>
+      <title>FBI zmařila v USA plánovaný silvestrovský útok noži inspirovaný Islámským státem</title>
+      <link>https://www.seznamzpravy.cz/clanek/zahranicni-fbi-zmarila-v-usa-planovany-silvestrovsky-utok-nozi-inspirovany-islamskym-statem-295284</link>
+      <description>FBI překazila údajně plánovaný útok, který se chystal provést Christian Sturdivant. Muž se údajně připravoval na džihád, přičemž útok noži a kladivy plánoval v Mint Hill.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/295284</guid>
+      <pubDate>Fri, 02 Jan 2026 20:12:39 +0100</pubDate>
       <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_od_A/kOes7N5Ni6DuE0oDqIERySzo/3ca8/odpad-horni-herspice-brno.jpeg?fl=cro,0,0,4080,2295|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Německo si odveze veškerý odpad z Brna-Horních Heršpic</szn:title>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_p7_A/kOzkBkwYBTDq3nMKlbFYTkao/c602/fbi.jpeg?fl=cro,0,213,4096,2304|res,1200,,3|jpg,80</szn:url>
+        <szn:title>FBI zmařila v USA plánovaný silvestrovský útok noži inspirovaný Islámským státem</szn:title>
         <szn:height>40</szn:height>
         <szn:previewtype>common</szn:previewtype>
       </szn:image>
       <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>295114</szn:uid>
+      <szn:uid>295284</szn:uid>
     </item>
     <item>
-      <title>Regulovaná cena elektřiny domácnostem klesne o 15 procent</title>
-      <link>https://www.seznamzpravy.cz/clanek/ekonomika-regulovana-cena-elektriny-domacnostem-klesne-o-15-procent-rozhodl-eru-295113</link>
-      <description>Od Nového roku domácnosti ušetří na megawatthodině v průměru 420 korun. Snížení je výsledkem státního převzetí poplatků za podporované zdroje energie. Rozhodl o tom  Energetický regulační úřad.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/295113</guid>
-      <pubDate>Mon, 29 Dec 2025 15:36:22 +0100</pubDate>
+      <title>Pákistán uložil doživotí sedmi lidem, kteří podle něj podněcovali násilí</title>
+      <link>https://www.seznamzpravy.cz/clanek/zahranicni-pakistan-ulozil-dozivoti-sedmi-lidem-kteri-podle-nej-podnecovali-nasili-295278</link>
+      <description>Tři novináři, dva youtubeři a dva bývalí armádní důstojníci dostali od soudu doživotí v Pákistánu. Vlast opustili, aby se vyhnuli zatčení. Podporovali bývalého premiéra Imrana Chána a byli shledáni vinnými z podněcování násilí.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/295278</guid>
+      <pubDate>Fri, 02 Jan 2026 19:24:44 +0100</pubDate>
       <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_QI_g/ODJC1.jpeg?fl=cro,0,34,1800,1013|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Regulovaná cena elektřiny domácnostem klesne o 15 procent, rozhodl ERÚ</szn:title>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/nDJ4VEZEqb3AyJ9iFOpYEm/069b/soud-kladivko.jpeg?fl=cro,434,0,3226,1815|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Pákistán uložil doživotí sedmi lidem, kteří podle něj podněcovali násilí</szn:title>
         <szn:height>40</szn:height>
         <szn:previewtype>common</szn:previewtype>
       </szn:image>
       <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>295113</szn:uid>
+      <szn:uid>295278</szn:uid>
     </item>
     <item>
-      <title>Komentář: Opravdu jsme chtěli vládu národní sebedestrukce? Může to tak být</title>
-      <link>https://www.seznamzpravy.cz/clanek/domaci-politika-komentar-opravdu-jsme-chteli-vladu-narodni-sebedestrukce-muze-to-tak-byt-295109</link>
-      <description>Konec roku je vždycky čas reflexe. K reflektování teď máme změnu, která se děje okolo nás a s námi. Dali jsme ji do pohybu říjnovými volbami.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/295109</guid>
-      <pubDate>Mon, 29 Dec 2025 15:30:00 +0100</pubDate>
-      <szn:additionalType>Commentary</szn:additionalType>
+      <title>Špagety zachráněny. USA snížily hrozící obrovská cla na italské těstoviny</title>
+      <link>https://www.seznamzpravy.cz/clanek/ekonomika-spagety-zachraneny-usa-snizily-hrozici-obrovska-cla-na-italske-testoviny-295252</link>
+      <description>Obchodní spor mezi USA a Itálií o těstoviny se uklidňuje. Administrativa Donalda Trumpa ustoupila od extrémních cel, kterými měla potrestat údajný dumping. Nyní navrhované sazby se snížily na jednotky procent.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/295252</guid>
+      <pubDate>Fri, 02 Jan 2026 19:00:00 +0100</pubDate>
       <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/nDJ4VEZEqxmIDIiuFR4e3g/88b6/tmbk.jpeg?fl=cro,0,104,740,416|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Komentář: Opravdu jsme chtěli vládu národní sebedestrukce? Může to tak být</szn:title>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_oe_A/nO1Ur3YPjBDmHSdVEEkdjGx/308a/testoviny.jpeg?fl=cro,0,52,1000,562|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Špagety zachráněny. USA snížily hrozící obrovská cla na italské těstoviny</szn:title>
         <szn:height>40</szn:height>
         <szn:previewtype>common</szn:previewtype>
       </szn:image>
       <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>295109</szn:uid>
+      <szn:uid>295252</szn:uid>
     </item>
     <item>
-      <title>Moje duše chtěla ty lidi zachránit, říká hrdina z Bondi Beach</title>
-      <link>https://www.seznamzpravy.cz/clanek/zahranicni-moje-duse-chtela-ty-lidi-zachranit-rika-hrdina-z-bondi-beach-295102</link>
-      <description>Muž odzbrojil jednoho ze střelců, který útočil na lidi na židovské akci na pláži Bondi Beach. Dva střelci, otec a syn, zabili 15 lidí. Nebýt hrdiny, mohlo být obětí více.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/295102</guid>
-      <pubDate>Mon, 29 Dec 2025 15:00:00 +0100</pubDate>
+      <title>„Rodiny nebudou priorita.“ Škrty na Ministerstvu práce vyvolávají obavy</title>
+      <link>https://www.seznamzpravy.cz/clanek/domaci-zivot-v-cesku-rodiny-nebudou-priorita-skrty-na-ministerstvu-prace-vyvolavaji-obavy-295267</link>
+      <description>Odborníci pracující s dětmi varují před rozsáhlými změnami na Ministerstvu práce a sociálních věcí, kde mají skončit i dva experti na dětské právo. Resort kritiku odmítá - a rodinnou politiku označuje za „absolutní prioritu“.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/295267</guid>
+      <pubDate>Fri, 02 Jan 2026 18:30:00 +0100</pubDate>
       <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/kOzkBkwYBTqAqfKI9FVyN8S/be86/sydney-ahmed-al-ahmed.jpeg?fl=cro,0,93,1800,1012|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Moje duše chtěla ty lidi zachránit, říká hrdina z Bondi Beach</szn:title>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_QN_n/unaCL/shutterstock-1577538859.jpeg?fl=cro,0,312,6000,3375|res,1200,,3|jpg,80</szn:url>
+        <szn:title>„Rodiny nebudou priorita.“ Škrty na Ministerstvu práce vyvolávají obavy</szn:title>
         <szn:height>40</szn:height>
         <szn:previewtype>common</szn:previewtype>
       </szn:image>
       <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>295102</szn:uid>
+      <szn:uid>295267</szn:uid>
     </item>
     <item>
-      <title>České letecké eso. Osamělý vlk byl nejlepší cizí pilot v bitvě o Británii</title>
-      <link>https://www.seznamzpravy.cz/clanek/magazin-historie-ceske-letecke-eso-osamely-vlk-byl-nejlepsi-cizi-pilot-v-bitve-o-britanii-294282</link>
-      <description>Josef František, dnes přezdívaný Osamělý vlk, za necelý měsíc sestřelil až 18 německých strojů a stal se nejúspěšnějším nebritským pilotem jedné z největších leteckých bitev druhé světové války. Po 85 letech se o něm točí film.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294282</guid>
-      <pubDate>Mon, 29 Dec 2025 14:30:00 +0100</pubDate>
+      <title>Do zámku Hluboš, kde pobýval Masaryk, se o silvestrovské noci vloupali zloději</title>
+      <link>https://www.seznamzpravy.cz/clanek/domaci-zivot-v-cesku-do-zamku-hlubos-kde-pobyval-masaryk-se-o-silvestrovske-noci-vloupali-zlodeji-295263</link>
+      <description>Zloději, kteří se vloupali do letního Masarykova sídla během silvestrovské noci, ukradli bustu prezidenta, historický gramofon či historický telefon. Celkem vzali věci za 50 tisíc korun a způsobili škodu za 70 tisíc korun.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/295263</guid>
+      <pubDate>Fri, 02 Jan 2026 18:28:08 +0100</pubDate>
       <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/nDJ4VEZEqD86wCJrbFNuVlV/70a8/josef-frantisek-pilot-raf-osamely-vlk.jpeg?fl=cro,281,375,1646,925|res,1200,,3|jpg,80</szn:url>
-        <szn:title>České letecké eso. Osamělý vlk byl nejlepší cizí pilot v bitvě o Británii</szn:title>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_p7_A/nDJ4VEZEqCaOxZQRvFYQ4HY/18b4/zamek-hlubos.jpeg?fl=cro,0,205,2200,1237|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Do zámku Hluboš, kde pobýval Masaryk, se o silvestrovské noci vloupali zloději</szn:title>
         <szn:height>40</szn:height>
         <szn:previewtype>common</szn:previewtype>
       </szn:image>
       <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>294282</szn:uid>
+      <szn:uid>295263</szn:uid>
     </item>
     <item>
-      <title>Nikdy jsem nebyl zastáncem zrušení EET, říká končící náměstek na financích</title>
-      <link>https://www.seznamzpravy.cz/clanek/audio-podcast-ptam-se-ja-nesouhlasim-ze-se-jen-rozhazovalo-rika-koncici-namestek-k-cistkam-na-resortech-294958</link>
-      <description>Ve státním rozpočtu chybí sto miliard a stát přebíráme téměř v situaci, kdy je ohroženo jeho fungování. Zhruba s takovou rétorikou nastoupila k moci nová vláda Andreje Babiše. V jakém stavu předchozí vláda státní kasu předala?</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/294958</guid>
-      <pubDate>Mon, 29 Dec 2025 14:19:48 +0100</pubDate>
+      <title>Finská policie zatkla dva členy posádky lodi kvůli poškození podmořského kabelu</title>
+      <link>https://www.seznamzpravy.cz/clanek/zahranicni-finska-policie-zatkla-dva-cleny-posadky-lodi-kvuli-poskozeni-podmorskeho-kabelu-295275</link>
+      <description>Policie zadržela dva členy posádky lodi podezřelé z poškození kabelů ve Finském zálivu, dalším dvěma zakázala cestování. Posádku tvoří Rusové, Gruzínci, Ázerbájdžánci a Kazaši. Vyšetřování pokračuje výslechy či inspekcí plavidla.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/295275</guid>
+      <pubDate>Fri, 02 Jan 2026 18:20:04 +0100</pubDate>
       <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/nDJ4VEZEqBMnoOJsfFOMsRS/08b7.jpeg?fl=cro,0,166,3200,1800|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Nesouhlasím, že se jen rozhazovalo, říká končící náměstek k čistkám na resortech</szn:title>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_p7_A/nDJ4VEZEqx7ONQniFYN8Fw/79e3/pohranicni-straz-finsko.png?fl=cro,0,100,1909,1073|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Finská policie zatkla dva členy posádky lodi kvůli poškození podmořského kabelu</szn:title>
         <szn:height>40</szn:height>
         <szn:previewtype>common</szn:previewtype>
       </szn:image>
       <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>294958</szn:uid>
+      <szn:uid>295275</szn:uid>
+    </item>
+    <item>
+      <title>Španělská média: Potopená ruská loď mohla vézt jaderné komponenty do KLDR</title>
+      <link>https://www.seznamzpravy.cz/clanek/zahranicni-spanelska-media-potopena-ruska-lod-mohla-vezt-jaderne-komponenty-do-kldr-295268</link>
+      <description>Regionální deník La Verdad uvedl, že vychází z toho, co označil za „oficiální verzi“ španělského vyšetřování.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/295268</guid>
+      <pubDate>Fri, 02 Jan 2026 18:00:00 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_p7_A/kOzkBkwYBTDPt7SKoMFYOAER/9aac/ursa-major-lod-plavidlo.jpeg?fl=cro,0,134,1400,787|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Španělská média: Potopená ruská loď mohla vézt jaderné komponenty do KLDR</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>295268</szn:uid>
       <szn:video>
         <szn:_cls>Video</szn:_cls>
-        <szn:customId>694532ea37f13c40b03e16d6</szn:customId>
-        <szn:duration>2278700</szn:duration>
+        <szn:customId>6957cf2d43166c1f17ae3f53</szn:customId>
+        <szn:duration>26467</szn:duration>
         <szn:expiration></szn:expiration>
-        <szn:sources>
-          <szn:source>5a6f1847c6ef994e0737d099</szn:source>
-        </szn:sources>
-        <szn:url>https://v39-a.sdn.cz/~SEC1~expire-1767127800~scope-video~Cl2cDubGHtr/v_39/vmd/694532ea37f13c40b03e16d6?fl=mdk,855ea356|</szn:url>
+        <szn:sources></szn:sources>
+        <szn:url>https://v39-a.sdn.cz/~SEC1~expire-1767475781~scope-video~OiWPzN4VLup/v_39/vmd/6957cf2d43166c1f17ae3f53?fl=mdk,d929bb4b|</szn:url>
       </szn:video>
     </item>
     <item>
-      <title>Který ministr skončí v Babišově vládě jako první? Šídlo má horký tip</title>
-      <link>https://www.seznamzpravy.cz/clanek/audio-podcast-stastny-podcast-stastny-podcast-specialni-special-aneb-vy-se-ptate-my-odpovidame-295084</link>
-      <description>Šťastný podcast ve složení Šídlo–Povolná–Lasák během vydatné epizody zodpověděl desítky politických, produkčních, popkulturních i peprných dotazů. Který ministr skončí ve funkci jako první? A stane se Nacher pražským primátorem?</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/295084</guid>
-      <pubDate>Mon, 29 Dec 2025 14:00:00 +0100</pubDate>
+      <title>Rvačka ve sněmovně i strach ze zdražení. Nejchudší stát EU začal platit eurem</title>
+      <link>https://www.seznamzpravy.cz/clanek/ekonomika-finance-rvacka-ve-snemovne-i-strach-ze-zdrazeni-nejchudsi-stat-eu-zacal-platit-eurem-295248</link>
+      <description>Nejlépe placená úřednice Unie – šéfka Evropské centrální banky – má od roku 2026 nového kolegu z Bulharska. Země platí nově eurem a dostala i guvernérskou židli v ECB. Státy eurozóny tak mohou ovlivňovat měnovou politiku Unie.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/295248</guid>
+      <pubDate>Fri, 02 Jan 2026 17:30:00 +0100</pubDate>
       <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/nDJ4VEZEqCs9CyMHpFVxK7F/c85d/stastny-podcast.jpeg?fl=cro,0,0,1600,900|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Šťastný podcast: Speciální speciál aneb Vy se ptáte, my odpovídáme</szn:title>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_p7_A/kOzkBkwYBTqAqfLPFFYL8oG/1bd1/bulharsko-euro.jpeg?fl=cro,0,66,1800,1012|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Rvačka ve sněmovně i strach ze zdražení. Nejchudší stát EU začal platit eurem</szn:title>
         <szn:height>40</szn:height>
         <szn:previewtype>common</szn:previewtype>
       </szn:image>
       <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>295084</szn:uid>
+      <szn:uid>295248</szn:uid>
+    </item>
+    <item>
+      <title>Babiš i Okamura v novoročních projevech společnost nesjednocovali</title>
+      <link>https://www.seznamzpravy.cz/clanek/domaci-zivot-v-cesku-petka-sz-babis-i-okamura-v-novorocnich-projevech-spolecnost-nesjednocovali-295259</link>
+      <description>Při novoročních projevech představitelů nové vládní koalice je třeba dávat dobrý pozor na každé slovo. Často v nich totiž zaznívají teze, které nejsou pravdivé nebo jsou přinejmenším velmi nepřesné.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/295259</guid>
+      <pubDate>Fri, 02 Jan 2026 17:00:00 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_of_A/nDJ4VEZEqCaOxZucE9rLSf/6792/petka-sz.jpeg?fl=cro,0,0,1920,1080|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Pětka SZ: Babiš i Okamura v novoročních projevech společnost nesjednocovali</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>295259</szn:uid>
+    </item>
+    <item>
+      <title>Babiš navrhne Turka, prezident odmítne. A dál? Do žaloby se nikomu nechce</title>
+      <link>https://www.seznamzpravy.cz/clanek/domaci-politika-babis-navrhne-turka-prezident-odmitne-a-dal-do-zaloby-se-nikomu-nechce-295239</link>
+      <description>„Mám dokonalou praxi. Byl jsem na inauguraci Trumpa, setkal jsem se s Muskem, byl jsem na Royal Ascot poblíž královské rodiny, vzdal jsem se papalášského života v Bruselu.“ Filip Turek vysvětluje, proč by se měl stát ministrem.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/295239</guid>
+      <pubDate>Fri, 02 Jan 2026 16:45:00 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_oe_A/kOzmiQlmfoQAuLBGSEmyHOs/9669/filip-turek-macinka-motoriste.jpeg?fl=cro,0,156,3000,1687|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Babiš navrhne Turka, prezident odmítne. A dál? Do žaloby se nikomu nechce</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>295239</szn:uid>
+    </item>
+    <item>
+      <title>Náměstkem na MPO se stal bývalý manažer Sev.en Dlask, řešit bude energetiku</title>
+      <link>https://www.seznamzpravy.cz/clanek/domaci-zivot-v-cesku-namestkem-na-mpo-se-stal-byvaly-manazer-sev-en-dlask-resit-bude-energetiku-295266</link>
+      <description>Marcel Dlask, bývalý provozní ředitel Elektrárny Chvaletice a poslanec SPD, bude novým náměstkem na Ministerstvu průmyslu a obchodu,  měl by se věnovat energetice. Novým náměstkem se stal také Jan Sechter za Motoristy.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/295266</guid>
+      <pubDate>Fri, 02 Jan 2026 16:40:21 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_QK_6/GnvDS/dlask-spd.jpeg?fl=cro,0,76,1080,607|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Náměstkem na MPO se stal bývalý manažer Sev.en Dlask, řešit bude energetiku</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>295266</szn:uid>
+    </item>
+    <item>
+      <title>Výstav v Kutné Hoře nabízejí lebky z porcelánu či bezprostřední malby.</title>
+      <link>https://www.seznamzpravy.cz/clanek/kultura-eisnerova-pilar-vystavy-gask-295256</link>
+      <description>Nejen výstavy skupiny 12/15 Pozdě, ale přece nebo jubilejní připomínky výtvarníků Aleny Kučerové a Dalibora Chatrného lze vidět v kutnohorské GASK.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/295256</guid>
+      <pubDate>Fri, 02 Jan 2026 16:33:00 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_p7_A/nDJ4VEZEqCaOxZQNsFYIX1k/4c30/gask.jpeg?fl=cro,0,107,1800,1012|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Lebky z porcelánu, bezprostřední malby. Pilař a Eisnerová vystavují v GASK</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>295256</szn:uid>
+    </item>
+    <item>
+      <title>„Jak ho můžete poslat na frontu s rakovinou?“ Výjimečný vhled do ruské armády</title>
+      <link>https://www.seznamzpravy.cz/clanek/zahranicni-jak-ho-muzete-poslat-na-frontu-s-rakovinou-vyjimecny-vhled-do-ruske-armady-295261</link>
+      <description>Svědectví o bití, či posílání již vážně zraněných mužů na frontu, ukazují systematické fungování válečného aparátu. Deník The New York Times analyzoval tisíce stížností, které zaslali ruští vojáci nebo jejich rodiny ruským úřadům.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/295261</guid>
+      <pubDate>Fri, 02 Jan 2026 16:30:00 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_p7_A/kOzkBkwYBTDPt7SKoMFYLWdF/a7d5/ukr.jpeg?fl=cro,413,568,2600,1462|res,1200,,3|jpg,80</szn:url>
+        <szn:title>„Jak ho můžete poslat na frontu s rakovinou?“ Výjimečný vhled do ruské armády</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>295261</szn:uid>
+    </item>
+    <item>
+      <title>Podle prvních závěrů způsobily požár ve švýcarském baru pyrotechnické svíčky</title>
+      <link>https://www.seznamzpravy.cz/clanek/zahranicni-podle-prvnich-zaveru-zpusobily-pozar-ve-svycarskem-baru-pyrotechnicke-svicky-295270</link>
+      <description>Za tragickým požárem v baru Le Constellation v Crans-Montaně mohou zřejmě hořící pyrotechnické svíčky, které byly příliš blízko u stropu. Obětí a zraněných je zatím identifikovaných 113.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/295270</guid>
+      <pubDate>Fri, 02 Jan 2026 15:47:52 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_p7_A/nDJ4VEZEqCaOxZQPhFYNUc7/b649/policista-svycarsko-le-constellation.jpeg?fl=cro,0,493,4096,2304|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Podle prvních závěrů způsobily požár ve švýcarském baru pyrotechnické svíčky</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>295270</szn:uid>
+    </item>
+    <item>
+      <title>Tesla přišla o prvenství ve výrobě elektromobilů. Válcuje ji konkurence</title>
+      <link>https://www.seznamzpravy.cz/clanek/ekonomika-byznys-doprava-tesla-prisla-o-prvenstvi-ve-vyrobe-elektromobilu-valcuje-ji-konkurence-295254</link>
+      <description>Automobilce Tesla loni výrazně klesly prodeje. Firma podle čísel za rok 2025 udala po celém světě 1,64 milionu vozů. A ztratila tak titul největšího výrobce elektromobilů, kterým se nově stal čínský koncern BYD.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/295254</guid>
+      <pubDate>Fri, 02 Jan 2026 16:00:00 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_m3_A/nPt0vAiT3tC7HBkSyBmT1ju/cc54/tesla-cybercab.webp?fl=cro,0,0,1260,708|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Tesla přišla o prvenství ve výrobě elektromobilů. Válcuje ji konkurence</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>295254</szn:uid>
+    </item>
+    <item>
+      <title>Podle mobilu jsou pořád v baru. Trýznivé čekání na blízké v Crans-Montaně</title>
+      <link>https://www.seznamzpravy.cz/clanek/zahranicni-podle-mobilu-jsou-porad-v-baru-tryznive-cekani-na-blizke-v-crans-montane-295230</link>
+      <description>Sociální sítě po požáru v baru v Crans-Montaně zaplavily výzvy zoufalých rodin a kamarádů pátrajících po blízkých. „Hledám ho a hledat ho nepřestanu,“ vzkazuje matka šestnáctiletého Arthura. Identifikace obětí může trvat týdny.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/295230</guid>
+      <pubDate>Fri, 02 Jan 2026 13:40:00 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_p7_A/kOzkBkwYBTCNNSBKZoFYIx2G/e540/crans-montana.jpeg?fl=cro,0,114,4096,2304|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Podle mobilu jsou pořád v baru. Trýznivé čekání na blízké v Crans-Montaně</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>295230</szn:uid>
+    </item>
+    <item>
+      <title>Rusko podle Kyjeva obviní Ukrajinu z krvavého útoku. Už chystá „důkazy“</title>
+      <link>https://www.seznamzpravy.cz/clanek/zahranicni-rusko-podle-kyjeva-obvini-ukrajinu-z-krvaveho-utoku-uz-chysta-dukazy-295269</link>
+      <description>Rusko by podle ukrajinské rozvědky mohlo během vánočních oslav zinscenovat útok na církevní budovu a obvinit z něj Kyjev.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/295269</guid>
+      <pubDate>Fri, 02 Jan 2026 15:52:35 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_p7_A/nDJ4VEZEqCaOxZQOqFYNHnC/779f/zaporozi.jpeg?fl=cro,0,67,1280,720|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Rusko podle Kyjeva obviní Ukrajinu z krvavého útoku. Už chystá „důkazy“</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>295269</szn:uid>
+    </item>
+    <item>
+      <title>Video: Rusové předali USA části dronu, který prý mířil k Putinově rezidenci</title>
+      <link>https://www.seznamzpravy.cz/clanek/zahranicni-video-rusove-predali-usa-casti-dronu-ktery-pry-miril-k-putinove-rezidenci-295247</link>
+      <description>Kyjev nařčení odmítl, na jeho stranu se přiklonila CIA i nezávislá expertní hodnocení. Institut pro studium války (ISW) uvedl, že z otevřených zdrojů nenašel žádné důkazy, které by potvrzovaly ruskou verzi událostí.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/295247</guid>
+      <pubDate>Fri, 02 Jan 2026 15:40:00 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_p7_A/kOzkBkwYBTDqlCCK8qFYKAXn/651a/rusko-dron.jpeg?fl=cro,0,31,1024,576|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Video: Rusové předali USA části dronu, který prý mířil k Putinově rezidenci</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>295247</szn:uid>
       <szn:video>
         <szn:_cls>Video</szn:_cls>
-        <szn:customId>69497b8fb55432891b889e69</szn:customId>
-        <szn:duration>2564375</szn:duration>
+        <szn:customId>695799314916164cd23430dc</szn:customId>
+        <szn:duration>69680</szn:duration>
         <szn:expiration></szn:expiration>
-        <szn:sources>
-          <szn:source>5a6f1847c6ef994e0737d099</szn:source>
-        </szn:sources>
-        <szn:url>https://v39-a.sdn.cz/~SEC1~expire-1767126919~scope-video~2aFtXHGmfS/v_39/vmd/69497b8fb55432891b889e69?fl=mdk,f28e8fa2|</szn:url>
+        <szn:sources></szn:sources>
+        <szn:url>https://v39-a.sdn.cz/~SEC1~expire-1767476336~scope-video~Nxp7MH0EozY/v_39/vmd/695799314916164cd23430dc?fl=mdk,c507f52a|</szn:url>
       </szn:video>
     </item>
     <item>
-      <title>Recenze: Otec a dcera ve filmu ujíždějí policistům a skinheadům</title>
-      <link>https://www.seznamzpravy.cz/clanek/kultura-na-sedadle-smrti-film-recenze-295105</link>
-      <description>Film Na sedadle smrti patří k nejzajímavějšímu, co lze teď vidět na streamovacích platformách. Úsporná road movie dávkuje brutální násilí či automobilové honičky uvážlivě. Když už na akci dojde, je účelná.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/295105</guid>
-      <pubDate>Mon, 29 Dec 2025 13:00:00 +0100</pubDate>
+      <title>Zpřísnění rachejtlí zřejmě vyčistilo vzduch. Pomůže to s astmatem i rakovinou</title>
+      <link>https://www.seznamzpravy.cz/clanek/domaci-zivot-v-cesku-zprisneni-rachejtli-zrejme-vycistilo-vzduch-pomuze-to-s-astmatem-i-rakovinou-295233</link>
+      <description>Česko zažilo první oslavy příchodu nového roku s výrazným omezením odpalu pyrotechniky. Zároveň šlo o silvestr s nejčistším vzduchem za poslední roky. Pokud se zlepšení potvrdí, může to pomoct astmatikům i prevenci rakoviny.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/295233</guid>
+      <pubDate>Fri, 02 Jan 2026 15:10:00 +0100</pubDate>
       <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/nDJ4VEZEqCaOxZOotFVwxSb/1a62/film-na-sedadle-smrti.jpeg?fl=cro,0,307,3000,1687|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Recenze: Otec a dcera ujíždějí policistům a skinheadům. Nový film je skvělý</szn:title>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_F_F/orjLP.jpeg?fl=cro,0,38,1800,1012|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Zpřísnění rachejtlí zřejmě vyčistilo vzduch. Pomůže to s astmatem i rakovinou</szn:title>
         <szn:height>40</szn:height>
         <szn:previewtype>common</szn:previewtype>
       </szn:image>
       <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>295105</szn:uid>
-    </item>
-    <item>
-      <title>Exposlanec Feri míří znovu před soud, policie uzavřela druhou sexuální kauzu</title>
-      <link>https://www.seznamzpravy.cz/clanek/domaci-zivot-v-cesku-exposlanec-feri-miri-znovu-pred-soudem-policie-uzavrela-druhou-sexualni-kauzu-295106</link>
-      <description>Odsouzený násilník - a také bývalý poslanec - Dominik Feri opět míří na lavici obžalovaných. Po zásahu Ústavního soudu otevřela policie staronový případ.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/295106</guid>
-      <pubDate>Mon, 29 Dec 2025 12:48:50 +0100</pubDate>
-      <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_QM_7/ECDIU.jpeg?fl=cro,0,320,4096,2304|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Exposlanec Feri míří znovu před soud, policie uzavřela druhou sexuální kauzu</szn:title>
-        <szn:height>40</szn:height>
-        <szn:previewtype>common</szn:previewtype>
-      </szn:image>
-      <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>295106</szn:uid>
-    </item>
-    <item>
-      <title>V bývalé elektrárně vystavují monumentální sochy i současnou malbu</title>
-      <link>https://www.seznamzpravy.cz/clanek/kultura-ep01-trutnov-zima-2026-vystavy-295112</link>
-      <description>Tři přehlídky, které spojuje téma člověka v měnícím se světě, lze aktuálně vidět v trutnovském Centru současného umění EPO1. Všechny tři potrvají do 5. dubna 2026.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/295112</guid>
-      <pubDate>Mon, 29 Dec 2025 12:30:00 +0100</pubDate>
-      <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/nDJ4VEZEqBMnoOOpzFV0nMj/7748/epo1.jpeg?fl=cro,0,56,1800,1012|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Monumentální sochy i současná malba. Výstavy hostí bývalá elektrárna</szn:title>
-        <szn:height>40</szn:height>
-        <szn:previewtype>common</szn:previewtype>
-      </szn:image>
-      <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>295112</szn:uid>
+      <szn:uid>295233</szn:uid>
     </item>
   </channel>
 </rss>

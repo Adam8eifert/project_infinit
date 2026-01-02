@@ -19,7 +19,7 @@ class MediumSeznamSpider(scrapy.Spider):
                 "fields": ["source_name", "source_type", "title", "url", "text", "scraped_at"]
             }
         },
-        "ROBOTSTXT_OBEY": True,
+        "ROBOTSTXT_OBEY": False,
         "AUTOTHROTTLE_ENABLED": True,
         "AUTOTHROTTLE_START_DELAY": 2.0,  # More ethical start delay
         "AUTOTHROTTLE_MAX_DELAY": 10.0,   # Larger max delay for better request distribution

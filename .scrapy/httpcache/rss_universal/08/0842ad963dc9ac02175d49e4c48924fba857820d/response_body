@@ -13,7 +13,7 @@
 	<atom:link href="https://info.dingir.cz/feed/" rel="self" type="application/rss+xml" />
 	<link>https://info.dingir.cz</link>
 	<description>Sledujeme dění v pestrém světě náboženství</description>
-	<lastBuildDate>Mon, 29 Dec 2025 09:58:06 +0000</lastBuildDate>
+	<lastBuildDate>Fri, 02 Jan 2026 13:33:12 +0000</lastBuildDate>
 	<language>cs</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -29,6 +29,54 @@
 	<height>32</height>
 </image> 
 <site xmlns="com-wordpress:feed-additions:1">125401860</site>	<item>
+		<title>Náboženské osobnosti, které zemřely roku 2025</title>
+		<link>https://info.dingir.cz/2026/01/nabozenske-osobnosti-ktere-zemrely-roku-2025/</link>
+					<comments>https://info.dingir.cz/2026/01/nabozenske-osobnosti-ktere-zemrely-roku-2025/#respond</comments>
+		
+		<dc:creator><![CDATA[Zdeněk Vojtíšek]]></dc:creator>
+		<pubDate>Fri, 02 Jan 2026 10:00:50 +0000</pubDate>
+				<category><![CDATA[Úvahy a komentáře]]></category>
+		<category><![CDATA[Ágha chán IV.]]></category>
+		<category><![CDATA[Ágha chán V.]]></category>
+		<category><![CDATA[Alí ibn Abí Tálib]]></category>
+		<category><![CDATA[Assemblies of God]]></category>
+		<category><![CDATA[Bill McCartney]]></category>
+		<category><![CDATA[Charlie Kirk]]></category>
+		<category><![CDATA[Ctirad Václav Pospíšil]]></category>
+		<category><![CDATA[Dominik Duka]]></category>
+		<category><![CDATA[Držitelé slibu]]></category>
+		<category><![CDATA[Džaʻfar as-Sádiq Ismáʻíl]]></category>
+		<category><![CDATA[Focus on the Family]]></category>
+		<category><![CDATA[František (papež)]]></category>
+		<category><![CDATA[ismáʻílíja]]></category>
+		<category><![CDATA[James Dobson]]></category>
+		<category><![CDATA[Jim Bakker]]></category>
+		<category><![CDATA[Jimmy Swaggart]]></category>
+		<category><![CDATA[Karim al-Husayni]]></category>
+		<category><![CDATA[Ladislav Hučko]]></category>
+		<category><![CDATA[Martin E. Marty]]></category>
+		<category><![CDATA[nizáríja]]></category>
+		<category><![CDATA[Oral Roberts]]></category>
+		<category><![CDATA[Promise Keepers]]></category>
+		<category><![CDATA[řeckokatolická církev]]></category>
+		<category><![CDATA[Russell M. Nelson]]></category>
+		<category><![CDATA[Shromáždění Boží]]></category>
+		<category><![CDATA[šíʻa sedmi imámů]]></category>
+		<category><![CDATA[šíʻitský islám]]></category>
+		<category><![CDATA[teleevangelizace]]></category>
+		<category><![CDATA[Theodor McCarrick]]></category>
+		<category><![CDATA[Zaostřeno na rodinu]]></category>
+		<guid isPermaLink="false">https://info.dingir.cz/?p=37153</guid>
+
+					<description><![CDATA[<img width="840" height="358" src="https://info.dingir.cz/wp-content/uploads/2026/01/Sunset-Cropped-1024x436.jpg" class="attachment-large size-large wp-post-image" alt="Náboženské osobnosti, které zemřely roku 2025" title="Náboženské osobnosti, které zemřely roku 2025" decoding="async" fetchpriority="high" srcset="https://info.dingir.cz/wp-content/uploads/2026/01/Sunset-Cropped-1024x436.jpg 1024w, https://info.dingir.cz/wp-content/uploads/2026/01/Sunset-Cropped-300x128.jpg 300w, https://info.dingir.cz/wp-content/uploads/2026/01/Sunset-Cropped-768x327.jpg 768w, https://info.dingir.cz/wp-content/uploads/2026/01/Sunset-Cropped-1536x653.jpg 1536w, https://info.dingir.cz/wp-content/uploads/2026/01/Sunset-Cropped-2048x871.jpg 2048w, https://info.dingir.cz/wp-content/uploads/2026/01/Sunset-Cropped-141x60.jpg 141w" sizes="(max-width: 840px) 100vw, 840px" />Stejně jako loni připravuji i letos přehled osobností z&#160;náboženského světa, které tento svět roku 2025 opustily. Tentokrát jsem vybral devět zahraničních osobností a přidal k&#160;nim zmínky o třech českých. Vzor &#8230; ]]></description>
+		
+					<wfw:commentRss>https://info.dingir.cz/2026/01/nabozenske-osobnosti-ktere-zemrely-roku-2025/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+		<media:content url="https://info.dingir.cz/wp-content/uploads/2026/01/Sunset-Cropped.jpg" medium="image"></media:content>
+            <post-id xmlns="com-wordpress:feed-additions:1">37153</post-id>	</item>
+		<item>
 		<title>Súfijský muráqabah (nejen) v&#160;severní Africe</title>
 		<link>https://info.dingir.cz/2025/12/sufijsky-muraqabah-nejen-v-severni-africe/</link>
 					<comments>https://info.dingir.cz/2025/12/sufijsky-muraqabah-nejen-v-severni-africe/#respond</comments>
@@ -293,26 +341,6 @@
 		
 		<media:content url="https://info.dingir.cz/wp-content/uploads/2025/12/Jidasovo-evangelium-po-dvaceti-letech_C.jpg" medium="image"></media:content>
             <post-id xmlns="com-wordpress:feed-additions:1">37057</post-id>	</item>
-		<item>
-		<title>Haitské vúdú: Navzdory otroctví, rasismu a perzekucím 3/4</title>
-		<link>https://info.dingir.cz/2025/12/haitske-vudu-navzdory-otroctvi-rasismu-a-perzekucim-3-4/</link>
-					<comments>https://info.dingir.cz/2025/12/haitske-vudu-navzdory-otroctvi-rasismu-a-perzekucim-3-4/#respond</comments>
-		
-		<dc:creator><![CDATA[Veronika Šulcová]]></dc:creator>
-		<pubDate>Wed, 10 Dec 2025 10:00:16 +0000</pubDate>
-				<category><![CDATA[Články]]></category>
-		<category><![CDATA[Haiti]]></category>
-		<category><![CDATA[vúdú]]></category>
-		<guid isPermaLink="false">https://info.dingir.cz/?p=37030</guid>
-
-					<description><![CDATA[<img width="840" height="473" src="https://info.dingir.cz/wp-content/uploads/2025/11/cover.avif" class="attachment-large size-large wp-post-image" alt="Haitské vúdú: Navzdory otroctví, rasismu a perzekucím 3/4" title="Haitské vúdú: Navzdory otroctví, rasismu a perzekucím 3/4" decoding="async" loading="lazy" srcset="https://info.dingir.cz/wp-content/uploads/2025/11/cover.avif 976w, https://info.dingir.cz/wp-content/uploads/2025/11/cover-300x169.jpg 300w, https://info.dingir.cz/wp-content/uploads/2025/11/cover-768x432.jpg 768w, https://info.dingir.cz/wp-content/uploads/2025/11/cover-107x60.jpg 107w, https://info.dingir.cz/wp-content/uploads/2025/11/cover-840x473.jpg 840w" sizes="auto, (max-width: 840px) 100vw, 840px" />Seriál v&#160;Náboženském infoservisu dosud popsal historii vúdú na Haiti v&#160;koloniální době (zde) a během první „černé republiky“ (zde). Tento třetí díl pojednává o americké intervenci na Haiti a jejích důsledcích. &#8230; ]]></description>
-		
-					<wfw:commentRss>https://info.dingir.cz/2025/12/haitske-vudu-navzdory-otroctvi-rasismu-a-perzekucim-3-4/feed/</wfw:commentRss>
-			<slash:comments>0</slash:comments>
-		
-		
-		<media:content url="https://info.dingir.cz/wp-content/uploads/2025/11/cover.avif" medium="image"></media:content>
-            <post-id xmlns="com-wordpress:feed-additions:1">37030</post-id>	</item>
 	</channel>
 </rss>
 
@@ -322,5 +350,5 @@ Performance optimized by W3 Total Cache. Learn more: https://www.boldgrid.com/w3
 Page Caching using Disk (Page is feed) 
 Lazy Loading (feed)
 
-Served from: info.dingir.cz @ 2025-12-29 22:01:23 by W3 Total Cache
+Served from: info.dingir.cz @ 2026-01-02 22:51:19 by W3 Total Cache
 -->

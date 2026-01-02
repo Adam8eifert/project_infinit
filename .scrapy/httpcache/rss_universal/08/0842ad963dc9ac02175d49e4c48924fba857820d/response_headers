@@ -1,4 +1,4 @@
-Date: Mon, 29 Dec 2025 21:01:23 GMT
+Date: Fri, 02 Jan 2026 21:51:18 GMT
 Server: Apache
 Strict-Transport-Security: max-age=63072000; includeSubDomains;preload
 X-Xss-Protection: 0
@@ -6,10 +6,10 @@ X-Content-Type-Options: nosniff
 X-Frame-Options: SAMEORIGIN
 Content-Security-Policy: frame-ancestors 'self' ;upgrade-insecure-requests;
 Link: <https://info.dingir.cz/wp-json/>; rel="https://api.w.org/"
-Last-Modified: Mon, 29 Dec 2025 10:00:32 GMT
-Etag: "188f8e4db24f7b14bec9ca484bfd4884"
+Last-Modified: Fri, 02 Jan 2026 13:33:12 GMT
+Etag: "6c7f1a250f3a05dfbdd21031460373e0"
 Cache-Control: max-age=600
-Expires: Mon, 29 Dec 2025 21:11:23 GMT
+Expires: Fri, 02 Jan 2026 22:01:18 GMT
 Referrer-Policy: no-referrer-when-downgrade
 Content-Type: application/rss+xml; charset=UTF-8
 X-Accel-Start: 1
@@ -26,7 +26,7 @@ X-Anycast-Port: 443
 X-Forwarded-Proto: https
 X-Forwarded-Port: 443
 X-Visitor-Ip: 78.80.80.248
-X-Request-Id: 2eb9eb7b-6631-40e6-ad43-9180d934a16b
+X-Request-Id: 01e08d46-9055-4f16-bfe6-0f9ff65b0c6e
 X-Provider: WEDOS - WE DO Security (WEDOS.com)
 X-Cdn-Provider: WEDOS Global CDN (WEDOS.delivery)
 X-Protected-By: WEDOS Global Protection (WEDOS.protection)

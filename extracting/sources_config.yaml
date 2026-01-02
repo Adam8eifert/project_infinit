@@ -25,7 +25,7 @@ sources:
     name: "Sekty.cz (RSS Feed)"
     description: "Information portal on new religious movements"
     domain: "sekty.cz"
-    url: "https://sekty.cz/feed/"
+    url: "https://infovira.cz/feed/"
     enabled: true
     type: "rss"
     selectors:
@@ -91,7 +91,7 @@ sources:
   aktualne:
     name: "Aktualne.cz (RSS Feed)"
     domain: "aktualne.cz"
-    url: "https://www.aktualne.cz/export-rss"
+    url: "https://www.aktualne.cz/rss/"
     enabled: true
     type: "rss"
     output_csv: "export/csv/aktualne_rss_raw.csv"
@@ -175,14 +175,14 @@ sources:
   # --- SOCIAL MEDIA (Keep for future setup) ---
   reddit:
     name: "Reddit"
-    enabled: true
+    enabled: false
     type: "social_api"
     subreddits: ["r/cults", "r/spirituality"]
     output_csv: "export/csv/reddit_raw.csv"
 
   x_twitter:
     name: "X (Twitter) API"
-    enabled: true
+    enabled: false
     type: "social_api"
     output_csv: "export/csv/x_twitter_raw.csv"
 
