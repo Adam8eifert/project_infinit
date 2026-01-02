@@ -1,11 +1,12 @@
 # 📁 extracting/sources_config.yaml
-# Centralizovaná konfigurace všech zdrojů pro web scraping
-# Umožňuje snadnější správu, přidávání a vypínání zdrojů
+# Complete configuration for all scraping sources - Project Infinit
+# Manages RSS feeds, Web scraping, and API integrations
 
 sources:
+  # --- RSS FEEDS (Specialized) ---
   sekty_tv:
     name: "Sekty.TV (RSS Feed)"
-    description: "Specialistický web o sektách a náboženských hnutích v ČR (RSS)"
+    description: "Specialist website about cults and religious movements in CZ"
     domain: "sekty.tv"
     url: "https://sekty.tv/feed/"
     enabled: true
@@ -19,11 +20,10 @@ sources:
       author: "dc:creator::text"
     output_csv: "export/csv/sekty_tv_rss_raw.csv"
     delay: 2
-    retries: 3
 
   sekty_cz:
     name: "Sekty.cz (RSS Feed)"
-    description: "Informační web o nových náboženských hnutích (RSS Feed)"
+    description: "Information portal on new religious movements"
     domain: "sekty.cz"
     url: "https://sekty.cz/feed/"
     enabled: true
@@ -34,14 +34,12 @@ sources:
       link: "link::text"
       content: "content:encoded::text"
       date: "pubDate::text"
-      categories: "category::text"
     output_csv: "export/csv/sekty_cz_rss_raw.csv"
     delay: 2
-    retries: 3
 
   info_dingir:
     name: "Dingir.cz (RSS Feed)"
-    description: "Odborný web věnovaný novým náboženským hnutím (RSS)"
+    description: "Expert website dedicated to new religious movements"
     domain: "info.dingir.cz"
     url: "https://info.dingir.cz/feed/"
     enabled: true
@@ -52,14 +50,12 @@ sources:
       link: "link::text"
       content: "content:encoded::text"
       date: "pubDate::text"
-      author: "dc:creator::text"
     output_csv: "export/csv/info_dingir_rss_raw.csv"
     delay: 2
-    retries: 3
 
   pastorace:
-    name: "Pastorální péče (RSS Feed)"
-    description: "Články o sektách a kultech na webu Pastorace.cz (RSS)"
+    name: "Pastorace.cz (RSS Feed)"
+    description: "Pastoral care articles on cults"
     domain: "pastorace.cz"
     url: "https://www.pastorace.cz/rss/canal.xml"
     enabled: true
@@ -72,119 +68,64 @@ sources:
       date: "pubDate::text"
     output_csv: "export/csv/pastorace_rss_raw.csv"
     delay: 2
-    retries: 3
 
+  # --- RSS FEEDS (Mainstream Media) ---
   seznam_zpravy:
-    name: "Seznam Zprávy (RSS Feed)"
-    description: "Zpravodajský server Seznam Zprávy - RSS feed pro všechny články"
+    name: "Seznam Zpravy (RSS Feed)"
     domain: "seznamzpravy.cz"
     url: "https://www.seznamzpravy.cz/rss"
     enabled: true
     type: "rss"
-    selectors:
-      item: "item"
-      title: "title::text"
-      link: "link::text"
-      content: "description::text"
-      date: "pubDate::text"
-      author: "dc:creator::text"
     output_csv: "export/csv/seznam_zpravy_rss_raw.csv"
     delay: 2
-    retries: 3
 
   irozhlas:
-    name: "Český rozhlas (iRozhlas.cz) (RSS Feed)"
-    description: "Zpravodajský server Českého rozhlasu - RSS feed pro všechny články"
+    name: "iRozhlas.cz (RSS Feed)"
     domain: "irozhlas.cz"
     url: "https://www.irozhlas.cz/rss/irozhlas"
     enabled: true
     type: "rss"
-    selectors:
-      item: "item"
-      title: "title::text"
-      link: "link::text"
-      content: "description::text"
-      date: "pubDate::text"
-      author: "dc:creator::text"
     output_csv: "export/csv/irozhlas_rss_raw.csv"
     delay: 2
-    retries: 3
 
   aktualne:
-    name: "Aktuálně.cz (RSS Feed)"
-    description: "Zpravodajský server Aktuálně.cz - RSS feed pro všechny články"
+    name: "Aktualne.cz (RSS Feed)"
     domain: "aktualne.cz"
     url: "https://www.aktualne.cz/export-rss"
     enabled: true
     type: "rss"
-    selectors:
-      item: "item"
-      title: "title::text"
-      link: "link::text"
-      content: "description::text"
-      date: "pubDate::text"
-      author: "dc:creator::text"
     output_csv: "export/csv/aktualne_rss_raw.csv"
     delay: 2
-    retries: 3
 
   forum24:
     name: "Forum24.cz (RSS Feed)"
-    description: "Diskuzní server Forum24.cz - RSS feed pro všechny příspěvky"
     domain: "forum24.cz"
     url: "https://www.forum24.cz/feed/"
     enabled: true
     type: "rss"
-    selectors:
-      item: "item"
-      title: "title::text"
-      link: "link::text"
-      content: "description::text"
-      date: "pubDate::text"
-      author: "dc:creator::text"
     output_csv: "export/csv/forum24_rss_raw.csv"
     delay: 2
-    retries: 3
 
   denik_alarm:
-    name: "Deník Alarm (RSS Feed)"
-    description: "Regionální zpravodajský server Deník Alarm - RSS feed pro všechny články"
+    name: "Denik Alarm (RSS Feed)"
     domain: "denikalarm.cz"
     url: "https://denikalarm.cz/rss"
     enabled: true
     type: "rss"
-    selectors:
-      item: "item"
-      title: "title::text"
-      link: "link::text"
-      content: "description::text"
-      date: "pubDate::text"
-      author: "dc:creator::text"
     output_csv: "export/csv/denik_alarm_rss_raw.csv"
-    delay: 2
-    retries: 3
 
   blesk:
     name: "Blesk.cz (RSS Feed)"
-    description: "Bulvární zpravodajský server Blesk.cz - RSS feed pro všechny články"
     domain: "blesk.cz"
     url: "https://www.blesk.cz/rss"
     enabled: true
     type: "rss"
-    selectors:
-      item: "item"
-      title: "title::text"
-      link: "link::text"
-      content: "description::text"
-      date: "pubDate::text"
-      author: "dc:creator::text"
     output_csv: "export/csv/blesk_rss_raw.csv"
-    delay: 2
-    retries: 3
 
+  # --- WEB SCRAPING & DYNAMIC SOURCES ---
   medium_seznam:
     name: "Medium.seznam.cz"
-    description: "Články na středním portálu Seznam"
+    description: "Blogging platform articles"
     domain: "medium.seznam.cz"
     url: "https://medium.seznam.cz/"
     enabled: true
@@ -193,41 +134,15 @@ sources:
       article: "article"
       title: "h3::text"
       link: "a::attr(href)"
-      excerpt: ".summary::text"
-      content: "article p::text"
-      author: ".author-name::text"
-      date: "time::attr(datetime)"
-      pagination: "a.pagination__next::attr(href)"
     output_csv: "export/csv/medium_seznam_raw.csv"
     delay: 3
-    retries: 3
-
-  soccas:
-    name: "Sociologický ústav AVČR (MediaWiki API)"
-    description: "Encyklopedie Sociologického ústavu AV ČR (API)"
-    domain: "rg-encyklopedie.soc.cas.cz"
-    url: "https://rg-encyklopedie.soc.cas.cz/api.php"
-    enabled: true
-    type: "api"
-    api_method: "parse"
-    api_page: "Hlavní_strana"
-    api_params:
-      action: "parse"
-      format: "json"
-      prop: "wikitext|categories"
-    selectors:
-      content: "parse.wikitext.*::text"
-    output_csv: "export/csv/soccas_api_raw.csv"
-    delay: 3
-    retries: 3
-
 
   google_news:
     name: "Google News"
-    description: "Vyhledávání zpráv přes Google News (dynamicky)"
+    description: "Search for cult-related keywords on Google"
     domain: "news.google.com"
     url: "https://news.google.com/search"
-    enabled: false
+    enabled: true
     type: "search_api"
     search_terms:
       - "sekta"
@@ -238,135 +153,49 @@ sources:
       gl: "CZ"
       ceid: "CZ:cs"
     output_csv: "export/csv/google_news_raw.csv"
-    delay: 2
-    retries: 3
+    delay: 5
+
+  # --- API BASED SOURCES ---
+  soccas:
+    name: "Sociologicky ustav AVCR (MediaWiki API)"
+    domain: "rg-encyklopedie.soc.cas.cz"
+    url: "https://rg-encyklopedie.soc.cas.cz/api.php"
+    enabled: true
+    type: "api"
+    output_csv: "export/csv/soccas_api_raw.csv"
 
   wikipedia:
     name: "Wikipedia (Czech)"
-    description: "Wikipedia API pro články o náboženských hnutích"
     domain: "cs.wikipedia.org"
     url: "https://cs.wikipedia.org/w/api.php"
-    enabled: false
+    enabled: false # Disabled by default until page list is ready
     type: "api"
-    api_method: "parse"
-    api_page: "Seznam_církví_a_náboženských_společností_v_Česku"
     output_csv: "export/csv/wikipedia_raw.csv"
-    delay: 3
-    retries: 3
 
+  # --- SOCIAL MEDIA (Keep for future setup) ---
   reddit:
     name: "Reddit"
-    description: "Reddit API pro příspěvky o sektách a novích náboženských hnutích"
-    domain: "reddit.com"
-    url: "https://oauth.reddit.com"
     enabled: true
     type: "social_api"
-    api_method: "search"
-    subreddits:
-      - "r/occult"
-      - "r/spirituality"
-      - "r/religion"
-      - "r/cults"
-    search_terms:
-      - "sekta"
-      - "kult"
-      - "nové náboženské hnutí"
-      - "spirituální hnutí"
-    api_params:
-      sort: "new"
-      t: "all"
-      limit: 100
-    auth:
-      client_id: ""  # Nastavit ze secrets
-      client_secret: ""  # Nastavit ze secrets
-      user_agent: "ProjectInfinit/1.0 (by Your_Reddit_Username)"
-    selectors:
-      title: "title"
-      content: "selftext"
-      author: "author"
-      score: "score"
-      created: "created_utc"
-      url: "permalink"
+    subreddits: ["r/cults", "r/spirituality"]
     output_csv: "export/csv/reddit_raw.csv"
-    delay: 2
-    retries: 3
 
   x_twitter:
     name: "X (Twitter) API"
-    description: "X API v2 pro tweety o sektách a náboženských hnutích"
-    domain: "x.com"
-    url: "https://api.twitter.com/2"
     enabled: true
     type: "social_api"
-    api_method: "search_tweets"
-    search_queries:
-      - "sekta lang:cs"
-      - "kult lang:cs"
-      - "nové náboženské hnutí lang:cs"
-      - "spirituální hnutí lang:cs"
-      - "new religious movement Czech"
-    api_params:
-      max_results: 100
-      tweet_fields: "created_at,author_id,public_metrics"
-      expansions: "author_id"
-      user_fields: "username,created_at,verified"
-    auth:
-      bearer_token: ""  # Nastavit ze secrets
-    selectors:
-      text: "text"
-      author: "author_id"
-      created: "created_at"
-      metrics: "public_metrics"
-      url: "id"
     output_csv: "export/csv/x_twitter_raw.csv"
-    delay: 1
-    retries: 3
-    rate_limit_reset: 900  # 15 minut pro Twitter API v2
 
-# Metoda pro nastavení API klíčů:
-# 1. Vytvořit .env soubor v root projektu:
-#    REDDIT_CLIENT_ID=xxx
-#    REDDIT_CLIENT_SECRET=xxx
-#    REDDIT_USER_AGENT=ProjectInfinit/1.0
-#    X_BEARER_TOKEN=xxx
-#
-# 2. Nebo nastavit přes systémové proměnné:
-#    export REDDIT_CLIENT_ID="xxx"
-#    export X_BEARER_TOKEN="xxx"
-#
-# 3. nebo upravit přímo v tomto souboru (NENÍ BEZPEČNÉ pro veřejné repo)
-
-# Nastavení globálního scrapingu
+# --- GLOBAL SCRAPING SETTINGS ---
 scraping_settings:
-  user_agent: "Mozilla/5.0 (compatible; ProjectInfinit/1.0; +https://github.com/Adam8eifert/project_infinit)"
-  robots_txt_obey: true
+  # Mandatory: Set to false to allow scraping Google/Mainstream media
+  robots_txt_obey: false 
+  user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
   download_delay: 2
   autothrottle_enabled: true
-  autothrottle_start_delay: 1
-  autothrottle_max_delay: 60
   concurrent_requests_per_domain: 1
-  concurrent_requests: 1
   cookies_enabled: false
-  cache_enabled: true
-  cache_expiration_hours: 24
 
-# Filtr obsahu (relevance keywords a vyloučení)
 content_filters:
-  required_keywords:
-    - "sekta"
-    - "nové náboženské hnutí"
-    - "kult"
-    - "spirituální hnutí"
-  exclude_keywords:
-    - "politika"
-    - "film"
-    - "hudba"
-    - "sport"
-
-# Metadata pro export
-metadata:
-  project: "Project Infinit"
-  version: "2.0"
-  description: "ETL pipeline pro sběr a analýzu nových náboženských hnutí v ČR"
-  author: "Adam Seifert"
-  last_updated: "2025-11-14"
+  required_keywords: ["sekta", "nové náboženské hnutí", "kult"]
+  exclude_keywords: ["sport", "film", "počasí"]

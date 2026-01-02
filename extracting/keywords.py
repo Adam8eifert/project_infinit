@@ -42,6 +42,7 @@ SEARCH_TERMS: List[str] = [
     "nové náboženské hnutí",
     "NNH",
     "NRM",
+    "NDH",
     "nové duchovní hnutí",
     "nová duchovní hnutí",
     "nové spirituální hnutí"

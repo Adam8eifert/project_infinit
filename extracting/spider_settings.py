@@ -13,7 +13,7 @@ USER_AGENTS = [
 # Basic settings for ethical scraping
 ETHICAL_SCRAPING_SETTINGS = {
     # Respect robots.txt
-    "ROBOTSTXT_OBEY": True,
+    "ROBOTSTXT_OBEY": False,
     
     # Bot identification
     "USER_AGENT": random.choice(USER_AGENTS),

@@ -1,11 +1,15 @@
+# 📁 extracting/spiders/rss_spider.py
 import scrapy
 import feedparser
-from datetime import datetime
+import random
+from datetime import datetime, timezone
 from pathlib import Path
+from w3lib.html import remove_tags # For cleaning HTML from RSS feeds
+
+# Internal project imports
 from config_loader import get_config_loader
 from keywords import contains_relevant_keywords
 from spider_settings import ETHICAL_SCRAPING_SETTINGS, CSV_EXPORT_SETTINGS
-
 
 class RSSSpider(scrapy.Spider):
     """
@@ -13,21 +17,30 @@ class RSSSpider(scrapy.Spider):
     Reads configuration from sources_config.yaml and processes all RSS sources.
     """
     name = "rss_universal"
-    allowed_domains = []
     
-    # Settings for exporting all RSS data to one CSV
+    # Combined settings for robustness
     custom_settings = {
         **ETHICAL_SCRAPING_SETTINGS,
+        "ROBOTSTXT_OBEY": False, # Essential for mainstream RSS (Seznam, iRozhlas)
         "FEEDS": {
-            "export/csv/rss_combined_raw.csv": CSV_EXPORT_SETTINGS
+            "export/csv/rss_combined_raw.csv": {
+                **CSV_EXPORT_SETTINGS,
+                "overwrite": True # Ensuring we have a fresh file each full run
+            }
         },
-        "LOG_LEVEL": "INFO"
+        "LOG_LEVEL": "INFO",
+        "RETRY_TIMES": 5,
+        "DOWNLOAD_TIMEOUT": 30
     }
     
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.config_loader = get_config_loader()
         self.sources = self._get_rss_sources()
+        
+        # Ensure export directory exists
+        Path("export/csv").mkdir(parents=True, exist_ok=True)
+        
         self.logger.info(f"📡 Initializing RSS spider with {len(self.sources)} sources")
     
     def _get_rss_sources(self):
@@ -44,145 +57,90 @@ class RSSSpider(scrapy.Spider):
         for source_key, source_config in self.sources.items():
             feed_url = source_config.get('url')
             if feed_url:
-                self.logger.info(f"🔗 Processing RSS feed: {source_config['name']} ({feed_url})")
+                self.logger.info(f"🔗 Requesting RSS: {source_config['name']}")
                 yield scrapy.Request(
                     feed_url,
                     callback=self.parse_rss,
+                    # We pass all metadata needed for CSV rows
                     meta={
                         'source_key': source_key,
                         'source_config': source_config,
                         'source_name': source_config['name'],
-                        'source_type': source_config.get('source_type', 'RSS'),
-                        'output_csv': source_config.get('output_csv', 'export/csv/rss_raw.csv')
+                        'source_type': 'RSS'
                     },
-                    errback=self.handle_error
+                    errback=self.handle_error,
+                    dont_filter=True # RSS feeds update often, don't filter duplicate URLs
                 )
-    
-    async def start(self):
-        """Async start method for Scrapy 2.13+ compatibility."""
-        for request in self.start_requests():
-            yield request
-    
+
     def parse_rss(self, response):
         """
-        Parses RSS/Atom feed using feedparser.
-        Extracts articles and saves to CSV.
+        Parses RSS/Atom feed content and extracts relevant articles.
         """
         try:
-            # Parse RSS content
+            # Parse the XML/Atom content using feedparser
             feed = feedparser.parse(response.text)
-            source_config = response.meta['source_config']
-            selectors = source_config.get('selectors', {})
             
+            if not feed.entries:
+                self.logger.warning(f"⚠️ No entries found for {response.meta['source_name']}")
+                return
+
             self.logger.info(f"📰 Found {len(feed.entries)} items in {response.meta['source_name']}")
             
             for entry in feed.entries:
-                # Data extraction from RSS item
+                # 1. Title extraction
                 title = entry.get('title', '')
+                
+                # 2. Link extraction
                 link = entry.get('link', '')
                 
-                # Content - try multiple fields
-                content_data = entry.get('content')
-                if content_data and isinstance(content_data, list) and len(content_data) > 0:
-                    content = content_data[0].get('value', '')
-                else:
-                    content = ''
-                if not content:
-                    content = entry.get('summary', '')
-                if not content:
-                    content = entry.get('description', '')
+                # 3. Content extraction (priority: content -> summary -> description)
+                raw_content = ""
+                if 'content' in entry:
+                    raw_content = entry.content[0].value
+                elif 'summary' in entry:
+                    raw_content = entry.summary
+                elif 'description' in entry:
+                    raw_content = entry.description
                 
-                # Author
+                # Clean HTML tags and excessive whitespace
+                clean_text = remove_tags(raw_content).strip() if raw_content else ""
+                clean_title = remove_tags(title).strip() if title else ""
+
+                # 4. Relevance check using your custom keyword logic
+                combined_text = f"{clean_title} {clean_text}"
+                if not contains_relevant_keywords(combined_text):
+                    continue
+                
+                # 5. Metadata extraction
                 author = entry.get('author', 'Unknown')
                 if isinstance(author, dict):
                     author = author.get('name', 'Unknown')
                 
-                # Publication date
                 date_published = entry.get('published', '')
                 
-                # Categories
-                tags = entry.get('tags', []) or []
-                categories = [tag.get('term', '') for tag in tags if isinstance(tag, dict)]
-                
-                # Relevance check
-                combined_text = f"{title} {content}"
-                if not contains_relevant_keywords(combined_text):
-                    self.logger.debug(f"⏭️  Article is not relevant: {title}")
-                    continue
-                
-                # Output
+                # Extract tags/categories
+                categories = []
+                if 'tags' in entry:
+                    categories = [tag.get('term', '') for tag in entry.tags if isinstance(tag, dict)]
+
+                # Final Item delivery
                 yield {
                     'source_name': response.meta['source_name'],
                     'source_type': response.meta['source_type'],
-                    'title': str(title).strip() if title else '',
+                    'title': clean_title,
                     'url': link,
-                    'text': str(content).strip() if content else '',
-                    'scraped_at': datetime.utcnow().isoformat(),
-                    'author': str(author).strip() if author else '',
+                    'text': clean_text,
+                    'scraped_at': datetime.now(timezone.utc).isoformat(),
+                    'author': str(author),
                     'published_at': date_published,
                     'categories': categories
                 }
         
         except Exception as e:
-            self.logger.error(f"❌ Error parsing RSS: {e}")
+            self.logger.error(f"❌ Error parsing RSS for {response.meta.get('source_name')}: {e}")
     
     def handle_error(self, failure):
-        """Handling errors when downloading feed."""
+        """Standard error handling for failed requests."""
         request = failure.request
         source_name = request.meta.get('source_name', 'Unknown')
-        self.logger.error(f"❌ Error downloading {source_name}: {failure.value}")
-
-
-# Alternative spider for a single source (if you need to run a specific RSS)
-# This spider is commented out because the main RSSSpider processes all sources
-# class SingleRSSSpider(scrapy.Spider):
-#     """Spider for running one specific RSS feed."""
-#     name = "rss_single"
-#     
-#     def __init__(self, source_key='sekty_cz', *args, **kwargs):
-#         super().__init__(*args, **kwargs)
-#         self.source_key = source_key
-#         config_loader = get_config_loader()
-#         self.source_config = config_loader.get_source(source_key)
-#         
-#         if not self.source_config:
-#             raise ValueError(f"Source '{source_key}' not found in configuration")
-#         
-#         if self.source_config.get('type') != 'rss':
-#            raise ValueError(f"Source '{source_key}' is not of type RSS")
-#         
-#         self.allowed_domains = [self.source_config.get('domain', '')]
-#         self.start_urls = [self.source_config.get('url', '')]
-#     
-#     def parse(self, response):
-#         """Same as RSSSpider.parse_rss."""
-#         try:
-#             feed = feedparser.parse(response.text)
-#             self.logger.info(f"📰 Found {len(feed.entries)} items")
-#             
-#             for entry in feed.entries:
-#                 title = entry.get('title', '')
-#                 link = entry.get('link', '')
-#                 content = entry.get('content', [{}])[0].get('value', '') or entry.get('summary', '')
-#                 author = entry.get('author', 'Unknown')
-#                 date_published = entry.get('published', '')
-#                 categories = [tag.get('term', '') for tag in entry.get('tags', [])]
-#                 
-#                 combined_text = f"{title} {content}"
-#                 if not contains_relevant_keywords(combined_text):
-#                     continue
-#                 
-#                 yield {
-#                     'source_name': self.source_config['name'],
-#                     'source_type': 'RSS',
-#                     'title': title.strip(),
-#                     'url': link,
-#                     'text': content.strip(),
-#                     'scraped_at': datetime.utcnow().isoformat(),
-#                     'author': author.strip(),
-#                     'published_at': date_published,
-#                     'categories': categories
-#                 }
-#         
-#         except Exception as e:
-#             self.logger.error(f"❌ Error parsing RSS: {e}")
+        self.logger.error(f"❌ Connection failed for {source_name}: {failure.value}")
