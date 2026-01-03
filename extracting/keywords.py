@@ -144,7 +144,7 @@ KNOWN_MOVEMENTS = {
         "Silvova metoda",
         "Zodiakální škola",
         "Poetrie",
-        "Kuřimská sekta"
+        "Kuřimská sekta",
         "Škola Aria",
         "Arnold Varvarinec",
         "Zprávy z galaxie",

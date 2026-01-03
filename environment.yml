@@ -1,18 +1,19 @@
 name: project_infinit
 channels:
   - conda-forge
+  - defaults
 dependencies:
   - python=3.10
   - pip
   - mamba
-  - pandas
-  - scrapy
-  - sqlalchemy
-  - pymupdf
-  - feedparser
-  - pyyaml
-  - requests
-  - psycopg2
+  - pandas=2.3.0
+  - scrapy=2.13.1
+  - sqlalchemy=2.0.41
+  - pymupdf=1.23.8
+  - feedparser=6.0.10
+  - pyyaml=6.0.1
+  - requests=2.31.0
+  - psycopg2-binary=2.9.7
   - pip:
     - transformers==4.52.4
     - spacy==3.7.2
@@ -20,3 +21,4 @@ dependencies:
     - praw==7.8.0
     - tweepy==4.14.0
     - python-dotenv==1.0.0
+    - python-levenshtein

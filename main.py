@@ -117,6 +117,8 @@ def process_entities():
         from database.db_loader import DBConnector, Movement, Alias, Location, Source
         from processing.nlp_analysis import CzechTextAnalyzer
         import re
+        from fuzzywuzzy import fuzz
+        from fuzzywuzzy.process import extractOne
         
         db = DBConnector()
         session = db.get_session()
@@ -185,28 +187,86 @@ def process_entities():
             
             potential_movements = filtered_movements[:3]  # Limit to 3 per source
             
-            # Create movements
+            # Create movements and aliases
             for movement_name in potential_movements[:3]:  # Limit to 3 per source
                 # Flush session to ensure previous additions are visible
                 session.flush()
                 
-                # Check if movement already exists (exact match, case-insensitive)
-                existing = session.query(Movement).filter(
-                    Movement.canonical_name.ilike(movement_name)
-                ).first()
-                
-                if not existing:
-                    movement = Movement(
-                        canonical_name=movement_name,
-                        category="religious",
-                        description=f"Extracted from source: {source.url}",
-                        active_status="unknown"
-                    )
-                    session.add(movement)
-                    movements_created += 1
-                    print(f"  ➕ Created movement: {movement_name}")
+                # Check if this is a known canonical name
+                if movement_name in known_nsm:
+                    # This is a canonical name - create or update movement
+                    existing = session.query(Movement).filter(
+                        Movement.canonical_name.ilike(movement_name)
+                    ).first()
+                    
+                    if not existing:
+                        movement = Movement(
+                            canonical_name=movement_name,
+                            category="religious",
+                            description=f"Extracted from source: {source.url}",
+                            active_status="unknown"
+                        )
+                        session.add(movement)
+                        movements_created += 1
+                        print(f"  ➕ Created movement: {movement_name}")
+                    else:
+                        print(f"  ⏭️  Movement already exists: {movement_name}")
                 else:
-                    print(f"  ⏭️  Movement already exists: {movement_name}")
+                    # This is not a canonical name - find best match and create alias
+                    best_match, score = extractOne(movement_name, known_nsm, scorer=fuzz.ratio)
+                    if score >= 80:  # High confidence match
+                        # Find the movement
+                        canonical_movement = session.query(Movement).filter(
+                            Movement.canonical_name.ilike(best_match)
+                        ).first()
+                        
+                        if not canonical_movement:
+                            # Create the canonical movement first
+                            canonical_movement = Movement(
+                                canonical_name=best_match,
+                                category="religious",
+                                description=f"Created for alias: {movement_name}",
+                                active_status="unknown"
+                            )
+                            session.add(canonical_movement)
+                            movements_created += 1
+                            print(f"  ➕ Created canonical movement: {best_match}")
+                        
+                        # Check if alias already exists
+                        existing_alias = session.query(Alias).filter(
+                            Alias.movement_id == canonical_movement.id,
+                            Alias.alias.ilike(movement_name)
+                        ).first()
+                        
+                        if not existing_alias:
+                            alias = Alias(
+                                movement_id=canonical_movement.id,
+                                alias=movement_name,
+                                alias_type="extracted",
+                                confidence_score=score / 100.0
+                            )
+                            session.add(alias)
+                            print(f"  ➕ Created alias: {movement_name} -> {best_match} (score: {score})")
+                        else:
+                            print(f"  ⏭️  Alias already exists: {movement_name}")
+                    else:
+                        # Low confidence - create as new canonical movement anyway
+                        existing = session.query(Movement).filter(
+                            Movement.canonical_name.ilike(movement_name)
+                        ).first()
+                        
+                        if not existing:
+                            movement = Movement(
+                                canonical_name=movement_name,
+                                category="religious",
+                                description=f"Extracted from source: {source.url} (low confidence match)",
+                                active_status="unknown"
+                            )
+                            session.add(movement)
+                            movements_created += 1
+                            print(f"  ➕ Created movement (low confidence): {movement_name}")
+                        else:
+                            print(f"  ⏭️  Movement already exists: {movement_name}")
             locations = []
             czech_cities = ['praha', 'brno', 'ostrava', 'plzeň', 'liberec', 'olomouc', 'české budějovice', 'hradec králové', 'pardubice', 'zlín']
             

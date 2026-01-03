@@ -39,7 +39,7 @@ class CzechTextAnalyzer:
         # Using '# type: ignore' to suppress Pylance overloads issues
         try:
             self.sentiment_analyzer = pipeline(
-                task="sentiment-analysis",
+                task="sentiment-analysis",  # type: ignore
                 model="nlptown/bert-base-multilingual-uncased-sentiment"
             ) # type: ignore
             self.sentiment_available = True
@@ -52,7 +52,7 @@ class CzechTextAnalyzer:
         # Load NER pipeline (WikiNeural works without authentication)
         try:
             self.ner_analyzer = pipeline(
-                task="ner",
+                task="ner",  # type: ignore
                 model="Babelscape/wikineural-multilingual-ner",
                 aggregation_strategy="simple"
             ) # type: ignore

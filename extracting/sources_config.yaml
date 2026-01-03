@@ -25,7 +25,7 @@ sources:
     name: "Sekty.cz (RSS Feed)"
     description: "Information portal on new religious movements"
     domain: "sekty.cz"
-    url: "https://infovira.cz/feed/"
+    url: "https://sekty.cz/feed/"
     enabled: true
     type: "rss"
     selectors:
@@ -68,6 +68,23 @@ sources:
       date: "pubDate::text"
     output_csv: "export/csv/pastorace_rss_raw.csv"
     delay: 2
+
+vira_cz:
+  name: "Vira.cz (RSS Feed)"
+  description: "Religious portal providing general Christian perspectives and news"
+  domain: "vira.cz"
+  url: "https://www.vira.cz/rss/canal.xml"
+  enabled: true
+  type: "rss"
+  selectors:
+    item: "item"
+    title: "title::text"
+    link: "link::text"
+    # Note: vira.cz usually provides summary in 'description'
+    content: "description::text" 
+    date: "pubDate::text"
+  output_csv: "export/csv/vira_cz_rss_raw.csv"
+  delay: 2  
 
   # --- RSS FEEDS (Mainstream Media) ---
   seznam_zpravy:
