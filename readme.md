@@ -52,31 +52,50 @@ project_infinit/
 │   └── __pycache__/         # Python bytecode
 ├── processing/            # Data processing and analysis
 │   ├── nlp_analysis.py       # NLP pipeline with Czech support
-│   └── import_csv_to_db.py   # Database ingestion utilities
+│   ├── import_csv_to_db.py   # CSV database ingestion utilities
+│   ├── import_pdf_to_db.py   # PDF processing and ingestion
+│   └── __pycache__/         # Python bytecode
 ├── database/              # Database layer
 │   ├── db_loader.py          # SQLAlchemy models and connections
 │   ├── models/              # Database models
 │   │   ├── source.py        # Source model
 │   │   ├── movement.py      # Movement model
 │   │   ├── alias.py         # Alias model
-│   │   └── location.py      # Location model
-│   └── schema.sql           # Database schema
+│   │   ├── location.py      # Location model
+│   │   ├── source_quality.py # Source quality model
+│   │   ├── geographic_analysis.py # Geographic analysis model
+│   │   ├── temporal_analysis.py # Temporal analysis model
+│   │   └── __init__.py      # Models init
+│   ├── schema.sql           # Database schema
+│   ├── views.sql            # Database views
+│   ├── deduplicate_sources.py # Source deduplication utilities
+│   ├── ANALYTICS_README.md  # Analytics documentation
+│   ├── migrate_analytics.py # Analytics migration script
+│   ├── migrations/          # Database migrations
+│   └── __pycache__/         # Python bytecode
 ├── testing/               # Test suite
 │   ├── test_*.py           # Unit tests for all modules
-│   └── README.md           # Testing documentation
+│   ├── README.md           # Testing documentation
+│   └── __pycache__/         # Python bytecode
 ├── export/                # Output files and exports
 │   ├── csv/               # Scraped and processed CSV data
 │   └── to_powerbi.py      # Power BI export utilities
 ├── data/                  # Input data directory
-│   ├── pdf/               # PDF documents for processing
-│   └── xlsx/              # Excel files for conversion
-├── dags/                  # Apache Airflow DAGs (optional)
+├── academic_data/         # Academic PDF documents for processing
+├── nnh-db/                # Docker database setup
+│   ├── docker             # Docker files
+│   └── docker-compose.yml # Docker Compose configuration
 ├── .github/               # GitHub configuration
+│   └── copilot-instructions.md # AI assistant instructions
 ├── config.py              # Database and app configuration
 ├── main.py                # Main ETL orchestrator
 ├── requirements.txt       # Python dependencies
 ├── environment.yml        # Conda environment
 ├── pyrightconfig.json    # Pyright type checking config
+├── LICENSE                # Project license
+├── SOCIAL_MEDIA_SETUP.md  # Social media API setup guide
+├── import_log.txt         # CSV import log
+├── pdf_import_log.txt     # PDF import log
 └── readme.md             # This file
 ```
 

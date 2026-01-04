@@ -1,27 +1,28 @@
 # 📁 extracting/google_spider.py
-# Scrapy spider for Google News (raw export without NLP)
+# Scrapy spider for Google News using the RSS bypass (No Consent Wall)
 
 import scrapy
 from urllib.parse import quote
 from datetime import datetime
+import lxml.etree as ET # Useful for cleaner XML parsing
+
 # Import settings and keywords from local project files
 try:
     from spider_settings import ETHICAL_SCRAPING_SETTINGS, CSV_EXPORT_SETTINGS
     from keywords import SEARCH_TERMS, EXCLUDE_TERMS
 except ImportError:
     # Fallback values if imports fail
-    SEARCH_TERMS = ["sekty", "kult"]
-    EXCLUDE_TERMS = ["-ufo"]
+    SEARCH_TERMS = ["sekta", "kult"]
+    EXCLUDE_TERMS = ["-film", "-hra"]
 
 class GoogleNewsSpider(scrapy.Spider):
     name = "google_news_spider"
     allowed_domains = ["news.google.com", "google.com"]
-    
-    # FIXED INDENTATION: custom_settings must be inside the class
+
     custom_settings = {
         'ROBOTSTXT_OBEY': False,
-        'COOKIES_ENABLED': True, 
-        'DOWNLOAD_DELAY': 2.5, # Be gentle to avoid being blocked by Google
+        'DOWNLOAD_DELAY': 1.5,
+        'COOKIES_ENABLED': False, # Not needed for RSS
         'USER_AGENT': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
         'DEFAULT_REQUEST_HEADERS': {
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
@@ -39,64 +40,64 @@ class GoogleNewsSpider(scrapy.Spider):
     }
 
     def start_requests(self):
-        """Generates requests for each search term defined in keywords.py"""
+        """Generates requests for Google News RSS feed"""
         for term in SEARCH_TERMS:
-            # Combine term with excluded keywords and encode for URL
-            query = quote(term + ' ' + ' '.join(EXCLUDE_TERMS))
-            url = f"https://news.google.com/search?q={query}&hl=cs&gl=CZ&ceid=CZ%3Acs"
+            # RSS endpoint is different from the web search endpoint
+            query = quote(term + ' ' + ' '.join(f'-{e}' for e in EXCLUDE_TERMS))
+            # Added /rss/ to the path
+            url = f"https://news.google.com/rss/search?q={query}&hl=cs&gl=CZ&ceid=CZ%3Acs"
             
             yield scrapy.Request(
                 url=url,
-                callback=self.parse,
+                callback=self.parse_rss,
+                meta={'query': term}
+            )
+
+    def parse_rss(self, response):
+        """Parses the XML RSS feed from Google"""
+        # Scrapy can use selectors on XML just like on HTML
+        items = response.xpath('//item')
+        
+        for item in items:
+            title = item.xpath('title/text()').get()
+            # Google News RSS links often contain a redirect tracker
+            google_link = item.xpath('link/text()').get()
+            pub_date = item.xpath('pubDate/text()').get()
+            source = item.xpath('source/text()').get()
+
+            # Follow the link to get the actual article content
+            yield scrapy.Request(
+                url=google_link,
+                callback=self.parse_article,
                 meta={
-                    'query': term,
-                    'source_name': 'Google News'
+                    'title': title,
+                    'query': response.meta['query'],
+                    'date_published': pub_date,
+                    'source_name': source
                 }
             )
 
-    def parse(self, response):
-        """Parses the search results page and follows article links"""
-        articles = response.css('article')
-        for article in articles:
-            title = article.css('h3::text, h4::text, a::text').get()
-            link = article.css('a::attr(href)').get()
-            
-            if link:
-                # Handle relative links used by Google News
-                full_url = response.urljoin(link.replace('./', ''))
-                yield scrapy.Request(
-                    full_url, 
-                    callback=self.parse_article, 
-                    meta={
-                        'title': title,
-                        'url': full_url,
-                        'query': response.meta['query']
-                    }
-                )
-
     def parse_article(self, response):
-        """Processes the final article page after redirection"""
-        title = response.meta.get('title')
-        url = response.url # Use final URL after redirects
-        query = response.meta.get('query')
+        """Extracts the full text from the final destination page"""
+        # Sometimes Google redirects through multiple layers
+        final_url = response.url
         
-        # Extract text content using various common selectors
-        text_parts = response.css('article p::text, .article-content p::text, .entry-content p::text, p::text').getall()
-        # Filter out short fragments to get meaningful paragraphs
-        text = ' '.join([p.strip() for p in text_parts if len(p.strip()) > 20])
-        
-        # Handle cases where extraction failed
-        if not text:
-            text = "Content extraction failed (possible dynamic content or bot protection)."
+        # Select all paragraphs to get the body text
+        # We use a broad selector to cover various news sites
+        paragraphs = response.css('article p::text, .article-body p::text, p::text').getall()
+        full_text = ' '.join([p.strip() for p in paragraphs if len(p.strip()) > 30])
+
+        if len(full_text) < 100:
+            # Likely a paywall or cookie wall on the target site itself
+            full_text = "[Content extraction failed or limited - possible paywall]"
 
         yield {
-            "source_name": "Google News",
-            "source_type": "news",
-            "title": title,
-            "url": url,
-            "text": text[:5000], # Limit text length for database storage
+            "source_name": response.meta.get('source_name') or "Google News",
+            "source_type": "news_aggregator",
+            "title": response.meta.get('title'),
+            "url": final_url,
+            "text": full_text[:8000], # Limit for database safety
             "scraped_at": datetime.now().isoformat(),
-            "query": query,
-            "author": response.css('.author::text, meta[name="author"]::attr(content)').get() or "Unknown",
-            "date_published": response.css('time::attr(datetime), meta[property="article:published_time"]::attr(content)').get()
+            "query": response.meta.get('query'),
+            "date_published": response.meta.get('date_published')
         }

@@ -138,6 +138,9 @@ dmypy.json
 data/
 !data/.gitkeep
 
+# Academic data files (PDFs, etc.)
+academic_data/
+
 # Logs
 *.log
 import_log.txt
