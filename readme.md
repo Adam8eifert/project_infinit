@@ -1,6 +1,6 @@
 # 📘 Project Infinit - Analysis of New Religious Movements in the Czech Republic
 
-An ETL pipeline for collecting, analyzing, and visualizing information about new religious movements and sects in the Czech Republic. Features ethical web scraping, NLP analysis, and structured data storage.
+An ETL pipeline for collecting, analyzing, and visualizing information about new religious movements in the Czech Republic. Features ethical web scraping, NLP analysis, and structured data storage.
 
 [🇨🇿 Česká verze níže](#-projekt-infinit---analýza-nových-náboženských-hnutí-v-čr)
 
