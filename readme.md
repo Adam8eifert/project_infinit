@@ -126,7 +126,7 @@ python -m spacy download cs_core_news_md
 
 ### 3. Configure Database
 
-The project supports both PostgreSQL and SQLite. By default, it uses SQLite for simplicity.
+The project supports both PostgreSQL and SQLite.
 
 ```python
 # config.py (default configuration)
@@ -310,7 +310,7 @@ The database uses SQLAlchemy ORM with the following main entities:
 
 # 🇨🇿 Projekt Infinit - Analýza nových náboženských hnutí v ČR
 
-ETL pipeline pro sběr, analýzu a vizualizaci informací o nových náboženských hnutích a sektách v České republice. Zahrnuje etický web scraping, NLP analýzu a strukturované ukládání dat.
+ETL pipeline pro sběr, analýzu a vizualizaci informací o nových náboženských hnutích v České republice. Zahrnuje etický web scraping, NLP analýzu a strukturované ukládání dat.
 
 ## 🌟 Funkce
 
@@ -415,7 +415,7 @@ python -m spacy download cs_core_news_md
 
 ### 3. Konfigurace databáze
 
-Projekt podporuje PostgreSQL i SQLite. Standardně používá SQLite pro jednoduchost.
+Projekt podporuje PostgreSQL i SQLite.
 
 ```python
 # config.py (výchozí konfigurace)
