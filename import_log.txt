@@ -562,3 +562,92 @@
 2026-01-05 22:39:25,169 - INFO - ✅ Successfully imported PDF: Vypis20260104225818.pdf
 2026-01-05 22:39:25,169 - INFO - Extracting text from: Vypis20260104225846.pdf
 2026-01-05 22:39:25,191 - INFO - ✅ Successfully imported PDF: Vypis20260104225846.pdf
+2026-01-10 23:18:59,972 - INFO - Loading 8 rows from export/csv/rss_combined_raw.csv
+2026-01-10 23:18:59,997 - WARNING - Duplicate URL - skipping batch
+2026-01-10 23:18:59,997 - INFO - Import completed: 8 imported, 8 skipped
+2026-01-10 23:18:59,999 - INFO - Loading 3 rows from export/csv/google_news_raw.csv
+2026-01-10 23:19:00,020 - INFO - Import completed: 3 imported, 0 skipped
+2026-01-10 23:19:00,021 - INFO - Found 37 PDF files to process
+2026-01-10 23:19:00,021 - INFO - Extracting text from: adamík_2009_dp_data.pdf
+2026-01-10 23:19:00,233 - INFO - PDF already exists in database: adamík_2009_dp_data.pdf
+2026-01-10 23:19:00,233 - INFO - Extracting text from: žáček_2013_dp_data.pdf
+2026-01-10 23:19:00,357 - INFO - PDF already exists in database: žáček_2013_dp_data.pdf
+2026-01-10 23:19:00,357 - INFO - Extracting text from: Vypis20260104230513.pdf
+2026-01-10 23:19:00,366 - WARNING - Validation failed for Vypis20260104230513.pdf: Content doesn't appear to be relevant (missing Czech/religious keywords)
+2026-01-10 23:19:00,367 - INFO - PDF already exists in database: Vypis20260104230513.pdf
+2026-01-10 23:19:00,367 - INFO - Extracting text from: Vypis20260104225750.pdf
+2026-01-10 23:19:00,379 - INFO - PDF already exists in database: Vypis20260104225750.pdf
+2026-01-10 23:19:00,379 - INFO - Extracting text from: Vypis20260104230241.pdf
+2026-01-10 23:19:00,395 - INFO - PDF already exists in database: Vypis20260104230241.pdf
+2026-01-10 23:19:00,395 - INFO - Extracting text from: Vypis20260104225944.pdf
+2026-01-10 23:19:00,405 - INFO - PDF already exists in database: Vypis20260104225944.pdf
+2026-01-10 23:19:00,405 - INFO - Extracting text from: Vypis20260104225658.pdf
+2026-01-10 23:19:00,420 - INFO - PDF already exists in database: Vypis20260104225658.pdf
+2026-01-10 23:19:00,421 - INFO - Extracting text from: Vypis20260104230123.pdf
+2026-01-10 23:19:00,433 - INFO - PDF already exists in database: Vypis20260104230123.pdf
+2026-01-10 23:19:00,434 - INFO - Extracting text from: sejharova_data.pdf
+2026-01-10 23:19:00,604 - INFO - PDF already exists in database: sejharova_data.pdf
+2026-01-10 23:19:00,604 - INFO - Extracting text from: Vypis20260104230329.pdf
+2026-01-10 23:19:00,612 - WARNING - Validation failed for Vypis20260104230329.pdf: Content doesn't appear to be relevant (missing Czech/religious keywords)
+2026-01-10 23:19:00,613 - INFO - PDF already exists in database: Vypis20260104230329.pdf
+2026-01-10 23:19:00,613 - INFO - Extracting text from: novopohanstvi_pro_teologickou_revue.pdf
+2026-01-10 23:19:00,761 - INFO - PDF already exists in database: novopohanstvi_pro_teologickou_revue.pdf
+2026-01-10 23:19:00,761 - INFO - Extracting text from: Vypis20260104230409.pdf
+2026-01-10 23:19:00,768 - WARNING - Validation failed for Vypis20260104230409.pdf: Content doesn't appear to be relevant (missing Czech/religious keywords)
+2026-01-10 23:19:00,770 - INFO - PDF already exists in database: Vypis20260104230409.pdf
+2026-01-10 23:19:00,770 - INFO - Extracting text from: seznam_registrovanych_NNH.pdf
+2026-01-10 23:19:00,775 - INFO - PDF already exists in database: seznam_registrovanych_NNH.pdf
+2026-01-10 23:19:00,775 - INFO - Extracting text from: Vypis20260104225642.pdf
+2026-01-10 23:19:00,790 - INFO - PDF already exists in database: Vypis20260104225642.pdf
+2026-01-10 23:19:00,790 - INFO - Extracting text from: Vypis20260104225712.pdf
+2026-01-10 23:19:00,803 - INFO - PDF already exists in database: Vypis20260104225712.pdf
+2026-01-10 23:19:00,803 - INFO - Extracting text from: Vypis20260104230158.pdf
+2026-01-10 23:19:00,816 - INFO - PDF already exists in database: Vypis20260104230158.pdf
+2026-01-10 23:19:00,816 - INFO - Extracting text from: proftova_data.pdf
+2026-01-10 23:19:00,949 - INFO - PDF already exists in database: proftova_data.pdf
+2026-01-10 23:19:00,949 - INFO - Extracting text from: 118531_data.pdf
+2026-01-10 23:19:01,030 - INFO - PDF already exists in database: 118531_data.pdf
+2026-01-10 23:19:01,030 - INFO - Extracting text from: Vypis20260104230139.pdf
+2026-01-10 23:19:01,042 - INFO - PDF already exists in database: Vypis20260104230139.pdf
+2026-01-10 23:19:01,042 - INFO - Extracting text from: Vypis20260104230302.pdf
+2026-01-10 23:19:01,054 - WARNING - Validation failed for Vypis20260104230302.pdf: Content doesn't appear to be relevant (missing Czech/religious keywords)
+2026-01-10 23:19:01,056 - INFO - PDF already exists in database: Vypis20260104230302.pdf
+2026-01-10 23:19:01,056 - INFO - Extracting text from: Sekty_clanek_data.pdf
+2026-01-10 23:19:01,169 - INFO - PDF already exists in database: Sekty_clanek_data.pdf
+2026-01-10 23:19:01,169 - INFO - Extracting text from: 7692876_data.pdf
+2026-01-10 23:19:01,302 - INFO - PDF already exists in database: 7692876_data.pdf
+2026-01-10 23:19:01,303 - INFO - Extracting text from: Bakalarska_prace_data.pdf
+2026-01-10 23:19:01,442 - INFO - PDF already exists in database: Bakalarska_prace_data.pdf
+2026-01-10 23:19:01,442 - INFO - Extracting text from: Vypis20260104225829.pdf
+2026-01-10 23:19:01,449 - INFO - PDF already exists in database: Vypis20260104225829.pdf
+2026-01-10 23:19:01,449 - INFO - Extracting text from: sojchova_data.pdf
+2026-01-10 23:19:01,631 - INFO - PDF already exists in database: sojchova_data.pdf
+2026-01-10 23:19:01,631 - INFO - Extracting text from: Vypis20260104225225.pdf
+2026-01-10 23:19:01,640 - WARNING - Validation failed for Vypis20260104225225.pdf: Content doesn't appear to be relevant (missing Czech/religious keywords)
+2026-01-10 23:19:01,641 - INFO - PDF already exists in database: Vypis20260104225225.pdf
+2026-01-10 23:19:01,641 - INFO - Extracting text from: Vypis20260104230227.pdf
+2026-01-10 23:19:01,653 - INFO - PDF already exists in database: Vypis20260104230227.pdf
+2026-01-10 23:19:01,653 - INFO - Extracting text from: Vypis20260104230439.pdf
+2026-01-10 23:19:01,665 - WARNING - Validation failed for Vypis20260104230439.pdf: Content doesn't appear to be relevant (missing Czech/religious keywords)
+2026-01-10 23:19:01,667 - INFO - PDF already exists in database: Vypis20260104230439.pdf
+2026-01-10 23:19:01,667 - INFO - Extracting text from: bakalarka_data.pdf
+2026-01-10 23:19:01,799 - INFO - PDF already exists in database: bakalarka_data.pdf
+2026-01-10 23:19:01,799 - INFO - Extracting text from: Vypis20260104230534.pdf
+2026-01-10 23:19:01,808 - WARNING - Validation failed for Vypis20260104230534.pdf: Content doesn't appear to be relevant (missing Czech/religious keywords)
+2026-01-10 23:19:01,809 - INFO - PDF already exists in database: Vypis20260104230534.pdf
+2026-01-10 23:19:01,809 - INFO - Extracting text from: Promeny_clenske_zakladny_Ceskobratrske_cirkve_evangelicke_Archive_data.pdf
+2026-01-10 23:19:01,949 - INFO - PDF already exists in database: Promeny_clenske_zakladny_Ceskobratrske_cirkve_evangelicke_Archive_data.pdf
+2026-01-10 23:19:01,949 - INFO - Extracting text from: Vypis20260104230458.pdf
+2026-01-10 23:19:01,957 - WARNING - Validation failed for Vypis20260104230458.pdf: Content doesn't appear to be relevant (missing Czech/religious keywords)
+2026-01-10 23:19:01,958 - INFO - PDF already exists in database: Vypis20260104230458.pdf
+2026-01-10 23:19:01,959 - INFO - Extracting text from: Vypis20260104230001.pdf
+2026-01-10 23:19:01,967 - INFO - PDF already exists in database: Vypis20260104230001.pdf
+2026-01-10 23:19:01,967 - INFO - Extracting text from: Vypis20260104230356.pdf
+2026-01-10 23:19:01,977 - WARNING - Validation failed for Vypis20260104230356.pdf: Content doesn't appear to be relevant (missing Czech/religious keywords)
+2026-01-10 23:19:01,978 - INFO - PDF already exists in database: Vypis20260104230356.pdf
+2026-01-10 23:19:01,978 - INFO - Extracting text from: Vypis20260104225807.pdf
+2026-01-10 23:19:01,991 - INFO - PDF already exists in database: Vypis20260104225807.pdf
+2026-01-10 23:19:01,991 - INFO - Extracting text from: Vypis20260104225818.pdf
+2026-01-10 23:19:02,004 - INFO - PDF already exists in database: Vypis20260104225818.pdf
+2026-01-10 23:19:02,004 - INFO - Extracting text from: Vypis20260104225846.pdf
+2026-01-10 23:19:02,016 - INFO - PDF already exists in database: Vypis20260104225846.pdf
