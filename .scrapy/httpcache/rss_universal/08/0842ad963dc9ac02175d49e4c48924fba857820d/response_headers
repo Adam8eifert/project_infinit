@@ -1,4 +1,4 @@
-Date: Sat, 10 Jan 2026 22:17:19 GMT
+Date: Thu, 29 Jan 2026 20:30:15 GMT
 Server: Apache
 Strict-Transport-Security: max-age=63072000; includeSubDomains;preload
 X-Xss-Protection: 0
@@ -6,16 +6,18 @@ X-Content-Type-Options: nosniff
 X-Frame-Options: SAMEORIGIN
 Content-Security-Policy: frame-ancestors 'self' ;upgrade-insecure-requests;
 Link: <https://info.dingir.cz/wp-json/>; rel="https://api.w.org/"
-Last-Modified: Sat, 10 Jan 2026 10:00:24 GMT
-Etag: "c4ef56921d5976cc5fbda765d1545988"
+Set-Cookie: wpdiscuz_nonce_281f5be9bb9cd8d9a846cae34f627772=84664756c7; expires=Fri, 30 Jan 2026 06:30:16 GMT; Max-Age=36000; path=/; HttpOnly; SameSite=Strict
+Last-Modified: Thu, 29 Jan 2026 12:00:22 GMT
+Etag: "95068d2660f9b5a16537d9b86f4cdec7"
 Cache-Control: max-age=600
-Expires: Sat, 10 Jan 2026 22:27:19 GMT
+Expires: Thu, 29 Jan 2026 20:40:15 GMT
 Referrer-Policy: no-referrer-when-downgrade
 Content-Type: application/rss+xml; charset=UTF-8
 X-Accel-Start: 1
+X-Behavior-Shield: 0
+X-Cacheable: NO:Got Cookies
 Age: 0
 Accept-Ranges: bytes
-X-Cacheable: YES
 X-Client-Geo-Country: CZ
 X-Client-Geo-Continent: EU
 X-Client-Asn: AS2819
@@ -25,7 +27,7 @@ X-Anycast-Port: 443
 X-Forwarded-Proto: https
 X-Forwarded-Port: 443
 X-Visitor-Ip: 78.80.80.248
-X-Request-Id: fcbcbc63-b12b-485c-858d-7126155ecfde
+X-Request-Id: 2de546c9-1c90-4cbe-bb64-b859b7e895d8
 X-Provider: WEDOS - WE DO Security (WEDOS.com)
 X-Cdn-Provider: WEDOS Global CDN (WEDOS.delivery)
 X-Protected-By: WEDOS Global Protection (WEDOS.protection)
@@ -33,4 +35,4 @@ X-Dns-By: WEDOS anycast DNS servers as a service (WEDOS.zone)
 X-Status-Page: WEDOS Status (WEDOS.status.online)
 X-Monitored-By: WEDOS Online Monitoring (WEDOS.online)
 X-Tagline: Born in Europe / EU, securing the future and safety worldwide.
-Alt-Svc: h3=":443"; ma=300
+Alt-Svc: h3=":443"; ma=86400

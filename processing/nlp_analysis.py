@@ -79,10 +79,12 @@ class CzechTextAnalyzer:
         result = []
 
         for token in doc:
+            # Multilingual model may not have lemma, use text as fallback
+            lemma = token.lemma_ if token.lemma_ and token.lemma_ != token.text else token.text.lower()
             result.append({
                 'text': token.text,
-                'lemma': token.lemma_,
-                'pos': token.pos_,
+                'lemma': lemma,
+                'pos': token.pos_ if token.pos_ else 'X',  # Use X for unknown POS
                 'tag': token.tag_,
                 'dep': token.dep_,
                 'is_stop': token.is_stop,
@@ -150,15 +152,25 @@ class CzechTextAnalyzer:
 
     def extract_keywords(self, text: str, top_n: int = 10) -> List[str]:
         """
-        Extract most frequent keywords (nouns, proper nouns).
+        Extract most frequent keywords (nouns, proper nouns, or non-stop alphabetic words).
         """
         if self.spacy_available and self.nlp is not None:
             doc = self.nlp(text)
-            keywords = [t.lemma_.lower() for t in doc 
-                       if t.pos_ in ['NOUN', 'PROPN'] and not t.is_stop and len(t.text) > 2]
-            return [word for word, _ in Counter(keywords).most_common(top_n)]
+            # Use both POS tags and simple heuristics (non-stop words, len > 2)
+            keywords = []
+            for t in doc:
+                # Include nouns, proper nouns, or any non-stop word longer than 2 chars
+                if not t.is_stop and len(t.text) > 2 and (t.pos_ in ['NOUN', 'PROPN'] or t.is_alpha):
+                    # Use lemma if available and different from text, otherwise use lowercase text
+                    word = t.lemma_.lower() if (t.lemma_ and t.lemma_ != t.text) else t.text.lower()
+                    keywords.append(word)
+            
+            # Return most common keywords
+            if keywords:
+                return [word for word, _ in Counter(keywords).most_common(top_n)]
 
-        return [w.lower() for w in text.split() if len(w) > 4][:top_n]
+        # Fallback: simple extraction
+        return [w.lower() for w in text.split() if len(w) > 4 and w.isalpha()][:top_n]
 
     def preprocess_text(self, text: str) -> str:
         """

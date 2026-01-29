@@ -13,7 +13,7 @@
 	<atom:link href="https://info.dingir.cz/feed/" rel="self" type="application/rss+xml" />
 	<link>https://info.dingir.cz</link>
 	<description>Sledujeme dění v pestrém světě náboženství</description>
-	<lastBuildDate>Sat, 10 Jan 2026 08:38:45 +0000</lastBuildDate>
+	<lastBuildDate>Thu, 29 Jan 2026 11:49:20 +0000</lastBuildDate>
 	<language>cs</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -29,396 +29,316 @@
 	<height>32</height>
 </image> 
 <site xmlns="com-wordpress:feed-additions:1">125401860</site>	<item>
-		<title>Forum 18: Další duchovní v&#160;Rusku čelí postihům za nábožensky motivovaný odpor k&#160;válce</title>
-		<link>https://info.dingir.cz/2026/01/forum-18-dalsi-duchovni-v-rusku-celi-postihum-za-nabozensky-motivovany-odpor-k-valce/</link>
-					<comments>https://info.dingir.cz/2026/01/forum-18-dalsi-duchovni-v-rusku-celi-postihum-za-nabozensky-motivovany-odpor-k-valce/#respond</comments>
+		<title>Húdú 1/3: Co je to húdú?</title>
+		<link>https://info.dingir.cz/2026/01/hudu-1-3-co-je-to-hudu/</link>
+					<comments>https://info.dingir.cz/2026/01/hudu-1-3-co-je-to-hudu/#respond</comments>
 		
-		<dc:creator><![CDATA[Jitka Schlichtsová]]></dc:creator>
-		<pubDate>Sat, 10 Jan 2026 10:00:24 +0000</pubDate>
-				<category><![CDATA[Zahraniční zprávy]]></category>
-		<category><![CDATA[Zprávy]]></category>
-		<category><![CDATA[cenzura]]></category>
-		<category><![CDATA[Forum 18]]></category>
-		<category><![CDATA[kriminalizace kritiky války]]></category>
-		<category><![CDATA[lidská práva]]></category>
-		<category><![CDATA[Moskevský patriarchát]]></category>
-		<category><![CDATA[náboženská opozice]]></category>
-		<category><![CDATA[náboženská svoboda]]></category>
-		<category><![CDATA[nábožensky motivovaný pacifismus]]></category>
-		<category><![CDATA[náboženství a lidská práva]]></category>
-		<category><![CDATA[náboženství a politika]]></category>
-		<category><![CDATA[Peace to All]]></category>
-		<category><![CDATA[pravoslaví/pravoslavná církev]]></category>
-		<category><![CDATA[pravoslavní duchovní]]></category>
-		<category><![CDATA[represe]]></category>
-		<category><![CDATA[Rusko]]></category>
-		<category><![CDATA[státní kontrola náboženství]]></category>
-		<category><![CDATA[svoboda vyznání]]></category>
-		<category><![CDATA[válka na Ukrajině]]></category>
-		<guid isPermaLink="false">https://info.dingir.cz/?p=37234</guid>
-
-					<description><![CDATA[<img width="840" height="445" src="https://info.dingir.cz/wp-content/uploads/2026/01/Ru_UK-1024x542.jpg" class="attachment-large size-large wp-post-image" alt="Forum 18: Další duchovní v&nbsp;Rusku čelí postihům za nábožensky motivovaný odpor k&nbsp;válce" title="Forum 18: Další duchovní v&nbsp;Rusku čelí postihům za nábožensky motivovaný odpor k&nbsp;válce" decoding="async" fetchpriority="high" srcset="https://info.dingir.cz/wp-content/uploads/2026/01/Ru_UK-1024x542.jpg 1024w, https://info.dingir.cz/wp-content/uploads/2026/01/Ru_UK-300x159.jpg 300w, https://info.dingir.cz/wp-content/uploads/2026/01/Ru_UK-768x407.jpg 768w, https://info.dingir.cz/wp-content/uploads/2026/01/Ru_UK-113x60.jpg 113w, https://info.dingir.cz/wp-content/uploads/2026/01/Ru_UK.jpg 1414w" sizes="(max-width: 840px) 100vw, 840px" />V současném Rusku se opakovaně stávají terčem represí duchovní, kteří se z&#160;náboženských důvodů veřejně vymezují proti válce na Ukrajině nebo kritizují její ideologické ospravedlňování. Jak opakovaně upozorňuje lidskoprávní organizace Fórum &#8230; ]]></description>
-		
-					<wfw:commentRss>https://info.dingir.cz/2026/01/forum-18-dalsi-duchovni-v-rusku-celi-postihum-za-nabozensky-motivovany-odpor-k-valce/feed/</wfw:commentRss>
-			<slash:comments>0</slash:comments>
-		
-		
-		<media:content url="https://info.dingir.cz/wp-content/uploads/2026/01/Ru_UK.jpg" medium="image"></media:content>
-            <post-id xmlns="com-wordpress:feed-additions:1">37234</post-id>	</item>
-		<item>
-		<title>Co přinesl rok 2025 v&#160;literatuře o náboženství</title>
-		<link>https://info.dingir.cz/2026/01/co-prinesl-rok-2025-v-literature-o-nabozenstvi/</link>
-					<comments>https://info.dingir.cz/2026/01/co-prinesl-rok-2025-v-literature-o-nabozenstvi/#respond</comments>
-		
-		<dc:creator><![CDATA[Andrea Beláňová&nbsp;a&nbsp;Jitka Schlichtsová]]></dc:creator>
-		<pubDate>Fri, 09 Jan 2026 16:00:28 +0000</pubDate>
+		<dc:creator><![CDATA[Veronika Šulcová]]></dc:creator>
+		<pubDate>Thu, 29 Jan 2026 12:00:22 +0000</pubDate>
 				<category><![CDATA[Články]]></category>
-		<category><![CDATA[Recenze]]></category>
-		<category><![CDATA[Recenze - knihy]]></category>
-		<category><![CDATA[Aleš Palán]]></category>
-		<category><![CDATA[Andrea Štěpánková]]></category>
-		<category><![CDATA[Anthony Bale]]></category>
-		<category><![CDATA[beletrie a náboženství]]></category>
-		<category><![CDATA[Břetislav Tureček]]></category>
-		<category><![CDATA[Ctirad Václav Pospíšil]]></category>
-		<category><![CDATA[Dan Brown]]></category>
-		<category><![CDATA[David Schorf]]></category>
-		<category><![CDATA[Hillary L. McBride]]></category>
-		<category><![CDATA[historie náboženství]]></category>
-		<category><![CDATA[identita]]></category>
-		<category><![CDATA[J. K. Rowling]]></category>
-		<category><![CDATA[James Anderson]]></category>
-		<category><![CDATA[James Richardson]]></category>
-		<category><![CDATA[Jiří Dynda]]></category>
-		<category><![CDATA[Kate Waggoner Karchner]]></category>
-		<category><![CDATA[Massimo Introvigne]]></category>
-		<category><![CDATA[Michaela Klevisová]]></category>
-		<category><![CDATA[náboženství a právo]]></category>
-		<category><![CDATA[náboženství a společnost]]></category>
-		<category><![CDATA[náboženství v literatuře]]></category>
-		<category><![CDATA[nové náboženské hnutí]]></category>
-		<category><![CDATA[paměť]]></category>
-		<category><![CDATA[Pavel Hošek]]></category>
-		<category><![CDATA[Petra Dvořáková]]></category>
-		<category><![CDATA[překlady náboženských textů]]></category>
-		<category><![CDATA[Přemysl Houda]]></category>
-		<category><![CDATA[psychologie náboženství]]></category>
-		<category><![CDATA[religionistika]]></category>
-		<category><![CDATA[Robert Galbraith]]></category>
-		<category><![CDATA[Rosita Šorytė]]></category>
-		<category><![CDATA[Sára Zeithammerová]]></category>
-		<category><![CDATA[současná náboženská scéna]]></category>
-		<category><![CDATA[spirituální trauma]]></category>
-		<category><![CDATA[středověk]]></category>
-		<category><![CDATA[teologie]]></category>
-		<category><![CDATA[Tomáš Gutmann]]></category>
-		<category><![CDATA[Vítězslav Gardavský]]></category>
-		<category><![CDATA[Zdeněk Vojtíšek]]></category>
-		<guid isPermaLink="false">https://info.dingir.cz/?p=37218</guid>
+		<category><![CDATA[Haiti]]></category>
+		<category><![CDATA[húdú]]></category>
+		<category><![CDATA[magie]]></category>
+		<category><![CDATA[rootworker]]></category>
+		<category><![CDATA[vúdú]]></category>
+		<guid isPermaLink="false">https://info.dingir.cz/?p=37394</guid>
 
-					<description><![CDATA[<img width="840" height="560" src="https://info.dingir.cz/wp-content/uploads/2026/01/books-21849_1920-1024x683.jpg" class="attachment-large size-large wp-post-image" alt="Co přinesl rok 2025 v&nbsp;literatuře o náboženství" title="Co přinesl rok 2025 v&nbsp;literatuře o náboženství" decoding="async" loading="lazy" srcset="https://info.dingir.cz/wp-content/uploads/2026/01/books-21849_1920-1024x683.jpg 1024w, https://info.dingir.cz/wp-content/uploads/2026/01/books-21849_1920-300x200.jpg 300w, https://info.dingir.cz/wp-content/uploads/2026/01/books-21849_1920-768x512.jpg 768w, https://info.dingir.cz/wp-content/uploads/2026/01/books-21849_1920-1536x1024.jpg 1536w, https://info.dingir.cz/wp-content/uploads/2026/01/books-21849_1920-90x60.jpg 90w, https://info.dingir.cz/wp-content/uploads/2026/01/books-21849_1920-420x280.jpg 420w, https://info.dingir.cz/wp-content/uploads/2026/01/books-21849_1920.jpg 1920w" sizes="auto, (max-width: 840px) 100vw, 840px" />Jako každý rok přinášíme v&#160;Náboženském infoservisu řadu tematických ohlédnutí za uplynulým rokem. K&#160;přehledu významných náboženských osobností, které v&#160;minulém roce zemřely a ohlédnutím za loňskou náboženskou scénou v&#160;Česku nyní přidáváme ještě &#8230; ]]></description>
+					<description><![CDATA[<img width="840" height="349" src="https://info.dingir.cz/wp-content/uploads/2026/01/01a.-jim-crow-co-je-to-hudu-1024x426.jpg" class="attachment-large size-large wp-post-image" alt="Húdú 1/3: Co je to húdú?" title="Húdú 1/3: Co je to húdú?" decoding="async" fetchpriority="high" srcset="https://info.dingir.cz/wp-content/uploads/2026/01/01a.-jim-crow-co-je-to-hudu-1024x426.jpg 1024w, https://info.dingir.cz/wp-content/uploads/2026/01/01a.-jim-crow-co-je-to-hudu-300x125.jpg 300w, https://info.dingir.cz/wp-content/uploads/2026/01/01a.-jim-crow-co-je-to-hudu-768x320.jpg 768w, https://info.dingir.cz/wp-content/uploads/2026/01/01a.-jim-crow-co-je-to-hudu-144x60.jpg 144w, https://info.dingir.cz/wp-content/uploads/2026/01/01a.-jim-crow-co-je-to-hudu.jpg 1334w" sizes="(max-width: 840px) 100vw, 840px" />Húdú představuje fascinující a spletitý systém lidové magie, který se po staletí formoval v&#160;tavicím kotli amerického Jihu. Ačkoliv bývá často zaměňováno s&#160;náboženstvím vúdú, húdú je především praktickou lidovou magií – &#8230; ]]></description>
 		
-					<wfw:commentRss>https://info.dingir.cz/2026/01/co-prinesl-rok-2025-v-literature-o-nabozenstvi/feed/</wfw:commentRss>
+					<wfw:commentRss>https://info.dingir.cz/2026/01/hudu-1-3-co-je-to-hudu/feed/</wfw:commentRss>
 			<slash:comments>0</slash:comments>
 		
 		
-		<media:content url="https://info.dingir.cz/wp-content/uploads/2026/01/books-21849_1920.jpg" medium="image"></media:content>
-            <post-id xmlns="com-wordpress:feed-additions:1">37218</post-id>	</item>
+		<media:content url="https://info.dingir.cz/wp-content/uploads/2026/01/01a.-jim-crow-co-je-to-hudu.jpg" medium="image"></media:content>
+            <post-id xmlns="com-wordpress:feed-additions:1">37394</post-id>	</item>
 		<item>
-		<title>Konžské nkisi – zatloukání kletby, duch lovec a pes dvou hlav</title>
-		<link>https://info.dingir.cz/2026/01/konzske-nkisi-zatloukani-kletby-duch-lovec-a-pes-dvou-hlav/</link>
-					<comments>https://info.dingir.cz/2026/01/konzske-nkisi-zatloukani-kletby-duch-lovec-a-pes-dvou-hlav/#respond</comments>
-		
-		<dc:creator><![CDATA[Ondřej Havelka]]></dc:creator>
-		<pubDate>Wed, 07 Jan 2026 10:00:46 +0000</pubDate>
-				<category><![CDATA[Články]]></category>
-		<category><![CDATA[Afrika]]></category>
-		<category><![CDATA[čarodějnictví]]></category>
-		<category><![CDATA[centrální Afrika]]></category>
-		<category><![CDATA[Demokratická republika Kongo]]></category>
-		<category><![CDATA[Gabon]]></category>
-		<category><![CDATA[Jižní Súdán]]></category>
-		<category><![CDATA[Kamerun]]></category>
-		<category><![CDATA[kmenová náboženství]]></category>
-		<category><![CDATA[Kongo]]></category>
-		<category><![CDATA[nkisi]]></category>
-		<category><![CDATA[střední Afrika]]></category>
-		<category><![CDATA[Středoafrická republika]]></category>
-		<guid isPermaLink="false">https://info.dingir.cz/?p=37200</guid>
-
-					<description><![CDATA[<img width="840" height="343" src="https://info.dingir.cz/wp-content/uploads/2026/01/001titulka-scaled-e1767779357781-1024x418.jpg" class="attachment-large size-large wp-post-image" alt="Konžské nkisi – zatloukání kletby, duch lovec a pes dvou hlav" title="Konžské nkisi – zatloukání kletby, duch lovec a pes dvou hlav" decoding="async" loading="lazy" srcset="https://info.dingir.cz/wp-content/uploads/2026/01/001titulka-scaled-e1767779357781-1024x418.jpg 1024w, https://info.dingir.cz/wp-content/uploads/2026/01/001titulka-scaled-e1767779357781-300x122.jpg 300w, https://info.dingir.cz/wp-content/uploads/2026/01/001titulka-scaled-e1767779357781-768x314.jpg 768w, https://info.dingir.cz/wp-content/uploads/2026/01/001titulka-scaled-e1767779357781-1536x627.jpg 1536w, https://info.dingir.cz/wp-content/uploads/2026/01/001titulka-scaled-e1767779357781-2048x836.jpg 2048w, https://info.dingir.cz/wp-content/uploads/2026/01/001titulka-scaled-e1767779357781-147x60.jpg 147w" sizes="auto, (max-width: 840px) 100vw, 840px" />V oblasti střední Afriky – zejména v&#160;Demokratické republice Kongo, v&#160;Kongu, ve Středoafrické republice, v&#160;Gabonu, v&#160;Kamerunu a částečně i Jižním Súdánu – mají dlouhou tradici mocné magické figury nkisi (plurál minkisi), &#8230; ]]></description>
-		
-					<wfw:commentRss>https://info.dingir.cz/2026/01/konzske-nkisi-zatloukani-kletby-duch-lovec-a-pes-dvou-hlav/feed/</wfw:commentRss>
-			<slash:comments>0</slash:comments>
-		
-		
-		<media:content url="https://info.dingir.cz/wp-content/uploads/2026/01/001titulka-scaled-e1767779357781.jpg" medium="image"></media:content>
-            <post-id xmlns="com-wordpress:feed-additions:1">37200</post-id>	</item>
-		<item>
-		<title>Česká náboženská scéna roku 2025</title>
-		<link>https://info.dingir.cz/2026/01/ceska-nabozenska-scena-roku-2025/</link>
-					<comments>https://info.dingir.cz/2026/01/ceska-nabozenska-scena-roku-2025/#comments</comments>
+		<title>Hnutí AllatRa se jasně vyjádřilo k válce na Ukrajině</title>
+		<link>https://info.dingir.cz/2026/01/hnuti-allatra-se-jasne-vyjadrilo-k-valce-na-ukrajine/</link>
+					<comments>https://info.dingir.cz/2026/01/hnuti-allatra-se-jasne-vyjadrilo-k-valce-na-ukrajine/#comments</comments>
 		
 		<dc:creator><![CDATA[Zdeněk Vojtíšek]]></dc:creator>
-		<pubDate>Tue, 06 Jan 2026 10:00:09 +0000</pubDate>
-				<category><![CDATA[Články]]></category>
+		<pubDate>Tue, 27 Jan 2026 10:00:37 +0000</pubDate>
+				<category><![CDATA[Domácí zprávy]]></category>
+		<category><![CDATA[Zahraniční zprávy]]></category>
 		<category><![CDATA[AllatRa]]></category>
-		<category><![CDATA[alternativní spiritualita]]></category>
-		<category><![CDATA[Centrum spirituality]]></category>
-		<category><![CDATA[Českobratrská církev evangelická]]></category>
-		<category><![CDATA[Dominik Duka]]></category>
+		<category><![CDATA[Anastasia Novych]]></category>
+		<category><![CDATA[David Bail]]></category>
+		<category><![CDATA[Duchovní diplomaté]]></category>
+		<category><![CDATA[Federace rodin za světový mír a sjednocení]]></category>
 		<category><![CDATA[Jakub Jahl]]></category>
-		<category><![CDATA[Jan Graubner]]></category>
-		<category><![CDATA[Ladislav Hučko]]></category>
-		<category><![CDATA[LGBTQ]]></category>
-		<category><![CDATA[Lukáš Stančík]]></category>
-		<category><![CDATA[Náboženská společnost Svědkové Jehovovi]]></category>
-		<category><![CDATA[Nikolaj Liščenjuk]]></category>
-		<category><![CDATA[Nikolay Lishchenyuk]]></category>
-		<category><![CDATA[Nový život]]></category>
-		<category><![CDATA[Ohnivý drak]]></category>
-		<category><![CDATA[Petr Šimůnek]]></category>
-		<category><![CDATA[Pravoslavná církev v českých zemích]]></category>
-		<category><![CDATA[Richard Šiffer]]></category>
-		<category><![CDATA[Ruská pravoslavná církev - podvorje patriarchy moskevského a celé Rusi v České republice]]></category>
-		<category><![CDATA[samostatný odbor církví a náboženských společností MK ČR]]></category>
-		<category><![CDATA[Štěpán Faun]]></category>
-		<category><![CDATA[Tomáš Halík]]></category>
-		<category><![CDATA[Zenová škola Kwan Um]]></category>
-		<category><![CDATA[Život v srdci]]></category>
-		<guid isPermaLink="false">https://info.dingir.cz/?p=37188</guid>
+		<category><![CDATA[Jediné zrno]]></category>
+		<category><![CDATA[Lucia Pavlaninová]]></category>
+		<category><![CDATA[Mark Burns]]></category>
+		<category><![CDATA[Markéta Vacková]]></category>
+		<category><![CDATA[munisté]]></category>
+		<category><![CDATA[Tvořivá Společnost]]></category>
+		<category><![CDATA[Univerzální federace míru]]></category>
+		<guid isPermaLink="false">https://info.dingir.cz/?p=37384</guid>
 
-					<description><![CDATA[<img width="840" height="517" src="https://info.dingir.cz/wp-content/uploads/2026/01/Vitraz-kaple-1024x630.jpg" class="attachment-large size-large wp-post-image" alt="Česká náboženská scéna roku 2025" title="Česká náboženská scéna roku 2025" decoding="async" loading="lazy" srcset="https://info.dingir.cz/wp-content/uploads/2026/01/Vitraz-kaple-1024x630.jpg 1024w, https://info.dingir.cz/wp-content/uploads/2026/01/Vitraz-kaple-300x185.jpg 300w, https://info.dingir.cz/wp-content/uploads/2026/01/Vitraz-kaple-768x473.jpg 768w, https://info.dingir.cz/wp-content/uploads/2026/01/Vitraz-kaple-1536x945.jpg 1536w, https://info.dingir.cz/wp-content/uploads/2026/01/Vitraz-kaple-2048x1260.jpg 2048w, https://info.dingir.cz/wp-content/uploads/2026/01/Vitraz-kaple-98x60.jpg 98w" sizes="auto, (max-width: 840px) 100vw, 840px" />Následující řádky jsou pokusem poskytnout obrysy české náboženské scény v&#160;uplynulém roce. Jistě není třeba připomínat, že výběr událostí nemůže být jiný než subjektivní a že autor přivítá doplnění nebo upřesnění &#8230; ]]></description>
+					<description><![CDATA[<img width="840" height="357" src="https://info.dingir.cz/wp-content/uploads/2026/01/MB-Cropped-1024x435.jpg" class="attachment-large size-large wp-post-image" alt="Hnutí AllatRa se jasně vyjádřilo k válce na Ukrajině" title="Hnutí AllatRa se jasně vyjádřilo k válce na Ukrajině" decoding="async" srcset="https://info.dingir.cz/wp-content/uploads/2026/01/MB-Cropped-1024x435.jpg 1024w, https://info.dingir.cz/wp-content/uploads/2026/01/MB-Cropped-300x128.jpg 300w, https://info.dingir.cz/wp-content/uploads/2026/01/MB-Cropped-768x326.jpg 768w, https://info.dingir.cz/wp-content/uploads/2026/01/MB-Cropped-1536x653.jpg 1536w, https://info.dingir.cz/wp-content/uploads/2026/01/MB-Cropped-141x60.jpg 141w, https://info.dingir.cz/wp-content/uploads/2026/01/MB-Cropped.jpg 1920w" sizes="(max-width: 840px) 100vw, 840px" />Mezinárodní náboženské hnutí AllatRa je v&#160;českých médiích v&#160;posledních měsících zmiňováno kvůli videu, obviňujícímu youtubera Jakuba Jahla z&#160;vážných kriminálních činů. Obvodní soud pro Prahu 2 přikázal autorům Markétě Vackové a Davidu &#8230; ]]></description>
 		
-					<wfw:commentRss>https://info.dingir.cz/2026/01/ceska-nabozenska-scena-roku-2025/feed/</wfw:commentRss>
+					<wfw:commentRss>https://info.dingir.cz/2026/01/hnuti-allatra-se-jasne-vyjadrilo-k-valce-na-ukrajine/feed/</wfw:commentRss>
 			<slash:comments>1</slash:comments>
 		
 		
-		<media:content url="https://info.dingir.cz/wp-content/uploads/2026/01/Vitraz-kaple-scaled.jpg" medium="image"></media:content>
-            <post-id xmlns="com-wordpress:feed-additions:1">37188</post-id>	</item>
+		<media:content url="https://info.dingir.cz/wp-content/uploads/2026/01/MB-Cropped.jpg" medium="image"></media:content>
+            <post-id xmlns="com-wordpress:feed-additions:1">37384</post-id>	</item>
 		<item>
-		<title>Mezi písní a proroctvím: Duchovní jazyk Karla Kryla v&#160;religionistické interpretaci</title>
-		<link>https://info.dingir.cz/2026/01/mezi-pisni-a-proroctvim-duchovni-jazyk-karla-kryla-v-religionisticke-interpretaci/</link>
-					<comments>https://info.dingir.cz/2026/01/mezi-pisni-a-proroctvim-duchovni-jazyk-karla-kryla-v-religionisticke-interpretaci/#comments</comments>
+		<title>Hnutí Hare Krišna chystá žalobu kvůli zákazu Bhagavadgíty ve floridských věznicích</title>
+		<link>https://info.dingir.cz/2026/01/hnuti-hare-krisna-chysta-zalobu-kvuli-zakazu-bhagavadgity-ve-floridskych-veznicich/</link>
+					<comments>https://info.dingir.cz/2026/01/hnuti-hare-krisna-chysta-zalobu-kvuli-zakazu-bhagavadgity-ve-floridskych-veznicich/#respond</comments>
 		
 		<dc:creator><![CDATA[Jitka Schlichtsová]]></dc:creator>
-		<pubDate>Mon, 05 Jan 2026 10:00:04 +0000</pubDate>
-				<category><![CDATA[Recenze - knihy]]></category>
-		<category><![CDATA[Karel Kryl]]></category>
-		<category><![CDATA[Pavel Hošek]]></category>
-		<category><![CDATA[religionistika]]></category>
-		<category><![CDATA[teologie]]></category>
-		<guid isPermaLink="false">https://info.dingir.cz/?p=37166</guid>
+		<pubDate>Mon, 26 Jan 2026 10:00:53 +0000</pubDate>
+				<category><![CDATA[Zahraniční zprávy]]></category>
+		<category><![CDATA[Zprávy]]></category>
+		<category><![CDATA[Bhagavadgíta]]></category>
+		<category><![CDATA[Florida]]></category>
+		<category><![CDATA[hnutí Haré Kršna]]></category>
+		<category><![CDATA[náboženství a lidská práva]]></category>
+		<category><![CDATA[náboženství a právo]]></category>
+		<category><![CDATA[Spojené státy americké]]></category>
+		<category><![CDATA[USA]]></category>
+		<category><![CDATA[vězeňství]]></category>
+		<guid isPermaLink="false">https://info.dingir.cz/?p=37378</guid>
 
-					<description><![CDATA[<img width="840" height="473" src="https://info.dingir.cz/wp-content/uploads/2026/01/Kryl_c-1024x576.jpg" class="attachment-large size-large wp-post-image" alt="Mezi písní a proroctvím: Duchovní jazyk Karla Kryla v&nbsp;religionistické interpretaci" title="Mezi písní a proroctvím: Duchovní jazyk Karla Kryla v&nbsp;religionistické interpretaci" decoding="async" loading="lazy" srcset="https://info.dingir.cz/wp-content/uploads/2026/01/Kryl_c-1024x576.jpg 1024w, https://info.dingir.cz/wp-content/uploads/2026/01/Kryl_c-300x169.jpg 300w, https://info.dingir.cz/wp-content/uploads/2026/01/Kryl_c-768x432.jpg 768w, https://info.dingir.cz/wp-content/uploads/2026/01/Kryl_c-1536x864.jpg 1536w, https://info.dingir.cz/wp-content/uploads/2026/01/Kryl_c-107x60.jpg 107w, https://info.dingir.cz/wp-content/uploads/2026/01/Kryl_c-840x473.jpg 840w, https://info.dingir.cz/wp-content/uploads/2026/01/Kryl_c.jpg 1920w" sizes="auto, (max-width: 840px) 100vw, 840px" />Osobnost Karla Kryla bývá v&#160;českém veřejném prostoru připomínána především jako symbol politického odporu, morální neústupnosti a hlasu svědomí jedné historické generace. Menší pozornost se věnuje otázce, z&#160;jakých hodnotových, symbolických a &#8230; ]]></description>
+					<description><![CDATA[<img width="840" height="404" src="https://info.dingir.cz/wp-content/uploads/2026/01/Bhagavadgita-1024x493.jpg" class="attachment-large size-large wp-post-image" alt="Hnutí Hare Krišna chystá žalobu kvůli zákazu Bhagavadgíty ve floridských věznicích" title="Hnutí Hare Krišna chystá žalobu kvůli zákazu Bhagavadgíty ve floridských věznicích" decoding="async" loading="lazy" srcset="https://info.dingir.cz/wp-content/uploads/2026/01/Bhagavadgita-1024x493.jpg 1024w, https://info.dingir.cz/wp-content/uploads/2026/01/Bhagavadgita-300x145.jpg 300w, https://info.dingir.cz/wp-content/uploads/2026/01/Bhagavadgita-768x370.jpg 768w, https://info.dingir.cz/wp-content/uploads/2026/01/Bhagavadgita-1536x740.jpg 1536w, https://info.dingir.cz/wp-content/uploads/2026/01/Bhagavadgita-125x60.jpg 125w, https://info.dingir.cz/wp-content/uploads/2026/01/Bhagavadgita.jpg 1910w" sizes="auto, (max-width: 840px) 100vw, 840px" />Zpravodajský portál Religion News Service informuje, že Mezinárodní společnost pro vědomí Kršny (International Society for Krishna Consciousness, ISKCON, hnutí Hare Kršna) připravuje žalobu pro náboženskou diskriminaci proti vězeňské správě státu &#8230; ]]></description>
 		
-					<wfw:commentRss>https://info.dingir.cz/2026/01/mezi-pisni-a-proroctvim-duchovni-jazyk-karla-kryla-v-religionisticke-interpretaci/feed/</wfw:commentRss>
-			<slash:comments>4</slash:comments>
-		
-		
-		<media:content url="https://info.dingir.cz/wp-content/uploads/2026/01/Kryl_c.jpg" medium="image"></media:content>
-            <post-id xmlns="com-wordpress:feed-additions:1">37166</post-id>	</item>
-		<item>
-		<title>Miloš Maixner – z malíře skautem, hermetikem, idealistou</title>
-		<link>https://info.dingir.cz/2026/01/milos-maixner-z-malire-skautem-hermetikem-idealistou/</link>
-					<comments>https://info.dingir.cz/2026/01/milos-maixner-z-malire-skautem-hermetikem-idealistou/#respond</comments>
-		
-		<dc:creator><![CDATA[Lukáš Král]]></dc:creator>
-		<pubDate>Sat, 03 Jan 2026 10:40:24 +0000</pubDate>
-				<category><![CDATA[Články]]></category>
-		<category><![CDATA[Antonín Benjamin Svojsík]]></category>
-		<category><![CDATA[český hermetismus]]></category>
-		<category><![CDATA[Ernest Thompson Seton]]></category>
-		<category><![CDATA[esoterismus]]></category>
-		<category><![CDATA[František Kožíšek]]></category>
-		<category><![CDATA[Karl Wilhelm Diefenbach]]></category>
-		<category><![CDATA[Lebensreform]]></category>
-		<category><![CDATA[martinismus]]></category>
-		<category><![CDATA[Milan Nakonečný]]></category>
-		<category><![CDATA[Miloš Maixner]]></category>
-		<category><![CDATA[Miloš Seifert]]></category>
-		<category><![CDATA[okultismus]]></category>
-		<category><![CDATA[Robert Baden-Powell]]></category>
-		<category><![CDATA[Teosofická společnost]]></category>
-		<guid isPermaLink="false">https://info.dingir.cz/?p=37177</guid>
-
-					<description><![CDATA[<img width="840" height="443" src="https://info.dingir.cz/wp-content/uploads/2026/01/MM2-1024x540.jpg" class="attachment-large size-large wp-post-image" alt="Miloš Maixner – z malíře skautem, hermetikem, idealistou" title="Miloš Maixner – z malíře skautem, hermetikem, idealistou" decoding="async" loading="lazy" srcset="https://info.dingir.cz/wp-content/uploads/2026/01/MM2-1024x540.jpg 1024w, https://info.dingir.cz/wp-content/uploads/2026/01/MM2-300x158.jpg 300w, https://info.dingir.cz/wp-content/uploads/2026/01/MM2-768x405.jpg 768w, https://info.dingir.cz/wp-content/uploads/2026/01/MM2-114x60.jpg 114w, https://info.dingir.cz/wp-content/uploads/2026/01/MM2.jpg 1248w" sizes="auto, (max-width: 840px) 100vw, 840px" />Miloš Maixner (4.&#160;ledna 1873 – 5.&#160;května 1937) pocházel ze známé hořické větve výtvarníků: jeho otec Petr Maixner (1831–1884) byl malíř a restaurátor, výtvarníky byli též jeho strýcové Karel a Čeněk &#8230; ]]></description>
-		
-					<wfw:commentRss>https://info.dingir.cz/2026/01/milos-maixner-z-malire-skautem-hermetikem-idealistou/feed/</wfw:commentRss>
+					<wfw:commentRss>https://info.dingir.cz/2026/01/hnuti-hare-krisna-chysta-zalobu-kvuli-zakazu-bhagavadgity-ve-floridskych-veznicich/feed/</wfw:commentRss>
 			<slash:comments>0</slash:comments>
 		
 		
-		<media:content url="https://info.dingir.cz/wp-content/uploads/2026/01/MM2.jpg" medium="image"></media:content>
-            <post-id xmlns="com-wordpress:feed-additions:1">37177</post-id>	</item>
+		<media:content url="https://info.dingir.cz/wp-content/uploads/2026/01/Bhagavadgita.jpg" medium="image"></media:content>
+            <post-id xmlns="com-wordpress:feed-additions:1">37378</post-id>	</item>
 		<item>
-		<title>Náboženské osobnosti, které zemřely roku 2025</title>
-		<link>https://info.dingir.cz/2026/01/nabozenske-osobnosti-ktere-zemrely-roku-2025/</link>
-					<comments>https://info.dingir.cz/2026/01/nabozenske-osobnosti-ktere-zemrely-roku-2025/#respond</comments>
+		<title>118.&#160;výročí narození prvního českého buddhistického mnicha Ňánasatta théry</title>
+		<link>https://info.dingir.cz/2026/01/118-vyroci-narozeni-prvniho-ceskeho-buddhistickeho-mnicha-nanasatta-thery/</link>
+					<comments>https://info.dingir.cz/2026/01/118-vyroci-narozeni-prvniho-ceskeho-buddhistickeho-mnicha-nanasatta-thery/#respond</comments>
+		
+		<dc:creator><![CDATA[Vilém Skopal]]></dc:creator>
+		<pubDate>Sat, 24 Jan 2026 10:00:00 +0000</pubDate>
+				<category><![CDATA[Články]]></category>
+		<category><![CDATA[Ájukusala théra]]></category>
+		<category><![CDATA[Anton Walther Florus Gueth]]></category>
+		<category><![CDATA[Azraela von Laban]]></category>
+		<category><![CDATA[buddhismus]]></category>
+		<category><![CDATA[Ivo Fišer]]></category>
+		<category><![CDATA[Jan Benda]]></category>
+		<category><![CDATA[Jiří Hanzelka]]></category>
+		<category><![CDATA[Karel Werner]]></category>
+		<category><![CDATA[Martin Novosad]]></category>
+		<category><![CDATA[Martin Steinke]]></category>
+		<category><![CDATA[Mirko Frýba]]></category>
+		<category><![CDATA[Miroslav Zikmund]]></category>
+		<category><![CDATA[Ňánasatta théra]]></category>
+		<category><![CDATA[Ňánatilóka maháthéry]]></category>
+		<category><![CDATA[Paul Dahlke]]></category>
+		<category><![CDATA[Šrí Lanka]]></category>
+		<category><![CDATA[Vincenc Lesný]]></category>
+		<guid isPermaLink="false">https://info.dingir.cz/?p=37361</guid>
+
+					<description><![CDATA[<img width="840" height="358" src="https://info.dingir.cz/wp-content/uploads/2026/01/NN-Cropped-1024x436.jpg" class="attachment-large size-large wp-post-image" alt="118.&nbsp;výročí narození prvního českého buddhistického mnicha Ňánasatta théry" title="118.&nbsp;výročí narození prvního českého buddhistického mnicha Ňánasatta théry" decoding="async" loading="lazy" srcset="https://info.dingir.cz/wp-content/uploads/2026/01/NN-Cropped-1024x436.jpg 1024w, https://info.dingir.cz/wp-content/uploads/2026/01/NN-Cropped-300x128.jpg 300w, https://info.dingir.cz/wp-content/uploads/2026/01/NN-Cropped-768x327.jpg 768w, https://info.dingir.cz/wp-content/uploads/2026/01/NN-Cropped-1536x654.jpg 1536w, https://info.dingir.cz/wp-content/uploads/2026/01/NN-Cropped-141x60.jpg 141w, https://info.dingir.cz/wp-content/uploads/2026/01/NN-Cropped.jpg 1645w" sizes="auto, (max-width: 840px) 100vw, 840px" />Zítra si připomeneme narození prvního českého buddhistického mnicha Ňánasatty théry[1] (25.&#160;ledna 1908, Vizovice – září 1984, Galle[2]), který v&#160;roce 1938 odešel na Šrí Lanku, aby zde strávil zbytek svého života. &#8230; ]]></description>
+		
+					<wfw:commentRss>https://info.dingir.cz/2026/01/118-vyroci-narozeni-prvniho-ceskeho-buddhistickeho-mnicha-nanasatta-thery/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+		<media:content url="https://info.dingir.cz/wp-content/uploads/2026/01/NN-Cropped.jpg" medium="image"></media:content>
+            <post-id xmlns="com-wordpress:feed-additions:1">37361</post-id>	</item>
+		<item>
+		<title>Vrah bývalého premiéra odsouzen na doživotí</title>
+		<link>https://info.dingir.cz/2026/01/vrah-byvaleho-premiera-odsouzen-na-dozivoti/</link>
+					<comments>https://info.dingir.cz/2026/01/vrah-byvaleho-premiera-odsouzen-na-dozivoti/#respond</comments>
 		
 		<dc:creator><![CDATA[Zdeněk Vojtíšek]]></dc:creator>
-		<pubDate>Fri, 02 Jan 2026 10:00:50 +0000</pubDate>
-				<category><![CDATA[Úvahy a komentáře]]></category>
-		<category><![CDATA[Ágha chán IV.]]></category>
-		<category><![CDATA[Ágha chán V.]]></category>
-		<category><![CDATA[Alí ibn Abí Tálib]]></category>
-		<category><![CDATA[Assemblies of God]]></category>
-		<category><![CDATA[Bill McCartney]]></category>
-		<category><![CDATA[Charlie Kirk]]></category>
-		<category><![CDATA[Ctirad Václav Pospíšil]]></category>
-		<category><![CDATA[Dominik Duka]]></category>
-		<category><![CDATA[Držitelé slibu]]></category>
-		<category><![CDATA[Džaʻfar as-Sádiq Ismáʻíl]]></category>
-		<category><![CDATA[Focus on the Family]]></category>
-		<category><![CDATA[František (papež)]]></category>
-		<category><![CDATA[ismáʻílíja]]></category>
-		<category><![CDATA[James Dobson]]></category>
-		<category><![CDATA[Jim Bakker]]></category>
-		<category><![CDATA[Jimmy Swaggart]]></category>
-		<category><![CDATA[Karim al-Husayni]]></category>
-		<category><![CDATA[Ladislav Hučko]]></category>
-		<category><![CDATA[Martin E. Marty]]></category>
-		<category><![CDATA[nizáríja]]></category>
-		<category><![CDATA[Oral Roberts]]></category>
-		<category><![CDATA[Promise Keepers]]></category>
-		<category><![CDATA[řeckokatolická církev]]></category>
-		<category><![CDATA[Russell M. Nelson]]></category>
-		<category><![CDATA[Shromáždění Boží]]></category>
-		<category><![CDATA[šíʻa sedmi imámů]]></category>
-		<category><![CDATA[šíʻitský islám]]></category>
-		<category><![CDATA[teleevangelizace]]></category>
-		<category><![CDATA[Theodor McCarrick]]></category>
-		<category><![CDATA[Zaostřeno na rodinu]]></category>
-		<guid isPermaLink="false">https://info.dingir.cz/?p=37153</guid>
+		<pubDate>Fri, 23 Jan 2026 10:00:27 +0000</pubDate>
+				<category><![CDATA[Zahraniční zprávy]]></category>
+		<category><![CDATA[AllatRa]]></category>
+		<category><![CDATA[církev Šinčchondži]]></category>
+		<category><![CDATA[Církev sjednocení]]></category>
+		<category><![CDATA[Federace rodin za světový mír a sjednocení]]></category>
+		<category><![CDATA[Hak-ča Han Munová]]></category>
+		<category><![CDATA[Hnutí sjednocení]]></category>
+		<category><![CDATA[Japonsko]]></category>
+		<category><![CDATA[Mark Burns]]></category>
+		<category><![CDATA[munisté]]></category>
+		<category><![CDATA[Šinzó Abé]]></category>
+		<category><![CDATA[Son-mjong Mun]]></category>
+		<category><![CDATA[Šrí Činmoj]]></category>
+		<guid isPermaLink="false">https://info.dingir.cz/?p=37346</guid>
 
-					<description><![CDATA[<img width="840" height="358" src="https://info.dingir.cz/wp-content/uploads/2026/01/Sunset-Cropped-1024x436.jpg" class="attachment-large size-large wp-post-image" alt="Náboženské osobnosti, které zemřely roku 2025" title="Náboženské osobnosti, které zemřely roku 2025" decoding="async" loading="lazy" srcset="https://info.dingir.cz/wp-content/uploads/2026/01/Sunset-Cropped-1024x436.jpg 1024w, https://info.dingir.cz/wp-content/uploads/2026/01/Sunset-Cropped-300x128.jpg 300w, https://info.dingir.cz/wp-content/uploads/2026/01/Sunset-Cropped-768x327.jpg 768w, https://info.dingir.cz/wp-content/uploads/2026/01/Sunset-Cropped-1536x653.jpg 1536w, https://info.dingir.cz/wp-content/uploads/2026/01/Sunset-Cropped-2048x871.jpg 2048w, https://info.dingir.cz/wp-content/uploads/2026/01/Sunset-Cropped-141x60.jpg 141w" sizes="auto, (max-width: 840px) 100vw, 840px" />Stejně jako loni připravuji i letos přehled osobností z&#160;náboženského světa, které tento svět roku 2025 opustily. Tentokrát jsem vybral devět zahraničních osobností a přidal k&#160;nim zmínky o třech českých. Vzor &#8230; ]]></description>
+					<description><![CDATA[<img width="840" height="357" src="https://info.dingir.cz/wp-content/uploads/2026/01/TY-Cropped-1024x435.jpg" class="attachment-large size-large wp-post-image" alt="Vrah bývalého premiéra odsouzen na doživotí" title="Vrah bývalého premiéra odsouzen na doživotí" decoding="async" loading="lazy" srcset="https://info.dingir.cz/wp-content/uploads/2026/01/TY-Cropped-1024x435.jpg 1024w, https://info.dingir.cz/wp-content/uploads/2026/01/TY-Cropped-300x128.jpg 300w, https://info.dingir.cz/wp-content/uploads/2026/01/TY-Cropped-768x326.jpg 768w, https://info.dingir.cz/wp-content/uploads/2026/01/TY-Cropped-1536x653.jpg 1536w, https://info.dingir.cz/wp-content/uploads/2026/01/TY-Cropped-141x60.jpg 141w, https://info.dingir.cz/wp-content/uploads/2026/01/TY-Cropped.jpg 1920w" sizes="auto, (max-width: 840px) 100vw, 840px" />Média ve světě oznámila, že vrah bývalého japonského premiéra Šinzóa Abeho (1954–2022) byl ve středu odsouzen k&#160;doživotnímu odnětí svobody. Tecuja Jamagami (*1980) spáchal atentát na bývalého premiéra začátkem července 2022. &#8230; ]]></description>
 		
-					<wfw:commentRss>https://info.dingir.cz/2026/01/nabozenske-osobnosti-ktere-zemrely-roku-2025/feed/</wfw:commentRss>
+					<wfw:commentRss>https://info.dingir.cz/2026/01/vrah-byvaleho-premiera-odsouzen-na-dozivoti/feed/</wfw:commentRss>
 			<slash:comments>0</slash:comments>
 		
 		
-		<media:content url="https://info.dingir.cz/wp-content/uploads/2026/01/Sunset-Cropped.jpg" medium="image"></media:content>
-            <post-id xmlns="com-wordpress:feed-additions:1">37153</post-id>	</item>
+		<media:content url="https://info.dingir.cz/wp-content/uploads/2026/01/TY-Cropped.jpg" medium="image"></media:content>
+            <post-id xmlns="com-wordpress:feed-additions:1">37346</post-id>	</item>
 		<item>
-		<title>Súfijský muráqabah (nejen) v&#160;severní Africe</title>
-		<link>https://info.dingir.cz/2025/12/sufijsky-muraqabah-nejen-v-severni-africe/</link>
-					<comments>https://info.dingir.cz/2025/12/sufijsky-muraqabah-nejen-v-severni-africe/#respond</comments>
+		<title>Nietzsche o buddhismu</title>
+		<link>https://info.dingir.cz/2026/01/nietzsche-o-buddhismu/</link>
+					<comments>https://info.dingir.cz/2026/01/nietzsche-o-buddhismu/#respond</comments>
+		
+		<dc:creator><![CDATA[Jiří Motl]]></dc:creator>
+		<pubDate>Thu, 22 Jan 2026 10:00:45 +0000</pubDate>
+				<category><![CDATA[Články]]></category>
+		<category><![CDATA[Arthur Schopenhauer]]></category>
+		<category><![CDATA[buddhismus]]></category>
+		<category><![CDATA[filosofie]]></category>
+		<category><![CDATA[filosofie náboženství]]></category>
+		<category><![CDATA[Friedrich Nietzsche]]></category>
+		<category><![CDATA[nihilismus]]></category>
+		<guid isPermaLink="false">https://info.dingir.cz/?p=37340</guid>
+
+					<description><![CDATA[<img width="840" height="358" src="https://info.dingir.cz/wp-content/uploads/2026/01/BP-Cropped-1024x436.jpg" class="attachment-large size-large wp-post-image" alt="Nietzsche o buddhismu" title="Nietzsche o buddhismu" decoding="async" loading="lazy" srcset="https://info.dingir.cz/wp-content/uploads/2026/01/BP-Cropped-1024x436.jpg 1024w, https://info.dingir.cz/wp-content/uploads/2026/01/BP-Cropped-300x128.jpg 300w, https://info.dingir.cz/wp-content/uploads/2026/01/BP-Cropped-768x327.jpg 768w, https://info.dingir.cz/wp-content/uploads/2026/01/BP-Cropped-1536x654.jpg 1536w, https://info.dingir.cz/wp-content/uploads/2026/01/BP-Cropped-2048x871.jpg 2048w, https://info.dingir.cz/wp-content/uploads/2026/01/BP-Cropped-141x60.jpg 141w" sizes="auto, (max-width: 840px) 100vw, 840px" />Výroky Friedricha Nietzscheho (1844–1900) o buddhismu jsou stejně jako v&#160;mnoha jiných oblastech rozporuplné. Často je Nietzsche k&#160;buddhismu nesmlouvavý a označuje ho za nihilismus, který škodí životu. Na mnoha místech ale &#8230; ]]></description>
+		
+					<wfw:commentRss>https://info.dingir.cz/2026/01/nietzsche-o-buddhismu/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+		<media:content url="https://info.dingir.cz/wp-content/uploads/2026/01/BP-Cropped-scaled.jpg" medium="image"></media:content>
+            <post-id xmlns="com-wordpress:feed-additions:1">37340</post-id>	</item>
+		<item>
+		<title>Výchova dětí v&#160;náboženských společenstvích v&#160;kontextu novely občanského zákoníku</title>
+		<link>https://info.dingir.cz/2026/01/vychova-deti-v-nabozenskych-spolecenstvich-v-kontextu-novely-obcanskeho-zakoniku/</link>
+					<comments>https://info.dingir.cz/2026/01/vychova-deti-v-nabozenskych-spolecenstvich-v-kontextu-novely-obcanskeho-zakoniku/#comments</comments>
+		
+		<dc:creator><![CDATA[Jitka Schlichtsová]]></dc:creator>
+		<pubDate>Wed, 21 Jan 2026 10:00:21 +0000</pubDate>
+				<category><![CDATA[Články]]></category>
+		<category><![CDATA[alternativní spiritualita]]></category>
+		<category><![CDATA[apokalyptická hnutí]]></category>
+		<category><![CDATA[fundamentalistické křesťanství]]></category>
+		<category><![CDATA[komunitní praxe]]></category>
+		<category><![CDATA[konspirační spiritualita]]></category>
+		<category><![CDATA[náboženská autorita]]></category>
+		<category><![CDATA[náboženská výchova]]></category>
+		<category><![CDATA[náboženství a děti]]></category>
+		<category><![CDATA[náboženství a právo]]></category>
+		<category><![CDATA[náboženství a stát]]></category>
+		<category><![CDATA[nová náboženská hnutí]]></category>
+		<category><![CDATA[spirituální komunity]]></category>
+		<guid isPermaLink="false">https://info.dingir.cz/?p=37312</guid>
+
+					<description><![CDATA[<img width="840" height="560" src="https://info.dingir.cz/wp-content/uploads/2026/01/friendship-4273865_1920-1024x683.jpg" class="attachment-large size-large wp-post-image" alt="Výchova dětí v&nbsp;náboženských společenstvích v&nbsp;kontextu novely občanského zákoníku" title="Výchova dětí v&nbsp;náboženských společenstvích v&nbsp;kontextu novely občanského zákoníku" decoding="async" loading="lazy" srcset="https://info.dingir.cz/wp-content/uploads/2026/01/friendship-4273865_1920-1024x683.jpg 1024w, https://info.dingir.cz/wp-content/uploads/2026/01/friendship-4273865_1920-300x200.jpg 300w, https://info.dingir.cz/wp-content/uploads/2026/01/friendship-4273865_1920-768x512.jpg 768w, https://info.dingir.cz/wp-content/uploads/2026/01/friendship-4273865_1920-1536x1024.jpg 1536w, https://info.dingir.cz/wp-content/uploads/2026/01/friendship-4273865_1920-90x60.jpg 90w, https://info.dingir.cz/wp-content/uploads/2026/01/friendship-4273865_1920-420x280.jpg 420w, https://info.dingir.cz/wp-content/uploads/2026/01/friendship-4273865_1920.jpg 1920w" sizes="auto, (max-width: 840px) 100vw, 840px" />Novela občanského zákoníku účinná od 1.&#160;ledna 2026 (zákon č. 268/2025 Sb.) je ve veřejné debatě nejčastěji spojována s&#160;výslovným vymezením nepřijatelnosti fyzického trestání dětí. Její relevance však nespočívá primárně v&#160;této jednotlivé &#8230; ]]></description>
+		
+					<wfw:commentRss>https://info.dingir.cz/2026/01/vychova-deti-v-nabozenskych-spolecenstvich-v-kontextu-novely-obcanskeho-zakoniku/feed/</wfw:commentRss>
+			<slash:comments>3</slash:comments>
+		
+		
+		<media:content url="https://info.dingir.cz/wp-content/uploads/2026/01/friendship-4273865_1920.jpg" medium="image"></media:content>
+            <post-id xmlns="com-wordpress:feed-additions:1">37312</post-id>	</item>
+		<item>
+		<title>Náboženství konžského etnika Yaka. Vůdce kiambv, věštec  ngoombu a přechodvý rituál nkanda</title>
+		<link>https://info.dingir.cz/2026/01/nabozenstvi-konzskeho-etnika-yaka-vudce-kiambv-vestec-ngoombu-a-prechodvy-ritual-nkanda/</link>
+					<comments>https://info.dingir.cz/2026/01/nabozenstvi-konzskeho-etnika-yaka-vudce-kiambv-vestec-ngoombu-a-prechodvy-ritual-nkanda/#respond</comments>
 		
 		<dc:creator><![CDATA[Ondřej Havelka]]></dc:creator>
-		<pubDate>Mon, 29 Dec 2025 10:00:32 +0000</pubDate>
-				<category><![CDATA[Zahraniční zprávy]]></category>
-		<category><![CDATA[africký islám]]></category>
-		<category><![CDATA[islám-muslimové]]></category>
-		<category><![CDATA[muráqabah]]></category>
-		<category><![CDATA[mystika]]></category>
-		<category><![CDATA[súfismus]]></category>
-		<guid isPermaLink="false">https://info.dingir.cz/?p=37133</guid>
+		<pubDate>Tue, 20 Jan 2026 10:00:01 +0000</pubDate>
+				<category><![CDATA[Články]]></category>
+		<category><![CDATA[Afrika]]></category>
+		<category><![CDATA[Demokratická republika Kongo]]></category>
+		<category><![CDATA[kiambv]]></category>
+		<category><![CDATA[kmenová náboženství]]></category>
+		<category><![CDATA[magie]]></category>
+		<category><![CDATA[rituál]]></category>
+		<category><![CDATA[Yaka]]></category>
+		<guid isPermaLink="false">https://info.dingir.cz/?p=37292</guid>
 
-					<description><![CDATA[<img width="840" height="451" src="https://info.dingir.cz/wp-content/uploads/2025/12/012-1-1024x550.jpg" class="attachment-large size-large wp-post-image" alt="Súfijský muráqabah (nejen) v&nbsp;severní Africe" title="Súfijský muráqabah (nejen) v&nbsp;severní Africe" decoding="async" loading="lazy" srcset="https://info.dingir.cz/wp-content/uploads/2025/12/012-1-1024x550.jpg 1024w, https://info.dingir.cz/wp-content/uploads/2025/12/012-1-300x161.jpg 300w, https://info.dingir.cz/wp-content/uploads/2025/12/012-1-768x412.jpg 768w, https://info.dingir.cz/wp-content/uploads/2025/12/012-1-1536x825.jpg 1536w, https://info.dingir.cz/wp-content/uploads/2025/12/012-1-2048x1100.jpg 2048w, https://info.dingir.cz/wp-content/uploads/2025/12/012-1-112x60.jpg 112w" sizes="auto, (max-width: 840px) 100vw, 840px" />Muráqabah (arabsky: مراقبة, v&#160;překladu pozorovat, sledovat, nazírat) je metoda dosahování mystického spojení s&#160;Bohem v&#160;islámu[1] – osobní cesta člověka k&#160;Bohu, která je běžná v&#160;súfijských řádech (taríqách). Jen v&#160;Egyptě, kde jsem se &#8230; ]]></description>
+					<description><![CDATA[<img width="840" height="536" src="https://info.dingir.cz/wp-content/uploads/2026/01/01-1-1024x654.jpg" class="attachment-large size-large wp-post-image" alt="Náboženství konžského etnika Yaka. Vůdce kiambv, věštec  ngoombu a přechodvý rituál nkanda" title="Náboženství konžského etnika Yaka. Vůdce kiambv, věštec  ngoombu a přechodvý rituál nkanda" decoding="async" loading="lazy" srcset="https://info.dingir.cz/wp-content/uploads/2026/01/01-1-1024x654.jpg 1024w, https://info.dingir.cz/wp-content/uploads/2026/01/01-1-300x192.jpg 300w, https://info.dingir.cz/wp-content/uploads/2026/01/01-1-768x490.jpg 768w, https://info.dingir.cz/wp-content/uploads/2026/01/01-1-1536x981.jpg 1536w, https://info.dingir.cz/wp-content/uploads/2026/01/01-1-2048x1307.jpg 2048w, https://info.dingir.cz/wp-content/uploads/2026/01/01-1-94x60.jpg 94w" sizes="auto, (max-width: 840px) 100vw, 840px" />Yakové jsou etnickou skupinou – v&#160;současném počtu přibližně tří set tisíc osob – žijící zejména na jihozápadě Demokratické republiky Kongo při hranici s&#160;Angolou. Jejich původ je prozatím nejistý, uvažuje se &#8230; ]]></description>
 		
-					<wfw:commentRss>https://info.dingir.cz/2025/12/sufijsky-muraqabah-nejen-v-severni-africe/feed/</wfw:commentRss>
+					<wfw:commentRss>https://info.dingir.cz/2026/01/nabozenstvi-konzskeho-etnika-yaka-vudce-kiambv-vestec-ngoombu-a-prechodvy-ritual-nkanda/feed/</wfw:commentRss>
 			<slash:comments>0</slash:comments>
 		
 		
-		<media:content url="https://info.dingir.cz/wp-content/uploads/2025/12/012-1-scaled.jpg" medium="image"></media:content>
-            <post-id xmlns="com-wordpress:feed-additions:1">37133</post-id>	</item>
+		<media:content url="https://info.dingir.cz/wp-content/uploads/2026/01/01-1-scaled.jpg" medium="image"></media:content>
+            <post-id xmlns="com-wordpress:feed-additions:1">37292</post-id>	</item>
 		<item>
-		<title>Skvělý celkový obraz, slabost v&#160;detailech</title>
-		<link>https://info.dingir.cz/2025/12/skvely-celkovy-obraz-slabost-v-detailech/</link>
-					<comments>https://info.dingir.cz/2025/12/skvely-celkovy-obraz-slabost-v-detailech/#respond</comments>
+		<title>Jde nám o osvícené, pevné a vyvážené porozumění islámu</title>
+		<link>https://info.dingir.cz/2026/01/jde-nam-o-osvicene-pevne-a-vyvazene-porozumeni-islamu/</link>
+					<comments>https://info.dingir.cz/2026/01/jde-nam-o-osvicene-pevne-a-vyvazene-porozumeni-islamu/#comments</comments>
+		
+		<dc:creator><![CDATA[Václava Tlili]]></dc:creator>
+		<pubDate>Mon, 19 Jan 2026 10:00:10 +0000</pubDate>
+				<category><![CDATA[Rozhovory]]></category>
+		<category><![CDATA[Abdullatíf Búazízí]]></category>
+		<category><![CDATA[ALECSO]]></category>
+		<category><![CDATA[extremismus]]></category>
+		<category><![CDATA[ICESCO]]></category>
+		<category><![CDATA[islám - muslimové]]></category>
+		<category><![CDATA[KAICIID]]></category>
+		<category><![CDATA[Mezinárodní centrum krále Abdulláha bin Abdulazíze pro dialog náboženství a kultur]]></category>
+		<category><![CDATA[Tunisko]]></category>
+		<category><![CDATA[Zajtúna (univerzita)]]></category>
+		<guid isPermaLink="false">https://info.dingir.cz/?p=37282</guid>
+
+					<description><![CDATA[<img width="840" height="357" src="https://info.dingir.cz/wp-content/uploads/2026/01/Rektor-Cropped-1024x435.jpg" class="attachment-large size-large wp-post-image" alt="Jde nám o osvícené, pevné a vyvážené porozumění islámu" title="Jde nám o osvícené, pevné a vyvážené porozumění islámu" decoding="async" loading="lazy" srcset="https://info.dingir.cz/wp-content/uploads/2026/01/Rektor-Cropped-1024x435.jpg 1024w, https://info.dingir.cz/wp-content/uploads/2026/01/Rektor-Cropped-300x128.jpg 300w, https://info.dingir.cz/wp-content/uploads/2026/01/Rektor-Cropped-768x326.jpg 768w, https://info.dingir.cz/wp-content/uploads/2026/01/Rektor-Cropped-1536x653.jpg 1536w, https://info.dingir.cz/wp-content/uploads/2026/01/Rektor-Cropped-141x60.jpg 141w, https://info.dingir.cz/wp-content/uploads/2026/01/Rektor-Cropped.jpg 1920w" sizes="auto, (max-width: 840px) 100vw, 840px" />Prof. Abdullatíf Búazízí je rektorem tuniské prestižní univerzity Zajtúna, jedné z&#160;nejstarších vzdělávacích institucí světa. Rozhovor se odehrál 22.&#160;srpna 2025 v&#160;České republice, kam pan profesor zavítal díky programu Erasmus+ v&#160;rámci akademické &#8230; ]]></description>
+		
+					<wfw:commentRss>https://info.dingir.cz/2026/01/jde-nam-o-osvicene-pevne-a-vyvazene-porozumeni-islamu/feed/</wfw:commentRss>
+			<slash:comments>1</slash:comments>
+		
+		
+		<media:content url="https://info.dingir.cz/wp-content/uploads/2026/01/Rektor-Cropped.jpg" medium="image"></media:content>
+            <post-id xmlns="com-wordpress:feed-additions:1">37282</post-id>	</item>
+		<item>
+		<title>Česká pravoslavná církev jako bezpečnostní hrozba</title>
+		<link>https://info.dingir.cz/2026/01/ceska-pravoslavna-cirkev-jako-bezpecnostni-hrozba/</link>
+					<comments>https://info.dingir.cz/2026/01/ceska-pravoslavna-cirkev-jako-bezpecnostni-hrozba/#comments</comments>
 		
 		<dc:creator><![CDATA[Zdeněk Vojtíšek]]></dc:creator>
-		<pubDate>Sat, 27 Dec 2025 10:00:38 +0000</pubDate>
-				<category><![CDATA[Recenze - knihy]]></category>
-		<category><![CDATA[antikultovní hnutí]]></category>
-		<category><![CDATA[baháʼí]]></category>
-		<category><![CDATA[Belgie]]></category>
-		<category><![CDATA[Buddhismus Diamantové cesty]]></category>
-		<category><![CDATA[Čína]]></category>
-		<category><![CDATA[Církev sjednocení]]></category>
-		<category><![CDATA[Dánsko]]></category>
-		<category><![CDATA[Děti boží]]></category>
-		<category><![CDATA[ECHR]]></category>
-		<category><![CDATA[Evropský soud pro lidská práva]]></category>
-		<category><![CDATA[Fa-lun-kung]]></category>
-		<category><![CDATA[Francie]]></category>
-		<category><![CDATA[Hnutí Hare Krišna]]></category>
-		<category><![CDATA[Írán]]></category>
-		<category><![CDATA[Itálie]]></category>
-		<category><![CDATA[James T. Richardson]]></category>
-		<category><![CDATA[Johannes Aagaard]]></category>
-		<category><![CDATA[menšinová náboženství]]></category>
-		<category><![CDATA[morální panika]]></category>
-		<category><![CDATA[munisté]]></category>
-		<category><![CDATA[náboženské menšiny]]></category>
-		<category><![CDATA[Německo]]></category>
-		<category><![CDATA[Nizozemsko]]></category>
-		<category><![CDATA[operace Sněhurka]]></category>
-		<category><![CDATA[OSA (Office of Special Affairs)]]></category>
-		<category><![CDATA[Petr Velechovský]]></category>
-		<category><![CDATA[Řád Slunečního chrámu]]></category>
+		<pubDate>Fri, 16 Jan 2026 10:00:21 +0000</pubDate>
+				<category><![CDATA[Domácí zprávy]]></category>
+		<category><![CDATA[Izaiáš (biskup)]]></category>
+		<category><![CDATA[Michal (arcibiskup)]]></category>
+		<category><![CDATA[Michal Dandár]]></category>
+		<category><![CDATA[pravoslaví/pravoslavná církev]]></category>
+		<category><![CDATA[Pravoslavná církev v českých zemích]]></category>
+		<category><![CDATA[pravoslavný monastýr v Loděníci]]></category>
+		<category><![CDATA[Ruská pravoslavná církev - podvorje patriarchy moskevského a celé Rusi v České republice]]></category>
 		<category><![CDATA[Ruská pravoslavná církev moskevského patriarchátu]]></category>
-		<category><![CDATA[Rusko]]></category>
-		<category><![CDATA[scientologické hnutí]]></category>
-		<category><![CDATA[Spojené státy americké]]></category>
-		<category><![CDATA[stranění se]]></category>
-		<category><![CDATA[svědkové Jehovovi]]></category>
-		<category><![CDATA[Velká Británie]]></category>
-		<category><![CDATA[vyhýbání se]]></category>
-		<category><![CDATA[zákon Abouta a Picardové]]></category>
-		<guid isPermaLink="false">https://info.dingir.cz/?p=37117</guid>
+		<category><![CDATA[starostylní církev]]></category>
+		<category><![CDATA[zákon 3/2002sb.]]></category>
+		<guid isPermaLink="false">https://info.dingir.cz/?p=37265</guid>
 
-					<description><![CDATA[<img width="840" height="358" src="https://info.dingir.cz/wp-content/uploads/2025/12/Rich-Cropped-1024x436.jpg" class="attachment-large size-large wp-post-image" alt="Skvělý celkový obraz, slabost v&nbsp;detailech" title="Skvělý celkový obraz, slabost v&nbsp;detailech" decoding="async" loading="lazy" srcset="https://info.dingir.cz/wp-content/uploads/2025/12/Rich-Cropped-1024x436.jpg 1024w, https://info.dingir.cz/wp-content/uploads/2025/12/Rich-Cropped-300x128.jpg 300w, https://info.dingir.cz/wp-content/uploads/2025/12/Rich-Cropped-768x327.jpg 768w, https://info.dingir.cz/wp-content/uploads/2025/12/Rich-Cropped-141x60.jpg 141w, https://info.dingir.cz/wp-content/uploads/2025/12/Rich-Cropped.jpg 1167w" sizes="auto, (max-width: 840px) 100vw, 840px" />James T. Richardson, Minority Religions, the Law, and the Courts. Cases and Consequences, published online by Cambridge University Press: 17 November 2025. James T. Richardson (*1941), emeritní profesor na Nevadské &#8230; ]]></description>
+					<description><![CDATA[<img width="840" height="358" src="https://info.dingir.cz/wp-content/uploads/2026/01/Vlci-Cropped-1024x436.jpg" class="attachment-large size-large wp-post-image" alt="Česká pravoslavná církev jako bezpečnostní hrozba" title="Česká pravoslavná církev jako bezpečnostní hrozba" decoding="async" loading="lazy" srcset="https://info.dingir.cz/wp-content/uploads/2026/01/Vlci-Cropped-1024x436.jpg 1024w, https://info.dingir.cz/wp-content/uploads/2026/01/Vlci-Cropped-300x128.jpg 300w, https://info.dingir.cz/wp-content/uploads/2026/01/Vlci-Cropped-768x327.jpg 768w, https://info.dingir.cz/wp-content/uploads/2026/01/Vlci-Cropped-1536x654.jpg 1536w, https://info.dingir.cz/wp-content/uploads/2026/01/Vlci-Cropped-2048x872.jpg 2048w, https://info.dingir.cz/wp-content/uploads/2026/01/Vlci-Cropped-141x60.jpg 141w" sizes="auto, (max-width: 840px) 100vw, 840px" />Při zachování pravidla Chatham House, které dovoluje vynést informace, ale nikoli identitu mluvčího, se ve středu 14.&#160;ledna konala na půdě Akademie věd České republiky neveřejná prezentace zprávy Bezpečnostní rizika Pravoslavné &#8230; ]]></description>
 		
-					<wfw:commentRss>https://info.dingir.cz/2025/12/skvely-celkovy-obraz-slabost-v-detailech/feed/</wfw:commentRss>
-			<slash:comments>0</slash:comments>
+					<wfw:commentRss>https://info.dingir.cz/2026/01/ceska-pravoslavna-cirkev-jako-bezpecnostni-hrozba/feed/</wfw:commentRss>
+			<slash:comments>11</slash:comments>
 		
 		
-		<media:content url="https://info.dingir.cz/wp-content/uploads/2025/12/Rich-Cropped.jpg" medium="image"></media:content>
-            <post-id xmlns="com-wordpress:feed-additions:1">37117</post-id>	</item>
+		<media:content url="https://info.dingir.cz/wp-content/uploads/2026/01/Vlci-Cropped.jpg" medium="image"></media:content>
+            <post-id xmlns="com-wordpress:feed-additions:1">37265</post-id>	</item>
 		<item>
-		<title>Kognitivní věda o náboženství a rané křesťanství</title>
-		<link>https://info.dingir.cz/2025/12/kognitivni-veda-o-nabozenstvi-a-rane-krestanstvi-2/</link>
-					<comments>https://info.dingir.cz/2025/12/kognitivni-veda-o-nabozenstvi-a-rane-krestanstvi-2/#respond</comments>
+		<title>Nicolás Maduro a Satja Sáí Bába</title>
+		<link>https://info.dingir.cz/2026/01/nicolas-maduro-a-satja-sai-baba/</link>
+					<comments>https://info.dingir.cz/2026/01/nicolas-maduro-a-satja-sai-baba/#respond</comments>
 		
-		<dc:creator><![CDATA[Redakce]]></dc:creator>
-		<pubDate>Sat, 20 Dec 2025 10:00:20 +0000</pubDate>
-				<category><![CDATA[Oznámení]]></category>
-		<category><![CDATA[Jiří Gebelt]]></category>
-		<category><![CDATA[rané křesťanství]]></category>
-		<category><![CDATA[Zdeňka Špiclová]]></category>
-		<guid isPermaLink="false">https://info.dingir.cz/?p=37110</guid>
+		<dc:creator><![CDATA[Zdeněk Vojtíšek]]></dc:creator>
+		<pubDate>Tue, 13 Jan 2026 10:00:09 +0000</pubDate>
+				<category><![CDATA[Zahraniční zprávy]]></category>
+		<category><![CDATA[Basava Premanand]]></category>
+		<category><![CDATA[Bhakti Márga]]></category>
+		<category><![CDATA[Cilia Floresová]]></category>
+		<category><![CDATA[Delcy Rodríguezová Gómezová]]></category>
+		<category><![CDATA[Federace indických racionalistických sdružení]]></category>
+		<category><![CDATA[FIRA]]></category>
+		<category><![CDATA[Nicolás Maduro]]></category>
+		<category><![CDATA[Saí Bába ze Širdy]]></category>
+		<category><![CDATA[Satja Saí Baba]]></category>
+		<category><![CDATA[siddhi]]></category>
+		<category><![CDATA[Venezuela]]></category>
+		<category><![CDATA[Višvánanda]]></category>
+		<guid isPermaLink="false">https://info.dingir.cz/?p=37238</guid>
 
-					<description><![CDATA[<img width="840" height="357" src="https://info.dingir.cz/wp-content/uploads/2025/12/EC-1024x435.jpg" class="attachment-large size-large wp-post-image" alt="Kognitivní věda o náboženství a rané křesťanství" title="Kognitivní věda o náboženství a rané křesťanství" decoding="async" loading="lazy" srcset="https://info.dingir.cz/wp-content/uploads/2025/12/EC-1024x435.jpg 1024w, https://info.dingir.cz/wp-content/uploads/2025/12/EC-300x128.jpg 300w, https://info.dingir.cz/wp-content/uploads/2025/12/EC-768x326.jpg 768w, https://info.dingir.cz/wp-content/uploads/2025/12/EC-141x60.jpg 141w, https://info.dingir.cz/wp-content/uploads/2025/12/EC.jpg 1200w" sizes="auto, (max-width: 840px) 100vw, 840px" />Doktorský studijní program Raně křesťanská studia zve srdečně na přednášku: Kognitivní věda o náboženství a rané křesťanství, kterou přednese Mgr. et Mgr. Zdeňka Špiclová, Ph.D. ze Západočeské univerzity v&#160;Plzni. &#160; &#8230; ]]></description>
+					<description><![CDATA[<img width="840" height="358" src="https://info.dingir.cz/wp-content/uploads/2026/01/NMSSB-V-Cropped-1024x436.jpg" class="attachment-large size-large wp-post-image" alt="Nicolás Maduro a Satja Sáí Bába" title="Nicolás Maduro a Satja Sáí Bába" decoding="async" loading="lazy" srcset="https://info.dingir.cz/wp-content/uploads/2026/01/NMSSB-V-Cropped-1024x436.jpg 1024w, https://info.dingir.cz/wp-content/uploads/2026/01/NMSSB-V-Cropped-300x128.jpg 300w, https://info.dingir.cz/wp-content/uploads/2026/01/NMSSB-V-Cropped-768x327.jpg 768w, https://info.dingir.cz/wp-content/uploads/2026/01/NMSSB-V-Cropped-1536x654.jpg 1536w, https://info.dingir.cz/wp-content/uploads/2026/01/NMSSB-V-Cropped-141x60.jpg 141w, https://info.dingir.cz/wp-content/uploads/2026/01/NMSSB-V-Cropped.jpg 1645w" sizes="auto, (max-width: 840px) 100vw, 840px" />Únos hlavního představitele venezuelského autoritářského režimu, prezidenta Nicoláse Madura (*1962), do Spojených států zvýšil zájem o jeho osobu. Média ve světě tak často poukazují na skutečnost, že nejpozději roku 2005 &#8230; ]]></description>
 		
-					<wfw:commentRss>https://info.dingir.cz/2025/12/kognitivni-veda-o-nabozenstvi-a-rane-krestanstvi-2/feed/</wfw:commentRss>
+					<wfw:commentRss>https://info.dingir.cz/2026/01/nicolas-maduro-a-satja-sai-baba/feed/</wfw:commentRss>
 			<slash:comments>0</slash:comments>
 		
 		
-		<media:content url="https://info.dingir.cz/wp-content/uploads/2025/12/EC.jpg" medium="image"></media:content>
-            <post-id xmlns="com-wordpress:feed-additions:1">37110</post-id>	</item>
-		<item>
-		<title>Orientalista Ostřanský představil český překlad „Qušajrího pojednání o nauce súfismu“</title>
-		<link>https://info.dingir.cz/2025/12/orientalista-ostransky-predstavil-cesky-preklad-qusajriho-pojednani-o-nauce-sufismu/</link>
-					<comments>https://info.dingir.cz/2025/12/orientalista-ostransky-predstavil-cesky-preklad-qusajriho-pojednani-o-nauce-sufismu/#respond</comments>
-		
-		<dc:creator><![CDATA[David Novák]]></dc:creator>
-		<pubDate>Fri, 19 Dec 2025 10:00:22 +0000</pubDate>
-				<category><![CDATA[Články]]></category>
-		<category><![CDATA[Reportáže]]></category>
-		<category><![CDATA[Abú al-Qásim al-Qušjarí]]></category>
-		<category><![CDATA[Bronislav Ostřanský]]></category>
-		<category><![CDATA[Qušajrího pojednání o nauce súfismu]]></category>
-		<category><![CDATA[súfismus]]></category>
-		<guid isPermaLink="false">https://info.dingir.cz/?p=37095</guid>
-
-					<description><![CDATA[<img width="840" height="439" src="https://info.dingir.cz/wp-content/uploads/2025/12/Qusajri_cover-1024x535.jpg" class="attachment-large size-large wp-post-image" alt="Orientalista Ostřanský představil český překlad „Qušajrího pojednání o nauce súfismu“" title="Orientalista Ostřanský představil český překlad „Qušajrího pojednání o nauce súfismu“" decoding="async" loading="lazy" srcset="https://info.dingir.cz/wp-content/uploads/2025/12/Qusajri_cover-1024x535.jpg 1024w, https://info.dingir.cz/wp-content/uploads/2025/12/Qusajri_cover-300x157.jpg 300w, https://info.dingir.cz/wp-content/uploads/2025/12/Qusajri_cover-768x401.jpg 768w, https://info.dingir.cz/wp-content/uploads/2025/12/Qusajri_cover-115x60.jpg 115w, https://info.dingir.cz/wp-content/uploads/2025/12/Qusajri_cover.jpg 1042w" sizes="auto, (max-width: 840px) 100vw, 840px" />V&#160;úterý 16.&#160;prosince 2025 se v&#160;prostorách Malého sálu Městské knihovny v&#160;Praze konalo slavnostní představení dvousvazkového vydání knihy od českého arabisty působícího v&#160;Orientálním ústavu Akademie věd ČR, doc. Bronislava Ostřanského „Qušajrího pojednání &#8230; ]]></description>
-		
-					<wfw:commentRss>https://info.dingir.cz/2025/12/orientalista-ostransky-predstavil-cesky-preklad-qusajriho-pojednani-o-nauce-sufismu/feed/</wfw:commentRss>
-			<slash:comments>0</slash:comments>
-		
-		
-		<media:content url="https://info.dingir.cz/wp-content/uploads/2025/12/Qusajri_cover.jpg" medium="image"></media:content>
-            <post-id xmlns="com-wordpress:feed-additions:1">37095</post-id>	</item>
+		<media:content url="https://info.dingir.cz/wp-content/uploads/2026/01/NMSSB-V-Cropped.jpg" medium="image"></media:content>
+            <post-id xmlns="com-wordpress:feed-additions:1">37238</post-id>	</item>
 	</channel>
 </rss>
 
@@ -428,5 +348,5 @@ Performance optimized by W3 Total Cache. Learn more: https://www.boldgrid.com/w3
 Page Caching using Disk (Page is feed) 
 Lazy Loading (feed)
 
-Served from: info.dingir.cz @ 2026-01-10 23:17:20 by W3 Total Cache
+Served from: info.dingir.cz @ 2026-01-29 21:30:17 by W3 Total Cache
 -->
