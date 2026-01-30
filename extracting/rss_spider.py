@@ -8,8 +8,9 @@ from w3lib.html import remove_tags # For cleaning HTML from RSS feeds
 
 # Internal project imports
 from config_loader import get_config_loader
-from keywords import contains_relevant_keywords
+from .keywords import contains_relevant_keywords
 from spider_settings import ETHICAL_SCRAPING_SETTINGS, CSV_EXPORT_SETTINGS
+from csv_utils import get_output_csv_for_source, append_row
 
 class RSSSpider(scrapy.Spider):
     """
@@ -124,7 +125,7 @@ class RSSSpider(scrapy.Spider):
                     categories = [tag.get('term', '') for tag in entry.tags if isinstance(tag, dict)]
 
                 # Final Item delivery
-                yield {
+                item = {
                     'source_name': response.meta['source_name'],
                     'source_type': response.meta['source_type'],
                     'title': clean_title,
@@ -135,6 +136,15 @@ class RSSSpider(scrapy.Spider):
                     'published_at': date_published,
                     'categories': categories
                 }
+
+                # Also persist to the per-source CSV (if configured) for parity with web spiders
+                try:
+                    out_path = get_output_csv_for_source(response.meta['source_key'])
+                    append_row(out_path, item)
+                except Exception as e:
+                    self.logger.warning(f"Could not write per-source CSV for {response.meta.get('source_key')}: {e}")
+
+                yield item
         
         except Exception as e:
             self.logger.error(f"❌ Error parsing RSS for {response.meta.get('source_name')}: {e}")

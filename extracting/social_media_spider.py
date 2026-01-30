@@ -9,7 +9,8 @@ from datetime import datetime
 import os
 from dotenv import load_dotenv
 from config_loader import get_config_loader
-from keywords import contains_relevant_keywords
+from .keywords import contains_relevant_keywords
+from csv_utils import get_output_csv_for_source, append_row
 
 
 # Load .env file
@@ -80,12 +81,12 @@ class RedditSpider(scrapy.Spider):
                     subreddit = self.reddit.subreddit(subreddit_name)
                     
                     # Search for new posts
-                    for submission in subreddit.new(limit=50):
+                            for submission in subreddit.new(limit=50):
                         combined_text = f"{submission.title} {submission.selftext}"
                         
                         # Relevance check
                         if contains_relevant_keywords(combined_text):
-                            submissions.append({
+                            row = {
                                 'source_name': 'Reddit',
                                 'source_type': 'Social Media',
                                 'title': submission.title,
@@ -97,7 +98,16 @@ class RedditSpider(scrapy.Spider):
                                 'num_comments': submission.num_comments,
                                 'created': datetime.fromtimestamp(submission.created_utc).isoformat(),
                                 'subreddit': subreddit_name
-                            })
+                            }
+
+                            # Write to configured CSV (if configured)
+                            try:
+                                out_path = get_output_csv_for_source('reddit')
+                                append_row(out_path, row)
+                            except Exception as e:
+                                self.logger.debug(f"Could not write Reddit CSV row: {e}")
+
+                            submissions.append(row)
                             self.logger.info(f"✓ Reddit: {submission.title[:50]}")
                 
                 except Exception as e:
@@ -107,11 +117,11 @@ class RedditSpider(scrapy.Spider):
             # Also search by keywords
             for term in search_terms:
                 try:
-                    for submission in self.reddit.subreddit('all').search(term, time_filter='month', limit=30):
+                        for submission in self.reddit.subreddit('all').search(term, time_filter='month', limit=30):
                         combined_text = f"{submission.title} {submission.selftext}"
                         
                         if contains_relevant_keywords(combined_text):
-                            submissions.append({
+                            row = {
                                 'source_name': 'Reddit',
                                 'source_type': 'Social Media',
                                 'title': submission.title,
@@ -123,7 +133,15 @@ class RedditSpider(scrapy.Spider):
                                 'num_comments': submission.num_comments,
                                 'created': datetime.fromtimestamp(submission.created_utc).isoformat(),
                                 'search_term': term
-                            })
+                            }
+
+                            try:
+                                out_path = get_output_csv_for_source('reddit')
+                                append_row(out_path, row)
+                            except Exception as e:
+                                self.logger.debug(f"Could not write Reddit CSV row (search): {e}")
+
+                            submissions.append(row)
                             self.logger.info(f"✓ Reddit (search '{term}'): {submission.title[:50]}")
                 
                 except Exception as e:
@@ -156,6 +174,14 @@ class XTwitterSpider(scrapy.Spider):
         
         # At this point, source_config is guaranteed to be not None
         assert self.source_config is not None
+        
+        # Ensure CSV header exists for configured output
+        try:
+            out_path = get_output_csv_for_source('x_twitter')
+            from csv_utils import ensure_csv_header
+            ensure_csv_header(out_path)
+        except Exception:
+            pass
         
         # Load bearer token
         self.bearer_token = os.getenv('X_BEARER_TOKEN') or self.source_config.get('auth', {}).get('bearer_token')
@@ -219,8 +245,8 @@ class XTwitterSpider(scrapy.Spider):
                 if contains_relevant_keywords(text):
                     author_id = tweet.get('author_id', '')
                     author_name = users.get(author_id, 'Unknown')
-                    
-                    yield {
+
+                    row = {
                         'source_name': 'X (Twitter)',
                         'source_type': 'Social Media',
                         'title': text[:100],
@@ -232,9 +258,14 @@ class XTwitterSpider(scrapy.Spider):
                         'metrics': tweet.get('public_metrics', {}),
                         'search_query': query
                     }
-                    self.logger.info(f"✓ X: @{author_name}: {text[:50]}")
-            
-            self.logger.info(f"📊 Found {len([t for t in tweets if contains_relevant_keywords(t.get('text', ''))])} relevant tweets")
+
+                    try:
+                        out_path = get_output_csv_for_source('x_twitter')
+                        append_row(out_path, row)
+                    except Exception as e:
+                        self.logger.debug(f"Could not write X CSV row: {e}")
+
+                    yield row
         
         except Exception as e:
             self.logger.error(f"❌ Error parsing X API: {e}")

@@ -139,6 +139,16 @@ vira_cz:
     type: "rss"
     output_csv: "export/csv/blesk_rss_raw.csv"
 
+  medium_seznam:
+    name: "Medium Seznam (RSS Feed)"
+    description: "Blogging platform by Seznam.cz featuring diverse opinion pieces and articles"
+    domain: "medium.seznam.cz"
+    url: "https://medium.seznam.cz/rss"
+    enabled: true
+    type: "rss"
+    output_csv: "export/csv/medium_seznam_rss_raw.csv"
+    delay: 2
+
   # --- WEB SCRAPING & DYNAMIC SOURCES ---
   medium_seznam:
     name: "Medium.seznam.cz"
@@ -270,11 +280,11 @@ keywords:
     "parlament"
   ]
   exclude_context_patterns: [
-    "recenze\s+filmu",
-    "hra\s+roku",
-    "herní\s+recenze",
-    "soundtrack",
-    "trailer"
+    'recenze\\s+filmu',
+    'hra\\s+roku',
+    'herní\\s+recenze',
+    'soundtrack',
+    'trailer'
   ]
   known_movements:
     new_religious_movements: [
@@ -364,12 +374,12 @@ keywords:
       "Farma Lovětín"
     ]
   year_patterns: [
-    "založen[aáoý]\s+v\s+roce\s+(\d{4})",
-    "vznik(?:lo|la|l)\s+v\s+roce\s+(\d{4})",
-    "vznikl[ao]?\s+kolem\s+roku\s+(\d{4})",
-    "od\s+roku\s+(\d{4})",
-    "působí\s+od\s+roku\s+(\d{4})",
-    "činnost\s+zahájena\s+v\s+roce\s+(\d{4})",
-    "registrován[aáoý]\s+v\s+(?:ČR|České\s+republice)\s+v\s+roce\s+(\d{4})",
-    "zaregistrován[ao]?\s+dne\s+\d{1,2}\.\s*\d{1,2}\.\s*(\d{4})"
+    'založen[aáoý]\\s+v\\s+roce\\s+(\\d{4})',
+    'vznik(?:lo|la|l)\\s+v\\s+roce\\s+(\\d{4})',
+    'vznikl[ao]?\\s+kolem\\s+roku\\s+(\\d{4})',
+    'od\\s+roku\\s+(\\d{4})',
+    'působí\\s+od\\s+roku\\s+(\\d{4})',
+    'činnost\\s+zahájena\\s+v\\s+roce\\s+(\\d{4})',
+    'registrován[aáoý]\\s+v\\s+(?:ČR|České\\s+republice)\\s+v\\s+roce\\s+(\\d{4})',
+    'zaregistrován[ao]?\\s+dne\\s+\\d{1,2}\\.\\s*\\d{1,2}\\.\\s*(\\d{4})'
   ]

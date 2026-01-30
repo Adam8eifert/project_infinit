@@ -6,7 +6,8 @@ import scrapy
 import json
 from datetime import datetime
 from config_loader import get_config_loader
-from keywords import contains_relevant_keywords
+from .keywords import contains_relevant_keywords
+from csv_utils import get_output_csv_for_source, append_row
 
 
 class APISpider(scrapy.Spider):
@@ -20,6 +21,16 @@ class APISpider(scrapy.Spider):
         super().__init__(*args, **kwargs)
         self.config_loader = get_config_loader()
         self.sources = self._get_api_sources()
+
+        # Ensure per-source CSV headers exist for configured outputs
+        for key in self.sources.keys():
+            try:
+                _p = get_output_csv_for_source(key)
+                from csv_utils import ensure_csv_header  # local import to avoid circular
+                ensure_csv_header(_p)
+            except Exception:
+                pass
+
         self.logger.info(f"🔌 Initializing API spider with {len(self.sources)} sources")
     
     def _get_api_sources(self):
@@ -84,7 +95,7 @@ class APISpider(scrapy.Spider):
                 
                 # Relevance check
                 if contains_relevant_keywords(wikitext):
-                    yield {
+                    item = {
                         'source_name': response.meta['source_name'],
                         'source_type': 'API',
                         'title': title,
@@ -93,6 +104,15 @@ class APISpider(scrapy.Spider):
                         'scraped_at': datetime.utcnow().isoformat(),
                         'categories': categories
                     }
+
+                    # write per-source CSV when configured
+                    try:
+                        out_path = get_output_csv_for_source(response.meta['source_key'])
+                        append_row(out_path, item)
+                    except Exception:
+                        self.logger.debug("Could not write per-source CSV for API source")
+
+                    yield item
             
             elif api_method == 'query' and 'query' in data:
                 # Other MediaWiki API response

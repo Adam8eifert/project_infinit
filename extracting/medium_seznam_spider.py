@@ -1,24 +1,18 @@
 import scrapy
 import datetime
-from keywords import contains_relevant_keywords, is_excluded_content
+from .keywords import contains_relevant_keywords, is_excluded_content
 
 class MediumSeznamSpider(scrapy.Spider):
     """
     Spider for scraping articles from Medium.seznam.cz related to religious movements.
     """
     name = "medium_seznam"
+    SOURCE_KEY = "medium_seznam"
     allowed_domains = ["medium.seznam.cz"]
     start_urls = ["https://medium.seznam.cz/"]
 
+    # Base settings — FEEDS will be set dynamically in __init__ to honor config
     custom_settings = {
-        "FEEDS": {
-            "export/csv/medium_seznam_raw.csv": {
-                "format": "csv",
-                "overwrite": True,
-                "encoding": "utf8",
-                "fields": ["source_name", "source_type", "title", "url", "text", "scraped_at"]
-            }
-        },
         "ROBOTSTXT_OBEY": False,
         "AUTOTHROTTLE_ENABLED": True,
         "AUTOTHROTTLE_START_DELAY": 2.0,  # More ethical start delay
@@ -28,6 +22,18 @@ class MediumSeznamSpider(scrapy.Spider):
         "LOG_LEVEL": "INFO",
         "USER_AGENT": "Mozilla/5.0 (compatible; ProjectInfinit/1.0; +https://github.com/yourusername/project_infinit)"
     }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Dynamically set FEEDS based on sources_config.yaml
+        try:
+            from .csv_utils import get_output_csv_for_source, ensure_csv_header
+            out = str(get_output_csv_for_source(self.SOURCE_KEY))
+            ensure_csv_header(get_output_csv_for_source(self.SOURCE_KEY))
+            self.custom_settings = {**self.custom_settings, "FEEDS": {out: {"format": "csv", "overwrite": True, "encoding": "utf8"}}}
+        except Exception:
+            # If config missing, fall back to default static path
+            self.custom_settings = {**self.custom_settings, "FEEDS": {"export/csv/medium_seznam_raw.csv": {"format": "csv", "overwrite": True, "encoding": "utf8"}}}
 
     def parse(self, response):
         """Browses article list and follows relevant links."""

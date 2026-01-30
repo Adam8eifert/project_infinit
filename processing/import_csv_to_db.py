@@ -7,6 +7,7 @@ from database.db_loader import DBConnector, Source
 from datetime import datetime
 import logging
 from typing import Union
+import json
 
 class CSVtoDatabaseLoader:
     """Safe import of CSV data to database with validation and logging"""
@@ -29,7 +30,12 @@ class CSVtoDatabaseLoader:
         self.logger = logging.getLogger(__name__)
 
     def validate_row(self, row, csv_path):
-        """Validate individual data rows"""
+        """Validate individual data rows
+
+        New checks:
+        - `scraped_at` must be parseable as a datetime (ISO or common formats)
+        - `categories` if present must be valid JSON that resolves to a list
+        """
         errors = []
         
         # Check for empty values
@@ -44,19 +50,47 @@ class CSVtoDatabaseLoader:
         if row.get("url") and not row["url"].startswith(("http://", "https://")):
             errors.append("Invalid URL")
             
-        # Date validation
-        try:
-            pd.to_datetime(row.get("scraped_at"))
-        except:
+        # Date validation - use pandas to parse and check for NaT
+        dt = pd.to_datetime(row.get("scraped_at"), errors="coerce")
+        if pd.isna(dt):
             errors.append("Invalid date")
-            
+
+        # Categories validation - accept empty, or JSON list
+        cats = row.get("categories", "")
+        if cats and not isinstance(cats, (list, tuple)):
+            try:
+                parsed = json.loads(cats)
+                if not isinstance(parsed, list):
+                    errors.append("categories must be a JSON list")
+            except Exception:
+                errors.append("categories must be valid JSON list")
+
         if errors:
             self.logger.warning(f"Validation errors in {csv_path}: {', '.join(errors)}")
             return False
         return True
 
     def clean_row(self, row):
-        """Clean and normalize data"""
+        """Clean and normalize data
+
+        - Convert categories JSON string into a JSON string stored in `keywords_found` (preserve as JSON)
+        - Convert scraped_at into a proper datetime for `publication_date`
+        """
+        # Normalize categories
+        categories = row.get("categories", "")
+        keywords_json = "[]"
+        if categories:
+            if isinstance(categories, (list, tuple)):
+                keywords_json = json.dumps(categories, ensure_ascii=False)
+            else:
+                try:
+                    parsed = json.loads(categories)
+                    if isinstance(parsed, list):
+                        keywords_json = json.dumps(parsed, ensure_ascii=False)
+                except Exception:
+                    # leave as empty list if parsing fails; validation should have caught it
+                    keywords_json = "[]"
+
         return {
             "movement_id": 1,  # temporary: assign to first movement for testing
             "source_name": str(row.get("source_name", "")).strip(),
@@ -65,7 +99,8 @@ class CSVtoDatabaseLoader:
             "content_excerpt": str(row.get("title", "")).strip(),  # map title to content_excerpt
             "content_full": str(row.get("text", "")).strip(),      # map text to content_full
             "sentiment_score": None,  # will be filled during NLP
-            "publication_date": pd.to_datetime(row.get("scraped_at"), errors="coerce")
+            "publication_date": pd.to_datetime(row.get("scraped_at"), errors="coerce"),
+            "keywords_found": keywords_json
         }
 
     def load_csv_to_sources(self, csv_path: Union[str, Path]):

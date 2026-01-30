@@ -6,31 +6,42 @@ from urllib.parse import quote
 from datetime import datetime
 import lxml.etree as ET # Useful for cleaner XML parsing
 
-try:
-    from keywords import SEARCH_TERMS, EXCLUDE_TERMS
-except ImportError:
-    SEARCH_TERMS = ["sekta", "kult"]
-    EXCLUDE_TERMS = ["-film", "-hra"]
+from .keywords import SEARCH_TERMS, EXCLUDE_TERMS
+from .csv_utils import get_output_csv_for_source, append_row, ensure_csv_header
 
 class GoogleNewsRSSSpider(scrapy.Spider):
     name = "google_news_spider"
     allowed_domains = ["news.google.com"]
 
+    # Base settings — FEEDS will be set dynamically in __init__ to honor config
     custom_settings = {
         'ROBOTSTXT_OBEY': False,
         'DOWNLOAD_DELAY': 1.5,
         'COOKIES_ENABLED': False, # Not needed for RSS
-        'FEEDS': {
-            'export/csv/google_news_raw.csv': {
-                'format': 'csv',
-                'encoding': 'utf8',
-                'overwrite': True,
-            }
-        }
+        'LOG_LEVEL': 'INFO'
     }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.SOURCE_KEY = 'google_news'
+        try:
+            from .csv_utils import get_output_csv_for_source, ensure_csv_header
+            out = str(get_output_csv_for_source(self.SOURCE_KEY))
+            ensure_csv_header(get_output_csv_for_source(self.SOURCE_KEY))
+            self.custom_settings = {**self.custom_settings, 'FEEDS': {out: {'format': 'csv', 'encoding': 'utf8', 'overwrite': True}}}
+        except Exception:
+            # fallback
+            self.custom_settings = {**self.custom_settings, 'FEEDS': {'export/csv/google_news_raw.csv': {'format': 'csv', 'encoding': 'utf8', 'overwrite': True}}}
 
     def start_requests(self):
         """Generates requests for Google News RSS feed"""
+        # Ensure per-source CSV header exists
+        try:
+            from .csv_utils import ensure_csv_header
+            ensure_csv_header(get_output_csv_for_source('google_news'))
+        except Exception:
+            pass
+
         for term in SEARCH_TERMS:
             # RSS endpoint is different from the web search endpoint
             query = quote(term + ' ' + ' '.join(EXCLUDE_TERMS))
@@ -81,7 +92,7 @@ class GoogleNewsRSSSpider(scrapy.Spider):
             # Likely a paywall or cookie wall on the target site itself
             full_text = "[Content extraction failed or limited - possible paywall]"
 
-        yield {
+        item = {
             "source_name": response.meta.get('source_name') or "Google News",
             "source_type": "news_aggregator",
             "title": response.meta.get('title'),
@@ -91,3 +102,11 @@ class GoogleNewsRSSSpider(scrapy.Spider):
             "query": response.meta.get('query'),
             "date_published": response.meta.get('date_published')
         }
+
+        try:
+            out_path = get_output_csv_for_source('google_news')
+            append_row(out_path, item)
+        except Exception:
+            pass
+
+        yield item
