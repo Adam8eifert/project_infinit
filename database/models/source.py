@@ -8,7 +8,8 @@ class Source(Base):
     __tablename__ = "sources"
 
     id = Column(Integer, primary_key=True, autoincrement=True)
-    movement_id = Column(Integer, ForeignKey("movements.id", ondelete="CASCADE"), nullable=False)
+    # movement_id can be null for unassigned sources (e.g., scraped items not matched to movement)
+    movement_id = Column(Integer, ForeignKey("movements.id", ondelete="CASCADE"), nullable=True)
 
     # Basic metadata
     source_name = Column(String(255), nullable=True)

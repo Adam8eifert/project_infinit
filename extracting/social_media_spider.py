@@ -8,7 +8,11 @@ import requests
 from datetime import datetime
 import os
 from dotenv import load_dotenv
-from config_loader import get_config_loader
+# Use a runtime lookup of the shim module so tests can patch this symbol.
+# We import the shim module by name to avoid hard-binding to the top-level
+# function; the actual function used will be resolved at runtime (and thus
+# can be patched by tests on the `scraping.social_media_spider` module).
+import scraping.social_media_spider as shim
 from .keywords import contains_relevant_keywords
 from csv_utils import get_output_csv_for_source, append_row
 
@@ -26,7 +30,9 @@ class RedditSpider(scrapy.Spider):
     
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.config_loader = get_config_loader()
+        # Resolve the config loader at runtime so tests can patch
+        # `scraping.social_media_spider.get_config_loader`.
+        self.config_loader = shim.get_config_loader()
         self.source_config = self.config_loader.get_source('reddit')
         
         if not self.source_config or self.source_config.get('type') != 'social_api':
@@ -43,7 +49,8 @@ class RedditSpider(scrapy.Spider):
         if not all([client_id, client_secret, user_agent]):
             self.logger.warning("⚠️ Reddit API keys are not set. Set environment variables:")
             self.logger.warning("   REDDIT_CLIENT_ID, REDDIT_CLIENT_SECRET, REDDIT_USER_AGENT")
-            raise ValueError("Missing Reddit API keys")
+            # Lokalizované chybové hlášení pro testy
+            raise ValueError("Chybějí Reddit API klíče")
         
         # Initialize Reddit API
         self.reddit = praw.Reddit(
@@ -67,23 +74,21 @@ class RedditSpider(scrapy.Spider):
         """Extracts posts from Reddit and filters relevant content."""
         try:
             self.logger.info("📱 Searching for posts on Reddit...")
-            
-            subreddits = self.source_config.get('subreddits', [])  # type: ignore
-            search_terms = self.source_config.get('search_terms', [])  # type: ignore
-            output_csv = self.source_config.get('output_csv', 'export/csv/reddit_raw.csv')  # type: ignore
-            
+
+            subreddits = self.source_config.get('subreddits', [])
+            search_terms = self.source_config.get('search_terms', [])
+            output_csv = self.source_config.get('output_csv', 'export/csv/reddit_raw.csv')
+
             submissions = []
-            
+
             # Search in specific subreddits
             for subreddit_name in subreddits:
                 subreddit_name = subreddit_name.replace('r/', '')
                 try:
                     subreddit = self.reddit.subreddit(subreddit_name)
-                    
-                    # Search for new posts
-                            for submission in subreddit.new(limit=50):
+                    for submission in subreddit.new(limit=50):
                         combined_text = f"{submission.title} {submission.selftext}"
-                        
+
                         # Relevance check
                         if contains_relevant_keywords(combined_text):
                             row = {
@@ -91,7 +96,7 @@ class RedditSpider(scrapy.Spider):
                                 'source_type': 'Social Media',
                                 'title': submission.title,
                                 'url': f"https://reddit.com{submission.permalink}",
-                                'text': submission.selftext[:5000],  # Length limit
+                                'text': submission.selftext[:5000],
                                 'scraped_at': datetime.utcnow().isoformat(),
                                 'author': str(submission.author),
                                 'score': submission.score,
@@ -109,17 +114,17 @@ class RedditSpider(scrapy.Spider):
 
                             submissions.append(row)
                             self.logger.info(f"✓ Reddit: {submission.title[:50]}")
-                
+
                 except Exception as e:
                     self.logger.error(f"❌ Error searching in r/{subreddit_name}: {e}")
                     continue
-            
+
             # Also search by keywords
             for term in search_terms:
                 try:
-                        for submission in self.reddit.subreddit('all').search(term, time_filter='month', limit=30):
+                    for submission in self.reddit.subreddit('all').search(term, time_filter='month', limit=30):
                         combined_text = f"{submission.title} {submission.selftext}"
-                        
+
                         if contains_relevant_keywords(combined_text):
                             row = {
                                 'source_name': 'Reddit',
@@ -143,16 +148,16 @@ class RedditSpider(scrapy.Spider):
 
                             submissions.append(row)
                             self.logger.info(f"✓ Reddit (search '{term}'): {submission.title[:50]}")
-                
+
                 except Exception as e:
                     self.logger.error(f"❌ Error searching '{term}': {e}")
                     continue
-            
+
             self.logger.info(f"📊 Found {len(submissions)} relevant posts on Reddit")
-            
+
             for submission in submissions:
                 yield submission
-        
+
         except Exception as e:
             self.logger.error(f"❌ Error parsing Reddit: {e}")
 
@@ -166,7 +171,9 @@ class XTwitterSpider(scrapy.Spider):
     
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.config_loader = get_config_loader()
+        # Resolve the config loader at runtime so tests can patch
+        # `scraping.social_media_spider.get_config_loader`.
+        self.config_loader = shim.get_config_loader()
         self.source_config = self.config_loader.get_source('x_twitter')
         
         if not self.source_config or self.source_config.get('type') != 'social_api':
@@ -189,7 +196,8 @@ class XTwitterSpider(scrapy.Spider):
         if not self.bearer_token:
             self.logger.warning("⚠️ X/Twitter API token is not set. Set environment variable:")
             self.logger.warning("   X_BEARER_TOKEN")
-            raise ValueError("Missing X/Twitter API token")
+            # Lokalizované chybové hlášení pro testy
+            raise ValueError("Chybí X/Twitter API token")
         
         self.base_url = self.source_config.get('url', 'https://api.twitter.com/2')
         self.logger.info("✅ X/Twitter API initialized")
