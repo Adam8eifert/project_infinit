@@ -2,8 +2,10 @@
 # Centralized keywords, filters and patterns for all spiders
 # Project: Database of New Religious Movements in the Czech Republic
 
-from typing import List
+from typing import List, Dict
 import re
+import os
+import yaml
 
 # ============================================================
 # SEARCH TERMS (neutral + critical + academic)
@@ -201,6 +203,36 @@ YEAR_PATTERNS: List[str] = [
     r"registrován[aáoý]\s+v\s+(?:ČR|České\s+republice)\s+v\s+roce\s+(\d{4})",
     r"zaregistrován[ao]?\s+dne\s+\d{1,2}\.\s*\d{1,2}\.\s*(\d{4})"
 ]
+
+# ============================================================
+# CONFIG OVERRIDE (load from extracting/sources_config.yaml when present)
+# ============================================================
+CONFIG_PATH = os.path.join(os.path.dirname(__file__), "sources_config.yaml")
+
+try:
+    with open(CONFIG_PATH, "r", encoding="utf8") as _f:
+        _cfg = yaml.safe_load(_f) or {}
+        _kw = _cfg.get("keywords", {})
+
+        # override lists if present in config, otherwise keep defaults defined above
+        SEARCH_TERMS = _kw.get("required", SEARCH_TERMS)
+        EXCLUDE_TERMS = _kw.get("exclude", EXCLUDE_TERMS)
+        EXCLUDE_CONTEXT_PATTERNS = _kw.get("exclude_context_patterns", EXCLUDE_CONTEXT_PATTERNS)
+        KNOWN_MOVEMENTS = _kw.get("known_movements", KNOWN_MOVEMENTS)
+        YEAR_PATTERNS = _kw.get("year_patterns", YEAR_PATTERNS)
+
+        # flatten known movements
+        ALL_KNOWN_MOVEMENTS = [
+            movement
+            for group in KNOWN_MOVEMENTS.values()
+            for movement in group
+        ]
+except FileNotFoundError:
+    # no config file — keep the hard-coded defaults
+    pass
+except Exception:
+    # If yaml is invalid or other error, keep defaults but warn in logs when possible
+    pass
 
 # ============================================================
 # HELPER FUNCTIONS

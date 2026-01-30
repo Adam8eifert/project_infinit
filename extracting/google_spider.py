@@ -6,30 +6,20 @@ from urllib.parse import quote
 from datetime import datetime
 import lxml.etree as ET # Useful for cleaner XML parsing
 
-# Import settings and keywords from local project files
 try:
-    from spider_settings import ETHICAL_SCRAPING_SETTINGS, CSV_EXPORT_SETTINGS
     from keywords import SEARCH_TERMS, EXCLUDE_TERMS
 except ImportError:
-    # Fallback values if imports fail
     SEARCH_TERMS = ["sekta", "kult"]
     EXCLUDE_TERMS = ["-film", "-hra"]
 
-class GoogleNewsSpider(scrapy.Spider):
+class GoogleNewsRSSSpider(scrapy.Spider):
     name = "google_news_spider"
-    allowed_domains = ["news.google.com", "google.com"]
+    allowed_domains = ["news.google.com"]
 
     custom_settings = {
         'ROBOTSTXT_OBEY': False,
         'DOWNLOAD_DELAY': 1.5,
         'COOKIES_ENABLED': False, # Not needed for RSS
-        'USER_AGENT': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-        'DEFAULT_REQUEST_HEADERS': {
-            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-            'Accept-Language': 'cs,en-US;q=0.7,en;q=0.3',
-            'Referer': 'https://www.google.com/'
-        },
-        # Direct export to CSV to ensure data is saved
         'FEEDS': {
             'export/csv/google_news_raw.csv': {
                 'format': 'csv',
@@ -43,7 +33,7 @@ class GoogleNewsSpider(scrapy.Spider):
         """Generates requests for Google News RSS feed"""
         for term in SEARCH_TERMS:
             # RSS endpoint is different from the web search endpoint
-            query = quote(term + ' ' + ' '.join(f'-{e}' for e in EXCLUDE_TERMS))
+            query = quote(term + ' ' + ' '.join(EXCLUDE_TERMS))
             # Added /rss/ to the path
             url = f"https://news.google.com/rss/search?q={query}&hl=cs&gl=CZ&ceid=CZ%3Acs"
             
