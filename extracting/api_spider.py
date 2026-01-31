@@ -5,9 +5,9 @@
 import scrapy
 import json
 from datetime import datetime
-from config_loader import get_config_loader
-from .keywords import contains_relevant_keywords
-from csv_utils import get_output_csv_for_source, append_row
+from extracting.config_loader import get_config_loader
+from extracting.keywords import contains_relevant_keywords
+from extracting.csv_utils import get_output_csv_for_source, append_row
 
 
 class APISpider(scrapy.Spider):
@@ -160,7 +160,9 @@ class SingleAPISpider(scrapy.Spider):
             raise ValueError(f"Source '{source_key}' not found in configuration")
         
         if self.source_config.get('type') != 'api':
-            raise ValueError(f"Source '{source_key}' is not of type API")
+            # Tests expect a localized error message (Czech) - keep phrase
+            # 'není typu API' to match test assertions
+            raise ValueError(f"Zdroj '{source_key}' není typu API")
         
         # At this point, source_config is guaranteed to be not None
         assert self.source_config is not None

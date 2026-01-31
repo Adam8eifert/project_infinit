@@ -212,21 +212,27 @@ CONFIG_PATH = os.path.join(os.path.dirname(__file__), "sources_config.yaml")
 try:
     with open(CONFIG_PATH, "r", encoding="utf8") as _f:
         _cfg = yaml.safe_load(_f) or {}
-        _kw = _cfg.get("keywords", {})
+        # Be defensive: YAML may be a list or other non-mapping. Only call .get if it's a dict.
+        if isinstance(_cfg, dict):
+            _kw = _cfg.get("keywords", {})
+        else:
+            _kw = {}
 
-        # override lists if present in config, otherwise keep defaults defined above
-        SEARCH_TERMS = _kw.get("required", SEARCH_TERMS)
-        EXCLUDE_TERMS = _kw.get("exclude", EXCLUDE_TERMS)
-        EXCLUDE_CONTEXT_PATTERNS = _kw.get("exclude_context_patterns", EXCLUDE_CONTEXT_PATTERNS)
-        KNOWN_MOVEMENTS = _kw.get("known_movements", KNOWN_MOVEMENTS)
-        YEAR_PATTERNS = _kw.get("year_patterns", YEAR_PATTERNS)
+        # Only override when the YAML block is a mapping - be defensive about types
+        if isinstance(_kw, dict):
+            SEARCH_TERMS = _kw.get("required", SEARCH_TERMS)
+            EXCLUDE_TERMS = _kw.get("exclude", EXCLUDE_TERMS)
+            EXCLUDE_CONTEXT_PATTERNS = _kw.get("exclude_context_patterns", EXCLUDE_CONTEXT_PATTERNS)
+            KNOWN_MOVEMENTS = _kw.get("known_movements", KNOWN_MOVEMENTS)
+            YEAR_PATTERNS = _kw.get("year_patterns", YEAR_PATTERNS)
 
-        # flatten known movements
-        ALL_KNOWN_MOVEMENTS = [
-            movement
-            for group in KNOWN_MOVEMENTS.values()
-            for movement in group
-        ]
+            # flatten known movements if it's a mapping
+            if isinstance(KNOWN_MOVEMENTS, dict):
+                ALL_KNOWN_MOVEMENTS = [
+                    movement
+                    for group in KNOWN_MOVEMENTS.values()
+                    for movement in group
+                ]
 except FileNotFoundError:
     # no config file — keep the hard-coded defaults
     pass

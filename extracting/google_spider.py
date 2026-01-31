@@ -6,8 +6,8 @@ from urllib.parse import quote
 from datetime import datetime
 import lxml.etree as ET # Useful for cleaner XML parsing
 
-from .keywords import SEARCH_TERMS, EXCLUDE_TERMS
-from .csv_utils import get_output_csv_for_source, append_row, ensure_csv_header
+from extracting.keywords import SEARCH_TERMS, EXCLUDE_TERMS
+from extracting.csv_utils import get_output_csv_for_source, append_row, ensure_csv_header
 
 class GoogleNewsRSSSpider(scrapy.Spider):
     name = "google_news_spider"
@@ -28,16 +28,21 @@ class GoogleNewsRSSSpider(scrapy.Spider):
             from .csv_utils import get_output_csv_for_source, ensure_csv_header
             out = str(get_output_csv_for_source(self.SOURCE_KEY))
             ensure_csv_header(get_output_csv_for_source(self.SOURCE_KEY))
-            self.custom_settings = {**self.custom_settings, 'FEEDS': {out: {'format': 'csv', 'encoding': 'utf8', 'overwrite': True}}}
+            # Use explicit dict copy to satisfy static type checkers
+            new_settings = dict(self.custom_settings)
+            new_settings['FEEDS'] = {out: {'format': 'csv', 'encoding': 'utf8', 'overwrite': True}}
+            self.custom_settings = new_settings
         except Exception:
             # fallback
-            self.custom_settings = {**self.custom_settings, 'FEEDS': {'export/csv/google_news_raw.csv': {'format': 'csv', 'encoding': 'utf8', 'overwrite': True}}}
+            new_settings = dict(self.custom_settings)
+            new_settings['FEEDS'] = {'export/csv/google_news_raw.csv': {'format': 'csv', 'encoding': 'utf8', 'overwrite': True}}
+            self.custom_settings = new_settings
 
     def start_requests(self):
         """Generates requests for Google News RSS feed"""
         # Ensure per-source CSV header exists
         try:
-            from .csv_utils import ensure_csv_header
+            from extracting.csv_utils import ensure_csv_header
             ensure_csv_header(get_output_csv_for_source('google_news'))
         except Exception:
             pass
@@ -47,7 +52,7 @@ class GoogleNewsRSSSpider(scrapy.Spider):
             query = quote(term + ' ' + ' '.join(EXCLUDE_TERMS))
             # Added /rss/ to the path
             url = f"https://news.google.com/rss/search?q={query}&hl=cs&gl=CZ&ceid=CZ%3Acs"
-            
+
             yield scrapy.Request(
                 url=url,
                 callback=self.parse_rss,

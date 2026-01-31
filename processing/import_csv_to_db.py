@@ -8,6 +8,7 @@ from datetime import datetime
 import logging
 from typing import Union
 import json
+import re
 
 class CSVtoDatabaseLoader:
     """Safe import of CSV data to database with validation and logging"""
@@ -55,15 +56,47 @@ class CSVtoDatabaseLoader:
         if pd.isna(dt):
             errors.append("Invalid date")
 
-        # Categories validation - accept empty, or JSON list
+        # Categories validation - accept empty, or JSON list or plain string; coerce where possible
         cats = row.get("categories", "")
+        # Handle pandas NaN/null values gracefully by treating them as empty
+        try:
+            if pd.isna(cats):
+                row['categories'] = []
+                cats = []
+        except Exception:
+            # If pd.isna fails for any reason, continue with original value
+            pass
+
         if cats and not isinstance(cats, (list, tuple)):
             try:
                 parsed = json.loads(cats)
                 if not isinstance(parsed, list):
-                    errors.append("categories must be a JSON list")
+                    # If JSON parsed to a scalar, wrap as a single-item list
+                    parsed = [parsed]
             except Exception:
-                errors.append("categories must be valid JSON list")
+                # Not valid JSON; reject if it's clearly JSON-like (e.g., starts with '{' or '[')
+                if isinstance(cats, str) and cats.strip():
+                    s = cats.strip()
+                    if s[0] in ('{', '['):
+                        errors.append("categories must be a JSON list or non-empty string")
+                        parsed = None
+                    else:
+                        # Try splitting on common separators
+                        if any(sep in s for sep in [',',';','|']):
+                            parts = [p.strip() for p in re.split('[,;|]', s) if p.strip()]
+                            parsed = parts if parts else [s]
+                        else:
+                            parsed = [s]
+                else:
+                    # Treat empty/non-string categories as empty list (no categories)
+                    parsed = []
+
+            # If parsed is a list, normalize it back into the row for downstream processing
+            if isinstance(parsed, list):
+                row['categories'] = parsed
+            else:
+                # Keep the original value (and allow validation to fail above)
+                pass
 
         if errors:
             self.logger.warning(f"Validation errors in {csv_path}: {', '.join(errors)}")
@@ -111,7 +144,11 @@ class CSVtoDatabaseLoader:
             return
 
         try:
-            df = pd.read_csv(csv_path)
+            try:
+                df = pd.read_csv(csv_path)
+            except pd.errors.EmptyDataError:
+                self.logger.info(f"Skipping empty CSV (no columns): {csv_path}")
+                return
             self.logger.info(f"Loading {len(df)} rows from {csv_path}")
 
             # Check required columns

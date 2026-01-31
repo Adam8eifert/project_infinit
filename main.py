@@ -54,6 +54,38 @@ def create_db():
         session.close()
         
         print("✅ Database tables ready")
+
+        # Seed known movements from configuration (idempotent)
+        try:
+            from extracting.config_loader import get_config_loader
+            loader = get_config_loader()
+            known = loader.config.get('keywords', {}).get('known_movements', {}).get('new_religious_movements', [])
+            if known:
+                session = db.get_session()
+                seeded = 0
+                for name in known:
+                    if not name or not isinstance(name, str):
+                        continue
+                    nm = name.strip()
+                    if not nm:
+                        continue
+                    existing = session.query(Movement).filter(Movement.canonical_name.ilike(nm)).first()
+                    if not existing:
+                        movement = Movement(
+                            canonical_name=nm,
+                            category="religious",
+                            description="Seeded from extracting/sources_config.yaml",
+                            active_status="unknown"
+                        )
+                        session.add(movement)
+                        seeded += 1
+                if seeded:
+                    session.commit()
+                    print(f"✅ Seeded {seeded} canonical movements from configuration")
+                session.close()
+        except Exception as e:
+            print(f"⚠️ Failed to seed known movements: {e}")
+
     except Exception as e:
         print(f"❌ Error creating database: {e}")
         raise
@@ -295,8 +327,23 @@ def process_entities():
             # Update source with sentiment if not set
             if source.sentiment_score is None:
                 sentiment = analyzer.analyze_sentiment(text[:512])  # First 512 chars
-                source.sentiment_score = sentiment.get('score', 0.5)
-                source.classification_label = sentiment.get('label', 'neutral')
+                # Backwards-compatible handling: analyzer may return a string label (tests/legacy)
+                if isinstance(sentiment, str):
+                    # Map common star labels to a normalized score, otherwise default to 0.5
+                    import re
+                    m = re.search(r"(\d)\s*star", sentiment)
+                    if m:
+                        stars = int(m.group(1))
+                        score = (stars - 1) / 4.0
+                    else:
+                        score = 0.5
+                    label = sentiment
+                else:
+                    score = sentiment.get('score', 0.5)
+                    label = sentiment.get('label', 'neutral')
+
+                source.sentiment_score = score
+                source.classification_label = label
         
         session.commit()
         session.close()

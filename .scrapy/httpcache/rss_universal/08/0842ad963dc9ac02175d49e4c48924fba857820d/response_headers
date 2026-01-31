@@ -1,4 +1,4 @@
-Date: Thu, 29 Jan 2026 20:30:15 GMT
+Date: Sat, 31 Jan 2026 21:20:56 GMT
 Server: Apache
 Strict-Transport-Security: max-age=63072000; includeSubDomains;preload
 X-Xss-Protection: 0
@@ -6,11 +6,11 @@ X-Content-Type-Options: nosniff
 X-Frame-Options: SAMEORIGIN
 Content-Security-Policy: frame-ancestors 'self' ;upgrade-insecure-requests;
 Link: <https://info.dingir.cz/wp-json/>; rel="https://api.w.org/"
-Set-Cookie: wpdiscuz_nonce_281f5be9bb9cd8d9a846cae34f627772=84664756c7; expires=Fri, 30 Jan 2026 06:30:16 GMT; Max-Age=36000; path=/; HttpOnly; SameSite=Strict
-Last-Modified: Thu, 29 Jan 2026 12:00:22 GMT
-Etag: "95068d2660f9b5a16537d9b86f4cdec7"
+Set-Cookie: wpdiscuz_nonce_281f5be9bb9cd8d9a846cae34f627772=1c9067a840; expires=Sun, 01 Feb 2026 07:20:56 GMT; Max-Age=36000; path=/; HttpOnly; SameSite=Strict
+Last-Modified: Sat, 31 Jan 2026 16:52:01 GMT
+Etag: "d7e8f9cb03228df44ecb901774b88b49"
 Cache-Control: max-age=600
-Expires: Thu, 29 Jan 2026 20:40:15 GMT
+Expires: Sat, 31 Jan 2026 21:30:56 GMT
 Referrer-Policy: no-referrer-when-downgrade
 Content-Type: application/rss+xml; charset=UTF-8
 X-Accel-Start: 1
@@ -27,7 +27,7 @@ X-Anycast-Port: 443
 X-Forwarded-Proto: https
 X-Forwarded-Port: 443
 X-Visitor-Ip: 78.80.80.248
-X-Request-Id: 2de546c9-1c90-4cbe-bb64-b859b7e895d8
+X-Request-Id: a674ed1f-c726-434c-9061-01a11cb18333
 X-Provider: WEDOS - WE DO Security (WEDOS.com)
 X-Cdn-Provider: WEDOS Global CDN (WEDOS.delivery)
 X-Protected-By: WEDOS Global Protection (WEDOS.protection)

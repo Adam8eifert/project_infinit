@@ -830,3 +830,380 @@
 2026-01-29 21:42:11,719 - INFO - PDF already exists in database: Vypis20260104225818.pdf
 2026-01-29 21:42:11,720 - INFO - Extracting text from: Vypis20260104225846.pdf
 2026-01-29 21:42:11,727 - INFO - PDF already exists in database: Vypis20260104225846.pdf
+2026-01-31 22:15:53,698 - INFO - Loading 16 rows from export/csv/x_twitter_raw.csv
+2026-01-31 22:15:53,703 - WARNING - Validation errors in export/csv/x_twitter_raw.csv: categories must be valid JSON list
+2026-01-31 22:15:53,705 - WARNING - Validation errors in export/csv/x_twitter_raw.csv: categories must be valid JSON list
+2026-01-31 22:15:53,707 - WARNING - Validation errors in export/csv/x_twitter_raw.csv: categories must be valid JSON list
+2026-01-31 22:15:53,709 - WARNING - Validation errors in export/csv/x_twitter_raw.csv: categories must be valid JSON list
+2026-01-31 22:15:53,710 - WARNING - Validation errors in export/csv/x_twitter_raw.csv: categories must be valid JSON list
+2026-01-31 22:15:53,712 - WARNING - Validation errors in export/csv/x_twitter_raw.csv: categories must be valid JSON list
+2026-01-31 22:15:53,714 - WARNING - Validation errors in export/csv/x_twitter_raw.csv: categories must be valid JSON list
+2026-01-31 22:15:53,716 - WARNING - Validation errors in export/csv/x_twitter_raw.csv: categories must be valid JSON list
+2026-01-31 22:15:53,717 - WARNING - Validation errors in export/csv/x_twitter_raw.csv: categories must be valid JSON list
+2026-01-31 22:15:53,720 - WARNING - Validation errors in export/csv/x_twitter_raw.csv: categories must be valid JSON list
+2026-01-31 22:15:53,721 - WARNING - Validation errors in export/csv/x_twitter_raw.csv: categories must be valid JSON list
+2026-01-31 22:15:53,722 - WARNING - Validation errors in export/csv/x_twitter_raw.csv: categories must be valid JSON list
+2026-01-31 22:15:53,724 - WARNING - Validation errors in export/csv/x_twitter_raw.csv: categories must be valid JSON list
+2026-01-31 22:15:53,725 - WARNING - Validation errors in export/csv/x_twitter_raw.csv: categories must be valid JSON list
+2026-01-31 22:15:53,726 - WARNING - Validation errors in export/csv/x_twitter_raw.csv: categories must be valid JSON list
+2026-01-31 22:15:53,727 - WARNING - Validation errors in export/csv/x_twitter_raw.csv: categories must be valid JSON list
+2026-01-31 22:15:53,727 - INFO - Import completed: 0 imported, 16 skipped
+2026-01-31 22:15:53,730 - INFO - Loading 0 rows from export/csv/soccas_api_raw.csv
+2026-01-31 22:15:53,730 - INFO - Import completed: 0 imported, 0 skipped
+2026-01-31 22:15:53,733 - INFO - Loading 11 rows from export/csv/rss_combined_raw.csv
+2026-01-31 22:15:53,734 - WARNING - Validation errors in export/csv/rss_combined_raw.csv: categories must be valid JSON list
+2026-01-31 22:15:53,735 - WARNING - Validation errors in export/csv/rss_combined_raw.csv: categories must be valid JSON list
+2026-01-31 22:15:53,736 - WARNING - Validation errors in export/csv/rss_combined_raw.csv: categories must be valid JSON list
+2026-01-31 22:15:53,737 - WARNING - Validation errors in export/csv/rss_combined_raw.csv: categories must be valid JSON list
+2026-01-31 22:15:53,738 - WARNING - Validation errors in export/csv/rss_combined_raw.csv: categories must be valid JSON list
+2026-01-31 22:15:53,739 - WARNING - Validation errors in export/csv/rss_combined_raw.csv: categories must be valid JSON list
+2026-01-31 22:15:53,740 - WARNING - Validation errors in export/csv/rss_combined_raw.csv: categories must be valid JSON list
+2026-01-31 22:15:53,742 - WARNING - Validation errors in export/csv/rss_combined_raw.csv: categories must be valid JSON list
+2026-01-31 22:15:53,743 - WARNING - Validation errors in export/csv/rss_combined_raw.csv: categories must be valid JSON list
+2026-01-31 22:15:53,745 - WARNING - Validation errors in export/csv/rss_combined_raw.csv: categories must be valid JSON list
+2026-01-31 22:15:53,746 - WARNING - Validation errors in export/csv/rss_combined_raw.csv: categories must be valid JSON list
+2026-01-31 22:15:53,747 - INFO - Import completed: 0 imported, 11 skipped
+2026-01-31 22:15:53,749 - INFO - Loading 3 rows from export/csv/google_news_raw.csv
+2026-01-31 22:15:53,760 - WARNING - Duplicate URL - skipping batch
+2026-01-31 22:15:53,760 - INFO - Import completed: 3 imported, 3 skipped
+2026-01-31 22:15:53,762 - INFO - Found 37 PDF files to process
+2026-01-31 22:15:53,762 - INFO - Extracting text from: adamík_2009_dp_data.pdf
+2026-01-31 22:15:53,959 - INFO - PDF already exists in database: adamík_2009_dp_data.pdf
+2026-01-31 22:15:53,959 - INFO - Extracting text from: žáček_2013_dp_data.pdf
+2026-01-31 22:15:54,083 - INFO - PDF already exists in database: žáček_2013_dp_data.pdf
+2026-01-31 22:15:54,084 - INFO - Extracting text from: Vypis20260104230513.pdf
+2026-01-31 22:15:54,092 - WARNING - Validation failed for Vypis20260104230513.pdf: Content doesn't appear to be relevant (missing Czech/religious keywords)
+2026-01-31 22:15:54,094 - INFO - PDF already exists in database: Vypis20260104230513.pdf
+2026-01-31 22:15:54,094 - INFO - Extracting text from: Vypis20260104225750.pdf
+2026-01-31 22:15:54,110 - INFO - PDF already exists in database: Vypis20260104225750.pdf
+2026-01-31 22:15:54,110 - INFO - Extracting text from: Vypis20260104230241.pdf
+2026-01-31 22:15:54,125 - INFO - PDF already exists in database: Vypis20260104230241.pdf
+2026-01-31 22:15:54,125 - INFO - Extracting text from: Vypis20260104225944.pdf
+2026-01-31 22:15:54,138 - INFO - PDF already exists in database: Vypis20260104225944.pdf
+2026-01-31 22:15:54,139 - INFO - Extracting text from: Vypis20260104225658.pdf
+2026-01-31 22:15:54,158 - INFO - PDF already exists in database: Vypis20260104225658.pdf
+2026-01-31 22:15:54,158 - INFO - Extracting text from: Vypis20260104230123.pdf
+2026-01-31 22:15:54,171 - INFO - PDF already exists in database: Vypis20260104230123.pdf
+2026-01-31 22:15:54,171 - INFO - Extracting text from: sejharova_data.pdf
+2026-01-31 22:15:54,388 - INFO - PDF already exists in database: sejharova_data.pdf
+2026-01-31 22:15:54,388 - INFO - Extracting text from: Vypis20260104230329.pdf
+2026-01-31 22:15:54,396 - WARNING - Validation failed for Vypis20260104230329.pdf: Content doesn't appear to be relevant (missing Czech/religious keywords)
+2026-01-31 22:15:54,398 - INFO - PDF already exists in database: Vypis20260104230329.pdf
+2026-01-31 22:15:54,398 - INFO - Extracting text from: novopohanstvi_pro_teologickou_revue.pdf
+2026-01-31 22:15:54,549 - INFO - PDF already exists in database: novopohanstvi_pro_teologickou_revue.pdf
+2026-01-31 22:15:54,549 - INFO - Extracting text from: Vypis20260104230409.pdf
+2026-01-31 22:15:54,558 - WARNING - Validation failed for Vypis20260104230409.pdf: Content doesn't appear to be relevant (missing Czech/religious keywords)
+2026-01-31 22:15:54,559 - INFO - PDF already exists in database: Vypis20260104230409.pdf
+2026-01-31 22:15:54,560 - INFO - Extracting text from: seznam_registrovanych_NNH.pdf
+2026-01-31 22:15:54,564 - INFO - PDF already exists in database: seznam_registrovanych_NNH.pdf
+2026-01-31 22:15:54,565 - INFO - Extracting text from: Vypis20260104225642.pdf
+2026-01-31 22:15:54,580 - INFO - PDF already exists in database: Vypis20260104225642.pdf
+2026-01-31 22:15:54,580 - INFO - Extracting text from: Vypis20260104225712.pdf
+2026-01-31 22:15:54,596 - INFO - PDF already exists in database: Vypis20260104225712.pdf
+2026-01-31 22:15:54,597 - INFO - Extracting text from: Vypis20260104230158.pdf
+2026-01-31 22:15:54,614 - INFO - PDF already exists in database: Vypis20260104230158.pdf
+2026-01-31 22:15:54,614 - INFO - Extracting text from: proftova_data.pdf
+2026-01-31 22:15:54,791 - INFO - PDF already exists in database: proftova_data.pdf
+2026-01-31 22:15:54,791 - INFO - Extracting text from: 118531_data.pdf
+2026-01-31 22:15:54,879 - INFO - PDF already exists in database: 118531_data.pdf
+2026-01-31 22:15:54,879 - INFO - Extracting text from: Vypis20260104230139.pdf
+2026-01-31 22:15:54,891 - INFO - PDF already exists in database: Vypis20260104230139.pdf
+2026-01-31 22:15:54,891 - INFO - Extracting text from: Vypis20260104230302.pdf
+2026-01-31 22:15:54,903 - WARNING - Validation failed for Vypis20260104230302.pdf: Content doesn't appear to be relevant (missing Czech/religious keywords)
+2026-01-31 22:15:54,905 - INFO - PDF already exists in database: Vypis20260104230302.pdf
+2026-01-31 22:15:54,905 - INFO - Extracting text from: Sekty_clanek_data.pdf
+2026-01-31 22:15:55,001 - INFO - PDF already exists in database: Sekty_clanek_data.pdf
+2026-01-31 22:15:55,001 - INFO - Extracting text from: 7692876_data.pdf
+2026-01-31 22:15:55,129 - INFO - PDF already exists in database: 7692876_data.pdf
+2026-01-31 22:15:55,129 - INFO - Extracting text from: Bakalarska_prace_data.pdf
+2026-01-31 22:15:55,256 - INFO - PDF already exists in database: Bakalarska_prace_data.pdf
+2026-01-31 22:15:55,256 - INFO - Extracting text from: Vypis20260104225829.pdf
+2026-01-31 22:15:55,266 - INFO - PDF already exists in database: Vypis20260104225829.pdf
+2026-01-31 22:15:55,266 - INFO - Extracting text from: sojchova_data.pdf
+2026-01-31 22:15:55,443 - INFO - PDF already exists in database: sojchova_data.pdf
+2026-01-31 22:15:55,443 - INFO - Extracting text from: Vypis20260104225225.pdf
+2026-01-31 22:15:55,453 - WARNING - Validation failed for Vypis20260104225225.pdf: Content doesn't appear to be relevant (missing Czech/religious keywords)
+2026-01-31 22:15:55,455 - INFO - PDF already exists in database: Vypis20260104225225.pdf
+2026-01-31 22:15:55,455 - INFO - Extracting text from: Vypis20260104230227.pdf
+2026-01-31 22:15:55,470 - INFO - PDF already exists in database: Vypis20260104230227.pdf
+2026-01-31 22:15:55,470 - INFO - Extracting text from: Vypis20260104230439.pdf
+2026-01-31 22:15:55,481 - WARNING - Validation failed for Vypis20260104230439.pdf: Content doesn't appear to be relevant (missing Czech/religious keywords)
+2026-01-31 22:15:55,482 - INFO - PDF already exists in database: Vypis20260104230439.pdf
+2026-01-31 22:15:55,483 - INFO - Extracting text from: bakalarka_data.pdf
+2026-01-31 22:15:55,617 - INFO - PDF already exists in database: bakalarka_data.pdf
+2026-01-31 22:15:55,617 - INFO - Extracting text from: Vypis20260104230534.pdf
+2026-01-31 22:15:55,626 - WARNING - Validation failed for Vypis20260104230534.pdf: Content doesn't appear to be relevant (missing Czech/religious keywords)
+2026-01-31 22:15:55,628 - INFO - PDF already exists in database: Vypis20260104230534.pdf
+2026-01-31 22:15:55,628 - INFO - Extracting text from: Promeny_clenske_zakladny_Ceskobratrske_cirkve_evangelicke_Archive_data.pdf
+2026-01-31 22:15:55,777 - INFO - PDF already exists in database: Promeny_clenske_zakladny_Ceskobratrske_cirkve_evangelicke_Archive_data.pdf
+2026-01-31 22:15:55,777 - INFO - Extracting text from: Vypis20260104230458.pdf
+2026-01-31 22:15:55,785 - WARNING - Validation failed for Vypis20260104230458.pdf: Content doesn't appear to be relevant (missing Czech/religious keywords)
+2026-01-31 22:15:55,787 - INFO - PDF already exists in database: Vypis20260104230458.pdf
+2026-01-31 22:15:55,787 - INFO - Extracting text from: Vypis20260104230001.pdf
+2026-01-31 22:15:55,799 - INFO - PDF already exists in database: Vypis20260104230001.pdf
+2026-01-31 22:15:55,799 - INFO - Extracting text from: Vypis20260104230356.pdf
+2026-01-31 22:15:55,811 - WARNING - Validation failed for Vypis20260104230356.pdf: Content doesn't appear to be relevant (missing Czech/religious keywords)
+2026-01-31 22:15:55,813 - INFO - PDF already exists in database: Vypis20260104230356.pdf
+2026-01-31 22:15:55,813 - INFO - Extracting text from: Vypis20260104225807.pdf
+2026-01-31 22:15:55,829 - INFO - PDF already exists in database: Vypis20260104225807.pdf
+2026-01-31 22:15:55,829 - INFO - Extracting text from: Vypis20260104225818.pdf
+2026-01-31 22:15:55,846 - INFO - PDF already exists in database: Vypis20260104225818.pdf
+2026-01-31 22:15:55,846 - INFO - Extracting text from: Vypis20260104225846.pdf
+2026-01-31 22:15:55,858 - INFO - PDF already exists in database: Vypis20260104225846.pdf
+2026-01-31 22:19:41,656 - INFO - Loading 3 rows from export/csv/test_categories.csv
+2026-01-31 22:19:41,695 - ERROR - Error processing row: local variable 'parsed' referenced before assignment
+2026-01-31 22:19:41,712 - INFO - Import completed: 2 imported, 1 skipped
+2026-01-31 22:20:01,187 - INFO - Loading 3 rows from export/csv/test_categories.csv
+2026-01-31 22:20:01,212 - WARNING - Validation errors in export/csv/test_categories.csv: categories must be a JSON list or non-empty string
+2026-01-31 22:20:01,216 - WARNING - Duplicate URL - skipping batch
+2026-01-31 22:20:01,216 - INFO - Import completed: 2 imported, 4 skipped
+2026-01-31 22:20:27,761 - INFO - Loading 2 rows from export/csv/test_categories2.csv
+2026-01-31 22:20:27,763 - ERROR - Error processing row: name 're' is not defined
+2026-01-31 22:20:27,796 - WARNING - Duplicate URL - skipping batch
+2026-01-31 22:20:27,796 - INFO - Import completed: 1 imported, 3 skipped
+2026-01-31 22:20:43,875 - INFO - Loading 2 rows from export/csv/test_categories2.csv
+2026-01-31 22:20:43,908 - WARNING - Duplicate URL - skipping batch
+2026-01-31 22:20:43,908 - INFO - Import completed: 2 imported, 2 skipped
+2026-01-31 22:21:30,487 - INFO - Loading 2 rows from export/csv/irozhlas_rss_raw.csv
+2026-01-31 22:21:30,508 - INFO - Import completed: 2 imported, 0 skipped
+2026-01-31 22:21:30,511 - INFO - Loading 1 rows from export/csv/vira_cz_rss_raw.csv
+2026-01-31 22:21:30,524 - INFO - Import completed: 1 imported, 0 skipped
+2026-01-31 22:21:30,528 - INFO - Loading 2 rows from export/csv/info_dingir_rss_raw.csv
+2026-01-31 22:21:30,537 - WARNING - Duplicate URL - skipping batch
+2026-01-31 22:21:30,537 - INFO - Import completed: 2 imported, 2 skipped
+2026-01-31 22:21:30,540 - INFO - Loading 1 rows from export/csv/medium_seznam_rss_raw.csv
+2026-01-31 22:21:30,550 - INFO - Import completed: 1 imported, 0 skipped
+2026-01-31 22:21:30,553 - INFO - Loading 16 rows from export/csv/x_twitter_raw.csv
+2026-01-31 22:21:30,556 - WARNING - Validation errors in export/csv/x_twitter_raw.csv: categories must be a JSON list or non-empty string
+2026-01-31 22:21:30,558 - WARNING - Validation errors in export/csv/x_twitter_raw.csv: categories must be a JSON list or non-empty string
+2026-01-31 22:21:30,559 - WARNING - Validation errors in export/csv/x_twitter_raw.csv: categories must be a JSON list or non-empty string
+2026-01-31 22:21:30,561 - WARNING - Validation errors in export/csv/x_twitter_raw.csv: categories must be a JSON list or non-empty string
+2026-01-31 22:21:30,562 - WARNING - Validation errors in export/csv/x_twitter_raw.csv: categories must be a JSON list or non-empty string
+2026-01-31 22:21:30,564 - WARNING - Validation errors in export/csv/x_twitter_raw.csv: categories must be a JSON list or non-empty string
+2026-01-31 22:21:30,566 - WARNING - Validation errors in export/csv/x_twitter_raw.csv: categories must be a JSON list or non-empty string
+2026-01-31 22:21:30,567 - WARNING - Validation errors in export/csv/x_twitter_raw.csv: categories must be a JSON list or non-empty string
+2026-01-31 22:21:30,569 - WARNING - Validation errors in export/csv/x_twitter_raw.csv: categories must be a JSON list or non-empty string
+2026-01-31 22:21:30,570 - WARNING - Validation errors in export/csv/x_twitter_raw.csv: categories must be a JSON list or non-empty string
+2026-01-31 22:21:30,571 - WARNING - Validation errors in export/csv/x_twitter_raw.csv: categories must be a JSON list or non-empty string
+2026-01-31 22:21:30,573 - WARNING - Validation errors in export/csv/x_twitter_raw.csv: categories must be a JSON list or non-empty string
+2026-01-31 22:21:30,574 - WARNING - Validation errors in export/csv/x_twitter_raw.csv: categories must be a JSON list or non-empty string
+2026-01-31 22:21:30,575 - WARNING - Validation errors in export/csv/x_twitter_raw.csv: categories must be a JSON list or non-empty string
+2026-01-31 22:21:30,577 - WARNING - Validation errors in export/csv/x_twitter_raw.csv: categories must be a JSON list or non-empty string
+2026-01-31 22:21:30,578 - WARNING - Validation errors in export/csv/x_twitter_raw.csv: categories must be a JSON list or non-empty string
+2026-01-31 22:21:30,578 - INFO - Import completed: 0 imported, 16 skipped
+2026-01-31 22:21:30,580 - INFO - Loading 1 rows from export/csv/forum24_rss_raw.csv
+2026-01-31 22:21:30,589 - INFO - Import completed: 1 imported, 0 skipped
+2026-01-31 22:21:30,596 - INFO - Loading 0 rows from export/csv/soccas_api_raw.csv
+2026-01-31 22:21:30,596 - INFO - Import completed: 0 imported, 0 skipped
+2026-01-31 22:21:30,599 - INFO - Loading 1 rows from export/csv/blesk_rss_raw.csv
+2026-01-31 22:21:30,610 - INFO - Import completed: 1 imported, 0 skipped
+2026-01-31 22:21:30,611 - INFO - Skipping empty CSV (no columns): export/csv/medium_seznam_raw.csv
+2026-01-31 22:21:30,614 - INFO - Loading 8 rows from export/csv/rss_combined_raw.csv
+2026-01-31 22:21:30,619 - WARNING - Validation errors in export/csv/rss_combined_raw.csv: categories must be a JSON list or non-empty string
+2026-01-31 22:21:30,621 - WARNING - Validation errors in export/csv/rss_combined_raw.csv: categories must be a JSON list or non-empty string
+2026-01-31 22:21:30,622 - WARNING - Validation errors in export/csv/rss_combined_raw.csv: categories must be a JSON list or non-empty string
+2026-01-31 22:21:30,629 - WARNING - Validation errors in export/csv/rss_combined_raw.csv: categories must be a JSON list or non-empty string
+2026-01-31 22:21:30,630 - WARNING - Validation errors in export/csv/rss_combined_raw.csv: categories must be a JSON list or non-empty string
+2026-01-31 22:21:30,633 - WARNING - Duplicate URL - skipping batch
+2026-01-31 22:21:30,633 - INFO - Import completed: 3 imported, 13 skipped
+2026-01-31 22:21:30,634 - INFO - Loading 3 rows from export/csv/google_news_raw.csv
+2026-01-31 22:21:30,641 - WARNING - Duplicate URL - skipping batch
+2026-01-31 22:21:30,641 - INFO - Import completed: 3 imported, 3 skipped
+2026-01-31 22:21:30,642 - INFO - Found 37 PDF files to process
+2026-01-31 22:21:30,642 - INFO - Extracting text from: adamík_2009_dp_data.pdf
+2026-01-31 22:21:30,915 - INFO - PDF already exists in database: adamík_2009_dp_data.pdf
+2026-01-31 22:21:30,916 - INFO - Extracting text from: žáček_2013_dp_data.pdf
+2026-01-31 22:21:31,055 - INFO - PDF already exists in database: žáček_2013_dp_data.pdf
+2026-01-31 22:21:31,055 - INFO - Extracting text from: Vypis20260104230513.pdf
+2026-01-31 22:21:31,065 - WARNING - Validation failed for Vypis20260104230513.pdf: Content doesn't appear to be relevant (missing Czech/religious keywords)
+2026-01-31 22:21:31,067 - INFO - PDF already exists in database: Vypis20260104230513.pdf
+2026-01-31 22:21:31,067 - INFO - Extracting text from: Vypis20260104225750.pdf
+2026-01-31 22:21:31,078 - INFO - PDF already exists in database: Vypis20260104225750.pdf
+2026-01-31 22:21:31,078 - INFO - Extracting text from: Vypis20260104230241.pdf
+2026-01-31 22:21:31,094 - INFO - PDF already exists in database: Vypis20260104230241.pdf
+2026-01-31 22:21:31,095 - INFO - Extracting text from: Vypis20260104225944.pdf
+2026-01-31 22:21:31,109 - INFO - PDF already exists in database: Vypis20260104225944.pdf
+2026-01-31 22:21:31,109 - INFO - Extracting text from: Vypis20260104225658.pdf
+2026-01-31 22:21:31,125 - INFO - PDF already exists in database: Vypis20260104225658.pdf
+2026-01-31 22:21:31,125 - INFO - Extracting text from: Vypis20260104230123.pdf
+2026-01-31 22:21:31,139 - INFO - PDF already exists in database: Vypis20260104230123.pdf
+2026-01-31 22:21:31,140 - INFO - Extracting text from: sejharova_data.pdf
+2026-01-31 22:21:31,376 - INFO - PDF already exists in database: sejharova_data.pdf
+2026-01-31 22:21:31,376 - INFO - Extracting text from: Vypis20260104230329.pdf
+2026-01-31 22:21:31,386 - WARNING - Validation failed for Vypis20260104230329.pdf: Content doesn't appear to be relevant (missing Czech/religious keywords)
+2026-01-31 22:21:31,387 - INFO - PDF already exists in database: Vypis20260104230329.pdf
+2026-01-31 22:21:31,387 - INFO - Extracting text from: novopohanstvi_pro_teologickou_revue.pdf
+2026-01-31 22:21:31,562 - INFO - PDF already exists in database: novopohanstvi_pro_teologickou_revue.pdf
+2026-01-31 22:21:31,563 - INFO - Extracting text from: Vypis20260104230409.pdf
+2026-01-31 22:21:31,575 - WARNING - Validation failed for Vypis20260104230409.pdf: Content doesn't appear to be relevant (missing Czech/religious keywords)
+2026-01-31 22:21:31,576 - INFO - PDF already exists in database: Vypis20260104230409.pdf
+2026-01-31 22:21:31,577 - INFO - Extracting text from: seznam_registrovanych_NNH.pdf
+2026-01-31 22:21:31,583 - INFO - PDF already exists in database: seznam_registrovanych_NNH.pdf
+2026-01-31 22:21:31,583 - INFO - Extracting text from: Vypis20260104225642.pdf
+2026-01-31 22:21:31,599 - INFO - PDF already exists in database: Vypis20260104225642.pdf
+2026-01-31 22:21:31,599 - INFO - Extracting text from: Vypis20260104225712.pdf
+2026-01-31 22:21:31,612 - INFO - PDF already exists in database: Vypis20260104225712.pdf
+2026-01-31 22:21:31,613 - INFO - Extracting text from: Vypis20260104230158.pdf
+2026-01-31 22:21:31,630 - INFO - PDF already exists in database: Vypis20260104230158.pdf
+2026-01-31 22:21:31,631 - INFO - Extracting text from: proftova_data.pdf
+2026-01-31 22:21:31,771 - INFO - PDF already exists in database: proftova_data.pdf
+2026-01-31 22:21:31,771 - INFO - Extracting text from: 118531_data.pdf
+2026-01-31 22:21:31,856 - INFO - PDF already exists in database: 118531_data.pdf
+2026-01-31 22:21:31,856 - INFO - Extracting text from: Vypis20260104230139.pdf
+2026-01-31 22:21:31,871 - INFO - PDF already exists in database: Vypis20260104230139.pdf
+2026-01-31 22:21:31,871 - INFO - Extracting text from: Vypis20260104230302.pdf
+2026-01-31 22:21:31,887 - WARNING - Validation failed for Vypis20260104230302.pdf: Content doesn't appear to be relevant (missing Czech/religious keywords)
+2026-01-31 22:21:31,889 - INFO - PDF already exists in database: Vypis20260104230302.pdf
+2026-01-31 22:21:31,889 - INFO - Extracting text from: Sekty_clanek_data.pdf
+2026-01-31 22:21:32,004 - INFO - PDF already exists in database: Sekty_clanek_data.pdf
+2026-01-31 22:21:32,005 - INFO - Extracting text from: 7692876_data.pdf
+2026-01-31 22:21:32,161 - INFO - PDF already exists in database: 7692876_data.pdf
+2026-01-31 22:21:32,162 - INFO - Extracting text from: Bakalarska_prace_data.pdf
+2026-01-31 22:21:32,324 - INFO - PDF already exists in database: Bakalarska_prace_data.pdf
+2026-01-31 22:21:32,324 - INFO - Extracting text from: Vypis20260104225829.pdf
+2026-01-31 22:21:32,336 - INFO - PDF already exists in database: Vypis20260104225829.pdf
+2026-01-31 22:21:32,336 - INFO - Extracting text from: sojchova_data.pdf
+2026-01-31 22:21:32,538 - INFO - PDF already exists in database: sojchova_data.pdf
+2026-01-31 22:21:32,538 - INFO - Extracting text from: Vypis20260104225225.pdf
+2026-01-31 22:21:32,551 - WARNING - Validation failed for Vypis20260104225225.pdf: Content doesn't appear to be relevant (missing Czech/religious keywords)
+2026-01-31 22:21:32,552 - INFO - PDF already exists in database: Vypis20260104225225.pdf
+2026-01-31 22:21:32,552 - INFO - Extracting text from: Vypis20260104230227.pdf
+2026-01-31 22:21:32,566 - INFO - PDF already exists in database: Vypis20260104230227.pdf
+2026-01-31 22:21:32,566 - INFO - Extracting text from: Vypis20260104230439.pdf
+2026-01-31 22:21:32,579 - WARNING - Validation failed for Vypis20260104230439.pdf: Content doesn't appear to be relevant (missing Czech/religious keywords)
+2026-01-31 22:21:32,580 - INFO - PDF already exists in database: Vypis20260104230439.pdf
+2026-01-31 22:21:32,580 - INFO - Extracting text from: bakalarka_data.pdf
+2026-01-31 22:21:32,697 - INFO - PDF already exists in database: bakalarka_data.pdf
+2026-01-31 22:21:32,697 - INFO - Extracting text from: Vypis20260104230534.pdf
+2026-01-31 22:21:32,705 - WARNING - Validation failed for Vypis20260104230534.pdf: Content doesn't appear to be relevant (missing Czech/religious keywords)
+2026-01-31 22:21:32,707 - INFO - PDF already exists in database: Vypis20260104230534.pdf
+2026-01-31 22:21:32,707 - INFO - Extracting text from: Promeny_clenske_zakladny_Ceskobratrske_cirkve_evangelicke_Archive_data.pdf
+2026-01-31 22:21:32,863 - INFO - PDF already exists in database: Promeny_clenske_zakladny_Ceskobratrske_cirkve_evangelicke_Archive_data.pdf
+2026-01-31 22:21:32,863 - INFO - Extracting text from: Vypis20260104230458.pdf
+2026-01-31 22:21:32,872 - WARNING - Validation failed for Vypis20260104230458.pdf: Content doesn't appear to be relevant (missing Czech/religious keywords)
+2026-01-31 22:21:32,873 - INFO - PDF already exists in database: Vypis20260104230458.pdf
+2026-01-31 22:21:32,873 - INFO - Extracting text from: Vypis20260104230001.pdf
+2026-01-31 22:21:32,883 - INFO - PDF already exists in database: Vypis20260104230001.pdf
+2026-01-31 22:21:32,884 - INFO - Extracting text from: Vypis20260104230356.pdf
+2026-01-31 22:21:32,895 - WARNING - Validation failed for Vypis20260104230356.pdf: Content doesn't appear to be relevant (missing Czech/religious keywords)
+2026-01-31 22:21:32,897 - INFO - PDF already exists in database: Vypis20260104230356.pdf
+2026-01-31 22:21:32,897 - INFO - Extracting text from: Vypis20260104225807.pdf
+2026-01-31 22:21:32,909 - INFO - PDF already exists in database: Vypis20260104225807.pdf
+2026-01-31 22:21:32,909 - INFO - Extracting text from: Vypis20260104225818.pdf
+2026-01-31 22:21:32,922 - INFO - PDF already exists in database: Vypis20260104225818.pdf
+2026-01-31 22:21:32,923 - INFO - Extracting text from: Vypis20260104225846.pdf
+2026-01-31 22:21:32,934 - INFO - PDF already exists in database: Vypis20260104225846.pdf
+2026-01-31 22:25:19,851 - INFO - Loading 4 rows from export/csv/irozhlas_rss_raw.csv
+2026-01-31 22:25:19,866 - WARNING - Duplicate URL - skipping batch
+2026-01-31 22:25:19,866 - INFO - Import completed: 4 imported, 4 skipped
+2026-01-31 22:25:19,867 - INFO - Loading 2 rows from export/csv/vira_cz_rss_raw.csv
+2026-01-31 22:25:19,872 - WARNING - Duplicate URL - skipping batch
+2026-01-31 22:25:19,872 - INFO - Import completed: 2 imported, 2 skipped
+2026-01-31 22:25:19,875 - INFO - Loading 4 rows from export/csv/info_dingir_rss_raw.csv
+2026-01-31 22:25:19,882 - WARNING - Duplicate URL - skipping batch
+2026-01-31 22:25:19,882 - INFO - Import completed: 4 imported, 4 skipped
+2026-01-31 22:25:19,884 - INFO - Loading 2 rows from export/csv/medium_seznam_rss_raw.csv
+2026-01-31 22:25:19,887 - WARNING - Duplicate URL - skipping batch
+2026-01-31 22:25:19,887 - INFO - Import completed: 2 imported, 2 skipped
+2026-01-31 22:25:19,889 - INFO - Loading 16 rows from export/csv/x_twitter_raw.csv
+2026-01-31 22:25:19,912 - WARNING - Duplicate URL - skipping batch
+2026-01-31 22:25:19,912 - INFO - Import completed: 16 imported, 16 skipped
+2026-01-31 22:25:19,914 - INFO - Loading 2 rows from export/csv/forum24_rss_raw.csv
+2026-01-31 22:25:19,919 - WARNING - Duplicate URL - skipping batch
+2026-01-31 22:25:19,919 - INFO - Import completed: 2 imported, 2 skipped
+2026-01-31 22:25:19,921 - INFO - Loading 0 rows from export/csv/soccas_api_raw.csv
+2026-01-31 22:25:19,922 - INFO - Import completed: 0 imported, 0 skipped
+2026-01-31 22:25:19,923 - INFO - Loading 2 rows from export/csv/blesk_rss_raw.csv
+2026-01-31 22:25:19,929 - WARNING - Duplicate URL - skipping batch
+2026-01-31 22:25:19,929 - INFO - Import completed: 2 imported, 2 skipped
+2026-01-31 22:25:19,930 - INFO - Skipping empty CSV (no columns): export/csv/medium_seznam_raw.csv
+2026-01-31 22:25:19,932 - INFO - Loading 8 rows from export/csv/rss_combined_raw.csv
+2026-01-31 22:25:19,946 - WARNING - Duplicate URL - skipping batch
+2026-01-31 22:25:19,946 - INFO - Import completed: 8 imported, 8 skipped
+2026-01-31 22:25:19,947 - INFO - Loading 3 rows from export/csv/google_news_raw.csv
+2026-01-31 22:25:19,951 - WARNING - Duplicate URL - skipping batch
+2026-01-31 22:25:19,952 - INFO - Import completed: 3 imported, 3 skipped
+2026-01-31 22:25:19,953 - INFO - Found 37 PDF files to process
+2026-01-31 22:25:19,953 - INFO - Extracting text from: adamík_2009_dp_data.pdf
+2026-01-31 22:25:20,121 - INFO - PDF already exists in database: adamík_2009_dp_data.pdf
+2026-01-31 22:25:20,121 - INFO - Extracting text from: žáček_2013_dp_data.pdf
+2026-01-31 22:25:20,228 - INFO - PDF already exists in database: žáček_2013_dp_data.pdf
+2026-01-31 22:25:20,228 - INFO - Extracting text from: Vypis20260104230513.pdf
+2026-01-31 22:25:20,236 - WARNING - Validation failed for Vypis20260104230513.pdf: Content doesn't appear to be relevant (missing Czech/religious keywords)
+2026-01-31 22:25:20,237 - INFO - PDF already exists in database: Vypis20260104230513.pdf
+2026-01-31 22:25:20,237 - INFO - Extracting text from: Vypis20260104225750.pdf
+2026-01-31 22:25:20,245 - INFO - PDF already exists in database: Vypis20260104225750.pdf
+2026-01-31 22:25:20,245 - INFO - Extracting text from: Vypis20260104230241.pdf
+2026-01-31 22:25:20,256 - INFO - PDF already exists in database: Vypis20260104230241.pdf
+2026-01-31 22:25:20,256 - INFO - Extracting text from: Vypis20260104225944.pdf
+2026-01-31 22:25:20,264 - INFO - PDF already exists in database: Vypis20260104225944.pdf
+2026-01-31 22:25:20,264 - INFO - Extracting text from: Vypis20260104225658.pdf
+2026-01-31 22:25:20,274 - INFO - PDF already exists in database: Vypis20260104225658.pdf
+2026-01-31 22:25:20,274 - INFO - Extracting text from: Vypis20260104230123.pdf
+2026-01-31 22:25:20,283 - INFO - PDF already exists in database: Vypis20260104230123.pdf
+2026-01-31 22:25:20,283 - INFO - Extracting text from: sejharova_data.pdf
+2026-01-31 22:25:20,435 - INFO - PDF already exists in database: sejharova_data.pdf
+2026-01-31 22:25:20,435 - INFO - Extracting text from: Vypis20260104230329.pdf
+2026-01-31 22:25:20,443 - WARNING - Validation failed for Vypis20260104230329.pdf: Content doesn't appear to be relevant (missing Czech/religious keywords)
+2026-01-31 22:25:20,444 - INFO - PDF already exists in database: Vypis20260104230329.pdf
+2026-01-31 22:25:20,444 - INFO - Extracting text from: novopohanstvi_pro_teologickou_revue.pdf
+2026-01-31 22:25:20,562 - INFO - PDF already exists in database: novopohanstvi_pro_teologickou_revue.pdf
+2026-01-31 22:25:20,562 - INFO - Extracting text from: Vypis20260104230409.pdf
+2026-01-31 22:25:20,569 - WARNING - Validation failed for Vypis20260104230409.pdf: Content doesn't appear to be relevant (missing Czech/religious keywords)
+2026-01-31 22:25:20,570 - INFO - PDF already exists in database: Vypis20260104230409.pdf
+2026-01-31 22:25:20,571 - INFO - Extracting text from: seznam_registrovanych_NNH.pdf
+2026-01-31 22:25:20,575 - INFO - PDF already exists in database: seznam_registrovanych_NNH.pdf
+2026-01-31 22:25:20,575 - INFO - Extracting text from: Vypis20260104225642.pdf
+2026-01-31 22:25:20,586 - INFO - PDF already exists in database: Vypis20260104225642.pdf
+2026-01-31 22:25:20,586 - INFO - Extracting text from: Vypis20260104225712.pdf
+2026-01-31 22:25:20,595 - INFO - PDF already exists in database: Vypis20260104225712.pdf
+2026-01-31 22:25:20,595 - INFO - Extracting text from: Vypis20260104230158.pdf
+2026-01-31 22:25:20,605 - INFO - PDF already exists in database: Vypis20260104230158.pdf
+2026-01-31 22:25:20,605 - INFO - Extracting text from: proftova_data.pdf
+2026-01-31 22:25:20,691 - INFO - PDF already exists in database: proftova_data.pdf
+2026-01-31 22:25:20,692 - INFO - Extracting text from: 118531_data.pdf
+2026-01-31 22:25:20,764 - INFO - PDF already exists in database: 118531_data.pdf
+2026-01-31 22:25:20,764 - INFO - Extracting text from: Vypis20260104230139.pdf
+2026-01-31 22:25:20,775 - INFO - PDF already exists in database: Vypis20260104230139.pdf
+2026-01-31 22:25:20,775 - INFO - Extracting text from: Vypis20260104230302.pdf
+2026-01-31 22:25:20,782 - WARNING - Validation failed for Vypis20260104230302.pdf: Content doesn't appear to be relevant (missing Czech/religious keywords)
+2026-01-31 22:25:20,783 - INFO - PDF already exists in database: Vypis20260104230302.pdf
+2026-01-31 22:25:20,783 - INFO - Extracting text from: Sekty_clanek_data.pdf
+2026-01-31 22:25:20,857 - INFO - PDF already exists in database: Sekty_clanek_data.pdf
+2026-01-31 22:25:20,857 - INFO - Extracting text from: 7692876_data.pdf
+2026-01-31 22:25:21,045 - INFO - PDF already exists in database: 7692876_data.pdf
+2026-01-31 22:25:21,046 - INFO - Extracting text from: Bakalarska_prace_data.pdf
+2026-01-31 22:25:21,188 - INFO - PDF already exists in database: Bakalarska_prace_data.pdf
+2026-01-31 22:25:21,189 - INFO - Extracting text from: Vypis20260104225829.pdf
+2026-01-31 22:25:21,197 - INFO - PDF already exists in database: Vypis20260104225829.pdf
+2026-01-31 22:25:21,197 - INFO - Extracting text from: sojchova_data.pdf
+2026-01-31 22:25:21,334 - INFO - PDF already exists in database: sojchova_data.pdf
+2026-01-31 22:25:21,335 - INFO - Extracting text from: Vypis20260104225225.pdf
+2026-01-31 22:25:21,344 - WARNING - Validation failed for Vypis20260104225225.pdf: Content doesn't appear to be relevant (missing Czech/religious keywords)
+2026-01-31 22:25:21,345 - INFO - PDF already exists in database: Vypis20260104225225.pdf
+2026-01-31 22:25:21,345 - INFO - Extracting text from: Vypis20260104230227.pdf
+2026-01-31 22:25:21,355 - INFO - PDF already exists in database: Vypis20260104230227.pdf
+2026-01-31 22:25:21,355 - INFO - Extracting text from: Vypis20260104230439.pdf
+2026-01-31 22:25:21,363 - WARNING - Validation failed for Vypis20260104230439.pdf: Content doesn't appear to be relevant (missing Czech/religious keywords)
+2026-01-31 22:25:21,364 - INFO - PDF already exists in database: Vypis20260104230439.pdf
+2026-01-31 22:25:21,364 - INFO - Extracting text from: bakalarka_data.pdf
+2026-01-31 22:25:21,462 - INFO - PDF already exists in database: bakalarka_data.pdf
+2026-01-31 22:25:21,462 - INFO - Extracting text from: Vypis20260104230534.pdf
+2026-01-31 22:25:21,470 - WARNING - Validation failed for Vypis20260104230534.pdf: Content doesn't appear to be relevant (missing Czech/religious keywords)
+2026-01-31 22:25:21,471 - INFO - PDF already exists in database: Vypis20260104230534.pdf
+2026-01-31 22:25:21,471 - INFO - Extracting text from: Promeny_clenske_zakladny_Ceskobratrske_cirkve_evangelicke_Archive_data.pdf
+2026-01-31 22:25:21,664 - INFO - PDF already exists in database: Promeny_clenske_zakladny_Ceskobratrske_cirkve_evangelicke_Archive_data.pdf
+2026-01-31 22:25:21,664 - INFO - Extracting text from: Vypis20260104230458.pdf
+2026-01-31 22:25:21,674 - WARNING - Validation failed for Vypis20260104230458.pdf: Content doesn't appear to be relevant (missing Czech/religious keywords)
+2026-01-31 22:25:21,675 - INFO - PDF already exists in database: Vypis20260104230458.pdf
+2026-01-31 22:25:21,675 - INFO - Extracting text from: Vypis20260104230001.pdf
+2026-01-31 22:25:21,684 - INFO - PDF already exists in database: Vypis20260104230001.pdf
+2026-01-31 22:25:21,684 - INFO - Extracting text from: Vypis20260104230356.pdf
+2026-01-31 22:25:21,693 - WARNING - Validation failed for Vypis20260104230356.pdf: Content doesn't appear to be relevant (missing Czech/religious keywords)
+2026-01-31 22:25:21,694 - INFO - PDF already exists in database: Vypis20260104230356.pdf
+2026-01-31 22:25:21,694 - INFO - Extracting text from: Vypis20260104225807.pdf
+2026-01-31 22:25:21,701 - INFO - PDF already exists in database: Vypis20260104225807.pdf
+2026-01-31 22:25:21,701 - INFO - Extracting text from: Vypis20260104225818.pdf
+2026-01-31 22:25:21,710 - INFO - PDF already exists in database: Vypis20260104225818.pdf
+2026-01-31 22:25:21,710 - INFO - Extracting text from: Vypis20260104225846.pdf
+2026-01-31 22:25:21,718 - INFO - PDF already exists in database: Vypis20260104225846.pdf

@@ -1,6 +1,6 @@
 import scrapy
 import datetime
-from .keywords import contains_relevant_keywords, is_excluded_content
+from extracting.keywords import contains_relevant_keywords, is_excluded_content
 
 class MediumSeznamSpider(scrapy.Spider):
     """
@@ -30,10 +30,15 @@ class MediumSeznamSpider(scrapy.Spider):
             from .csv_utils import get_output_csv_for_source, ensure_csv_header
             out = str(get_output_csv_for_source(self.SOURCE_KEY))
             ensure_csv_header(get_output_csv_for_source(self.SOURCE_KEY))
-            self.custom_settings = {**self.custom_settings, "FEEDS": {out: {"format": "csv", "overwrite": True, "encoding": "utf8"}}}
+            # Use explicit dict copy to satisfy static type checkers
+            new_settings = dict(self.custom_settings)
+            new_settings['FEEDS'] = {out: {"format": "csv", "overwrite": True, "encoding": "utf8"}}
+            self.custom_settings = new_settings
         except Exception:
             # If config missing, fall back to default static path
-            self.custom_settings = {**self.custom_settings, "FEEDS": {"export/csv/medium_seznam_raw.csv": {"format": "csv", "overwrite": True, "encoding": "utf8"}}}
+            new_settings = dict(self.custom_settings)
+            new_settings['FEEDS'] = {"export/csv/medium_seznam_raw.csv": {"format": "csv", "overwrite": True, "encoding": "utf8"}}
+            self.custom_settings = new_settings
 
     def parse(self, response):
         """Browses article list and follows relevant links."""

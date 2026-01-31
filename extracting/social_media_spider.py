@@ -13,8 +13,8 @@ from dotenv import load_dotenv
 # function; the actual function used will be resolved at runtime (and thus
 # can be patched by tests on the `scraping.social_media_spider` module).
 import scraping.social_media_spider as shim
-from .keywords import contains_relevant_keywords
-from csv_utils import get_output_csv_for_source, append_row
+from extracting.keywords import contains_relevant_keywords
+from extracting.csv_utils import get_output_csv_for_source, append_row
 
 
 # Load .env file
