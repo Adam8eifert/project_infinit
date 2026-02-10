@@ -1,23 +1,25 @@
 name: project_infinit
 channels:
   - conda-forge
-  - defaults
 dependencies:
-  - python=3.10
+  - feedparser
+  - fuzzywuzzy
   - mamba
   - pandas
-  - scrapy
-  - sqlalchemy
-  - pymupdf
-  - feedparser
-  - pyyaml
-  - requests
-  - psycopg2-binary
-  - transformers
-  - spacy
-  - fuzzywuzzy
   - praw
-  - tweepy
+  - psycopg2-binary
+  - pymupdf
+  - pytest
+  - python=3.10
+  - python-docx
   - python-dotenv
   - python-levenshtein
-  - python-docx
+  - pyyaml
+  - requests
+  - scrapy
+  - spacy
+  - sqlalchemy
+  - transformers
+  - tweepy
+
+prefix: "/home/adam/miniforge3/envs/project_infinit"

@@ -7,8 +7,10 @@ from sqlalchemy.exc import IntegrityError
 from database.db_loader import DBConnector, Source
 from datetime import datetime
 import logging
-from typing import List
+from typing import List, Optional, Dict, Tuple
 import re
+import hashlib
+from extracting.keywords import KNOWN_MOVEMENTS, contains_relevant_keywords
 
 class DocumentsToDatabase:
     """Import academic documents (PDF, DOC, DOCX) to database with text extraction and validation"""
@@ -30,8 +32,116 @@ class DocumentsToDatabase:
         )
         self.logger = logging.getLogger(__name__)
 
+    def preprocess_text(self, text: str) -> str:
+        """Clean and normalize extracted text"""
+        if not text:
+            return ""
+        
+        # Remove common OCR artifacts and headers/footers
+        lines = text.split('\n')
+        cleaned_lines = []
+        
+        for line in lines:
+            # Skip page numbers, dates in headers/footers
+            if re.match(r'^\s*-?\s*\d+\s*-?\s*$', line.strip()):
+                continue
+            # Skip mostly special characters (OCR noise)
+            if re.match(r'^[^\w\s]{5,}$', line.strip()):
+                continue
+            # Skip very short fragments that look like page breaks
+            if len(line.strip()) > 0:
+                cleaned_lines.append(line)
+        
+        text = '\n'.join(cleaned_lines)
+        
+        # Normalize whitespace: remove hyphenated line breaks
+        text = re.sub(r'-\n\s*', '', text)
+        # Collapse multiple whitespace
+        text = re.sub(r'\s+', ' ', text)
+        # Remove leading/trailing whitespace
+        text = text.strip()
+        
+        return text
+
+    def calculate_word_count(self, text: str) -> int:
+        """Calculate word count from text"""
+        return len(text.split())
+
+    def calculate_reading_time(self, word_count: int) -> int:
+        """Calculate estimated reading time in minutes (avg 200 words/minute)"""
+        return max(1, word_count // 200)
+
+    def calculate_content_hash(self, text: str) -> str:
+        """Generate SHA256 hash of text content for duplicate detection"""
+        return hashlib.sha256(text.encode('utf-8')).hexdigest()
+
+    def match_movement(self, text: str) -> Optional[int]:
+        """Try to match document content to a known movement by keywords"""
+        try:
+            # Import movement database
+            from database.db_loader import DBConnector
+            db = DBConnector()
+            session = db.get_session()
+            from database.models.movement import Movement
+            
+            movements = session.query(Movement).all()
+            session.close()
+            
+            text_lower = text.lower()
+            best_match = None
+            match_count = 0
+            
+            # Score each movement based on keyword matches
+            for movement in movements:
+                if not movement.name:
+                    continue
+                    
+                # Check if movement name appears in text
+                movement_name = movement.name.lower()
+                score = 0
+                
+                if movement_name in text_lower:
+                    score += 10
+                
+                # Check for movement aliases
+                if movement.aliases:
+                    for alias in movement.aliases:
+                        if alias.name.lower() in text_lower:
+                            score += 5
+                
+                if score > match_count:
+                    match_count = score
+                    best_match = int(movement.id)  # type: ignore  # SQLAlchemy Column type
+            
+            return best_match
+        except Exception as e:
+            self.logger.warning(f"Could not match movement by keywords: {e}")
+            return None
+
+    def extract_pdf_metadata(self, pdf_path: str) -> Dict:
+        """Extract metadata from PDF document properties"""
+        metadata = {}
+        try:
+            doc = fitz.open(pdf_path)
+            props = doc.metadata
+            
+            if props:
+                metadata['title'] = props.get('title', '')
+                metadata['author'] = props.get('author', '')
+                metadata['subject'] = props.get('subject', '')
+                metadata['creator'] = props.get('creator', '')
+                metadata['producer'] = props.get('producer', '')
+                metadata['creation_date'] = props.get('creationDate')
+                metadata['mod_date'] = props.get('modDate')
+            
+            doc.close()
+        except Exception as e:
+            self.logger.debug(f"Could not extract PDF metadata from {pdf_path}: {e}")
+        
+        return metadata
+
     def extract_text_from_pdf(self, pdf_path: str) -> str:
-        """Extract text content from PDF file"""
+        """Extract text content from PDF file with improved preprocessing"""
         try:
             doc = fitz.open(pdf_path)
             text = ""
@@ -43,14 +153,17 @@ class DocumentsToDatabase:
                 text += page_text + "\n"
 
             doc.close()
-            return text.strip()
+            
+            # Preprocess extracted text
+            text = self.preprocess_text(text)
+            return text
 
         except Exception as e:
             self.logger.error(f"Error extracting text from PDF {pdf_path}: {e}")
             return ""
 
     def extract_text_from_docx(self, doc_path: str) -> str:
-        """Extract text content from DOCX/DOC file"""
+        """Extract text content from DOCX/DOC file with improved preprocessing"""
         try:
             doc = Document(doc_path)
             text = ""
@@ -67,7 +180,9 @@ class DocumentsToDatabase:
                         if cell.text.strip():
                             text += cell.text + "\n"
 
-            return text.strip()
+            # Preprocess extracted text
+            text = self.preprocess_text(text)
+            return text
 
         except Exception as e:
             self.logger.error(f"Error extracting text from DOCX/DOC {doc_path}: {e}")
@@ -122,52 +237,105 @@ class DocumentsToDatabase:
 
         return metadata
 
-    def validate_document_content(self, text: str, file_path: str) -> List[str]:
-        """Validate extracted document content"""
+    def validate_document_content(self, text: str, file_path: str) -> Tuple[bool, List[str]]:
+        """Validate extracted document content comprehensively. Returns (is_valid, error_list)"""
         errors = []
+        warnings = []
 
         if not text or len(text.strip()) < 100:
             errors.append("Extracted text too short or empty")
+            return False, errors
+
+        word_count = self.calculate_word_count(text)
+        
+        # Check minimum word count (at least 50 words)
+        if word_count < 50:
+            errors.append(f"Text too short ({word_count} words, minimum 50)")
+            return False, errors
 
         # Check for Czech/religious content keywords
-        czech_keywords = ['sekta', 'hnutí', 'církev', 'náboženství', 'duchovní', 'religiozní']
+        czech_keywords = ['sekta', 'hnutí', 'církev', 'náboženství', 'duchovní', 'religiozní', 'krčem', 'spirituální']
         has_relevant_content = any(keyword in text.lower() for keyword in czech_keywords)
 
         if not has_relevant_content:
             errors.append("Content doesn't appear to be relevant (missing Czech/religious keywords)")
+            return False, errors
 
-        return errors
+        # Check for excessive non-text content (OCR noise)
+        non_unicode_ratio = len([c for c in text if ord(c) > 127]) / len(text) if text else 0
+        if non_unicode_ratio > 0.3:
+            warnings.append(f"High ratio of non-ASCII characters ({non_unicode_ratio:.1%}), possible OCR issues")
+        
+        # Check for suspicious patterns
+        if text.count('\x00') > 0:
+            warnings.append("Text contains null bytes (possible corruption)")
+        
+        self.logger.info(f"Validation: word_count={word_count}, relevant_keywords=found, status=PASS")
+        return True, warnings
 
     def create_source_from_document(self, file_path: str) -> bool:
-        """Process single document file and create Source record"""
+        """Process single document file and create Source record with enhanced metadata and matching"""
         try:
             doc_file = Path(file_path)
             filename = doc_file.name
 
             # Extract text
-            self.logger.info(f"Extracting text from: {filename}")
+            self.logger.info(f"Processing: {filename}")
             text = self.extract_text_from_document(file_path)
 
             if not text:
                 self.logger.warning(f"No text extracted from {filename}")
                 return False
 
+            # Calculate content hash early for duplicate detection
+            content_hash = self.calculate_content_hash(text)
+            
+            # Check for duplicates by content hash
+            existing_by_hash = self.session.query(Source).filter(Source.content_hash == content_hash).first()
+            if existing_by_hash:
+                self.logger.info(f"Duplicate content detected (hash match): {filename}")
+                return False
+
             # Validate content
-            validation_errors = self.validate_document_content(text, file_path)
-            if validation_errors:
-                self.logger.warning(f"Validation failed for {filename}: {', '.join(validation_errors)}")
-                # Continue anyway, but log warnings
+            is_valid, validation_messages = self.validate_document_content(text, file_path)
+            if not is_valid:
+                self.logger.warning(f"Validation failed for {filename}: {'; '.join(validation_messages)}")
+                return False
+            
+            for msg in validation_messages:
+                self.logger.info(f"  ℹ️  {msg}")
 
             # Extract metadata
             metadata = self.extract_metadata_from_filename(filename)
+            
+            # Try to extract metadata from PDF itself
+            if doc_file.suffix.lower() == '.pdf':
+                pdf_metadata = self.extract_pdf_metadata(file_path)
+                if pdf_metadata.get('title'):
+                    metadata['title'] = pdf_metadata['title']
+                if pdf_metadata.get('author'):
+                    metadata['author'] = pdf_metadata['author']
+            
+            # Calculate analytics
+            word_count = self.calculate_word_count(text)
+            reading_time = self.calculate_reading_time(word_count)
 
             # Determine document type from extension
             file_ext = doc_file.suffix.lower()
             source_type = "academic_doc" if file_ext in ['.doc', '.docx'] else "academic_pdf"
 
+            # Try to match to a known movement
+            matched_movement_id = self.match_movement(text)
+            if matched_movement_id:
+                self.logger.info(f"  ✓ Matched to movement ID: {matched_movement_id}")
+            else:
+                # Default to generic movement if no match found
+                matched_movement_id = 1
+                self.logger.info(f"  ℹ️  No specific movement match, using default (ID: {matched_movement_id})")
+
             # Create source record
             source = Source(
-                movement_id=1,  # Default movement "Náboženské hnutí (obecně)"
+                movement_id=matched_movement_id,
                 source_name=metadata['title'],
                 source_type=source_type,
                 author=metadata.get('author'),
@@ -175,10 +343,14 @@ class DocumentsToDatabase:
                 content_full=text,
                 content_excerpt=text[:500] + "..." if len(text) > 500 else text,
                 publication_date=datetime.now(),
-                language="cs"  # Assume Czech
+                language="cs",  # Assume Czech
+                word_count=word_count,
+                reading_time_minutes=reading_time,
+                content_hash=content_hash,
+                scraped_by="pdf_import"
             )
 
-            # Check for duplicates
+            # Check for duplicates by URL
             existing = self.session.query(Source).filter(Source.url == source.url).first()
             if existing:
                 self.logger.info(f"Document already exists in database: {filename}")
@@ -187,7 +359,7 @@ class DocumentsToDatabase:
             self.session.add(source)
             self.session.commit()
 
-            self.logger.info(f"✅ Successfully imported document: {filename}")
+            self.logger.info(f"✅ SUCCESS: {filename} ({word_count} words, {reading_time} min read)")
             return True
 
         except IntegrityError as e:
@@ -196,16 +368,18 @@ class DocumentsToDatabase:
             return False
         except Exception as e:
             self.session.rollback()
-            self.logger.error(f"Error processing document {file_path}: {e}")
+            self.logger.error(f"Error processing document {file_path}: {e}", exc_info=True)
             return False
 
     def load_documents_to_sources(self, documents_directory: str) -> dict:
-        """Load all documents (PDF, DOC, DOCX) from directory to database"""
+        """Load all documents (PDF, DOC, DOCX) from directory to database with detailed reporting"""
         stats = {
             'processed': 0,
             'successful': 0,
             'failed': 0,
-            'skipped': 0
+            'skipped': 0,
+            'total_words': 0,
+            'total_reading_minutes': 0
         }
 
         docs_dir = Path(documents_directory)
@@ -215,15 +389,17 @@ class DocumentsToDatabase:
 
         # Find all supported document types
         supported_files = []
-        supported_files.extend(docs_dir.glob("*.pdf"))
-        supported_files.extend(docs_dir.glob("*.docx"))
-        supported_files.extend(docs_dir.glob("*.doc"))
+        supported_files.extend(sorted(docs_dir.glob("*.pdf")))
+        supported_files.extend(sorted(docs_dir.glob("*.docx")))
+        supported_files.extend(sorted(docs_dir.glob("*.doc")))
 
         if not supported_files:
             self.logger.warning(f"No supported document files found in {documents_directory}")
             return stats
 
-        self.logger.info(f"Found {len(supported_files)} document files to process")
+        self.logger.info(f"\n{'='*60}")
+        self.logger.info(f"Starting document import: {len(supported_files)} files found")
+        self.logger.info(f"{'='*60}\n")
 
         for doc_file in supported_files:
             stats['processed'] += 1
@@ -232,14 +408,31 @@ class DocumentsToDatabase:
             try:
                 if self.create_source_from_document(doc_path):
                     stats['successful'] += 1
+                    # Get word count from database
+                    source = self.session.query(Source).filter(Source.url == f"file://{doc_path}").first()
+                    if source:
+                        stats['total_words'] += int(source.word_count or 0)  # type: ignore
+                        stats['total_reading_minutes'] += int(source.reading_time_minutes or 0)  # type: ignore
                 else:
                     stats['skipped'] += 1
             except Exception as e:
                 stats['failed'] += 1
-                self.logger.error(f"Failed to process {doc_file.name}: {e}")
+                self.logger.error(f"FAILED: {doc_file.name}: {e}")
                 continue
 
         self.session.close()
+        
+        # Print summary
+        self.logger.info(f"\n{'='*60}")
+        self.logger.info(f"Import Summary:")
+        self.logger.info(f"  Total processed:     {stats['processed']}")
+        self.logger.info(f"  ✅ Successful:       {stats['successful']}")
+        self.logger.info(f"  ⏭️  Skipped:         {stats['skipped']}")
+        self.logger.info(f"  ❌ Failed:           {stats['failed']}")
+        self.logger.info(f"  Total words:        {stats['total_words']:,}")
+        self.logger.info(f"  Total reading time: {stats['total_reading_minutes']} minutes")
+        self.logger.info(f"{'='*60}\n")
+        
         return stats
 
 
