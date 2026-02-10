@@ -4,7 +4,7 @@ from pathlib import Path
 from database.db_loader import DBConnector
 from processing.nlp_analysis import CzechTextAnalyzer
 from processing.import_csv_to_db import CSVtoDatabaseLoader
-from processing.import_pdf_to_db import PDFtoDatabaseLoader
+from processing.import_pdf_to_db import DocumentsToDatabase, PDFtoDatabaseLoader
 from extracting.keywords import ALL_KNOWN_MOVEMENTS
 
 def run_spiders():
@@ -111,24 +111,31 @@ def process_csv():
         print(f"❌ Error processing CSV: {e}")
         raise
 
-def process_academic_pdfs():
-    """Import academic PDF papers to database"""
+def process_academic_documents():
+    """Import academic documents (PDF, DOC, DOCX) to database"""
     try:
-        importer = PDFtoDatabaseLoader()
-        pdf_dir = "academic_data"
+        from processing.import_pdf_to_db import DocumentsToDatabase
+        
+        loader = DocumentsToDatabase()
+        docs_dir = "academic_data"
 
-        print(f"📚 Processing academic PDFs from: {pdf_dir}")
-        stats = importer.load_pdfs_to_sources(pdf_dir)
+        print(f"📚 Processing academic documents (PDF, DOC, DOCX) from: {docs_dir}")
+        stats = loader.load_documents_to_sources(docs_dir)
 
-        print("📊 PDF Import Summary:")
+        print("📊 Document Import Summary:")
         print(f"   • Processed: {stats['processed']}")
         print(f"   • Successful: {stats['successful']}")
         print(f"   • Skipped: {stats['skipped']}")
         print(f"   • Failed: {stats['failed']}")
 
     except Exception as e:
-        print(f"❌ Error processing PDFs: {e}")
+        print(f"❌ Error processing documents: {e}")
         raise
+
+
+def process_academic_pdfs():
+    """Backward compatibility wrapper for process_academic_documents"""
+    return process_academic_documents()
 
 def run_nlp(text="Hnutí Grálu bylo registrováno v Praze."):
     """Sample NLP analysis"""

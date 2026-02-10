@@ -18,8 +18,8 @@ def test_rss_and_web_share_same_csv(tmp_path, monkeypatch):
     s2 = GoogleNewsRSSSpider()
 
     # Verify that both spiders configured FEEDS to the same shared path
-    feed1 = next(iter(dict(s1.custom_settings).get('FEEDS', {}).keys()))
-    feed2 = next(iter(dict(s2.custom_settings).get('FEEDS', {}).keys()))
+    feed1 = next(iter((s1.custom_settings or {}).get('FEEDS', {}).keys()))
+    feed2 = next(iter((s2.custom_settings or {}).get('FEEDS', {}).keys()))
 
     assert str(shared) in str(feed1)
     assert str(shared) in str(feed2)

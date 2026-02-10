@@ -81,7 +81,7 @@ project_infinit/
 │   ├── csv/               # Scraped and processed CSV data
 │   └── to_powerbi.py      # Power BI export utilities
 ├── data/                  # Input data directory
-├── academic_data/         # Academic PDF documents for processing
+├── academic_data/         # Academic documents (PDF, DOC, DOCX)
 ├── nnh-db/                # Docker database setup
 │   ├── docker             # Docker files
 │   └── docker-compose.yml # Docker Compose configuration
@@ -165,14 +165,14 @@ scrapy runspider extracting/social_media_spider.py
 ## 🔄 Pipeline Steps
 
 1. **Data Collection**
-
    - Scrape RSS feeds from specialized websites
    - Query REST APIs (Wikipedia, SOCCAS)
    - Collect posts from Reddit and X (Twitter)
    - Web scraping for news aggregators
+   - Process academic documents (PDF, Word documents)
 
 2. **Data Processing**
-
+   - Extract text from academic documents (PDF, DOC, DOCX formats)
    - Clean and validate collected data
    - Perform NLP analysis (tokenization, POS tagging, NER, sentiment)
    - Extract entities and relationships
@@ -242,7 +242,8 @@ pytest testing/test_nlp_analysis.py -v
 
 ### Data Processing
 
-- PyMuPDF 1.23+ (PDF)
+- PyMuPDF 1.23+ (PDF extraction)
+- python-docx 1.1+ (Word documents: .doc, .docx)
 - openpyxl (Excel)
 - fuzzywuzzy 0.18+ (text matching)
 - python-dotenv 1.0+ (environment)
@@ -454,14 +455,12 @@ scrapy runspider extracting/social_media_spider.py
 ## 🔄 Kroky zpracování
 
 1. **Sběr dat**
-
    - Scraping RSS feedů ze specializovaných webů
    - Dotazování REST API (Wikipedia, SOCCAS)
    - Sběr příspěvků z Redditu a X (Twitter)
    - Web scraping pro news agregátory
 
 2. **Zpracování dat**
-
    - Čištění a validace nasbíraných dat
    - Provedení NLP analýzy (tokenizace, POS tagging, NER, sentiment)
    - Extrakce entit a vztahů
@@ -613,7 +612,6 @@ To enable Reddit and X (Twitter) data collection:
    ```
 
 2. **Reddit API Setup**
-
    - Go to https://www.reddit.com/prefs/apps
    - Create a "script" application
    - Copy `client_id` and `client_secret` to `.env`:
@@ -624,7 +622,6 @@ To enable Reddit and X (Twitter) data collection:
      ```
 
 3. **X/Twitter API Setup**
-
    - Register at https://developer.twitter.com/
    - Create an app with API v2 access
    - Copy Bearer Token to `.env`:
@@ -687,7 +684,6 @@ Chcete-li sbírat data z Redditu a X (Twitter):
    ```
 
 2. **Reddit API Setup**
-
    - Jděte na https://www.reddit.com/prefs/apps
    - Vytvořte "script" aplikaci
    - Zkopírujte `client_id` a `client_secret` do `.env`:
@@ -718,13 +714,11 @@ scrapy runspider extracting/sekty_cz_spider.py
 ## 🔄 Kroky zpracování
 
 1. **Sběr dat**
-
    - Scraping článků z nastavených zdrojů
    - Extrakce textu z PDF
    - Konverze XLSX souborů do CSV
 
 2. **Zpracování**
-
    - Čištění a validace dat
    - NLP analýza
    - Extrakce entit a vztahů

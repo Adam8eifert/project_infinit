@@ -29,14 +29,14 @@ class GoogleNewsRSSSpider(scrapy.Spider):
             out = str(get_output_csv_for_source(self.SOURCE_KEY))
             ensure_csv_header(get_output_csv_for_source(self.SOURCE_KEY))
             # Use explicit dict copy to satisfy static type checkers
-            new_settings = dict(self.custom_settings)
-            new_settings['FEEDS'] = {out: {'format': 'csv', 'encoding': 'utf8', 'overwrite': True}}
-            self.custom_settings = new_settings
+            new_settings = dict(self.custom_settings)  # type: ignore  # Scrapy Settings type stubs incomplete
+            new_settings['FEEDS'] = {out: {'format': 'csv', 'encoding': 'utf8', 'overwrite': True}}  # type: ignore
+            self.custom_settings = new_settings  # type: ignore
         except Exception:
             # fallback
-            new_settings = dict(self.custom_settings)
-            new_settings['FEEDS'] = {'export/csv/google_news_raw.csv': {'format': 'csv', 'encoding': 'utf8', 'overwrite': True}}
-            self.custom_settings = new_settings
+            new_settings = dict(self.custom_settings)  # type: ignore  # Scrapy Settings type stubs incomplete
+            new_settings['FEEDS'] = {'export/csv/google_news_raw.csv': {'format': 'csv', 'encoding': 'utf8', 'overwrite': True}}  # type: ignore
+            self.custom_settings = new_settings  # type: ignore
 
     def start_requests(self):
         """Generates requests for Google News RSS feed"""

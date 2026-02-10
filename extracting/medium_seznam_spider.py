@@ -31,14 +31,14 @@ class MediumSeznamSpider(scrapy.Spider):
             out = str(get_output_csv_for_source(self.SOURCE_KEY))
             ensure_csv_header(get_output_csv_for_source(self.SOURCE_KEY))
             # Use explicit dict copy to satisfy static type checkers
-            new_settings = dict(self.custom_settings)
-            new_settings['FEEDS'] = {out: {"format": "csv", "overwrite": True, "encoding": "utf8"}}
-            self.custom_settings = new_settings
+            new_settings = dict(self.custom_settings)  # type: ignore  # Scrapy Settings type stubs incomplete
+            new_settings['FEEDS'] = {out: {"format": "csv", "overwrite": True, "encoding": "utf8"}}  # type: ignore
+            self.custom_settings = new_settings  # type: ignore
         except Exception:
             # If config missing, fall back to default static path
-            new_settings = dict(self.custom_settings)
-            new_settings['FEEDS'] = {"export/csv/medium_seznam_raw.csv": {"format": "csv", "overwrite": True, "encoding": "utf8"}}
-            self.custom_settings = new_settings
+            new_settings = dict(self.custom_settings)  # type: ignore  # Scrapy Settings type stubs incomplete
+            new_settings['FEEDS'] = {"export/csv/medium_seznam_raw.csv": {"format": "csv", "overwrite": True, "encoding": "utf8"}}  # type: ignore
+            self.custom_settings = new_settings  # type: ignore
 
     def parse(self, response):
         """Browses article list and follows relevant links."""
