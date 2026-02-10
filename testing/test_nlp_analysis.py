@@ -79,4 +79,8 @@ def test_nlp_analysis_monkeypatched(monkeypatch):
     assert 'word_count' in stats
 
     preprocessed = analyzer.preprocess_text('  Test   TEXT  ')
-    assert preprocessed == 'test   text'
+    assert preprocessed == 'test text'
+
+    # Hyphenated line break should be joined
+    preprocessed2 = analyzer.preprocess_text('slovo-\nnoveslovo')
+    assert preprocessed2 == 'slovonoveslovo' 

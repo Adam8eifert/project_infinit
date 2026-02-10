@@ -141,6 +141,9 @@ data/
 # Academic data files (PDFs, etc.)
 academic_data/
 
+# Manual CSV uploads to be processed by pipeline
+csv_manual/
+
 # Logs
 *.log
 import_log.txt

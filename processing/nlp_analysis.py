@@ -229,14 +229,17 @@ class CzechTextAnalyzer:
 
     def preprocess_text(self, text: str) -> str:
         """
-        Clean text and normalize surrounding whitespace while preserving
-        internal spacing and casing normalization required by tests.
-        - strips leading/trailing whitespace
-        - lowercases the text
-        - preserves internal repeated spaces (e.g., "a  b")
+        Clean text: join hyphenated line-breaks, normalize whitespace, and lowercase.
+        - remove hyphen + newline sequences that split words (r"-\n\s*")
+        - collapse any whitespace sequence into single space
+        - strip leading/trailing whitespace and lowercase
         """
         if not text:
             return ""
+        # Remove hyphenation at line breaks (e.g., "slovo-\nnoveslovo" -> "slovonoveslovo")
+        text = re.sub(r"-\n\s*", "", text)
+        # Normalize all whitespace to single spaces
+        text = re.sub(r"\s+", " ", text)
         return text.strip().lower()
 
     def get_text_stats(self, text: str) -> Dict[str, int]:
