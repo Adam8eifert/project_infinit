@@ -25,7 +25,7 @@ sources:
     name: "Sekty.cz"
     description: "Information portal on new religious movements"
     domain: "sekty.cz"
-    url: "https://sekty.cz/feed/"
+    url: "https://sekty.cz/?feed=rss2"
     enabled: true
     type: "rss"
     selectors:

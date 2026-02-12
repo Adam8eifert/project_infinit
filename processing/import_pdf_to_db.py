@@ -4,6 +4,7 @@ import fitz  # PyMuPDF
 from docx import Document  # type: ignore  # python-docx (Pylance stubs incomplete)
 from pathlib import Path
 from sqlalchemy.exc import IntegrityError
+from sqlalchemy.orm import selectinload
 from database.db_loader import DBConnector, Source
 from datetime import datetime
 import logging
@@ -21,6 +22,7 @@ class DocumentsToDatabase:
         self.db = DBConnector()
         self.session = self.db.get_session()
         self.setup_logging()
+        self.last_skip_reason = None
 
     def setup_logging(self):
         """Setup logging for import tracking"""
@@ -86,8 +88,7 @@ class DocumentsToDatabase:
             session = db.get_session()
             from database.models.movement import Movement
             
-            movements = session.query(Movement).all()
-            session.close()
+            movements = session.query(Movement).options(selectinload(Movement.aliases)).all()
             
             text_lower = text.lower()
             best_match = None
@@ -117,9 +118,14 @@ class DocumentsToDatabase:
                     match_count = score
                     best_match = int(movement.id)  # type: ignore  # SQLAlchemy Column type
             
+            session.close()
             return best_match
         except Exception as e:
             self.logger.warning(f"Could not match movement by keywords: {e}")
+            try:
+                session.close()
+            except Exception:
+                pass
             return None
 
     def extract_pdf_metadata(self, pdf_path: str) -> Dict:
@@ -343,6 +349,7 @@ class DocumentsToDatabase:
             if not text:
                 self.logger.warning(f"No text extracted from {filename}")
                 self.logger.info(f"⏭️  Skipped: {filename} (no text extracted)")
+                self.last_skip_reason = "no_text"
                 return False
 
             # Calculate content hash early for duplicate detection
@@ -353,6 +360,7 @@ class DocumentsToDatabase:
             if existing_by_hash:
                 self.logger.info(f"Duplicate content detected (hash match): {filename}")
                 self.logger.info(f"⏭️  Skipped: {filename} (duplicate content hash)")
+                self.last_skip_reason = "duplicate_content"
                 return False
 
             # Validate content
@@ -360,6 +368,7 @@ class DocumentsToDatabase:
             if not is_valid:
                 self.logger.warning(f"Validation failed for {filename}: {'; '.join(validation_messages)}")
                 self.logger.info(f"⏭️  Skipped: {filename} (validation failed)")
+                self.last_skip_reason = "validation_failed"
                 return False
             
             for msg in validation_messages:
@@ -415,10 +424,12 @@ class DocumentsToDatabase:
             if existing:
                 self.logger.info(f"Document already exists in database: {filename}")
                 self.logger.info(f"⏭️  Skipped: {filename} (duplicate URL)")
+                self.last_skip_reason = "duplicate_url"
                 return False
 
             self.session.add(source)
             self.session.commit()
+            self.last_skip_reason = None
 
             self.logger.info(f"✅ SUCCESS: {filename} ({word_count} words, {reading_time} min read)")
             return True
@@ -440,7 +451,12 @@ class DocumentsToDatabase:
             'failed': 0,
             'skipped': 0,
             'total_words': 0,
-            'total_reading_minutes': 0
+            'total_reading_minutes': 0,
+            'skipped_no_text': 0,
+            'skipped_duplicate_content': 0,
+            'skipped_validation_failed': 0,
+            'skipped_duplicate_url': 0,
+            'skipped_other': 0
         }
 
         docs_dir = Path(documents_directory)
@@ -476,6 +492,17 @@ class DocumentsToDatabase:
                         stats['total_reading_minutes'] += int(source.reading_time_minutes or 0)  # type: ignore
                 else:
                     stats['skipped'] += 1
+                    reason = self.last_skip_reason or "other"
+                    if reason == "no_text":
+                        stats['skipped_no_text'] += 1
+                    elif reason == "duplicate_content":
+                        stats['skipped_duplicate_content'] += 1
+                    elif reason == "validation_failed":
+                        stats['skipped_validation_failed'] += 1
+                    elif reason == "duplicate_url":
+                        stats['skipped_duplicate_url'] += 1
+                    else:
+                        stats['skipped_other'] += 1
             except Exception as e:
                 stats['failed'] += 1
                 self.logger.error(f"FAILED: {doc_file.name}: {e}")
@@ -489,6 +516,11 @@ class DocumentsToDatabase:
         self.logger.info(f"  Total processed:     {stats['processed']}")
         self.logger.info(f"  ✅ Successful:       {stats['successful']}")
         self.logger.info(f"  ⏭️  Skipped:         {stats['skipped']}")
+        self.logger.info(f"     • No text:        {stats['skipped_no_text']}")
+        self.logger.info(f"     • Duplicate hash: {stats['skipped_duplicate_content']}")
+        self.logger.info(f"     • Validation:     {stats['skipped_validation_failed']}")
+        self.logger.info(f"     • Duplicate URL:  {stats['skipped_duplicate_url']}")
+        self.logger.info(f"     • Other:          {stats['skipped_other']}")
         self.logger.info(f"  ❌ Failed:           {stats['failed']}")
         self.logger.info(f"  Total words:        {stats['total_words']:,}")
         self.logger.info(f"  Total reading time: {stats['total_reading_minutes']} minutes")

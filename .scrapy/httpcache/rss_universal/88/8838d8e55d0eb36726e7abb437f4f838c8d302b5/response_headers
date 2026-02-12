@@ -1,9 +1,0 @@
-Content-Length: 114
-Server: nginx
-Date: Mon, 29 Dec 2025 21:01:14 GMT
-Content-Type: text/plain; charset=utf-8
-Vary: Accept-Encoding,Cookie
-Permissions-Policy: private-state-token-redemption=(self "https://www.google.com" "https://www.gstatic.com" "https://recaptcha.net" "https://challenges.cloudflare.com" "https://hcaptcha.com"), private-state-token-issuance=(self "https://www.google.com" "https://www.gstatic.com" "https://recaptcha.net" "https://challenges.cloudflare.com" "https://hcaptcha.com")
-Link: <https://sekty.tv/wp-json/>; rel="https://api.w.org/"
-Content-Encoding: gzip
-X-Vhost-Debug: ef19c561e0da40919bf12ff2a445d0b493b147fcdee170738dae45f746c6a07b

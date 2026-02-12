@@ -6,7 +6,7 @@
     <description>Seznam Zprávy - nejnovější články</description>
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
-    <lastBuildDate>Thu, 12 Feb 2026 21:29:12 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 12 Feb 2026 22:17:10 +0000</lastBuildDate>
     <item>
       <title>Německý řetězec vybírá vstupné do prodejny</title>
       <link>https://www.seznamzpravy.cz/clanek/ekonomika-firmy-nemecky-retezec-vybira-vstupne-do-prodejny-298702</link>
@@ -24,20 +24,20 @@
       <szn:ccid>100238714</szn:ccid>
     </item>
     <item>
-      <title>Spojenci Ukrajiny jí přislíbili v Bruselu pomoc za 35 miliard dolarů</title>
-      <link>https://www.seznamzpravy.cz/clanek/zahranicni-spojenci-ukrajiny-ji-prislibili-v-bruselu-pomoc-za-35-miliard-dolaru-298821</link>
-      <description>Ukrajina má přislíbenou vojenskou pomoc ve výši 35 miliard dolarů od více než padesáti spřízněných států. Podle generálního tajemníka NATO Marka Rutteho potřebuje Ukrajina především prostředky protivzdušné obrany.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/298821</guid>
-      <pubDate>Thu, 12 Feb 2026 20:45:41 +0100</pubDate>
+      <title>Bílý dům opustil vědecký argument pro boj proti změně klimatu</title>
+      <link>https://www.seznamzpravy.cz/clanek/zahranicni-bily-dum-opustil-vedecky-argument-pro-boj-proti-zmene-klimatu-298826</link>
+      <description>Americká Agentura pro ochranu životního prostředí zrušila deklaraci podle které skleníkové plyny ohrožují lidské zdraví. Trumpova administrativa by tímto krokem mohla zásadně omezit boj proti klimatické změně.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/298826</guid>
+      <pubDate>Thu, 12 Feb 2026 21:36:50 +0100</pubDate>
       <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_p8_A/nPVpfd5QLLD53Ui4eFwS2JN/fc38/mark-rutte-mychajlo-fedorov-john-healey-boris-pistorius.jpeg?fl=cro,0,214,4096,2304|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Spojenci Ukrajiny jí přislíbili v Bruselu pomoc za 35 miliard dolarů</szn:title>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_of_A/kOzmiQlmfoCswkNGsiEyWaiQ/5c00/donald-trump.jpeg?fl=cro,0,156,3000,1687|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Bílý dům opustil vědecký argument pro boj proti změně klimatu</szn:title>
         <szn:height>40</szn:height>
         <szn:previewtype>common</szn:previewtype>
       </szn:image>
       <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>298821</szn:uid>
-      <szn:ccid>100239697</szn:ccid>
+      <szn:uid>298826</szn:uid>
+      <szn:ccid>100239746</szn:ccid>
     </item>
     <item>
       <title>Motorky a 170 milionů. Brno není výjimka, ale jde to i bez dotací</title>
@@ -56,36 +56,20 @@
       <szn:ccid>100239124</szn:ccid>
     </item>
     <item>
-      <title>Podezření na otravu kojenecké stravy a jak lidé přišli o peníze v kryptu</title>
-      <link>https://www.seznamzpravy.cz/clanek/domaci-zivot-v-cesku-petka-sz-podezreni-na-otravu-kojenecke-stravy-a-lide-prisli-o-penize-v-kryptu-298770</link>
-      <description>Denní přehled Seznam Zpráv.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/298770</guid>
-      <pubDate>Thu, 12 Feb 2026 17:00:00 +0100</pubDate>
+      <title>Spojenci Ukrajiny jí přislíbili v Bruselu pomoc za 35 miliard dolarů</title>
+      <link>https://www.seznamzpravy.cz/clanek/zahranicni-spojenci-ukrajiny-ji-prislibili-v-bruselu-pomoc-za-35-miliard-dolaru-298821</link>
+      <description>Ukrajina má přislíbenou vojenskou pomoc ve výši 35 miliard dolarů od více než padesáti spřízněných států. Podle generálního tajemníka NATO Marka Rutteho potřebuje Ukrajina především prostředky protivzdušné obrany.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/298821</guid>
+      <pubDate>Thu, 12 Feb 2026 20:45:41 +0100</pubDate>
       <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_of_A/kPRtHkVQLlBaYpXBrrE3tilc/515e/petka-sz-krasnicky.jpeg?fl=cro,0,0,1920,1080|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Pětka SZ: Podezření na otravu kojenecké stravy a lidé přišli o peníze v kryptu</szn:title>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_p8_A/nPVpfd5QLLD53Ui4eFwS2JN/fc38/mark-rutte-mychajlo-fedorov-john-healey-boris-pistorius.jpeg?fl=cro,0,214,4096,2304|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Spojenci Ukrajiny jí přislíbili v Bruselu pomoc za 35 miliard dolarů</szn:title>
         <szn:height>40</szn:height>
         <szn:previewtype>common</szn:previewtype>
       </szn:image>
       <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>298770</szn:uid>
-      <szn:ccid>100236897</szn:ccid>
-    </item>
-    <item>
-      <title>Bílý dům opustil vědecký argument pro boj proti změně klimatu</title>
-      <link>https://www.seznamzpravy.cz/clanek/zahranicni-bily-dum-opustil-vedecky-argument-pro-boj-proti-zmene-klimatu-298826</link>
-      <description>Americká Agentura pro ochranu životního prostředí zrušila deklaraci podle které skleníkové plyny ohrožují lidské zdraví. Trumpova administrativa by tímto krokem mohla zásadně omezovat boj proti klimatické změně.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/298826</guid>
-      <pubDate>Thu, 12 Feb 2026 21:36:50 +0100</pubDate>
-      <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_of_A/kOzmiQlmfoCswkNGsiEyWaiQ/5c00/donald-trump.jpeg?fl=cro,0,156,3000,1687|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Bílý dům opustil vědecký argument pro boj proti změně klimatu</szn:title>
-        <szn:height>40</szn:height>
-        <szn:previewtype>common</szn:previewtype>
-      </szn:image>
-      <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>298826</szn:uid>
-      <szn:ccid>100239746</szn:ccid>
+      <szn:uid>298821</szn:uid>
+      <szn:ccid>100239697</szn:ccid>
     </item>
     <item>
       <title>USA údajně propašovaly tisíce terminálů Starlink do Íránu</title>
@@ -471,6 +455,22 @@
       <szn:_cls>ArticlePublished</szn:_cls>
       <szn:uid>298807</szn:uid>
       <szn:ccid>100239549</szn:ccid>
+    </item>
+    <item>
+      <title>Podezření na otravu kojenecké stravy a jak lidé přišli o peníze v kryptu</title>
+      <link>https://www.seznamzpravy.cz/clanek/domaci-zivot-v-cesku-petka-sz-podezreni-na-otravu-kojenecke-stravy-a-lide-prisli-o-penize-v-kryptu-298770</link>
+      <description>Denní přehled Seznam Zpráv.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/298770</guid>
+      <pubDate>Thu, 12 Feb 2026 17:00:00 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_of_A/kPRtHkVQLlBaYpXBrrE3tilc/515e/petka-sz-krasnicky.jpeg?fl=cro,0,0,1920,1080|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Pětka SZ: Podezření na otravu kojenecké stravy a lidé přišli o peníze v kryptu</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>298770</szn:uid>
+      <szn:ccid>100236897</szn:ccid>
     </item>
     <item>
       <title>Ukrajinské zbrojovky mohou poprvé od začátku války exportovat, oznámil Kyjev</title>

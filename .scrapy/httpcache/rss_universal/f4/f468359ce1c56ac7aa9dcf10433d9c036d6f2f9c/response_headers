@@ -1,11 +1,9 @@
 Server: nginx
-Date: Thu, 29 Jan 2026 20:30:14 GMT
+Date: Thu, 12 Feb 2026 22:17:23 GMT
 Content-Type: application/rss+xml; charset=UTF-8
-Permissions-Policy: private-state-token-redemption=(self "https://www.google.com" "https://www.gstatic.com" "https://recaptcha.net" "https://challenges.cloudflare.com" "https://hcaptcha.com"), private-state-token-issuance=(self "https://www.google.com" "https://www.gstatic.com" "https://recaptcha.net" "https://challenges.cloudflare.com" "https://hcaptcha.com")
+Vary: Accept-Encoding,Cookie
+Content-Encoding: gzip
 X-Robots-Tag: noindex, follow
 Link: <https://sekty.tv/wp-json/>; rel="https://api.w.org/"
-Content-Encoding: gzip
-Vary: Accept-Encoding,Cookie
-Last-Modified: Thu, 29 Jan 2026 18:56:20 GMT
-Etag: "3f912a0777056daaaaa5d084f9498ff0"
+Etag: "a0f7ba325bf7241499771dbc7537c8d1"
 X-Vhost-Debug: ef19c561e0da40919bf12ff2a445d0b493b147fcdee170738dae45f746c6a07b

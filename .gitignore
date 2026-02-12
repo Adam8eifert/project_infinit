@@ -149,6 +149,9 @@ csv_manual/
 import_log.txt
 logs/
 
+# Scrapy cache
+.scrapy/
+
 # Output files
 export/
 output/
