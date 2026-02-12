@@ -10,7 +10,9 @@ import logging
 from typing import List, Optional, Dict, Tuple
 import re
 import hashlib
-from extracting.keywords import KNOWN_MOVEMENTS, contains_relevant_keywords
+import shutil
+import subprocess
+import tempfile
 
 class DocumentsToDatabase:
     """Import academic documents (PDF, DOC, DOCX) to database with text extraction and validation"""
@@ -93,11 +95,12 @@ class DocumentsToDatabase:
             
             # Score each movement based on keyword matches
             for movement in movements:
-                if not movement.name:
+                movement_name = getattr(movement, "canonical_name", None)
+                if not movement_name:
                     continue
                     
                 # Check if movement name appears in text
-                movement_name = movement.name.lower()
+                movement_name = movement_name.lower()
                 score = 0
                 
                 if movement_name in text_lower:
@@ -106,7 +109,8 @@ class DocumentsToDatabase:
                 # Check for movement aliases
                 if movement.aliases:
                     for alias in movement.aliases:
-                        if alias.name.lower() in text_lower:
+                        alias_value = getattr(alias, "alias", None)
+                        if alias_value and alias_value.lower() in text_lower:
                             score += 5
                 
                 if score > match_count:
@@ -140,6 +144,38 @@ class DocumentsToDatabase:
         
         return metadata
 
+    def convert_doc_to_docx(self, doc_path: str) -> Optional[Path]:
+        """Convert legacy .doc files to .docx using LibreOffice if available"""
+        soffice = shutil.which("soffice") or shutil.which("libreoffice")
+        if not soffice:
+            self.logger.warning("LibreOffice not found; cannot convert .doc to .docx")
+            return None
+
+        temp_dir = Path(tempfile.mkdtemp(prefix="doc_convert_"))
+        try:
+            subprocess.run(
+                [
+                    soffice,
+                    "--headless",
+                    "--convert-to",
+                    "docx",
+                    "--outdir",
+                    str(temp_dir),
+                    doc_path,
+                ],
+                check=True,
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+            )
+            out_path = temp_dir / f"{Path(doc_path).stem}.docx"
+            if out_path.exists():
+                return out_path
+            self.logger.warning(f"Converted DOCX not found for {doc_path}")
+        except Exception as e:
+            self.logger.error(f"Error converting DOC to DOCX {doc_path}: {e}")
+
+        return None
+
     def extract_text_from_pdf(self, pdf_path: str) -> str:
         """Extract text content from PDF file with improved preprocessing"""
         try:
@@ -164,7 +200,17 @@ class DocumentsToDatabase:
 
     def extract_text_from_docx(self, doc_path: str) -> str:
         """Extract text content from DOCX/DOC file with improved preprocessing"""
+        converted_path: Optional[Path] = None
+        temp_dir: Optional[Path] = None
         try:
+            path = Path(doc_path)
+            if path.suffix.lower() == ".doc":
+                converted_path = self.convert_doc_to_docx(doc_path)
+                if not converted_path:
+                    return ""
+                temp_dir = converted_path.parent
+                doc_path = str(converted_path)
+
             doc = Document(doc_path)
             text = ""
 
@@ -187,6 +233,17 @@ class DocumentsToDatabase:
         except Exception as e:
             self.logger.error(f"Error extracting text from DOCX/DOC {doc_path}: {e}")
             return ""
+        finally:
+            if converted_path:
+                try:
+                    converted_path.unlink()
+                except Exception:
+                    pass
+                if temp_dir:
+                    try:
+                        temp_dir.rmdir()
+                    except Exception:
+                        pass
 
     def extract_text_from_document(self, file_path: str) -> str:
         """Route to appropriate extraction method based on file extension"""
@@ -285,6 +342,7 @@ class DocumentsToDatabase:
 
             if not text:
                 self.logger.warning(f"No text extracted from {filename}")
+                self.logger.info(f"⏭️  Skipped: {filename} (no text extracted)")
                 return False
 
             # Calculate content hash early for duplicate detection
@@ -294,12 +352,14 @@ class DocumentsToDatabase:
             existing_by_hash = self.session.query(Source).filter(Source.content_hash == content_hash).first()
             if existing_by_hash:
                 self.logger.info(f"Duplicate content detected (hash match): {filename}")
+                self.logger.info(f"⏭️  Skipped: {filename} (duplicate content hash)")
                 return False
 
             # Validate content
             is_valid, validation_messages = self.validate_document_content(text, file_path)
             if not is_valid:
                 self.logger.warning(f"Validation failed for {filename}: {'; '.join(validation_messages)}")
+                self.logger.info(f"⏭️  Skipped: {filename} (validation failed)")
                 return False
             
             for msg in validation_messages:
@@ -354,6 +414,7 @@ class DocumentsToDatabase:
             existing = self.session.query(Source).filter(Source.url == source.url).first()
             if existing:
                 self.logger.info(f"Document already exists in database: {filename}")
+                self.logger.info(f"⏭️  Skipped: {filename} (duplicate URL)")
                 return False
 
             self.session.add(source)

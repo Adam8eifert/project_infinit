@@ -1321,3 +1321,371 @@
 2026-01-31 23:19:01,301 - INFO - PDF already exists in database: Vypis20260104225818.pdf
 2026-01-31 23:19:01,302 - INFO - Extracting text from: Vypis20260104225846.pdf
 2026-01-31 23:19:01,314 - INFO - PDF already exists in database: Vypis20260104225846.pdf
+2026-02-12 22:30:46,305 - INFO - Loading 1 rows from export/csv/seznam_zpravy_rss_raw.csv
+2026-02-12 22:30:46,326 - INFO - Import completed: 1 imported, 0 skipped
+2026-02-12 22:30:46,327 - INFO - Loading 1 rows from export/csv/denik_alarm_rss_raw.csv
+2026-02-12 22:30:46,335 - INFO - Import completed: 1 imported, 0 skipped
+2026-02-12 22:30:46,337 - INFO - Loading 6 rows from export/csv/irozhlas_rss_raw.csv
+2026-02-12 22:30:46,347 - WARNING - Duplicate URL - skipping batch
+2026-02-12 22:30:46,347 - INFO - Import completed: 6 imported, 6 skipped
+2026-02-12 22:30:46,348 - INFO - Loading 4 rows from export/csv/vira_cz_rss_raw.csv
+2026-02-12 22:30:46,354 - WARNING - Duplicate URL - skipping batch
+2026-02-12 22:30:46,354 - INFO - Import completed: 4 imported, 4 skipped
+2026-02-12 22:30:46,356 - INFO - Loading 10 rows from export/csv/info_dingir_rss_raw.csv
+2026-02-12 22:30:46,368 - WARNING - Duplicate URL - skipping batch
+2026-02-12 22:30:46,368 - INFO - Import completed: 10 imported, 10 skipped
+2026-02-12 22:30:46,370 - INFO - Loading 3 rows from export/csv/medium_seznam_rss_raw.csv
+2026-02-12 22:30:46,374 - WARNING - Duplicate URL - skipping batch
+2026-02-12 22:30:46,374 - INFO - Import completed: 3 imported, 3 skipped
+2026-02-12 22:30:46,377 - INFO - Loading 26 rows from export/csv/x_twitter_raw.csv
+2026-02-12 22:30:46,405 - WARNING - Duplicate URL - skipping batch
+2026-02-12 22:30:46,405 - INFO - Import completed: 26 imported, 26 skipped
+2026-02-12 22:30:46,407 - INFO - Loading 4 rows from export/csv/forum24_rss_raw.csv
+2026-02-12 22:30:46,412 - WARNING - Duplicate URL - skipping batch
+2026-02-12 22:30:46,412 - INFO - Import completed: 4 imported, 4 skipped
+2026-02-12 22:30:46,414 - INFO - Loading 0 rows from export/csv/soccas_api_raw.csv
+2026-02-12 22:30:46,415 - INFO - Import completed: 0 imported, 0 skipped
+2026-02-12 22:30:46,416 - INFO - Loading 6 rows from export/csv/blesk_rss_raw.csv
+2026-02-12 22:30:46,423 - WARNING - Duplicate URL - skipping batch
+2026-02-12 22:30:46,423 - INFO - Import completed: 6 imported, 6 skipped
+2026-02-12 22:30:46,424 - INFO - Skipping empty CSV (no columns): export/csv/medium_seznam_raw.csv
+2026-02-12 22:30:46,425 - INFO - Loading 11 rows from export/csv/rss_combined_raw.csv
+2026-02-12 22:30:46,438 - WARNING - Duplicate URL - skipping batch
+2026-02-12 22:30:46,438 - INFO - Import completed: 11 imported, 11 skipped
+2026-02-12 22:30:46,440 - INFO - Loading 3 rows from export/csv/google_news_raw.csv
+2026-02-12 22:30:46,444 - WARNING - Duplicate URL - skipping batch
+2026-02-12 22:30:46,444 - INFO - Import completed: 3 imported, 3 skipped
+2026-02-12 22:30:46,446 - INFO - 
+============================================================
+2026-02-12 22:30:46,446 - INFO - Starting document import: 90 files found
+2026-02-12 22:30:46,446 - INFO - ============================================================
+
+2026-02-12 22:30:46,446 - INFO - Processing: 118531_data.pdf
+2026-02-12 22:30:46,549 - INFO - Validation: word_count=4656, relevant_keywords=found, status=PASS
+2026-02-12 22:30:46,553 - WARNING - Could not match movement by keywords: 'Movement' object has no attribute 'name'
+2026-02-12 22:30:46,554 - INFO -   ℹ️  No specific movement match, using default (ID: 1)
+2026-02-12 22:30:46,559 - INFO - Document already exists in database: 118531_data.pdf
+2026-02-12 22:30:46,559 - INFO - Processing: 7692876_data.pdf
+2026-02-12 22:30:46,693 - INFO - Validation: word_count=15597, relevant_keywords=found, status=PASS
+2026-02-12 22:30:46,700 - WARNING - Could not match movement by keywords: 'Movement' object has no attribute 'name'
+2026-02-12 22:30:46,700 - INFO -   ℹ️  No specific movement match, using default (ID: 1)
+2026-02-12 22:30:46,709 - INFO - Document already exists in database: 7692876_data.pdf
+2026-02-12 22:30:46,709 - INFO - Processing: Bakalarska_prace_data.pdf
+2026-02-12 22:30:46,852 - INFO - Validation: word_count=16837, relevant_keywords=found, status=PASS
+2026-02-12 22:30:46,859 - WARNING - Could not match movement by keywords: 'Movement' object has no attribute 'name'
+2026-02-12 22:30:46,859 - INFO -   ℹ️  No specific movement match, using default (ID: 1)
+2026-02-12 22:30:46,865 - INFO - Document already exists in database: Bakalarska_prace_data.pdf
+2026-02-12 22:30:46,865 - INFO - Processing: Promeny_clenske_zakladny_Ceskobratrske_cirkve_evangelicke_Archive_data.pdf
+2026-02-12 22:30:47,084 - INFO - Validation: word_count=21880, relevant_keywords=found, status=PASS
+2026-02-12 22:30:47,091 - WARNING - Could not match movement by keywords: 'Movement' object has no attribute 'name'
+2026-02-12 22:30:47,091 - INFO -   ℹ️  No specific movement match, using default (ID: 1)
+2026-02-12 22:30:47,101 - INFO - Document already exists in database: Promeny_clenske_zakladny_Ceskobratrske_cirkve_evangelicke_Archive_data.pdf
+2026-02-12 22:30:47,101 - INFO - Processing: Sekty_clanek_data.pdf
+2026-02-12 22:30:47,187 - INFO - Validation: word_count=9137, relevant_keywords=found, status=PASS
+2026-02-12 22:30:47,192 - WARNING - Could not match movement by keywords: 'Movement' object has no attribute 'name'
+2026-02-12 22:30:47,192 - INFO -   ℹ️  No specific movement match, using default (ID: 1)
+2026-02-12 22:30:47,200 - INFO - Document already exists in database: Sekty_clanek_data.pdf
+2026-02-12 22:30:47,200 - INFO - Processing: Vypis20260104225225.pdf
+2026-02-12 22:30:47,211 - WARNING - Validation failed for Vypis20260104225225.pdf: Content doesn't appear to be relevant (missing Czech/religious keywords)
+2026-02-12 22:30:47,212 - INFO - Processing: Vypis20260104225642.pdf
+2026-02-12 22:30:47,223 - INFO - Validation: word_count=132, relevant_keywords=found, status=PASS
+2026-02-12 22:30:47,227 - WARNING - Could not match movement by keywords: 'Movement' object has no attribute 'name'
+2026-02-12 22:30:47,228 - INFO -   ℹ️  No specific movement match, using default (ID: 1)
+2026-02-12 22:30:47,229 - INFO - Document already exists in database: Vypis20260104225642.pdf
+2026-02-12 22:30:47,229 - INFO - Processing: Vypis20260104225658.pdf
+2026-02-12 22:30:47,241 - INFO - Validation: word_count=132, relevant_keywords=found, status=PASS
+2026-02-12 22:30:47,245 - WARNING - Could not match movement by keywords: 'Movement' object has no attribute 'name'
+2026-02-12 22:30:47,245 - INFO -   ℹ️  No specific movement match, using default (ID: 1)
+2026-02-12 22:30:47,246 - INFO - Document already exists in database: Vypis20260104225658.pdf
+2026-02-12 22:30:47,247 - INFO - Processing: Vypis20260104225712.pdf
+2026-02-12 22:30:47,258 - INFO - Validation: word_count=180, relevant_keywords=found, status=PASS
+2026-02-12 22:30:47,262 - WARNING - Could not match movement by keywords: 'Movement' object has no attribute 'name'
+2026-02-12 22:30:47,262 - INFO -   ℹ️  No specific movement match, using default (ID: 1)
+2026-02-12 22:30:47,263 - INFO - Document already exists in database: Vypis20260104225712.pdf
+2026-02-12 22:30:47,263 - INFO - Processing: Vypis20260104225750.pdf
+2026-02-12 22:30:47,274 - INFO - Validation: word_count=116, relevant_keywords=found, status=PASS
+2026-02-12 22:30:47,278 - WARNING - Could not match movement by keywords: 'Movement' object has no attribute 'name'
+2026-02-12 22:30:47,279 - INFO -   ℹ️  No specific movement match, using default (ID: 1)
+2026-02-12 22:30:47,280 - INFO - Document already exists in database: Vypis20260104225750.pdf
+2026-02-12 22:30:47,280 - INFO - Processing: Vypis20260104225807.pdf
+2026-02-12 22:30:47,290 - INFO - Validation: word_count=95, relevant_keywords=found, status=PASS
+2026-02-12 22:30:47,294 - WARNING - Could not match movement by keywords: 'Movement' object has no attribute 'name'
+2026-02-12 22:30:47,294 - INFO -   ℹ️  No specific movement match, using default (ID: 1)
+2026-02-12 22:30:47,296 - INFO - Document already exists in database: Vypis20260104225807.pdf
+2026-02-12 22:30:47,296 - INFO - Processing: Vypis20260104225818.pdf
+2026-02-12 22:30:47,307 - INFO - Validation: word_count=180, relevant_keywords=found, status=PASS
+2026-02-12 22:30:47,310 - WARNING - Could not match movement by keywords: 'Movement' object has no attribute 'name'
+2026-02-12 22:30:47,311 - INFO -   ℹ️  No specific movement match, using default (ID: 1)
+2026-02-12 22:30:47,312 - INFO - Document already exists in database: Vypis20260104225818.pdf
+2026-02-12 22:30:47,312 - INFO - Processing: Vypis20260104225829.pdf
+2026-02-12 22:30:47,323 - INFO - Validation: word_count=103, relevant_keywords=found, status=PASS
+2026-02-12 22:30:47,327 - WARNING - Could not match movement by keywords: 'Movement' object has no attribute 'name'
+2026-02-12 22:30:47,327 - INFO -   ℹ️  No specific movement match, using default (ID: 1)
+2026-02-12 22:30:47,328 - INFO - Document already exists in database: Vypis20260104225829.pdf
+2026-02-12 22:30:47,328 - INFO - Processing: Vypis20260104225846.pdf
+2026-02-12 22:30:47,339 - INFO - Validation: word_count=124, relevant_keywords=found, status=PASS
+2026-02-12 22:30:47,343 - WARNING - Could not match movement by keywords: 'Movement' object has no attribute 'name'
+2026-02-12 22:30:47,343 - INFO -   ℹ️  No specific movement match, using default (ID: 1)
+2026-02-12 22:30:47,344 - INFO - Document already exists in database: Vypis20260104225846.pdf
+2026-02-12 22:30:47,344 - INFO - Processing: Vypis20260104225944.pdf
+2026-02-12 22:30:47,355 - INFO - Validation: word_count=131, relevant_keywords=found, status=PASS
+2026-02-12 22:30:47,359 - WARNING - Could not match movement by keywords: 'Movement' object has no attribute 'name'
+2026-02-12 22:30:47,359 - INFO -   ℹ️  No specific movement match, using default (ID: 1)
+2026-02-12 22:30:47,360 - INFO - Document already exists in database: Vypis20260104225944.pdf
+2026-02-12 22:30:47,360 - INFO - Processing: Vypis20260104230001.pdf
+2026-02-12 22:30:47,370 - INFO - Validation: word_count=105, relevant_keywords=found, status=PASS
+2026-02-12 22:30:47,375 - WARNING - Could not match movement by keywords: 'Movement' object has no attribute 'name'
+2026-02-12 22:30:47,375 - INFO -   ℹ️  No specific movement match, using default (ID: 1)
+2026-02-12 22:30:47,376 - INFO - Document already exists in database: Vypis20260104230001.pdf
+2026-02-12 22:30:47,376 - INFO - Processing: Vypis20260104230123.pdf
+2026-02-12 22:30:47,387 - INFO - Validation: word_count=117, relevant_keywords=found, status=PASS
+2026-02-12 22:30:47,391 - WARNING - Could not match movement by keywords: 'Movement' object has no attribute 'name'
+2026-02-12 22:30:47,391 - INFO -   ℹ️  No specific movement match, using default (ID: 1)
+2026-02-12 22:30:47,392 - INFO - Document already exists in database: Vypis20260104230123.pdf
+2026-02-12 22:30:47,392 - INFO - Processing: Vypis20260104230139.pdf
+2026-02-12 22:30:47,407 - INFO - Validation: word_count=181, relevant_keywords=found, status=PASS
+2026-02-12 22:30:47,411 - WARNING - Could not match movement by keywords: 'Movement' object has no attribute 'name'
+2026-02-12 22:30:47,411 - INFO -   ℹ️  No specific movement match, using default (ID: 1)
+2026-02-12 22:30:47,412 - INFO - Document already exists in database: Vypis20260104230139.pdf
+2026-02-12 22:30:47,412 - INFO - Processing: Vypis20260104230158.pdf
+2026-02-12 22:30:47,425 - INFO - Validation: word_count=348, relevant_keywords=found, status=PASS
+2026-02-12 22:30:47,429 - WARNING - Could not match movement by keywords: 'Movement' object has no attribute 'name'
+2026-02-12 22:30:47,429 - INFO -   ℹ️  No specific movement match, using default (ID: 1)
+2026-02-12 22:30:47,430 - INFO - Document already exists in database: Vypis20260104230158.pdf
+2026-02-12 22:30:47,430 - INFO - Processing: Vypis20260104230227.pdf
+2026-02-12 22:30:47,442 - INFO - Validation: word_count=188, relevant_keywords=found, status=PASS
+2026-02-12 22:30:47,446 - WARNING - Could not match movement by keywords: 'Movement' object has no attribute 'name'
+2026-02-12 22:30:47,446 - INFO -   ℹ️  No specific movement match, using default (ID: 1)
+2026-02-12 22:30:47,448 - INFO - Document already exists in database: Vypis20260104230227.pdf
+2026-02-12 22:30:47,448 - INFO - Processing: Vypis20260104230241.pdf
+2026-02-12 22:30:47,459 - INFO - Validation: word_count=215, relevant_keywords=found, status=PASS
+2026-02-12 22:30:47,463 - WARNING - Could not match movement by keywords: 'Movement' object has no attribute 'name'
+2026-02-12 22:30:47,463 - INFO -   ℹ️  No specific movement match, using default (ID: 1)
+2026-02-12 22:30:47,464 - INFO - Document already exists in database: Vypis20260104230241.pdf
+2026-02-12 22:30:47,464 - INFO - Processing: Vypis20260104230302.pdf
+2026-02-12 22:30:47,474 - WARNING - Validation failed for Vypis20260104230302.pdf: Content doesn't appear to be relevant (missing Czech/religious keywords)
+2026-02-12 22:30:47,474 - INFO - Processing: Vypis20260104230329.pdf
+2026-02-12 22:30:47,485 - WARNING - Validation failed for Vypis20260104230329.pdf: Content doesn't appear to be relevant (missing Czech/religious keywords)
+2026-02-12 22:30:47,485 - INFO - Processing: Vypis20260104230356.pdf
+2026-02-12 22:30:47,495 - WARNING - Validation failed for Vypis20260104230356.pdf: Content doesn't appear to be relevant (missing Czech/religious keywords)
+2026-02-12 22:30:47,495 - INFO - Processing: Vypis20260104230409.pdf
+2026-02-12 22:30:47,507 - WARNING - Validation failed for Vypis20260104230409.pdf: Content doesn't appear to be relevant (missing Czech/religious keywords)
+2026-02-12 22:30:47,507 - INFO - Processing: Vypis20260104230439.pdf
+2026-02-12 22:30:47,519 - WARNING - Validation failed for Vypis20260104230439.pdf: Content doesn't appear to be relevant (missing Czech/religious keywords)
+2026-02-12 22:30:47,519 - INFO - Processing: Vypis20260104230458.pdf
+2026-02-12 22:30:47,531 - WARNING - Validation failed for Vypis20260104230458.pdf: Content doesn't appear to be relevant (missing Czech/religious keywords)
+2026-02-12 22:30:47,531 - INFO - Processing: Vypis20260104230513.pdf
+2026-02-12 22:30:47,542 - WARNING - Validation failed for Vypis20260104230513.pdf: Content doesn't appear to be relevant (missing Czech/religious keywords)
+2026-02-12 22:30:47,542 - INFO - Processing: Vypis20260104230534.pdf
+2026-02-12 22:30:47,555 - WARNING - Validation failed for Vypis20260104230534.pdf: Content doesn't appear to be relevant (missing Czech/religious keywords)
+2026-02-12 22:30:47,555 - INFO - Processing: adamík_2009_dp_data.pdf
+2026-02-12 22:30:47,747 - INFO - Validation: word_count=24622, relevant_keywords=found, status=PASS
+2026-02-12 22:30:47,756 - WARNING - Could not match movement by keywords: 'Movement' object has no attribute 'name'
+2026-02-12 22:30:47,756 - INFO -   ℹ️  No specific movement match, using default (ID: 1)
+2026-02-12 22:30:47,759 - INFO - Document already exists in database: adamík_2009_dp_data.pdf
+2026-02-12 22:30:47,760 - INFO - Processing: bakalarka_data.pdf
+2026-02-12 22:30:47,872 - INFO - Validation: word_count=14580, relevant_keywords=found, status=PASS
+2026-02-12 22:30:47,878 - WARNING - Could not match movement by keywords: 'Movement' object has no attribute 'name'
+2026-02-12 22:30:47,878 - INFO -   ℹ️  No specific movement match, using default (ID: 1)
+2026-02-12 22:30:47,881 - INFO - Document already exists in database: bakalarka_data.pdf
+2026-02-12 22:30:47,881 - INFO - Processing: novopohanstvi_pro_teologickou_revue.pdf
+2026-02-12 22:30:48,021 - INFO - Validation: word_count=19196, relevant_keywords=found, status=PASS
+2026-02-12 22:30:48,027 - WARNING - Could not match movement by keywords: 'Movement' object has no attribute 'name'
+2026-02-12 22:30:48,028 - INFO -   ℹ️  No specific movement match, using default (ID: 1)
+2026-02-12 22:30:48,035 - INFO - Document already exists in database: novopohanstvi_pro_teologickou_revue.pdf
+2026-02-12 22:30:48,035 - INFO - Processing: proftova_data.pdf
+2026-02-12 22:30:48,204 - INFO - Validation: word_count=12843, relevant_keywords=found, status=PASS
+2026-02-12 22:30:48,210 - WARNING - Could not match movement by keywords: 'Movement' object has no attribute 'name'
+2026-02-12 22:30:48,211 - INFO -   ℹ️  No specific movement match, using default (ID: 1)
+2026-02-12 22:30:48,213 - INFO - Document already exists in database: proftova_data.pdf
+2026-02-12 22:30:48,213 - INFO - Processing: sejharova_data.pdf
+2026-02-12 22:30:48,408 - INFO - Validation: word_count=38400, relevant_keywords=found, status=PASS
+2026-02-12 22:30:48,417 - WARNING - Could not match movement by keywords: 'Movement' object has no attribute 'name'
+2026-02-12 22:30:48,418 - INFO -   ℹ️  No specific movement match, using default (ID: 1)
+2026-02-12 22:30:48,430 - INFO - Document already exists in database: sejharova_data.pdf
+2026-02-12 22:30:48,430 - INFO - Processing: seznam_registrovanych_NNH.pdf
+2026-02-12 22:30:48,434 - INFO - Validation: word_count=142, relevant_keywords=found, status=PASS
+2026-02-12 22:30:48,438 - WARNING - Could not match movement by keywords: 'Movement' object has no attribute 'name'
+2026-02-12 22:30:48,438 - INFO -   ℹ️  No specific movement match, using default (ID: 1)
+2026-02-12 22:30:48,439 - INFO - Document already exists in database: seznam_registrovanych_NNH.pdf
+2026-02-12 22:30:48,439 - INFO - Processing: sojchova_data.pdf
+2026-02-12 22:30:48,631 - INFO - Validation: word_count=38400, relevant_keywords=found, status=PASS
+2026-02-12 22:30:48,640 - WARNING - Could not match movement by keywords: 'Movement' object has no attribute 'name'
+2026-02-12 22:30:48,641 - INFO -   ℹ️  No specific movement match, using default (ID: 1)
+2026-02-12 22:30:48,646 - INFO - Document already exists in database: sojchova_data.pdf
+2026-02-12 22:30:48,646 - INFO - Processing: zobraz_dokument (1).pdf
+2026-02-12 22:30:48,648 - WARNING - No text extracted from zobraz_dokument (1).pdf
+2026-02-12 22:30:48,648 - INFO - Processing: zobraz_dokument (10).pdf
+2026-02-12 22:30:48,657 - INFO - Validation: word_count=215, relevant_keywords=found, status=PASS
+2026-02-12 22:30:48,661 - WARNING - Could not match movement by keywords: 'Movement' object has no attribute 'name'
+2026-02-12 22:30:48,661 - INFO -   ℹ️  No specific movement match, using default (ID: 1)
+2026-02-12 22:30:48,672 - INFO - ✅ SUCCESS: zobraz_dokument (10).pdf (215 words, 1 min read)
+2026-02-12 22:30:48,674 - INFO - Processing: zobraz_dokument (11).pdf
+2026-02-12 22:30:48,681 - WARNING - No text extracted from zobraz_dokument (11).pdf
+2026-02-12 22:30:48,681 - INFO - Processing: zobraz_dokument (12).pdf
+2026-02-12 22:30:48,683 - WARNING - No text extracted from zobraz_dokument (12).pdf
+2026-02-12 22:30:48,683 - INFO - Processing: zobraz_dokument (13).pdf
+2026-02-12 22:30:48,688 - WARNING - No text extracted from zobraz_dokument (13).pdf
+2026-02-12 22:30:48,688 - INFO - Processing: zobraz_dokument (14).pdf
+2026-02-12 22:30:48,695 - WARNING - No text extracted from zobraz_dokument (14).pdf
+2026-02-12 22:30:48,695 - INFO - Processing: zobraz_dokument (15).pdf
+2026-02-12 22:30:48,696 - WARNING - No text extracted from zobraz_dokument (15).pdf
+2026-02-12 22:30:48,696 - INFO - Processing: zobraz_dokument (16).pdf
+2026-02-12 22:30:48,714 - INFO - Validation: word_count=1664, relevant_keywords=found, status=PASS
+2026-02-12 22:30:48,718 - WARNING - Could not match movement by keywords: 'Movement' object has no attribute 'name'
+2026-02-12 22:30:48,718 - INFO -   ℹ️  No specific movement match, using default (ID: 1)
+2026-02-12 22:30:48,728 - INFO - ✅ SUCCESS: zobraz_dokument (16).pdf (1664 words, 8 min read)
+2026-02-12 22:30:48,729 - INFO - Processing: zobraz_dokument (17).pdf
+2026-02-12 22:30:48,760 - INFO - Validation: word_count=3306, relevant_keywords=found, status=PASS
+2026-02-12 22:30:48,764 - WARNING - Could not match movement by keywords: 'Movement' object has no attribute 'name'
+2026-02-12 22:30:48,764 - INFO -   ℹ️  No specific movement match, using default (ID: 1)
+2026-02-12 22:30:48,773 - INFO - ✅ SUCCESS: zobraz_dokument (17).pdf (3306 words, 16 min read)
+2026-02-12 22:30:48,774 - INFO - Processing: zobraz_dokument (18).pdf
+2026-02-12 22:30:48,803 - INFO - Validation: word_count=3371, relevant_keywords=found, status=PASS
+2026-02-12 22:30:48,808 - WARNING - Could not match movement by keywords: 'Movement' object has no attribute 'name'
+2026-02-12 22:30:48,808 - INFO -   ℹ️  No specific movement match, using default (ID: 1)
+2026-02-12 22:30:48,816 - INFO - ✅ SUCCESS: zobraz_dokument (18).pdf (3371 words, 16 min read)
+2026-02-12 22:30:48,817 - INFO - Processing: zobraz_dokument (19).pdf
+2026-02-12 22:30:48,826 - INFO - Validation: word_count=263, relevant_keywords=found, status=PASS
+2026-02-12 22:30:48,830 - WARNING - Could not match movement by keywords: 'Movement' object has no attribute 'name'
+2026-02-12 22:30:48,831 - INFO -   ℹ️  No specific movement match, using default (ID: 1)
+2026-02-12 22:30:48,838 - INFO - ✅ SUCCESS: zobraz_dokument (19).pdf (263 words, 1 min read)
+2026-02-12 22:30:48,839 - INFO - Processing: zobraz_dokument (2).pdf
+2026-02-12 22:30:48,845 - WARNING - No text extracted from zobraz_dokument (2).pdf
+2026-02-12 22:30:48,845 - INFO - Processing: zobraz_dokument (20).pdf
+2026-02-12 22:30:48,850 - INFO - Validation: word_count=263, relevant_keywords=found, status=PASS
+2026-02-12 22:30:48,855 - WARNING - Could not match movement by keywords: 'Movement' object has no attribute 'name'
+2026-02-12 22:30:48,856 - INFO -   ℹ️  No specific movement match, using default (ID: 1)
+2026-02-12 22:30:48,864 - INFO - ✅ SUCCESS: zobraz_dokument (20).pdf (263 words, 1 min read)
+2026-02-12 22:30:48,865 - INFO - Processing: zobraz_dokument (21).pdf
+2026-02-12 22:30:48,894 - INFO - Validation: word_count=228, relevant_keywords=found, status=PASS
+2026-02-12 22:30:48,923 - WARNING - Could not match movement by keywords: 'Movement' object has no attribute 'name'
+2026-02-12 22:30:48,923 - INFO -   ℹ️  No specific movement match, using default (ID: 1)
+2026-02-12 22:30:48,933 - INFO - ✅ SUCCESS: zobraz_dokument (21).pdf (228 words, 1 min read)
+2026-02-12 22:30:48,934 - INFO - Processing: zobraz_dokument (22).pdf
+2026-02-12 22:30:48,940 - WARNING - No text extracted from zobraz_dokument (22).pdf
+2026-02-12 22:30:48,940 - INFO - Processing: zobraz_dokument (23).pdf
+2026-02-12 22:30:48,947 - WARNING - No text extracted from zobraz_dokument (23).pdf
+2026-02-12 22:30:48,947 - INFO - Processing: zobraz_dokument (24).pdf
+2026-02-12 22:30:48,953 - WARNING - No text extracted from zobraz_dokument (24).pdf
+2026-02-12 22:30:48,953 - INFO - Processing: zobraz_dokument (25).pdf
+2026-02-12 22:30:48,956 - WARNING - No text extracted from zobraz_dokument (25).pdf
+2026-02-12 22:30:48,956 - INFO - Processing: zobraz_dokument (26).pdf
+2026-02-12 22:30:48,966 - WARNING - No text extracted from zobraz_dokument (26).pdf
+2026-02-12 22:30:48,966 - INFO - Processing: zobraz_dokument (27).pdf
+2026-02-12 22:30:48,972 - WARNING - No text extracted from zobraz_dokument (27).pdf
+2026-02-12 22:30:48,972 - INFO - Processing: zobraz_dokument (28).pdf
+2026-02-12 22:30:48,979 - WARNING - No text extracted from zobraz_dokument (28).pdf
+2026-02-12 22:30:48,979 - INFO - Processing: zobraz_dokument (29).pdf
+2026-02-12 22:30:48,982 - WARNING - No text extracted from zobraz_dokument (29).pdf
+2026-02-12 22:30:48,982 - INFO - Processing: zobraz_dokument (3).pdf
+2026-02-12 22:30:48,992 - WARNING - No text extracted from zobraz_dokument (3).pdf
+2026-02-12 22:30:48,992 - INFO - Processing: zobraz_dokument (30).pdf
+2026-02-12 22:30:49,007 - WARNING - No text extracted from zobraz_dokument (30).pdf
+2026-02-12 22:30:49,007 - INFO - Processing: zobraz_dokument (31).pdf
+2026-02-12 22:30:49,025 - WARNING - No text extracted from zobraz_dokument (31).pdf
+2026-02-12 22:30:49,025 - INFO - Processing: zobraz_dokument (32).pdf
+2026-02-12 22:30:49,028 - WARNING - No text extracted from zobraz_dokument (32).pdf
+2026-02-12 22:30:49,028 - INFO - Processing: zobraz_dokument (33).pdf
+2026-02-12 22:30:49,042 - INFO - Validation: word_count=426, relevant_keywords=found, status=PASS
+2026-02-12 22:30:49,046 - WARNING - Could not match movement by keywords: 'Movement' object has no attribute 'name'
+2026-02-12 22:30:49,046 - INFO -   ℹ️  No specific movement match, using default (ID: 1)
+2026-02-12 22:30:49,054 - INFO - ✅ SUCCESS: zobraz_dokument (33).pdf (426 words, 2 min read)
+2026-02-12 22:30:49,055 - INFO - Processing: zobraz_dokument (34).pdf
+2026-02-12 22:30:49,064 - WARNING - Validation failed for zobraz_dokument (34).pdf: Content doesn't appear to be relevant (missing Czech/religious keywords)
+2026-02-12 22:30:49,064 - INFO - Processing: zobraz_dokument (35).pdf
+2026-02-12 22:30:49,065 - WARNING - No text extracted from zobraz_dokument (35).pdf
+2026-02-12 22:30:49,065 - INFO - Processing: zobraz_dokument (36).pdf
+2026-02-12 22:30:49,076 - WARNING - No text extracted from zobraz_dokument (36).pdf
+2026-02-12 22:30:49,077 - INFO - Processing: zobraz_dokument (37).pdf
+2026-02-12 22:30:49,109 - INFO - Validation: word_count=3084, relevant_keywords=found, status=PASS
+2026-02-12 22:30:49,114 - WARNING - Could not match movement by keywords: 'Movement' object has no attribute 'name'
+2026-02-12 22:30:49,114 - INFO -   ℹ️  No specific movement match, using default (ID: 1)
+2026-02-12 22:30:49,122 - INFO - ✅ SUCCESS: zobraz_dokument (37).pdf (3084 words, 15 min read)
+2026-02-12 22:30:49,123 - INFO - Processing: zobraz_dokument (38).pdf
+2026-02-12 22:30:49,147 - WARNING - Validation failed for zobraz_dokument (38).pdf: Content doesn't appear to be relevant (missing Czech/religious keywords)
+2026-02-12 22:30:49,147 - INFO - Processing: zobraz_dokument (39).pdf
+2026-02-12 22:30:49,149 - WARNING - No text extracted from zobraz_dokument (39).pdf
+2026-02-12 22:30:49,149 - INFO - Processing: zobraz_dokument (4).pdf
+2026-02-12 22:30:49,151 - WARNING - No text extracted from zobraz_dokument (4).pdf
+2026-02-12 22:30:49,151 - INFO - Processing: zobraz_dokument (40).pdf
+2026-02-12 22:30:49,173 - WARNING - Validation failed for zobraz_dokument (40).pdf: Content doesn't appear to be relevant (missing Czech/religious keywords)
+2026-02-12 22:30:49,173 - INFO - Processing: zobraz_dokument (41).pdf
+2026-02-12 22:30:49,177 - WARNING - No text extracted from zobraz_dokument (41).pdf
+2026-02-12 22:30:49,177 - INFO - Processing: zobraz_dokument (42).pdf
+2026-02-12 22:30:49,213 - INFO - Validation: word_count=2109, relevant_keywords=found, status=PASS
+2026-02-12 22:30:49,217 - WARNING - Could not match movement by keywords: 'Movement' object has no attribute 'name'
+2026-02-12 22:30:49,218 - INFO -   ℹ️  No specific movement match, using default (ID: 1)
+2026-02-12 22:30:49,226 - INFO - ✅ SUCCESS: zobraz_dokument (42).pdf (2109 words, 10 min read)
+2026-02-12 22:30:49,227 - INFO - Processing: zobraz_dokument (5).pdf
+2026-02-12 22:30:49,231 - WARNING - No text extracted from zobraz_dokument (5).pdf
+2026-02-12 22:30:49,231 - INFO - Processing: zobraz_dokument (6).pdf
+2026-02-12 22:30:49,233 - WARNING - No text extracted from zobraz_dokument (6).pdf
+2026-02-12 22:30:49,233 - INFO - Processing: zobraz_dokument (7).pdf
+2026-02-12 22:30:49,264 - INFO - Validation: word_count=1729, relevant_keywords=found, status=PASS
+2026-02-12 22:30:49,268 - WARNING - Could not match movement by keywords: 'Movement' object has no attribute 'name'
+2026-02-12 22:30:49,268 - INFO -   ℹ️  No specific movement match, using default (ID: 1)
+2026-02-12 22:30:49,277 - INFO - ✅ SUCCESS: zobraz_dokument (7).pdf (1729 words, 8 min read)
+2026-02-12 22:30:49,278 - INFO - Processing: zobraz_dokument (8).pdf
+2026-02-12 22:30:49,280 - WARNING - No text extracted from zobraz_dokument (8).pdf
+2026-02-12 22:30:49,280 - INFO - Processing: zobraz_dokument (9).pdf
+2026-02-12 22:30:49,290 - INFO - Validation: word_count=236, relevant_keywords=found, status=PASS
+2026-02-12 22:30:49,295 - WARNING - Could not match movement by keywords: 'Movement' object has no attribute 'name'
+2026-02-12 22:30:49,295 - INFO -   ℹ️  No specific movement match, using default (ID: 1)
+2026-02-12 22:30:49,303 - INFO - ✅ SUCCESS: zobraz_dokument (9).pdf (236 words, 1 min read)
+2026-02-12 22:30:49,305 - INFO - Processing: zobraz_dokument.pdf
+2026-02-12 22:30:49,317 - WARNING - No text extracted from zobraz_dokument.pdf
+2026-02-12 22:30:49,317 - INFO - Processing: žáček_2013_dp_data.pdf
+2026-02-12 22:30:49,435 - INFO - Validation: word_count=13475, relevant_keywords=found, status=PASS
+2026-02-12 22:30:49,441 - WARNING - Could not match movement by keywords: 'Movement' object has no attribute 'name'
+2026-02-12 22:30:49,441 - INFO -   ℹ️  No specific movement match, using default (ID: 1)
+2026-02-12 22:30:49,443 - INFO - Document already exists in database: žáček_2013_dp_data.pdf
+2026-02-12 22:30:49,443 - INFO - Processing: zobraz_dokument (1).doc
+2026-02-12 22:30:49,444 - ERROR - Error extracting text from DOCX/DOC academic_data/zobraz_dokument (1).doc: Package not found at 'academic_data/zobraz_dokument (1).doc'
+2026-02-12 22:30:49,444 - WARNING - No text extracted from zobraz_dokument (1).doc
+2026-02-12 22:30:49,445 - INFO - Processing: zobraz_dokument (2).doc
+2026-02-12 22:30:49,445 - ERROR - Error extracting text from DOCX/DOC academic_data/zobraz_dokument (2).doc: Package not found at 'academic_data/zobraz_dokument (2).doc'
+2026-02-12 22:30:49,445 - WARNING - No text extracted from zobraz_dokument (2).doc
+2026-02-12 22:30:49,445 - INFO - Processing: zobraz_dokument (3).doc
+2026-02-12 22:30:49,446 - ERROR - Error extracting text from DOCX/DOC academic_data/zobraz_dokument (3).doc: Package not found at 'academic_data/zobraz_dokument (3).doc'
+2026-02-12 22:30:49,446 - WARNING - No text extracted from zobraz_dokument (3).doc
+2026-02-12 22:30:49,446 - INFO - Processing: zobraz_dokument (4).doc
+2026-02-12 22:30:49,447 - ERROR - Error extracting text from DOCX/DOC academic_data/zobraz_dokument (4).doc: Package not found at 'academic_data/zobraz_dokument (4).doc'
+2026-02-12 22:30:49,447 - WARNING - No text extracted from zobraz_dokument (4).doc
+2026-02-12 22:30:49,447 - INFO - Processing: zobraz_dokument (5).doc
+2026-02-12 22:30:49,448 - ERROR - Error extracting text from DOCX/DOC academic_data/zobraz_dokument (5).doc: Package not found at 'academic_data/zobraz_dokument (5).doc'
+2026-02-12 22:30:49,448 - WARNING - No text extracted from zobraz_dokument (5).doc
+2026-02-12 22:30:49,448 - INFO - Processing: zobraz_dokument (6).doc
+2026-02-12 22:30:49,449 - ERROR - Error extracting text from DOCX/DOC academic_data/zobraz_dokument (6).doc: Package not found at 'academic_data/zobraz_dokument (6).doc'
+2026-02-12 22:30:49,449 - WARNING - No text extracted from zobraz_dokument (6).doc
+2026-02-12 22:30:49,449 - INFO - Processing: zobraz_dokument (7).doc
+2026-02-12 22:30:49,449 - ERROR - Error extracting text from DOCX/DOC academic_data/zobraz_dokument (7).doc: Package not found at 'academic_data/zobraz_dokument (7).doc'
+2026-02-12 22:30:49,449 - WARNING - No text extracted from zobraz_dokument (7).doc
+2026-02-12 22:30:49,450 - INFO - Processing: zobraz_dokument (8).doc
+2026-02-12 22:30:49,450 - ERROR - Error extracting text from DOCX/DOC academic_data/zobraz_dokument (8).doc: Package not found at 'academic_data/zobraz_dokument (8).doc'
+2026-02-12 22:30:49,450 - WARNING - No text extracted from zobraz_dokument (8).doc
+2026-02-12 22:30:49,450 - INFO - Processing: zobraz_dokument (9).doc
+2026-02-12 22:30:49,451 - ERROR - Error extracting text from DOCX/DOC academic_data/zobraz_dokument (9).doc: Package not found at 'academic_data/zobraz_dokument (9).doc'
+2026-02-12 22:30:49,451 - WARNING - No text extracted from zobraz_dokument (9).doc
+2026-02-12 22:30:49,451 - INFO - Processing: zobraz_dokument.doc
+2026-02-12 22:30:49,452 - ERROR - Error extracting text from DOCX/DOC academic_data/zobraz_dokument.doc: Package not found at 'academic_data/zobraz_dokument.doc'
+2026-02-12 22:30:49,452 - WARNING - No text extracted from zobraz_dokument.doc
+2026-02-12 22:30:49,452 - INFO - 
+============================================================
+2026-02-12 22:30:49,452 - INFO - Import Summary:
+2026-02-12 22:30:49,452 - INFO -   Total processed:     90
+2026-02-12 22:30:49,452 - INFO -   ✅ Successful:       12
+2026-02-12 22:30:49,452 - INFO -   ⏭️  Skipped:         78
+2026-02-12 22:30:49,452 - INFO -   ❌ Failed:           0
+2026-02-12 22:30:49,452 - INFO -   Total words:        16,894
+2026-02-12 22:30:49,453 - INFO -   Total reading time: 80 minutes
+2026-02-12 22:30:49,453 - INFO - ============================================================
+
+2026-02-12 22:30:50,143 - INFO - HTTP Request: HEAD https://huggingface.co/Babelscape/wikineural-multilingual-ner/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-12 22:30:50,158 - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Babelscape/wikineural-multilingual-ner/bed6ee7a45d2827b6c90a4fd7983f0241ae0a5c1/config.json "HTTP/1.1 200 OK"
+2026-02-12 22:30:50,818 - INFO - HTTP Request: HEAD https://huggingface.co/nlptown/bert-base-multilingual-uncased-sentiment/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-12 22:30:50,832 - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/nlptown/bert-base-multilingual-uncased-sentiment/8f6f4e3a8f70be4b65d3a4a8762b6d781cda240d/config.json "HTTP/1.1 200 OK"
+2026-02-12 22:30:51,026 - INFO - HTTP Request: HEAD https://huggingface.co/Babelscape/wikineural-multilingual-ner/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-12 22:30:51,041 - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Babelscape/wikineural-multilingual-ner/bed6ee7a45d2827b6c90a4fd7983f0241ae0a5c1/config.json "HTTP/1.1 200 OK"
+2026-02-12 22:30:51,168 - INFO - HTTP Request: HEAD https://huggingface.co/nlptown/bert-base-multilingual-uncased-sentiment/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-12 22:30:51,180 - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/nlptown/bert-base-multilingual-uncased-sentiment/8f6f4e3a8f70be4b65d3a4a8762b6d781cda240d/config.json "HTTP/1.1 200 OK"
