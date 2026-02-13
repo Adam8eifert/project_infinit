@@ -13,10 +13,11 @@ An ETL pipeline for collecting, analyzing, and visualizing information about new
   - Social media APIs (Reddit, X/Twitter)
   - Web scraping for news aggregators
 - Natural Language Processing:
-  - Czech language support via spaCy
-  - Named Entity Recognition via Hugging Face Transformers
-  - Sentiment analysis via multilingual BERT models
+  - **Multilingual support**: Czech (Stanza) and English (Stanza) with automatic language detection
+  - Named Entity Recognition via Hugging Face Transformers (WikiNeural, BioBERT)
+  - Sentiment analysis via multilingual BERT models (nlptown/bert-base-multilingual)
   - Movement classification and relationship analysis
+  - Academic document processing (PDF, DOC, DOCX text extraction)
 - Structured data storage in PostgreSQL/SQLite
 - Export capabilities for further analysis and Power BI integration
 - Comprehensive testing suite with pytest
@@ -25,13 +26,16 @@ An ETL pipeline for collecting, analyzing, and visualizing information about new
 ## 🔧 Technology Stack
 
 - **Python 3.10+** - Core programming language
-- **Scrapy** - Web scraping framework with custom settings
-- **spaCy** - NLP toolkit for Czech language processing
-- **Hugging Face Transformers** - Advanced NLP models for NER and sentiment
-- **SQLAlchemy** - Database ORM with PostgreSQL/SQLite support
-- **PRAW** - Reddit API client
-- **Tweepy** - X (Twitter) API client
-- **pandas** - Data manipulation and CSV processing
+- **Scrapy 2.13+** - Web scraping framework with custom settings
+- **Stanza 1.11+** - Czech and English NLP (tokenization, POS, lemma, NER)
+- **langdetect** - Automatic language detection (Czech/English)
+- **Hugging Face Transformers** - Advanced NLP models for NER and multilingual sentiment
+- **SQLAlchemy 2.0+** - Database ORM with PostgreSQL/SQLite support
+- **PRAW 7.8+** - Reddit API client
+- **Tweepy 4.14+** - X (Twitter) API client
+- **PyMuPDF 1.23+** - PDF text extraction
+- **python-docx 1.1+** - Word document (.doc/.docx) processing
+- **pandas 2.3+** - Data manipulation and CSV processing
 - **pytest** - Testing framework with mocking
 - **PyYAML** - Configuration management
 
@@ -117,11 +121,17 @@ source venv/bin/activate  # Linux/macOS
 pip install -r requirements.txt
 ```
 
-### 2. Setup NLP Models
+### 2. Setup NLP Models and Dependencies
 
 ```bash
-# Download Czech spaCy model
-python -m spacy download cs_core_news_md
+# Using Mamba (recommended) for better dependency resolution
+mamba create -n project_infinit -y --file environment.yml
+mamba activate project_infinit
+
+# Or using pip (fallback)
+pip install -r requirements.txt
+
+# Stanza will auto-download Czech and English models on first use
 ```
 
 ### 3. Configure Database
@@ -162,27 +172,43 @@ scrapy runspider extracting/api_spider.py
 scrapy runspider extracting/social_media_spider.py
 ```
 
-## 🔄 Pipeline Steps
+## 🔄 ETL Pipeline Steps
 
-1. **Data Collection**
-   - Scrape RSS feeds from specialized websites
-   - Query REST APIs (Wikipedia, SOCCAS)
-   - Collect posts from Reddit and X (Twitter)
-   - Web scraping for news aggregators
-   - Process academic documents (PDF, Word documents)
+1. **Data Collection** (`run_spiders()`)
+   - RSS feeds from 12+ specialized and mainstream sources
+   - REST APIs (Wikipedia, SOCCAS Encyclopedia)
+   - Social media posts from Reddit and X/Twitter
+   - Web scraping for news aggregators (Google News, Medium, Seznam)
+   - Academic documents (PDF, DOC, DOCX from `academic_data/`)
 
-2. **Data Processing**
-   - Extract text from academic documents (PDF, DOC, DOCX formats)
-   - Clean and validate collected data
-   - Perform NLP analysis (tokenization, POS tagging, NER, sentiment)
-   - Extract entities and relationships
-   - Classify content and movements
+2. **CSV Import** (`process_csv()`)
+   - Load scraped CSV files from `export/csv/`
+   - Deduplicate by URL and content hash (SHA256)
+   - Import validated sources to database
 
-3. **Data Storage**
-   - Import processed data to database
-   - Generate CSV exports for analysis
-   - Update Power BI datasets
-   - Create analysis reports
+3. **Academic Document Processing** (`process_academic_documents()`)
+   - Extract text from PDF (PyMuPDF), DOC/DOCX (python-docx)
+   - Convert legacy .doc to .docx via LibreOffice
+   - Validate content (min 50 words + religious keywords)
+   - Match documents to known movements
+   - Import to database with metadata
+
+4. **Entity Extraction** (`process_entities()`)
+   - NER: Extract persons, organizations, locations from content
+   - Create Alias records for movement name variations
+   - Create Location records for geographic references
+   - Match entities to movement database
+
+5. **NLP Analysis** (`run_nlp()`)
+   - **Language detection**: Automatically identify Czech/English
+   - **Sentiment analysis**: Score emotional tone (positive/negative/neutral)
+   - **Lemmatization & POS tagging**: Via Stanza pipelines
+   - Generate sentiment logs and analysis reports
+
+6. **Data Storage & Export** (`load_scraped_csvs()`)
+   - Persist all processed data to PostgreSQL/SQLite
+   - Generate CSV exports for Power BI
+   - Create comprehensive audit logs
 
 ## 📊 Data Sources
 
@@ -227,11 +253,12 @@ pytest testing/test_nlp_analysis.py -v
 ### Core Requirements
 
 - Python 3.10+
-- Scrapy 2.13+
-- SQLAlchemy 2.0+
-- spaCy 3.7+
-- transformers 4.52+
-- pandas 2.3+
+- Scrapy 2.13+ (web scraping)
+- SQLAlchemy 2.0+ (database ORM)
+- Stanza 1.11+ (Czech/English NLP)
+- langdetect (automatic language detection)
+- transformers 4.52+ (BERT sentiment, multilingual models)
+- pandas 2.3+ (data manipulation)
 
 ### API Clients
 
@@ -240,13 +267,14 @@ pytest testing/test_nlp_analysis.py -v
 - requests 2.31+
 - feedparser 6.0+
 
-### Data Processing
+### Data Processing & NLP
 
-- PyMuPDF 1.23+ (PDF extraction)
-- python-docx 1.1+ (Word documents: .doc, .docx)
-- openpyxl (Excel)
-- fuzzywuzzy 0.18+ (text matching)
-- python-dotenv 1.0+ (environment)
+- PyMuPDF 1.23+ (PDF text extraction)
+- python-docx 1.1+ (Word documents: .doc, .docx; auto-conversion .doc → .docx)
+- openpyxl (Excel spreadsheet handling)
+- fuzzywuzzy 0.18+ (fuzzy text matching for entity resolution)
+- python-dotenv 1.0+ (environment variable management)
+- numpy (numerical operations for NLP)
 
 ### Development
 
@@ -389,87 +417,88 @@ project_infinit/
 └── readme.md             # Tento soubor
 ```
 
-## 🇨🇿 Rychlý start
+## 🇨🇿 Rychlý start (CZ)
 
-### 1a. Klonování a příprava prostředí (CZ)
+### 1. Klonování a příprava prostředí
 
 ```bash
-git clone https://github.com/Adam8eifert/project_infinit.git
+git clone https://github.com/adamseifert/project_infinit.git
 cd project_infinit
 
-# Vytvoření virtuálního prostředí
-python -m venv venv
-source venv/bin/activate  # Linux/macOS
-# nebo
-# venv\Scripts\activate   # Windows
+# Vytvoření Mamba environment (doporučeno)
+mamba create -n project_infinit -y --file environment.yml
+mamba activate project_infinit
 
-# Instalace závislostí
+# Nebo pip (fallback)
 pip install -r requirements.txt
 ```
 
-### 2. Nastavení NLP modelů
+### 2. Nastavení NLP a závislostí
+
+Stanza automaticky stáhne české a anglické modely při prvním spuštění:
 
 ```bash
-# Stažení českého spaCy modelu
-python -m spacy download cs_core_news_md
+# Žádné další kroky nejsou nutné – NLP se inicializuje při main.py
 ```
 
 ### 3. Konfigurace databáze
 
-Projekt podporuje PostgreSQL i SQLite.
-
 ```python
-# config.py (výchozí konfigurace)
+# config.py (výchozí SQLite)
 DB_URI = "sqlite:///data/project_infinit.db"
+
+# Pro PostgreSQL:
+DB_URI = "postgresql+psycopg2://user:password@localhost/project_infinit"
 ```
 
-Pro PostgreSQL:
-
-```python
-DB_URI = "postgresql+psycopg2://username:password@localhost/nsm_db"
-```
-
-### 4. Konfigurace sociálních médií API (volitelné)
-
-Pro povolení sběru dat z Redditu a X (Twitter):
+### 4. Spuštění pipeline
 
 ```bash
-# Zkopírování šablony prostředí
-cp .env.example .env
-
-# Úprava .env s vašimi API klíči (viz .env.example pro instrukce)
-```
-
-### 5. Spuštění pipeline
-
-```bash
-# Spuštění kompletního ETL pipeline
+# Kompletní ETL pipeline
 python main.py
 
-# Nebo spuštění jednotlivých komponent
+# Jednotlivé komponenty
 scrapy runspider extracting/rss_spider.py
-scrapy runspider extracting/api_spider.py
-scrapy runspider extracting/social_media_spider.py
+python -c "from main import process_academic_documents; process_academic_documents()"
 ```
 
-## 🔄 Kroky zpracování
+## 🇨🇿 Mám shluk přehleda🔄 Kroky ETL Pipeline (CZ)
 
-1. **Sběr dat**
-   - Scraping RSS feedů ze specializovaných webů
-   - Dotazování REST API (Wikipedia, SOCCAS)
-   - Sběr příspěvků z Redditu a X (Twitter)
-   - Web scraping pro news agregátory
+1. **Sběr dat** (`run_spiders()`)
+   - RSS feedy z 12+ specializaį a mainstream zdrojů
+   - REST API (Wikipedia, SOCCAS Encyklopedie)
+   - Sociální média (Reddit, X/Twitter)
+   - Web scraping (Google News, Medium, Seznam)
+   - Akademické dokumenty (PDF, DOC, DOCX z `academic_data/`)
 
-2. **Zpracování dat**
-   - Čištění a validace nasbíraných dat
-   - Provedení NLP analýzy (tokenizace, POS tagging, NER, sentiment)
-   - Extrakce entit a vztahů
-   - Klasifikace obsahu a hnutí
+2. **Import CSV** (`process_csv()`)
+   - Načtení scraped CSV souborů z `export/csv/`
+   - Deduplicita po URL a obsahu (SHA256)
+   - Import validních zdrojů do databáze
 
-3. **Ukládání dat**
-   - Import zpracovaných dat do databáze
-   - Generování CSV exportů pro analýzu
-   - Aktualizace Power BI datasetů
+3. **Zpracování akademických dokumentů** (`process_academic_documents()`)
+   - Extrakce textu z PDF (PyMuPDF), DOC/DOCX (python-docx)
+   - Konverze legacy .doc na .docx přes LibreOffice
+   - Validace obsahu (min 50 slov + nábožská klíčová slova)
+   - Matchání dokumentů na známá hnutí
+   - Import do databáze s metadaty
+
+4. **Extrakce entit** (`process_entities()`)
+   - NER: Extrakce osob, organizačí, míst z obsahu
+   - Vytvoření Alias záznamů pro varianty názvů hnutí
+   - Vytvoření Location záznamů pro geografické odkazy
+   - Matchání entit na databázi hnutí
+
+5. **NLP analýza** (`run_nlp()`)
+   - **Detekce jazyka**: Automatická identifikace českých/anglických textů
+   - **Analýza sentimentu**: Skórání emocionálního tónu (kladné/záporné/neutrální)
+   - **Lemmatizace & POS tagging**: Přes Stanza pipeline
+   - Generání sentiment logů a zpravy analýzy
+
+6. **Ukládání & Export** (`load_scraped_csvs()`)
+   - Uchování všech zpracovaných dat v PostgreSQL/SQLite
+   - Generání CSV exportů pro Power BI
+   - Vytvoření komplexních audit logů
    - Vytváření analytických reportů
 
 ## 📊 Zdroje dat
