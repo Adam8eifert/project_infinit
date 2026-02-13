@@ -462,7 +462,30 @@ scrapy runspider extracting/rss_spider.py
 python -c "from main import process_academic_documents; process_academic_documents()"
 ```
 
-## 🇨🇿 Mám shluk přehleda🔄 Kroky ETL Pipeline (CZ)
+## 🇨🇿 Technologický stack a architektura (CZ)
+
+### Základní technologie
+
+- **Python 3.10+** – Hlavní jazyk
+- **Stanza 1.11+** – Multijazykový NLP (čeština + angličtina) s automatickou detencí jazyka
+- **langdetect** – Automatická detekce jazyka zdrojů
+- **Transformers (HuggingFace)** – Multilingual BERT pro sentiment analýzu
+- **SQLAlchemy 2.0+** – ORM pro PostgreSQL/SQLite
+- **Scrapy 2.13+** – Framework pro web scraping (5 spiderů)
+- **PyMuPDF 1.23+** – Extrakce textu z PDF dokumentů
+- **python-docx 1.1+** – Čtení DOC/DOCX souborů
+
+### Konfigurace
+
+Veškerá konfigurace je centralizována v `extracting/sources_config.yaml`:
+- Definice zdrojů (RSS, API, webscraping)
+- NLP klíčová slova a vzory
+- Known movements (75+ českých NRM)
+- Rate limiting a nastavení scraperu
+
+Načítání konfigurace probíhá přes `extracting/keywords.py` wrapper se automatickou validací.
+
+## 🇨🇿 Kroky ETL Pipeline (CZ)
 
 1. **Sběr dat** (`run_spiders()`)
    - RSS feedy z 12+ specializaį a mainstream zdrojů
