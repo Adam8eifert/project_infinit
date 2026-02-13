@@ -2542,3 +2542,405 @@
 2026-02-12 23:19:35,157 - INFO - HTTP Request: GET https://huggingface.co/api/models/nlptown/bert-base-multilingual-uncased-sentiment/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
 2026-02-12 23:19:35,352 - INFO - HTTP Request: GET https://huggingface.co/api/models/nlptown/bert-base-multilingual-uncased-sentiment/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
 2026-02-12 23:19:35,659 - INFO - HTTP Request: GET https://huggingface.co/api/models/nlptown/bert-base-multilingual-uncased-sentiment "HTTP/1.1 200 OK"
+2026-02-13 22:43:54,462 - INFO - Loading 27 rows from export/csv/sekty_tv_rss_raw.csv
+2026-02-13 22:43:54,523 - WARNING - Duplicate URL - skipping batch
+2026-02-13 22:43:54,524 - INFO - Import completed: 27 imported, 27 skipped
+2026-02-13 22:43:54,526 - INFO - Loading 4 rows from export/csv/seznam_zpravy_rss_raw.csv
+2026-02-13 22:43:54,537 - WARNING - Duplicate URL - skipping batch
+2026-02-13 22:43:54,537 - INFO - Import completed: 4 imported, 4 skipped
+2026-02-13 22:43:54,539 - INFO - Loading 4 rows from export/csv/denik_alarm_rss_raw.csv
+2026-02-13 22:43:54,547 - WARNING - Duplicate URL - skipping batch
+2026-02-13 22:43:54,547 - INFO - Import completed: 4 imported, 4 skipped
+2026-02-13 22:43:54,549 - INFO - Loading 6 rows from export/csv/irozhlas_rss_raw.csv
+2026-02-13 22:43:54,563 - WARNING - Duplicate URL - skipping batch
+2026-02-13 22:43:54,564 - INFO - Import completed: 6 imported, 6 skipped
+2026-02-13 22:43:54,566 - INFO - Loading 7 rows from export/csv/vira_cz_rss_raw.csv
+2026-02-13 22:43:54,585 - WARNING - Duplicate URL - skipping batch
+2026-02-13 22:43:54,585 - INFO - Import completed: 7 imported, 7 skipped
+2026-02-13 22:43:54,588 - INFO - Loading 22 rows from export/csv/info_dingir_rss_raw.csv
+2026-02-13 22:43:54,631 - WARNING - Duplicate URL - skipping batch
+2026-02-13 22:43:54,632 - INFO - Import completed: 22 imported, 22 skipped
+2026-02-13 22:43:54,635 - INFO - Loading 3 rows from export/csv/medium_seznam_rss_raw.csv
+2026-02-13 22:43:54,644 - WARNING - Duplicate URL - skipping batch
+2026-02-13 22:43:54,645 - INFO - Import completed: 3 imported, 3 skipped
+2026-02-13 22:43:54,648 - INFO - Loading 26 rows from export/csv/x_twitter_raw.csv
+2026-02-13 22:43:54,697 - WARNING - Duplicate URL - skipping batch
+2026-02-13 22:43:54,697 - INFO - Import completed: 26 imported, 26 skipped
+2026-02-13 22:43:54,700 - INFO - Loading 7 rows from export/csv/forum24_rss_raw.csv
+2026-02-13 22:43:54,720 - WARNING - Duplicate URL - skipping batch
+2026-02-13 22:43:54,721 - INFO - Import completed: 7 imported, 7 skipped
+2026-02-13 22:43:54,724 - INFO - Loading 0 rows from export/csv/soccas_api_raw.csv
+2026-02-13 22:43:54,725 - INFO - Import completed: 0 imported, 0 skipped
+2026-02-13 22:43:54,728 - INFO - Loading 15 rows from export/csv/blesk_rss_raw.csv
+2026-02-13 22:43:54,760 - WARNING - Duplicate URL - skipping batch
+2026-02-13 22:43:54,761 - INFO - Import completed: 15 imported, 15 skipped
+2026-02-13 22:43:54,762 - INFO - Skipping empty CSV (no columns): export/csv/medium_seznam_raw.csv
+2026-02-13 22:43:54,770 - INFO - Loading 20 rows from export/csv/rss_combined_raw.csv
+2026-02-13 22:43:54,810 - WARNING - Duplicate URL - skipping batch
+2026-02-13 22:43:54,810 - INFO - Import completed: 20 imported, 20 skipped
+2026-02-13 22:43:54,814 - INFO - Loading 3 rows from export/csv/google_news_raw.csv
+2026-02-13 22:43:54,822 - WARNING - Duplicate URL - skipping batch
+2026-02-13 22:43:54,822 - INFO - Import completed: 3 imported, 3 skipped
+2026-02-13 22:43:54,825 - INFO - 
+============================================================
+2026-02-13 22:43:54,826 - INFO - Starting document import: 90 files found
+2026-02-13 22:43:54,826 - INFO - ============================================================
+
+2026-02-13 22:43:54,827 - INFO - Processing: 118531_data.pdf
+2026-02-13 22:43:54,946 - INFO - Validation: word_count=4656, relevant_keywords=found, status=PASS
+2026-02-13 22:43:54,962 - INFO -   ✓ Matched to movement ID: 26
+2026-02-13 22:43:54,966 - INFO - Document already exists in database: 118531_data.pdf
+2026-02-13 22:43:54,966 - INFO - ⏭️  Skipped: 118531_data.pdf (duplicate URL)
+2026-02-13 22:43:54,966 - INFO - Processing: 7692876_data.pdf
+2026-02-13 22:43:55,176 - INFO - Validation: word_count=15597, relevant_keywords=found, status=PASS
+2026-02-13 22:43:55,190 - INFO -   ✓ Matched to movement ID: 13
+2026-02-13 22:43:55,196 - INFO - Document already exists in database: 7692876_data.pdf
+2026-02-13 22:43:55,196 - INFO - ⏭️  Skipped: 7692876_data.pdf (duplicate URL)
+2026-02-13 22:43:55,196 - INFO - Processing: Bakalarska_prace_data.pdf
+2026-02-13 22:43:55,392 - INFO - Validation: word_count=16837, relevant_keywords=found, status=PASS
+2026-02-13 22:43:55,409 - INFO -   ✓ Matched to movement ID: 3
+2026-02-13 22:43:55,416 - INFO - Document already exists in database: Bakalarska_prace_data.pdf
+2026-02-13 22:43:55,416 - INFO - ⏭️  Skipped: Bakalarska_prace_data.pdf (duplicate URL)
+2026-02-13 22:43:55,416 - INFO - Processing: Promeny_clenske_zakladny_Ceskobratrske_cirkve_evangelicke_Archive_data.pdf
+2026-02-13 22:43:55,624 - INFO - Validation: word_count=21880, relevant_keywords=found, status=PASS
+2026-02-13 22:43:55,644 - INFO -   ✓ Matched to movement ID: 3
+2026-02-13 22:43:55,651 - INFO - Document already exists in database: Promeny_clenske_zakladny_Ceskobratrske_cirkve_evangelicke_Archive_data.pdf
+2026-02-13 22:43:55,652 - INFO - ⏭️  Skipped: Promeny_clenske_zakladny_Ceskobratrske_cirkve_evangelicke_Archive_data.pdf (duplicate URL)
+2026-02-13 22:43:55,652 - INFO - Processing: Sekty_clanek_data.pdf
+2026-02-13 22:43:55,768 - INFO - Validation: word_count=9137, relevant_keywords=found, status=PASS
+2026-02-13 22:43:55,781 - INFO -   ✓ Matched to movement ID: 3
+2026-02-13 22:43:55,788 - INFO - Document already exists in database: Sekty_clanek_data.pdf
+2026-02-13 22:43:55,788 - INFO - ⏭️  Skipped: Sekty_clanek_data.pdf (duplicate URL)
+2026-02-13 22:43:55,788 - INFO - Processing: Vypis20260104225225.pdf
+2026-02-13 22:43:55,805 - WARNING - Validation failed for Vypis20260104225225.pdf: Content doesn't appear to be relevant (missing Czech/religious keywords)
+2026-02-13 22:43:55,805 - INFO - ⏭️  Skipped: Vypis20260104225225.pdf (validation failed)
+2026-02-13 22:43:55,805 - INFO - Processing: Vypis20260104225642.pdf
+2026-02-13 22:43:55,821 - INFO - Validation: word_count=132, relevant_keywords=found, status=PASS
+2026-02-13 22:43:55,831 - INFO -   ✓ Matched to movement ID: 26
+2026-02-13 22:43:55,833 - INFO - Document already exists in database: Vypis20260104225642.pdf
+2026-02-13 22:43:55,833 - INFO - ⏭️  Skipped: Vypis20260104225642.pdf (duplicate URL)
+2026-02-13 22:43:55,834 - INFO - Processing: Vypis20260104225658.pdf
+2026-02-13 22:43:55,858 - INFO - Validation: word_count=132, relevant_keywords=found, status=PASS
+2026-02-13 22:43:55,869 - INFO -   ✓ Matched to movement ID: 26
+2026-02-13 22:43:55,871 - INFO - Document already exists in database: Vypis20260104225658.pdf
+2026-02-13 22:43:55,871 - INFO - ⏭️  Skipped: Vypis20260104225658.pdf (duplicate URL)
+2026-02-13 22:43:55,871 - INFO - Processing: Vypis20260104225712.pdf
+2026-02-13 22:43:55,882 - INFO - Validation: word_count=180, relevant_keywords=found, status=PASS
+2026-02-13 22:43:55,894 - INFO -   ✓ Matched to movement ID: 26
+2026-02-13 22:43:55,896 - INFO - Document already exists in database: Vypis20260104225712.pdf
+2026-02-13 22:43:55,896 - INFO - ⏭️  Skipped: Vypis20260104225712.pdf (duplicate URL)
+2026-02-13 22:43:55,896 - INFO - Processing: Vypis20260104225750.pdf
+2026-02-13 22:43:55,913 - INFO - Validation: word_count=116, relevant_keywords=found, status=PASS
+2026-02-13 22:43:55,925 - INFO -   ✓ Matched to movement ID: 26
+2026-02-13 22:43:55,926 - INFO - Document already exists in database: Vypis20260104225750.pdf
+2026-02-13 22:43:55,926 - INFO - ⏭️  Skipped: Vypis20260104225750.pdf (duplicate URL)
+2026-02-13 22:43:55,926 - INFO - Processing: Vypis20260104225807.pdf
+2026-02-13 22:43:55,939 - INFO - Validation: word_count=95, relevant_keywords=found, status=PASS
+2026-02-13 22:43:55,950 - INFO -   ✓ Matched to movement ID: 26
+2026-02-13 22:43:55,951 - INFO - Document already exists in database: Vypis20260104225807.pdf
+2026-02-13 22:43:55,952 - INFO - ⏭️  Skipped: Vypis20260104225807.pdf (duplicate URL)
+2026-02-13 22:43:55,952 - INFO - Processing: Vypis20260104225818.pdf
+2026-02-13 22:43:55,977 - INFO - Validation: word_count=180, relevant_keywords=found, status=PASS
+2026-02-13 22:43:55,986 - INFO -   ✓ Matched to movement ID: 26
+2026-02-13 22:43:55,990 - INFO - Document already exists in database: Vypis20260104225818.pdf
+2026-02-13 22:43:55,991 - INFO - ⏭️  Skipped: Vypis20260104225818.pdf (duplicate URL)
+2026-02-13 22:43:55,991 - INFO - Processing: Vypis20260104225829.pdf
+2026-02-13 22:43:56,006 - INFO - Validation: word_count=103, relevant_keywords=found, status=PASS
+2026-02-13 22:43:56,019 - INFO -   ✓ Matched to movement ID: 26
+2026-02-13 22:43:56,021 - INFO - Document already exists in database: Vypis20260104225829.pdf
+2026-02-13 22:43:56,022 - INFO - ⏭️  Skipped: Vypis20260104225829.pdf (duplicate URL)
+2026-02-13 22:43:56,022 - INFO - Processing: Vypis20260104225846.pdf
+2026-02-13 22:43:56,038 - INFO - Validation: word_count=124, relevant_keywords=found, status=PASS
+2026-02-13 22:43:56,048 - INFO -   ✓ Matched to movement ID: 26
+2026-02-13 22:43:56,050 - INFO - Document already exists in database: Vypis20260104225846.pdf
+2026-02-13 22:43:56,051 - INFO - ⏭️  Skipped: Vypis20260104225846.pdf (duplicate URL)
+2026-02-13 22:43:56,052 - INFO - Processing: Vypis20260104225944.pdf
+2026-02-13 22:43:56,074 - INFO - Validation: word_count=131, relevant_keywords=found, status=PASS
+2026-02-13 22:43:56,082 - INFO -   ✓ Matched to movement ID: 26
+2026-02-13 22:43:56,083 - INFO - Document already exists in database: Vypis20260104225944.pdf
+2026-02-13 22:43:56,083 - INFO - ⏭️  Skipped: Vypis20260104225944.pdf (duplicate URL)
+2026-02-13 22:43:56,084 - INFO - Processing: Vypis20260104230001.pdf
+2026-02-13 22:43:56,111 - INFO - Validation: word_count=105, relevant_keywords=found, status=PASS
+2026-02-13 22:43:56,124 - INFO -   ✓ Matched to movement ID: 26
+2026-02-13 22:43:56,126 - INFO - Document already exists in database: Vypis20260104230001.pdf
+2026-02-13 22:43:56,126 - INFO - ⏭️  Skipped: Vypis20260104230001.pdf (duplicate URL)
+2026-02-13 22:43:56,126 - INFO - Processing: Vypis20260104230123.pdf
+2026-02-13 22:43:56,143 - INFO - Validation: word_count=117, relevant_keywords=found, status=PASS
+2026-02-13 22:43:56,160 - INFO -   ✓ Matched to movement ID: 26
+2026-02-13 22:43:56,161 - INFO - Document already exists in database: Vypis20260104230123.pdf
+2026-02-13 22:43:56,162 - INFO - ⏭️  Skipped: Vypis20260104230123.pdf (duplicate URL)
+2026-02-13 22:43:56,162 - INFO - Processing: Vypis20260104230139.pdf
+2026-02-13 22:43:56,177 - INFO - Validation: word_count=181, relevant_keywords=found, status=PASS
+2026-02-13 22:43:56,183 - INFO -   ✓ Matched to movement ID: 26
+2026-02-13 22:43:56,185 - INFO - Document already exists in database: Vypis20260104230139.pdf
+2026-02-13 22:43:56,185 - INFO - ⏭️  Skipped: Vypis20260104230139.pdf (duplicate URL)
+2026-02-13 22:43:56,185 - INFO - Processing: Vypis20260104230158.pdf
+2026-02-13 22:43:56,211 - INFO - Validation: word_count=348, relevant_keywords=found, status=PASS
+2026-02-13 22:43:56,223 - INFO -   ✓ Matched to movement ID: 26
+2026-02-13 22:43:56,224 - INFO - Document already exists in database: Vypis20260104230158.pdf
+2026-02-13 22:43:56,225 - INFO - ⏭️  Skipped: Vypis20260104230158.pdf (duplicate URL)
+2026-02-13 22:43:56,225 - INFO - Processing: Vypis20260104230227.pdf
+2026-02-13 22:43:56,240 - INFO - Validation: word_count=188, relevant_keywords=found, status=PASS
+2026-02-13 22:43:56,251 - INFO -   ✓ Matched to movement ID: 26
+2026-02-13 22:43:56,252 - INFO - Document already exists in database: Vypis20260104230227.pdf
+2026-02-13 22:43:56,253 - INFO - ⏭️  Skipped: Vypis20260104230227.pdf (duplicate URL)
+2026-02-13 22:43:56,253 - INFO - Processing: Vypis20260104230241.pdf
+2026-02-13 22:43:56,273 - INFO - Validation: word_count=215, relevant_keywords=found, status=PASS
+2026-02-13 22:43:56,281 - INFO -   ✓ Matched to movement ID: 26
+2026-02-13 22:43:56,282 - INFO - Document already exists in database: Vypis20260104230241.pdf
+2026-02-13 22:43:56,282 - INFO - ⏭️  Skipped: Vypis20260104230241.pdf (duplicate URL)
+2026-02-13 22:43:56,282 - INFO - Processing: Vypis20260104230302.pdf
+2026-02-13 22:43:56,297 - WARNING - Validation failed for Vypis20260104230302.pdf: Content doesn't appear to be relevant (missing Czech/religious keywords)
+2026-02-13 22:43:56,298 - INFO - ⏭️  Skipped: Vypis20260104230302.pdf (validation failed)
+2026-02-13 22:43:56,298 - INFO - Processing: Vypis20260104230329.pdf
+2026-02-13 22:43:56,315 - WARNING - Validation failed for Vypis20260104230329.pdf: Content doesn't appear to be relevant (missing Czech/religious keywords)
+2026-02-13 22:43:56,316 - INFO - ⏭️  Skipped: Vypis20260104230329.pdf (validation failed)
+2026-02-13 22:43:56,316 - INFO - Processing: Vypis20260104230356.pdf
+2026-02-13 22:43:56,331 - WARNING - Validation failed for Vypis20260104230356.pdf: Content doesn't appear to be relevant (missing Czech/religious keywords)
+2026-02-13 22:43:56,331 - INFO - ⏭️  Skipped: Vypis20260104230356.pdf (validation failed)
+2026-02-13 22:43:56,331 - INFO - Processing: Vypis20260104230409.pdf
+2026-02-13 22:43:56,348 - WARNING - Validation failed for Vypis20260104230409.pdf: Content doesn't appear to be relevant (missing Czech/religious keywords)
+2026-02-13 22:43:56,349 - INFO - ⏭️  Skipped: Vypis20260104230409.pdf (validation failed)
+2026-02-13 22:43:56,349 - INFO - Processing: Vypis20260104230439.pdf
+2026-02-13 22:43:56,368 - WARNING - Validation failed for Vypis20260104230439.pdf: Content doesn't appear to be relevant (missing Czech/religious keywords)
+2026-02-13 22:43:56,368 - INFO - ⏭️  Skipped: Vypis20260104230439.pdf (validation failed)
+2026-02-13 22:43:56,370 - INFO - Processing: Vypis20260104230458.pdf
+2026-02-13 22:43:56,385 - WARNING - Validation failed for Vypis20260104230458.pdf: Content doesn't appear to be relevant (missing Czech/religious keywords)
+2026-02-13 22:43:56,385 - INFO - ⏭️  Skipped: Vypis20260104230458.pdf (validation failed)
+2026-02-13 22:43:56,385 - INFO - Processing: Vypis20260104230513.pdf
+2026-02-13 22:43:56,406 - WARNING - Validation failed for Vypis20260104230513.pdf: Content doesn't appear to be relevant (missing Czech/religious keywords)
+2026-02-13 22:43:56,407 - INFO - ⏭️  Skipped: Vypis20260104230513.pdf (validation failed)
+2026-02-13 22:43:56,407 - INFO - Processing: Vypis20260104230534.pdf
+2026-02-13 22:43:56,427 - WARNING - Validation failed for Vypis20260104230534.pdf: Content doesn't appear to be relevant (missing Czech/religious keywords)
+2026-02-13 22:43:56,427 - INFO - ⏭️  Skipped: Vypis20260104230534.pdf (validation failed)
+2026-02-13 22:43:56,428 - INFO - Processing: adamík_2009_dp_data.pdf
+2026-02-13 22:43:56,650 - INFO - Validation: word_count=24622, relevant_keywords=found, status=PASS
+2026-02-13 22:43:56,675 - INFO -   ✓ Matched to movement ID: 3
+2026-02-13 22:43:56,678 - INFO - Document already exists in database: adamík_2009_dp_data.pdf
+2026-02-13 22:43:56,678 - INFO - ⏭️  Skipped: adamík_2009_dp_data.pdf (duplicate URL)
+2026-02-13 22:43:56,678 - INFO - Processing: bakalarka_data.pdf
+2026-02-13 22:43:56,831 - INFO - Validation: word_count=14580, relevant_keywords=found, status=PASS
+2026-02-13 22:43:56,844 - INFO -   ✓ Matched to movement ID: 3
+2026-02-13 22:43:56,846 - INFO - Document already exists in database: bakalarka_data.pdf
+2026-02-13 22:43:56,847 - INFO - ⏭️  Skipped: bakalarka_data.pdf (duplicate URL)
+2026-02-13 22:43:56,847 - INFO - Processing: novopohanstvi_pro_teologickou_revue.pdf
+2026-02-13 22:43:57,031 - INFO - Validation: word_count=19196, relevant_keywords=found, status=PASS
+2026-02-13 22:43:57,049 - INFO -   ✓ Matched to movement ID: 26
+2026-02-13 22:43:57,058 - INFO - Document already exists in database: novopohanstvi_pro_teologickou_revue.pdf
+2026-02-13 22:43:57,058 - INFO - ⏭️  Skipped: novopohanstvi_pro_teologickou_revue.pdf (duplicate URL)
+2026-02-13 22:43:57,058 - INFO - Processing: proftova_data.pdf
+2026-02-13 22:43:57,285 - INFO - Validation: word_count=12843, relevant_keywords=found, status=PASS
+2026-02-13 22:43:57,402 - INFO -   ✓ Matched to movement ID: 3
+2026-02-13 22:43:57,406 - INFO - Document already exists in database: proftova_data.pdf
+2026-02-13 22:43:57,406 - INFO - ⏭️  Skipped: proftova_data.pdf (duplicate URL)
+2026-02-13 22:43:57,406 - INFO - Processing: sejharova_data.pdf
+2026-02-13 22:43:57,657 - INFO - Validation: word_count=38400, relevant_keywords=found, status=PASS
+2026-02-13 22:43:57,688 - INFO -   ✓ Matched to movement ID: 3
+2026-02-13 22:43:57,695 - INFO - Document already exists in database: sejharova_data.pdf
+2026-02-13 22:43:57,695 - INFO - ⏭️  Skipped: sejharova_data.pdf (duplicate URL)
+2026-02-13 22:43:57,695 - INFO - Processing: seznam_registrovanych_NNH.pdf
+2026-02-13 22:43:57,700 - INFO - Validation: word_count=142, relevant_keywords=found, status=PASS
+2026-02-13 22:43:57,710 - INFO -   ✓ Matched to movement ID: 12
+2026-02-13 22:43:57,711 - INFO - Document already exists in database: seznam_registrovanych_NNH.pdf
+2026-02-13 22:43:57,711 - INFO - ⏭️  Skipped: seznam_registrovanych_NNH.pdf (duplicate URL)
+2026-02-13 22:43:57,711 - INFO - Processing: sojchova_data.pdf
+2026-02-13 22:43:57,933 - INFO - Validation: word_count=38400, relevant_keywords=found, status=PASS
+2026-02-13 22:43:57,958 - INFO -   ✓ Matched to movement ID: 3
+2026-02-13 22:43:57,962 - INFO - Document already exists in database: sojchova_data.pdf
+2026-02-13 22:43:57,962 - INFO - ⏭️  Skipped: sojchova_data.pdf (duplicate URL)
+2026-02-13 22:43:57,962 - INFO - Processing: zobraz_dokument (1).pdf
+2026-02-13 22:43:57,963 - WARNING - No text extracted from zobraz_dokument (1).pdf
+2026-02-13 22:43:57,964 - INFO - ⏭️  Skipped: zobraz_dokument (1).pdf (no text extracted)
+2026-02-13 22:43:57,964 - INFO - Processing: zobraz_dokument (10).pdf
+2026-02-13 22:43:57,978 - INFO - Duplicate content detected (hash match): zobraz_dokument (10).pdf
+2026-02-13 22:43:57,978 - INFO - ⏭️  Skipped: zobraz_dokument (10).pdf (duplicate content hash)
+2026-02-13 22:43:57,978 - INFO - Processing: zobraz_dokument (11).pdf
+2026-02-13 22:43:57,986 - WARNING - No text extracted from zobraz_dokument (11).pdf
+2026-02-13 22:43:57,988 - INFO - ⏭️  Skipped: zobraz_dokument (11).pdf (no text extracted)
+2026-02-13 22:43:57,988 - INFO - Processing: zobraz_dokument (12).pdf
+2026-02-13 22:43:57,992 - WARNING - No text extracted from zobraz_dokument (12).pdf
+2026-02-13 22:43:57,993 - INFO - ⏭️  Skipped: zobraz_dokument (12).pdf (no text extracted)
+2026-02-13 22:43:57,993 - INFO - Processing: zobraz_dokument (13).pdf
+2026-02-13 22:43:57,998 - WARNING - No text extracted from zobraz_dokument (13).pdf
+2026-02-13 22:43:57,999 - INFO - ⏭️  Skipped: zobraz_dokument (13).pdf (no text extracted)
+2026-02-13 22:43:57,999 - INFO - Processing: zobraz_dokument (14).pdf
+2026-02-13 22:43:58,009 - WARNING - No text extracted from zobraz_dokument (14).pdf
+2026-02-13 22:43:58,009 - INFO - ⏭️  Skipped: zobraz_dokument (14).pdf (no text extracted)
+2026-02-13 22:43:58,010 - INFO - Processing: zobraz_dokument (15).pdf
+2026-02-13 22:43:58,012 - WARNING - No text extracted from zobraz_dokument (15).pdf
+2026-02-13 22:43:58,013 - INFO - ⏭️  Skipped: zobraz_dokument (15).pdf (no text extracted)
+2026-02-13 22:43:58,014 - INFO - Processing: zobraz_dokument (16).pdf
+2026-02-13 22:43:58,046 - INFO - Duplicate content detected (hash match): zobraz_dokument (16).pdf
+2026-02-13 22:43:58,048 - INFO - ⏭️  Skipped: zobraz_dokument (16).pdf (duplicate content hash)
+2026-02-13 22:43:58,049 - INFO - Processing: zobraz_dokument (17).pdf
+2026-02-13 22:43:58,116 - INFO - Duplicate content detected (hash match): zobraz_dokument (17).pdf
+2026-02-13 22:43:58,117 - INFO - ⏭️  Skipped: zobraz_dokument (17).pdf (duplicate content hash)
+2026-02-13 22:43:58,117 - INFO - Processing: zobraz_dokument (18).pdf
+2026-02-13 22:43:58,160 - INFO - Duplicate content detected (hash match): zobraz_dokument (18).pdf
+2026-02-13 22:43:58,160 - INFO - ⏭️  Skipped: zobraz_dokument (18).pdf (duplicate content hash)
+2026-02-13 22:43:58,160 - INFO - Processing: zobraz_dokument (19).pdf
+2026-02-13 22:43:58,176 - INFO - Duplicate content detected (hash match): zobraz_dokument (19).pdf
+2026-02-13 22:43:58,176 - INFO - ⏭️  Skipped: zobraz_dokument (19).pdf (duplicate content hash)
+2026-02-13 22:43:58,176 - INFO - Processing: zobraz_dokument (2).pdf
+2026-02-13 22:43:58,180 - WARNING - No text extracted from zobraz_dokument (2).pdf
+2026-02-13 22:43:58,180 - INFO - ⏭️  Skipped: zobraz_dokument (2).pdf (no text extracted)
+2026-02-13 22:43:58,181 - INFO - Processing: zobraz_dokument (20).pdf
+2026-02-13 22:43:58,188 - INFO - Duplicate content detected (hash match): zobraz_dokument (20).pdf
+2026-02-13 22:43:58,190 - INFO - ⏭️  Skipped: zobraz_dokument (20).pdf (duplicate content hash)
+2026-02-13 22:43:58,192 - INFO - Processing: zobraz_dokument (21).pdf
+2026-02-13 22:43:58,252 - INFO - Duplicate content detected (hash match): zobraz_dokument (21).pdf
+2026-02-13 22:43:58,252 - INFO - ⏭️  Skipped: zobraz_dokument (21).pdf (duplicate content hash)
+2026-02-13 22:43:58,253 - INFO - Processing: zobraz_dokument (22).pdf
+2026-02-13 22:43:58,258 - WARNING - No text extracted from zobraz_dokument (22).pdf
+2026-02-13 22:43:58,260 - INFO - ⏭️  Skipped: zobraz_dokument (22).pdf (no text extracted)
+2026-02-13 22:43:58,260 - INFO - Processing: zobraz_dokument (23).pdf
+2026-02-13 22:43:58,267 - WARNING - No text extracted from zobraz_dokument (23).pdf
+2026-02-13 22:43:58,268 - INFO - ⏭️  Skipped: zobraz_dokument (23).pdf (no text extracted)
+2026-02-13 22:43:58,270 - INFO - Processing: zobraz_dokument (24).pdf
+2026-02-13 22:43:58,276 - WARNING - No text extracted from zobraz_dokument (24).pdf
+2026-02-13 22:43:58,277 - INFO - ⏭️  Skipped: zobraz_dokument (24).pdf (no text extracted)
+2026-02-13 22:43:58,277 - INFO - Processing: zobraz_dokument (25).pdf
+2026-02-13 22:43:58,279 - WARNING - No text extracted from zobraz_dokument (25).pdf
+2026-02-13 22:43:58,279 - INFO - ⏭️  Skipped: zobraz_dokument (25).pdf (no text extracted)
+2026-02-13 22:43:58,279 - INFO - Processing: zobraz_dokument (26).pdf
+2026-02-13 22:43:58,287 - WARNING - No text extracted from zobraz_dokument (26).pdf
+2026-02-13 22:43:58,288 - INFO - ⏭️  Skipped: zobraz_dokument (26).pdf (no text extracted)
+2026-02-13 22:43:58,289 - INFO - Processing: zobraz_dokument (27).pdf
+2026-02-13 22:43:58,293 - WARNING - No text extracted from zobraz_dokument (27).pdf
+2026-02-13 22:43:58,294 - INFO - ⏭️  Skipped: zobraz_dokument (27).pdf (no text extracted)
+2026-02-13 22:43:58,294 - INFO - Processing: zobraz_dokument (28).pdf
+2026-02-13 22:43:58,304 - WARNING - No text extracted from zobraz_dokument (28).pdf
+2026-02-13 22:43:58,306 - INFO - ⏭️  Skipped: zobraz_dokument (28).pdf (no text extracted)
+2026-02-13 22:43:58,306 - INFO - Processing: zobraz_dokument (29).pdf
+2026-02-13 22:43:58,311 - WARNING - No text extracted from zobraz_dokument (29).pdf
+2026-02-13 22:43:58,312 - INFO - ⏭️  Skipped: zobraz_dokument (29).pdf (no text extracted)
+2026-02-13 22:43:58,312 - INFO - Processing: zobraz_dokument (3).pdf
+2026-02-13 22:43:58,324 - WARNING - No text extracted from zobraz_dokument (3).pdf
+2026-02-13 22:43:58,325 - INFO - ⏭️  Skipped: zobraz_dokument (3).pdf (no text extracted)
+2026-02-13 22:43:58,326 - INFO - Processing: zobraz_dokument (30).pdf
+2026-02-13 22:43:58,339 - WARNING - No text extracted from zobraz_dokument (30).pdf
+2026-02-13 22:43:58,340 - INFO - ⏭️  Skipped: zobraz_dokument (30).pdf (no text extracted)
+2026-02-13 22:43:58,340 - INFO - Processing: zobraz_dokument (31).pdf
+2026-02-13 22:43:58,359 - WARNING - No text extracted from zobraz_dokument (31).pdf
+2026-02-13 22:43:58,360 - INFO - ⏭️  Skipped: zobraz_dokument (31).pdf (no text extracted)
+2026-02-13 22:43:58,360 - INFO - Processing: zobraz_dokument (32).pdf
+2026-02-13 22:43:58,363 - WARNING - No text extracted from zobraz_dokument (32).pdf
+2026-02-13 22:43:58,363 - INFO - ⏭️  Skipped: zobraz_dokument (32).pdf (no text extracted)
+2026-02-13 22:43:58,363 - INFO - Processing: zobraz_dokument (33).pdf
+2026-02-13 22:43:58,385 - INFO - Duplicate content detected (hash match): zobraz_dokument (33).pdf
+2026-02-13 22:43:58,386 - INFO - ⏭️  Skipped: zobraz_dokument (33).pdf (duplicate content hash)
+2026-02-13 22:43:58,386 - INFO - Processing: zobraz_dokument (34).pdf
+2026-02-13 22:43:58,403 - WARNING - Validation failed for zobraz_dokument (34).pdf: Content doesn't appear to be relevant (missing Czech/religious keywords)
+2026-02-13 22:43:58,404 - INFO - ⏭️  Skipped: zobraz_dokument (34).pdf (validation failed)
+2026-02-13 22:43:58,404 - INFO - Processing: zobraz_dokument (35).pdf
+2026-02-13 22:43:58,406 - WARNING - No text extracted from zobraz_dokument (35).pdf
+2026-02-13 22:43:58,407 - INFO - ⏭️  Skipped: zobraz_dokument (35).pdf (no text extracted)
+2026-02-13 22:43:58,407 - INFO - Processing: zobraz_dokument (36).pdf
+2026-02-13 22:43:58,421 - WARNING - No text extracted from zobraz_dokument (36).pdf
+2026-02-13 22:43:58,424 - INFO - ⏭️  Skipped: zobraz_dokument (36).pdf (no text extracted)
+2026-02-13 22:43:58,424 - INFO - Processing: zobraz_dokument (37).pdf
+2026-02-13 22:43:58,474 - INFO - Duplicate content detected (hash match): zobraz_dokument (37).pdf
+2026-02-13 22:43:58,474 - INFO - ⏭️  Skipped: zobraz_dokument (37).pdf (duplicate content hash)
+2026-02-13 22:43:58,475 - INFO - Processing: zobraz_dokument (38).pdf
+2026-02-13 22:43:58,519 - WARNING - Validation failed for zobraz_dokument (38).pdf: Content doesn't appear to be relevant (missing Czech/religious keywords)
+2026-02-13 22:43:58,519 - INFO - ⏭️  Skipped: zobraz_dokument (38).pdf (validation failed)
+2026-02-13 22:43:58,519 - INFO - Processing: zobraz_dokument (39).pdf
+2026-02-13 22:43:58,522 - WARNING - No text extracted from zobraz_dokument (39).pdf
+2026-02-13 22:43:58,523 - INFO - ⏭️  Skipped: zobraz_dokument (39).pdf (no text extracted)
+2026-02-13 22:43:58,524 - INFO - Processing: zobraz_dokument (4).pdf
+2026-02-13 22:43:58,527 - WARNING - No text extracted from zobraz_dokument (4).pdf
+2026-02-13 22:43:58,528 - INFO - ⏭️  Skipped: zobraz_dokument (4).pdf (no text extracted)
+2026-02-13 22:43:58,529 - INFO - Processing: zobraz_dokument (40).pdf
+2026-02-13 22:43:58,567 - WARNING - Validation failed for zobraz_dokument (40).pdf: Content doesn't appear to be relevant (missing Czech/religious keywords)
+2026-02-13 22:43:58,568 - INFO - ⏭️  Skipped: zobraz_dokument (40).pdf (validation failed)
+2026-02-13 22:43:58,569 - INFO - Processing: zobraz_dokument (41).pdf
+2026-02-13 22:43:58,573 - WARNING - No text extracted from zobraz_dokument (41).pdf
+2026-02-13 22:43:58,574 - INFO - ⏭️  Skipped: zobraz_dokument (41).pdf (no text extracted)
+2026-02-13 22:43:58,574 - INFO - Processing: zobraz_dokument (42).pdf
+2026-02-13 22:43:58,650 - INFO - Duplicate content detected (hash match): zobraz_dokument (42).pdf
+2026-02-13 22:43:58,650 - INFO - ⏭️  Skipped: zobraz_dokument (42).pdf (duplicate content hash)
+2026-02-13 22:43:58,650 - INFO - Processing: zobraz_dokument (5).pdf
+2026-02-13 22:43:58,658 - WARNING - No text extracted from zobraz_dokument (5).pdf
+2026-02-13 22:43:58,658 - INFO - ⏭️  Skipped: zobraz_dokument (5).pdf (no text extracted)
+2026-02-13 22:43:58,659 - INFO - Processing: zobraz_dokument (6).pdf
+2026-02-13 22:43:58,660 - WARNING - No text extracted from zobraz_dokument (6).pdf
+2026-02-13 22:43:58,662 - INFO - ⏭️  Skipped: zobraz_dokument (6).pdf (no text extracted)
+2026-02-13 22:43:58,662 - INFO - Processing: zobraz_dokument (7).pdf
+2026-02-13 22:43:58,738 - INFO - Duplicate content detected (hash match): zobraz_dokument (7).pdf
+2026-02-13 22:43:58,738 - INFO - ⏭️  Skipped: zobraz_dokument (7).pdf (duplicate content hash)
+2026-02-13 22:43:58,739 - INFO - Processing: zobraz_dokument (8).pdf
+2026-02-13 22:43:58,742 - WARNING - No text extracted from zobraz_dokument (8).pdf
+2026-02-13 22:43:58,742 - INFO - ⏭️  Skipped: zobraz_dokument (8).pdf (no text extracted)
+2026-02-13 22:43:58,742 - INFO - Processing: zobraz_dokument (9).pdf
+2026-02-13 22:43:58,756 - INFO - Duplicate content detected (hash match): zobraz_dokument (9).pdf
+2026-02-13 22:43:58,756 - INFO - ⏭️  Skipped: zobraz_dokument (9).pdf (duplicate content hash)
+2026-02-13 22:43:58,757 - INFO - Processing: zobraz_dokument.pdf
+2026-02-13 22:43:58,766 - WARNING - No text extracted from zobraz_dokument.pdf
+2026-02-13 22:43:58,767 - INFO - ⏭️  Skipped: zobraz_dokument.pdf (no text extracted)
+2026-02-13 22:43:58,767 - INFO - Processing: žáček_2013_dp_data.pdf
+2026-02-13 22:43:58,963 - INFO - Validation: word_count=13475, relevant_keywords=found, status=PASS
+2026-02-13 22:43:58,980 - INFO -   ✓ Matched to movement ID: 3
+2026-02-13 22:43:58,984 - INFO - Document already exists in database: žáček_2013_dp_data.pdf
+2026-02-13 22:43:58,984 - INFO - ⏭️  Skipped: žáček_2013_dp_data.pdf (duplicate URL)
+2026-02-13 22:43:58,984 - INFO - Processing: zobraz_dokument (1).doc
+2026-02-13 22:44:00,566 - INFO - Duplicate content detected (hash match): zobraz_dokument (1).doc
+2026-02-13 22:44:00,566 - INFO - ⏭️  Skipped: zobraz_dokument (1).doc (duplicate content hash)
+2026-02-13 22:44:00,566 - INFO - Processing: zobraz_dokument (2).doc
+2026-02-13 22:44:01,193 - INFO - Duplicate content detected (hash match): zobraz_dokument (2).doc
+2026-02-13 22:44:01,193 - INFO - ⏭️  Skipped: zobraz_dokument (2).doc (duplicate content hash)
+2026-02-13 22:44:01,193 - INFO - Processing: zobraz_dokument (3).doc
+2026-02-13 22:44:01,856 - INFO - Duplicate content detected (hash match): zobraz_dokument (3).doc
+2026-02-13 22:44:01,856 - INFO - ⏭️  Skipped: zobraz_dokument (3).doc (duplicate content hash)
+2026-02-13 22:44:01,856 - INFO - Processing: zobraz_dokument (4).doc
+2026-02-13 22:44:02,581 - INFO - Duplicate content detected (hash match): zobraz_dokument (4).doc
+2026-02-13 22:44:02,581 - INFO - ⏭️  Skipped: zobraz_dokument (4).doc (duplicate content hash)
+2026-02-13 22:44:02,581 - INFO - Processing: zobraz_dokument (5).doc
+2026-02-13 22:44:03,309 - INFO - Duplicate content detected (hash match): zobraz_dokument (5).doc
+2026-02-13 22:44:03,309 - INFO - ⏭️  Skipped: zobraz_dokument (5).doc (duplicate content hash)
+2026-02-13 22:44:03,309 - INFO - Processing: zobraz_dokument (6).doc
+2026-02-13 22:44:04,001 - INFO - Duplicate content detected (hash match): zobraz_dokument (6).doc
+2026-02-13 22:44:04,001 - INFO - ⏭️  Skipped: zobraz_dokument (6).doc (duplicate content hash)
+2026-02-13 22:44:04,001 - INFO - Processing: zobraz_dokument (7).doc
+2026-02-13 22:44:04,684 - INFO - Duplicate content detected (hash match): zobraz_dokument (7).doc
+2026-02-13 22:44:04,684 - INFO - ⏭️  Skipped: zobraz_dokument (7).doc (duplicate content hash)
+2026-02-13 22:44:04,684 - INFO - Processing: zobraz_dokument (8).doc
+2026-02-13 22:44:05,379 - WARNING - Validation failed for zobraz_dokument (8).doc: Content doesn't appear to be relevant (missing Czech/religious keywords)
+2026-02-13 22:44:05,379 - INFO - ⏭️  Skipped: zobraz_dokument (8).doc (validation failed)
+2026-02-13 22:44:05,379 - INFO - Processing: zobraz_dokument (9).doc
+2026-02-13 22:44:06,087 - INFO - Duplicate content detected (hash match): zobraz_dokument (9).doc
+2026-02-13 22:44:06,087 - INFO - ⏭️  Skipped: zobraz_dokument (9).doc (duplicate content hash)
+2026-02-13 22:44:06,087 - INFO - Processing: zobraz_dokument.doc
+2026-02-13 22:44:06,752 - INFO - Duplicate content detected (hash match): zobraz_dokument.doc
+2026-02-13 22:44:06,752 - INFO - ⏭️  Skipped: zobraz_dokument.doc (duplicate content hash)
+2026-02-13 22:44:06,753 - INFO - 
+============================================================
+2026-02-13 22:44:06,753 - INFO - Import Summary:
+2026-02-13 22:44:06,753 - INFO -   Total processed:     90
+2026-02-13 22:44:06,753 - INFO -   ✅ Successful:       0
+2026-02-13 22:44:06,753 - INFO -   ⏭️  Skipped:         90
+2026-02-13 22:44:06,753 - INFO -      • No text:        28
+2026-02-13 22:44:06,753 - INFO -      • Duplicate hash: 21
+2026-02-13 22:44:06,753 - INFO -      • Validation:     13
+2026-02-13 22:44:06,753 - INFO -      • Duplicate URL:  28
+2026-02-13 22:44:06,753 - INFO -      • Other:          0
+2026-02-13 22:44:06,754 - INFO -   ❌ Failed:           0
+2026-02-13 22:44:06,754 - INFO -   Total words:        0
+2026-02-13 22:44:06,754 - INFO -   Total reading time: 0 minutes
+2026-02-13 22:44:06,754 - INFO - ============================================================
+
+2026-02-13 22:44:08,485 - INFO - HTTP Request: HEAD https://huggingface.co/Babelscape/wikineural-multilingual-ner/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-13 22:44:08,498 - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Babelscape/wikineural-multilingual-ner/bed6ee7a45d2827b6c90a4fd7983f0241ae0a5c1/config.json "HTTP/1.1 200 OK"
+2026-02-13 22:44:09,097 - INFO - HTTP Request: GET https://huggingface.co/api/models/Babelscape/wikineural-multilingual-ner/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-02-13 22:44:09,230 - INFO - HTTP Request: GET https://huggingface.co/api/models/Babelscape/wikineural-multilingual-ner/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-02-13 22:44:09,908 - INFO - HTTP Request: GET https://huggingface.co/api/models/Babelscape/wikineural-multilingual-ner "HTTP/1.1 200 OK"
+2026-02-13 22:44:39,326 - INFO - HTTP Request: HEAD https://huggingface.co/Babelscape/wikineural-multilingual-ner/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-13 22:44:39,327 - WARNING - Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-02-13 22:44:39,338 - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Babelscape/wikineural-multilingual-ner/bed6ee7a45d2827b6c90a4fd7983f0241ae0a5c1/config.json "HTTP/1.1 200 OK"
+2026-02-13 22:44:39,658 - INFO - HTTP Request: GET https://huggingface.co/api/models/Babelscape/wikineural-multilingual-ner/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-02-13 22:44:39,853 - INFO - HTTP Request: GET https://huggingface.co/api/models/Babelscape/wikineural-multilingual-ner/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-02-13 22:44:40,466 - INFO - HTTP Request: GET https://huggingface.co/api/models/Babelscape/wikineural-multilingual-ner "HTTP/1.1 200 OK"
+2026-02-13 22:44:40,773 - INFO - HTTP Request: HEAD https://huggingface.co/nlptown/bert-base-multilingual-uncased-sentiment/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-13 22:44:40,784 - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/nlptown/bert-base-multilingual-uncased-sentiment/8f6f4e3a8f70be4b65d3a4a8762b6d781cda240d/config.json "HTTP/1.1 200 OK"
+2026-02-13 22:44:41,190 - INFO - HTTP Request: GET https://huggingface.co/api/models/nlptown/bert-base-multilingual-uncased-sentiment/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-02-13 22:44:41,389 - INFO - HTTP Request: GET https://huggingface.co/api/models/nlptown/bert-base-multilingual-uncased-sentiment/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-02-13 22:44:41,696 - INFO - HTTP Request: GET https://huggingface.co/api/models/nlptown/bert-base-multilingual-uncased-sentiment "HTTP/1.1 200 OK"

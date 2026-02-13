@@ -1,244 +1,64 @@
 # 📁 extracting/keywords.py
-# Centralized keywords, filters and patterns for all spiders
+# Wrapper that loads all keywords from sources_config.yaml
 # Project: Database of New Religious Movements in the Czech Republic
 
 from typing import List, Dict
 import re
 import os
 import yaml
+import logging
+
+logger = logging.getLogger(__name__)
 
 # ============================================================
-# SEARCH TERMS (neutral + critical + academic)
+# LOAD CONFIG FROM sources_config.yaml
 # ============================================================
 
-SEARCH_TERMS: List[str] = [
-    # Critical / media-used
-    "sekta",
-    "kult",
-    "destruktivní kult",
-    "kontroverzní náboženská společnost",
-
-    # Neutral / academic
-    "náboženské hnutí",
-    "duchovní hnutí",
-    "spirituální hnutí",
-    "nové náboženství",
-    "nová religiozita",
-    "alternativní náboženství",
-    "alternativní religiozita",
-    "ezoterické hnutí",
-    "esoterické hnutí",
-
-    # Institutional / legal
-    "náboženská skupina",
-    "náboženská komunita",
-    "náboženská společnost",
-    "registrovaná náboženská společnost",
-    "neregistrovaná náboženská společnost",
-    "církev a náboženská společnost",
-    "duchovní centrum",
-    "náboženský směr",
-
-    # Sociological / abbreviations
-    "nová náboženská hnutí",
-    "nové náboženské hnutí",
-    "NNH",
-    "NRM",
-    "NDH",
-    "nové duchovní hnutí",
-    "nová duchovní hnutí",
-    "nové spirituální hnutí"
-]
-
-# ============================================================
-# EXCLUDED TERMS (noise filtering)
-# ============================================================
-
-EXCLUDE_TERMS: List[str] = [
-    # Entertainment & pop culture
-    "film",
-    "seriál",
-    "videohra",
-    "pc hra",
-    "hudební skupina",
-    "kapela",
-    "album",
-    "festival",
-
-    # Tech / unrelated
-    "software",
-    "aplikace",
-    "počítačová hra",
-
-    # Politics & current events (noise reduction)
-    "politika",
-    "politiky",
-    "volby",
-    "prezident",
-    "vláda",
-    "parlament"
-]
-
-# Contextual exclude patterns (regex)
-EXCLUDE_CONTEXT_PATTERNS: List[str] = [
-    r"recenze\s+filmu",
-    r"hra\s+roku",
-    r"herní\s+recenze",
-    r"soundtrack",
-    r"trailer"
-]
-
-# ============================================================
-# KNOWN RELIGIOUS MOVEMENTS (for entity boosting)
-# ============================================================
-
-KNOWN_MOVEMENTS = {
-    "new_religious_movements": [
-        "Hnutí Grálu",
-        "Církev sjednocení",
-        "Scientologická církev",
-        "Buddhismus Diamantové cesty",
-        "Imanuelité",
-        "Raeliáni",
-        "Osho",
-        "Sahadža jóga",
-        "Univerzální život",
-        "Vesmírní lidé",
-        "Universe People",
-        "Děti Boží",
-        "Rodina",
-        "Dvanáct kmenů",
-        "AllatRa",
-        "Fa-lun-kung",
-        "Anastasianismus",
-        "Transcendentální meditace",
-        "Subud",
-        "Škola ekonomické vědy",
-        "Teosofická společnost",
-        "Baháʼí víra",
-        "Hnutí Hare Kršna",
-        "Církev Ježíše Krista Svatých posledních dnů",
-        "Svědkové Jehovovi",
-        "Satanská církev",
-        "Chrám Satanův",
-        "Církev univerzální a vítězná",
-        "Církev všech světů",
-        "Církev Všemohoucího Boha",
-        "Ježíšova armáda",
-        "Jediismus",
-        "Křesťanská věda",
-        "LaVeyův satanismus",
-        "Kristadelfiáni",
-        "Řád ochránců Boží vůle na Zemi",
-        "Služebníci světla",
-        "Společenství Josefa Zezulky",
-        "Ánanda Márga",
-        "Cesta Guru Járy",
-        "Šinčchondži",
-        "Tvořivá společnost",
-        "The Revelation Spiritual Home",
-        "Kruh přátel Bruna Gröninga",
-        "Brahma Kumaris",
-        "Protestantská církev Svaté korony",
-        "Konopná církev",
-        "Církev militantního ateismu",
-        "Ček Árya Sabhá – Árjasamádž",
-        "Silvova metoda",
-        "Zodiakální škola",
-        "Poetrie",
-        "Kuřimská sekta",
-        "Škola Aria",
-        "Arnold Varvarinec",
-        "Zprávy z galaxie",
-        "Novija gána sepata",
-        "Science 21",
-        "Společenství legitimních věřitelů České republiky",
-        "Boží rodina",
-        "Radomír Wolf",
-        "Rezonance",
-        "AROPAL",
-        "Loving Hut",
-        "Bhakti Marga",
-        "Život v srdci",
-        "Zlatá éra",
-        "Plaváček",
-        "Slovanská košile",
-        "O9A",
-        "TVIND",
-        "Jarilo",
-        "Most ke svobodě",
-        "Alan Jarkovský",
-        "Jóga v denním životě",
-        "Život v Radosti",
-        "Dohnalité",
-        "Avenna",
-        "Ariadné",
-        "Happy Science",
-        "Tao Jóga",
-        "V lásce spolu",
-        "Mlýn Radunka",
-        "Farma Lovětín"
-    
-    ]
-}
-
-# Flattened list for easier matching
-ALL_KNOWN_MOVEMENTS: List[str] = [
-    movement
-    for group in KNOWN_MOVEMENTS.values()
-    for movement in group
-]
-
-# ============================================================
-# YEAR / FOUNDING DATE REGEX PATTERNS
-# ============================================================
-
-YEAR_PATTERNS: List[str] = [
-    r"založen[aáoý]\s+v\s+roce\s+(\d{4})",
-    r"vznik(?:lo|la|l)\s+v\s+roce\s+(\d{4})",
-    r"vznikl[ao]?\s+kolem\s+roku\s+(\d{4})",
-    r"od\s+roku\s+(\d{4})",
-    r"působí\s+od\s+roku\s+(\d{4})",
-    r"činnost\s+zahájena\s+v\s+roce\s+(\d{4})",
-    r"registrován[aáoý]\s+v\s+(?:ČR|České\s+republice)\s+v\s+roce\s+(\d{4})",
-    r"zaregistrován[ao]?\s+dne\s+\d{1,2}\.\s*\d{1,2}\.\s*(\d{4})"
-]
-
-# ============================================================
-# CONFIG OVERRIDE (load from extracting/sources_config.yaml when present)
-# ============================================================
 CONFIG_PATH = os.path.join(os.path.dirname(__file__), "sources_config.yaml")
 
-try:
-    with open(CONFIG_PATH, "r", encoding="utf8") as _f:
-        _cfg = yaml.safe_load(_f) or {}
-        # Be defensive: YAML may be a list or other non-mapping. Only call .get if it's a dict.
-        if isinstance(_cfg, dict):
-            _kw = _cfg.get("keywords", {})
-        else:
-            _kw = {}
+# Default fallback values
+SEARCH_TERMS: List[str] = []
+EXCLUDE_TERMS: List[str] = []
+EXCLUDE_CONTEXT_PATTERNS: List[str] = []
+KNOWN_MOVEMENTS: Dict = {}
+YEAR_PATTERNS: List[str] = []
+ALL_KNOWN_MOVEMENTS: List[str] = []
 
-        # Only override when the YAML block is a mapping - be defensive about types
-        if isinstance(_kw, dict):
-            SEARCH_TERMS = _kw.get("required", SEARCH_TERMS)
-            EXCLUDE_TERMS = _kw.get("exclude", EXCLUDE_TERMS)
-            EXCLUDE_CONTEXT_PATTERNS = _kw.get("exclude_context_patterns", EXCLUDE_CONTEXT_PATTERNS)
-            KNOWN_MOVEMENTS = _kw.get("known_movements", KNOWN_MOVEMENTS)
-            YEAR_PATTERNS = _kw.get("year_patterns", YEAR_PATTERNS)
+def _load_keywords_config() -> None:
+    """Load keywords configuration from sources_config.yaml"""
+    global SEARCH_TERMS, EXCLUDE_TERMS, EXCLUDE_CONTEXT_PATTERNS, KNOWN_MOVEMENTS, YEAR_PATTERNS, ALL_KNOWN_MOVEMENTS
+    
+    try:
+        with open(CONFIG_PATH, "r", encoding="utf8") as f:
+            cfg = yaml.safe_load(f) or {}
+            if not isinstance(cfg, dict):
+                logger.warning(f"⚠️  Config is not a dict, got {type(cfg).__name__}")
+                return
+            kw_cfg = cfg.get("keywords", {})
+            
+            if isinstance(kw_cfg, dict):
+                SEARCH_TERMS = kw_cfg.get("required", [])
+                EXCLUDE_TERMS = kw_cfg.get("exclude", [])
+                EXCLUDE_CONTEXT_PATTERNS = kw_cfg.get("exclude_context_patterns", [])
+                KNOWN_MOVEMENTS = kw_cfg.get("known_movements", {})
+                YEAR_PATTERNS = kw_cfg.get("year_patterns", [])
+                
+                # Flatten known movements
+                if isinstance(KNOWN_MOVEMENTS, dict):
+                    ALL_KNOWN_MOVEMENTS = [
+                        movement
+                        for group in KNOWN_MOVEMENTS.values()
+                        for movement in group
+                    ]
+                
+                logger.info(f"✓ Loaded {len(SEARCH_TERMS)} search terms from sources_config.yaml")
+    except FileNotFoundError:
+        logger.error(f"❌ Config file not found: {CONFIG_PATH}")
+    except Exception as e:
+        logger.error(f"❌ Error loading keywords config: {e}")
 
-            # flatten known movements if it's a mapping
-            if isinstance(KNOWN_MOVEMENTS, dict):
-                ALL_KNOWN_MOVEMENTS = [
-                    movement
-                    for group in KNOWN_MOVEMENTS.values()
-                    for movement in group
-                ]
-except FileNotFoundError:
-    # no config file — keep the hard-coded defaults
-    pass
-except Exception:
-    # If yaml is invalid or other error, keep defaults but warn in logs when possible
-    pass
+# Load on import
+_load_keywords_config()
 
 # ============================================================
 # HELPER FUNCTIONS
