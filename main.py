@@ -63,25 +63,37 @@ def create_db():
             if known:
                 session = db.get_session()
                 seeded = 0
-                for name in known:
-                    if not name or not isinstance(name, str):
+                for entry in known:
+                    if not entry or not isinstance(entry, dict):
                         continue
-                    nm = name.strip()
-                    if not nm:
+                    
+                    canonical = entry.get('canonical', '').strip()
+                    display = entry.get('display', '').strip()
+                    
+                    if not canonical or not display:
                         continue
-                    existing = session.query(Movement).filter(Movement.canonical_name.ilike(nm)).first()
+                    
+                    # Zkontrolovat podle canonical_name (unique key)
+                    existing = session.query(Movement).filter(Movement.canonical_name == canonical).first()
                     if not existing:
                         movement = Movement(
-                            canonical_name=nm,
+                            canonical_name=canonical,  # slug bez diakritiky
+                            display_name=display,       # oficiální název s diakritikou
                             category="religious",
                             description="Seeded from extracting/sources_config.yaml",
                             active_status="unknown"
                         )
                         session.add(movement)
                         seeded += 1
+                    else:
+                        # Aktualizovat display_name pokud chybí
+                        if not existing.display_name:
+                            existing.display_name = display
+                            seeded += 1
+                
                 if seeded:
                     session.commit()
-                    print(f"✅ Seeded {seeded} canonical movements from configuration")
+                    print(f"✅ Seeded/updated {seeded} movements from configuration")
                 session.close()
         except Exception as e:
             print(f"⚠️ Failed to seed known movements: {e}")

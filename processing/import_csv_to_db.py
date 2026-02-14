@@ -10,6 +10,12 @@ from typing import Union
 import json
 import re
 
+# Import movement matching function
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).parent.parent))
+from extracting.keywords import match_movement_from_text
+
 class CSVtoDatabaseLoader:
     """Safe import of CSV data to database with validation and logging"""
 
@@ -108,6 +114,7 @@ class CSVtoDatabaseLoader:
 
         - Convert categories JSON string into a JSON string stored in `keywords_found` (preserve as JSON)
         - Convert scraped_at into a proper datetime for `publication_date`
+        - Match movement from text content using fuzzy matching
         """
         # Normalize categories
         categories = row.get("categories", "")
@@ -124,8 +131,19 @@ class CSVtoDatabaseLoader:
                     # leave as empty list if parsing fails; validation should have caught it
                     keywords_json = "[]"
 
+        # Try to match movement from text content
+        text_content = str(row.get("text", "")).strip()
+        title_content = str(row.get("title", "")).strip()
+        combined_text = f"{title_content} {text_content}"
+        
+        movement_id = match_movement_from_text(combined_text)
+        if movement_id is None:
+            # Fallback to first movement if no match found
+            movement_id = 1
+            self.logger.debug(f"No movement match found for: {title_content[:50]}...")
+
         return {
-            "movement_id": 1,  # temporary: assign to first movement for testing
+            "movement_id": movement_id,
             "source_name": str(row.get("source_name", "")).strip(),
             "source_type": str(row.get("source_type", "")).strip(),
             "url": str(row.get("url", "")).strip(),
