@@ -1,9 +1,0 @@
-Server: nginx
-Date: Wed, 18 Feb 2026 21:36:12 GMT
-Content-Type: application/rss+xml; charset=UTF-8
-Vary: Accept-Encoding,Cookie
-Content-Encoding: gzip
-X-Robots-Tag: noindex, follow
-Link: <https://sekty.tv/wp-json/>; rel="https://api.w.org/"
-Etag: "385dfa3488a442adf47eb750671a958f"
-X-Vhost-Debug: ef19c561e0da40919bf12ff2a445d0b493b147fcdee170738dae45f746c6a07b
