@@ -6,287 +6,138 @@
     <description>Seznam Zprávy - nejnovější články</description>
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
-    <lastBuildDate>Thu, 12 Feb 2026 22:17:10 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 18 Feb 2026 21:36:25 +0000</lastBuildDate>
     <item>
-      <title>Německý řetězec vybírá vstupné do prodejny</title>
-      <link>https://www.seznamzpravy.cz/clanek/ekonomika-firmy-nemecky-retezec-vybira-vstupne-do-prodejny-298702</link>
-      <description>K automatizovaným prodejnám bez pokladen přidávají někteří britští prodejci i poplatek za vstup. Prodejci se tím chrání, zákazníci ovšem na vrácení zálohy čekají déle, než obchody slibují. Neosvědčil se ani systém bez pokladen.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/298702</guid>
-      <pubDate>Thu, 12 Feb 2026 17:00:00 +0100</pubDate>
+      <title>Spojené státy přesouvají k Íránu velký počet lodí i bojových letadel</title>
+      <link>https://www.seznamzpravy.cz/clanek/zahranicni-spojene-staty-presouvaji-k-iranu-velky-pocet-lodi-i-bojovych-letadel-299230</link>
+      <description>Bojové síly americké armády se přesouvají k Íránu. Mluvčí Bílého domu uvedla, že existuje mnoho důvodů a argumentů pro úder.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/299230</guid>
+      <pubDate>Wed, 18 Feb 2026 22:02:35 +0100</pubDate>
       <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_QN_5/AgNIl/pokladna-samoobsluzna-pokladna.jpeg?fl=cro,0,213,4096,2304|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Německý řetězec vybírá vstupné do prodejny</szn:title>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_p8_A/nPVpfd5QLLksKHC0gFy9zaW/8c97/donald-trump.jpeg?fl=cro,0,213,4096,2304|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Spojené státy přesouvají k Íránu velký počet lodí i bojových letadel</szn:title>
         <szn:height>40</szn:height>
         <szn:previewtype>common</szn:previewtype>
       </szn:image>
       <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>298702</szn:uid>
-      <szn:ccid>100238714</szn:ccid>
+      <szn:uid>299230</szn:uid>
+      <szn:ccid>100243729</szn:ccid>
     </item>
     <item>
-      <title>Bílý dům opustil vědecký argument pro boj proti změně klimatu</title>
-      <link>https://www.seznamzpravy.cz/clanek/zahranicni-bily-dum-opustil-vedecky-argument-pro-boj-proti-zmene-klimatu-298826</link>
-      <description>Americká Agentura pro ochranu životního prostředí zrušila deklaraci podle které skleníkové plyny ohrožují lidské zdraví. Trumpova administrativa by tímto krokem mohla zásadně omezit boj proti klimatické změně.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/298826</guid>
-      <pubDate>Thu, 12 Feb 2026 21:36:50 +0100</pubDate>
+      <title>„Bolí to.“ Čeští hokejisté byli blízko senzace, ale Pastrňák a spol. končí</title>
+      <link>https://www.seznamzpravy.cz/clanek/sport-olympiada-cesky-konec-na-olympiade-boli-konecne-se-ukazal-tym-ale-dal-jde-kanada-299219</link>
+      <description>Bylo to blízko. Česko málem způsobilo na olympiádě největší hokejový šok. Bylo tři a půl minuty od vyřazení Kanady, ale nakonec padlo v prodloužení 3:4 a na turnaji končí ve čtvrtfinále.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/299219</guid>
+      <pubDate>Wed, 18 Feb 2026 21:13:16 +0100</pubDate>
       <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_of_A/kOzmiQlmfoCswkNGsiEyWaiQ/5c00/donald-trump.jpeg?fl=cro,0,156,3000,1687|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Bílý dům opustil vědecký argument pro boj proti změně klimatu</szn:title>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_p8_A/nPVpfd5QLLDoMo7EakFzyqQu/1ad7/hokej.jpeg?fl=cro,0,219,1743,980|res,1200,,3|jpg,80</szn:url>
+        <szn:title>„Bolí to.“ Čeští hokejisté byli blízko senzace, ale Pastrňák a spol. končí</szn:title>
         <szn:height>40</szn:height>
         <szn:previewtype>common</szn:previewtype>
       </szn:image>
       <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>298826</szn:uid>
-      <szn:ccid>100239746</szn:ccid>
+      <szn:uid>299219</szn:uid>
+      <szn:ccid>100243565</szn:ccid>
     </item>
     <item>
-      <title>Motorky a 170 milionů. Brno není výjimka, ale jde to i bez dotací</title>
-      <link>https://www.seznamzpravy.cz/clanek/ekonomika-motorky-a-170-milionu-brno-neni-v-moto-gp-vyjimka-ale-jde-to-i-bez-dotaci-298748</link>
-      <description>Pořadatelé letošní Velké ceny ČR v Brně získají na dotacích 170 milionů korun. Přitom příklady některých jiných okruhů ve světě ukazují, že závody je možné platit zcela z vlastních zdrojů bez čerpání veřejných peněz.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/298748</guid>
-      <pubDate>Thu, 12 Feb 2026 11:30:00 +0100</pubDate>
+      <title>Zalužnyj poprvé veřejně promluvil o rozkolu se Zelenským</title>
+      <link>https://www.seznamzpravy.cz/clanek/zahranicni-zaluznyj-poprve-verejne-promluvil-o-rozkolu-se-zelenskym-299229</link>
+      <description>Valerij Zalužnyj je považován za potencionálního hlavního politického rivala prezidenta Volodymyra Zelenského. V roce 2024 byl odvolán z čela armády, ke sporům s prezidentem se vyjádřil až nyní.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/299229</guid>
+      <pubDate>Wed, 18 Feb 2026 21:52:18 +0100</pubDate>
       <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_p8_A/kY1K2LlXQDm6hJ2EFwCrV6/669e/moto-gp.jpeg?fl=cro,0,80,1800,1012|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Motorky a 170 milionů. Brno není v MotoGP výjimka, ale jde to i bez dotací</szn:title>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_QR_y/LvXN5/zelenskyj-zaluznyj-ukrajina.jpeg?fl=cro,0,329,3794,2134|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Zalužnyj poprvé veřejně promluvil o rozkolu se Zelenským</szn:title>
         <szn:height>40</szn:height>
         <szn:previewtype>common</szn:previewtype>
       </szn:image>
       <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>298748</szn:uid>
-      <szn:ccid>100239124</szn:ccid>
+      <szn:uid>299229</szn:uid>
+      <szn:ccid>100243718</szn:ccid>
     </item>
     <item>
-      <title>Spojenci Ukrajiny jí přislíbili v Bruselu pomoc za 35 miliard dolarů</title>
-      <link>https://www.seznamzpravy.cz/clanek/zahranicni-spojenci-ukrajiny-ji-prislibili-v-bruselu-pomoc-za-35-miliard-dolaru-298821</link>
-      <description>Ukrajina má přislíbenou vojenskou pomoc ve výši 35 miliard dolarů od více než padesáti spřízněných států. Podle generálního tajemníka NATO Marka Rutteho potřebuje Ukrajina především prostředky protivzdušné obrany.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/298821</guid>
-      <pubDate>Thu, 12 Feb 2026 20:45:41 +0100</pubDate>
+      <title>Hokejové semifinále si zahrají i Finové. Zápas se Švýcary otočili v prodloužení</title>
+      <link>https://www.seznamzpravy.cz/clanek/sport-olympiada-hokejove-semifinale-si-zahraji-i-finove-zapas-se-svycary-otocili-v-prodlouzeni-299228</link>
+      <description>Tři ze čtyř semifinalistů hokejového turnaje na olympijských hrách v Itálii jsou jasní. Slovensko a Kanadu doplní Finové, kteří v prodloužení porazili Švýcary. V posledním čtvrtfinále se střetne Švédsko a USA.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/299228</guid>
+      <pubDate>Wed, 18 Feb 2026 21:04:55 +0100</pubDate>
       <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_p8_A/nPVpfd5QLLD53Ui4eFwS2JN/fc38/mark-rutte-mychajlo-fedorov-john-healey-boris-pistorius.jpeg?fl=cro,0,214,4096,2304|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Spojenci Ukrajiny jí přislíbili v Bruselu pomoc za 35 miliard dolarů</szn:title>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_p8_A/kY1K2LlXQBsPCGCiLFzylpU/fb94/artturi-lehkonen.jpeg?fl=cro,0,151,1872,1053|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Hokejové semifinále si zahrají i Finové. Zápas se Švýcary otočili v prodloužení</szn:title>
         <szn:height>40</szn:height>
         <szn:previewtype>common</szn:previewtype>
       </szn:image>
       <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>298821</szn:uid>
-      <szn:ccid>100239697</szn:ccid>
+      <szn:uid>299228</szn:uid>
+      <szn:ccid>100243697</szn:ccid>
     </item>
     <item>
-      <title>USA údajně propašovaly tisíce terminálů Starlink do Íránu</title>
-      <link>https://www.seznamzpravy.cz/clanek/zahranicni-usa-udajne-propasovaly-tisice-terminalu-starlink-do-iranu-298824</link>
-      <description>Během protivládních protestů v Íránu pašovaly Spojené státy do země tisíce terminálů satelitního systému Starlink, píše The Wall Street Journal. Znamenalo by to, že Trumpova administrativa pomáhala protestům více, než se vědělo.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/298824</guid>
-      <pubDate>Thu, 12 Feb 2026 21:29:37 +0100</pubDate>
+      <title>Při požáru v areálu psychiatrické nemocnice v Bohnicích zemřel jeden z pacientů</title>
+      <link>https://www.seznamzpravy.cz/clanek/domaci-zivot-v-cesku-pri-pozaru-v-arealu-psychiatricke-nemocnice-v-bohnicich-zemrel-clovek-299207</link>
+      <description>Kvůli požáru v psychiatrické nemocnici v Bohnicích zemřel jeden pacient. Policie případ vyšetřuje.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/299207</guid>
+      <pubDate>Wed, 18 Feb 2026 15:56:52 +0100</pubDate>
       <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_QR_p/6Fvw/profimedia-0726065035.jpeg?fl=cro,0,93,1800,1012|res,1200,,3|jpg,80</szn:url>
-        <szn:title>USA údajně propašovaly tisíce terminálů Starlink do Íránu</szn:title>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_oe_A/nO1Ur3YPjB17k9BNVEmVnnP/317b/bohnice-psychiatricka-lecebna.jpeg?fl=cro,0,213,4096,2304|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Při požáru v areálu psychiatrické nemocnice v Bohnicích zemřel jeden z pacientů</szn:title>
         <szn:height>40</szn:height>
         <szn:previewtype>common</szn:previewtype>
       </szn:image>
       <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>298824</szn:uid>
-      <szn:ccid>100239711</szn:ccid>
+      <szn:uid>299207</szn:uid>
+      <szn:ccid>100243529</szn:ccid>
     </item>
     <item>
-      <title>Netanjahu vyjádřil pochybnosti ohledně případné dohody s Íránem</title>
-      <link>https://www.seznamzpravy.cz/clanek/zahranicni-netanjahu-vyjadril-pochybnosti-ohledne-pripadne-dohody-s-iranem-298825</link>
-      <description>Izraelský premiér Benjamin Netanjahu má pochyby ohledně kvality případné jaderné dohody s Íránem. Podle Netanjahua by v takové dohodě měly být prvky důležité pro Izrael.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/298825</guid>
-      <pubDate>Thu, 12 Feb 2026 21:22:32 +0100</pubDate>
+      <title>„Je tvrdohlavý.“ Pes, který narušil olympijský závod, utekl majiteli z penzionu</title>
+      <link>https://www.seznamzpravy.cz/clanek/sport-olympiada-fotky-necekany-zavodnik-pes-narusil-olympijsky-zavod-ma-i-cilovy-snimek-299190</link>
+      <description>Do ženské kvalifikace týmového sprintu v běhu na lyžích se připletl pes, který se zaběhl do cílové rovinky a zezadu doprovázel dvě běžkařky směřující do cíle. Pak se ho ujali pořadatelé a předali ho majiteli.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/299190</guid>
+      <pubDate>Wed, 18 Feb 2026 14:01:00 +0100</pubDate>
       <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_p8_A/nPVpfd5QLLEA4WV1fFwSHkp/fb5c/benjamin-netanyahu-donald-trump.jpeg?fl=cro,0,213,4096,2304|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Netanjahu vyjádřil pochybnosti ohledně případné dohody s Íránem</szn:title>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_p8_A/nPVpfd5QLLksKHDSNFznTlx/a484/pes-olympiada.jpeg?fl=cro,0,72,1400,787|res,1200,,3|jpg,80</szn:url>
+        <szn:title>„Je tvrdohlavý.“ Pes, který narušil olympijský závod, utekl majiteli z penzionu</szn:title>
         <szn:height>40</szn:height>
         <szn:previewtype>common</szn:previewtype>
       </szn:image>
       <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>298825</szn:uid>
-      <szn:ccid>100239723</szn:ccid>
+      <szn:uid>299190</szn:uid>
+      <szn:video>
+        <szn:_cls>Video</szn:_cls>
+        <szn:customId>6995ceb29bb96e2e561fc043</szn:customId>
+        <szn:duration>107800</szn:duration>
+        <szn:expiration></szn:expiration>
+        <szn:sources>
+          <szn:source>5a6f181fc6ef994e2237d097</szn:source>
+        </szn:sources>
+        <szn:url>https://v39-a.sdn.cz/~SEC1~expire-1771535328~scope-video~Jqb0Eu0dMMW/v_39/vmd/6995ceb29bb96e2e561fc043?fl=mdk,f4afd4a9|</szn:url>
+        <szn:mmid>019c7131-b9f4-7c79-94f9-62f248690618</szn:mmid>
+      </szn:video>
+      <szn:ccid>100243425</szn:ccid>
     </item>
     <item>
-      <title>Evropská komise vyšetřuje Google kvůli cenám reklamy</title>
-      <link>https://www.seznamzpravy.cz/clanek/zahranicni-evropska-komise-vysetruje-google-kvuli-cenam-reklamy-298823</link>
-      <description>Evropská Komise zahájila další vyšetřování americké společnosti Google. Tentokrát je důvodem podezření z manipulace s cenami reklamy. Loni prošetřovala unijní exekutiva internetového giganta hned několikrát po sobě.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/298823</guid>
-      <pubDate>Thu, 12 Feb 2026 20:55:34 +0100</pubDate>
+      <title>Čeští hokejisté potrápili favorita, s Kanadou padli až v prodloužení</title>
+      <link>https://www.seznamzpravy.cz/clanek/sport-olympiada-cesti-hokejiste-potrapili-favorita-s-kanadou-padli-az-v-prodlouzeni-299227</link>
+      <description>Čeští hokejisté byli proti velkému favoritovi z Kanady blízko postupu do semifinále, nakonec však prohráli v prodloužení.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/299227</guid>
+      <pubDate>Wed, 18 Feb 2026 19:16:08 +0100</pubDate>
       <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_of_A/nOztZkD4ZlDrUk0DmhE6KrCk/bd5d/google.jpeg?fl=cro,0,213,4096,2304|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Evropská komise vyšetřuje Google kvůli cenám reklamy</szn:title>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_p8_A/nPVpfd5QLLDoMo7EY5FzwIjT/e865/hokej.jpeg?fl=cro,0,130,2500,1406|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Čeští hokejisté potrápili favorita, s Kanadou padli až v prodloužení</szn:title>
         <szn:height>40</szn:height>
         <szn:previewtype>common</szn:previewtype>
       </szn:image>
       <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>298823</szn:uid>
-      <szn:ccid>100239709</szn:ccid>
-    </item>
-    <item>
-      <title>Ministryně spravedlnosti USA Bondiová v Kongresu čelila otázkám o Epsteinovi</title>
-      <link>https://www.seznamzpravy.cz/clanek/zahranicni-ministryne-spravedlnosti-usa-bondiova-v-kongresu-celila-otazkam-o-epsteinovi-298817</link>
-      <description>Americká ministryně spravedlnosti Pam Bondiová vypovídala před americkým Kongresem kvůli Epsteinově kauze. Někteří zákonodárci její úřad viní z toho, že ministerstvem zveřejněné spisy kryjí Epsteinovi spolupracovníky.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/298817</guid>
-      <pubDate>Thu, 12 Feb 2026 20:31:00 +0100</pubDate>
-      <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_p8_A/nPVpfd5QLLD53Ui2pFwPbp8/0a3a/pam-bondi.jpeg?fl=cro,0,214,4096,2304|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Ministryně spravedlnosti USA Bondiová v Kongresu čelila otázkám o Epsteinovi</szn:title>
-        <szn:height>40</szn:height>
-        <szn:previewtype>common</szn:previewtype>
-      </szn:image>
-      <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>298817</szn:uid>
-      <szn:ccid>100239670</szn:ccid>
-    </item>
-    <item>
-      <title>Praha dá Člověku v tísni 3,3 miliony korun na podporu škol na Ukrajině</title>
-      <link>https://www.seznamzpravy.cz/clanek/domaci-politika-praha-da-cloveku-v-tisni-33-miliony-korun-na-podporu-skol-na-ukrajine-298822</link>
-      <description>Humanitární organizace Člověk v tísni dostane od pražského magistrátu přes 3 miliony korun na pomoc školám na Ukrajině. Zastupitelé plán schválili v reakci na avizovaný škrt státní podpory, oznámený ministrem zahraničí Macinkou.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/298822</guid>
-      <pubDate>Thu, 12 Feb 2026 20:13:49 +0100</pubDate>
-      <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_QL_s/gyOHz/a74i4081.jpeg?fl=cro,0,51,2000,1125|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Praha dá Člověku v tísni 3,3 miliony korun na podporu škol na Ukrajině</szn:title>
-        <szn:height>40</szn:height>
-        <szn:previewtype>common</szn:previewtype>
-      </szn:image>
-      <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>298822</szn:uid>
-      <szn:ccid>100239705</szn:ccid>
-    </item>
-    <item>
-      <title>V koalici podle Klempíře zatím není shoda na budoucím modelu ČT a ČRo</title>
-      <link>https://www.seznamzpravy.cz/clanek/domaci-politika-v-koalici-podle-klempire-zatim-neni-shoda-na-budoucim-modelu-ct-a-cro-298819</link>
-      <description>Na budoucím modelu veřejnoprávní televize a rozhlasu není ve vládní koalici shoda, uvedl ministr kultury Oto Klempíř (Motoristé). Podle něj jsou koncesionářské poplatky zátěží pro občany a veřejnoprávní média by měla více šetřit.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/298819</guid>
-      <pubDate>Thu, 12 Feb 2026 19:59:02 +0100</pubDate>
-      <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/kOzkBkwYBTxrzzGT8FOMuJT/ac04.jpeg?fl=cro,0,76,3200,1800|res,1200,,3|jpg,80</szn:url>
-        <szn:title>V koalici podle Klempíře zatím není shoda na budoucím modelu ČT a ČRo</szn:title>
-        <szn:height>40</szn:height>
-        <szn:previewtype>common</szn:previewtype>
-      </szn:image>
-      <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>298819</szn:uid>
-      <szn:ccid>100239680</szn:ccid>
-    </item>
-    <item>
-      <title>Lékaři pelhřimovské nemocnice stáhnou své výpovědi 16. února</title>
-      <link>https://www.seznamzpravy.cz/clanek/domaci-zivot-v-cesku-lekari-pelhrimovske-nemocnice-stahnou-sve-vypovedi-16-unora-298818</link>
-      <description>Personální krize v Pelhřimovské nemocnici se zřejmě chýlí ke konci. Deset z tamních lékařů, kteří v lednu podali výpověď, ji k pondělku plánují stáhnout.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/298818</guid>
-      <pubDate>Thu, 12 Feb 2026 19:36:16 +0100</pubDate>
-      <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_oe_A/kBlLbSfl8C2TnDC5KEf1ZBL/0c7d/doktor-doktori-lekari-psani-rukopis.jpeg?fl=cro,0,215,4096,2304|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Lékaři pelhřimovské nemocnice stáhnou své výpovědi 16. února</szn:title>
-        <szn:height>40</szn:height>
-        <szn:previewtype>common</szn:previewtype>
-      </szn:image>
-      <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>298818</szn:uid>
-      <szn:ccid>100239674</szn:ccid>
-    </item>
-    <item>
-      <title>Babiš po jednání s lídry EU a Draghim: „Potřebujeme energetické dálnice“</title>
-      <link>https://www.seznamzpravy.cz/clanek/ekonomika-finance-babis-po-jednani-s-lidry-eu-a-draghim-potrebujeme-energeticke-dalnice-298816</link>
-      <description>Prezidenti a premiéři Evropy se dnes potkali se šéfy evropských institucí. Tlak na sjednocení trhu EU roste a předsedkyně EK hrozí, že když to nepůjde se všemi, půjde to jen s někým. Podle Andreje Babiše je hlavní problém jinde.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/298816</guid>
-      <pubDate>Thu, 12 Feb 2026 19:30:00 +0100</pubDate>
-      <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/nDJ4VEZEqxmIDC40FLQL3Q/dbfd/von-der-leyenova-babis.jpeg?fl=cro,0,117,2048,1152|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Babiš po jednání s lídry EU a Draghim: „Potřebujeme energetické dálnice“</szn:title>
-        <szn:height>40</szn:height>
-        <szn:previewtype>common</szn:previewtype>
-      </szn:image>
-      <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>298816</szn:uid>
-      <szn:ccid>100239663</szn:ccid>
-    </item>
-    <item>
-      <title>V únoru 2027 by měl začít proces, ve kterém Trump žaluje BBC o miliardy dolarů</title>
-      <link>https://www.seznamzpravy.cz/clanek/zahranicni-v-unoru-2027-by-mel-zacit-proces-ve-kterem-trump-zaluje-bbc-o-miliardy-dolaru-298811</link>
-      <description>Americký prezident Donald Trump se v únoru 2027 bude soudit s britskou BBC kvůli sestříhanému videu z 6. ledna 2021. Dvoutýdenní procesní období ustanovil Federální soud v USA, BBC se snaží o zamítnutí žaloby.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/298811</guid>
-      <pubDate>Thu, 12 Feb 2026 19:26:30 +0100</pubDate>
-      <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_p8_A/kY1K2LlXQBsPCG1zFwQxXa/ee27/donald-trump-prezident-usa.jpeg?fl=cro,0,16,1706,959|res,1200,,3|jpg,80</szn:url>
-        <szn:title>V únoru 2027 by měl začít proces, ve kterém Trump žaluje BBC o miliardy dolarů</szn:title>
-        <szn:height>40</szn:height>
-        <szn:previewtype>common</szn:previewtype>
-      </szn:image>
-      <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>298811</szn:uid>
-      <szn:ccid>100239576</szn:ccid>
-    </item>
-    <item>
-      <title>Česko nemělo proti Kanadě šanci. Srážka s hokejovou dokonalostí bolela</title>
-      <link>https://www.seznamzpravy.cz/clanek/sport-olympiada-cesko-nemelo-proti-kanade-sanci-srazka-s-hokejovou-dokonalosti-bolela-298793</link>
-      <description>Nejlepší tým planety ukázal, co dovede. Česko prohrálo v prvním zápase olympijského turnaje s Kanadou 0:5. MacKinnon a spol. vytáhli svoji dokonalost i tvrdost. Trenér Rulík zamíchal sestavou, ale zázrak nepřivolal.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/298793</guid>
-      <pubDate>Thu, 12 Feb 2026 19:03:50 +0100</pubDate>
-      <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_p8_A/kY1K2LlXQJGqr9oFwPzU2/16e6/kanada.jpeg?fl=cro,0,93,1800,1012|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Česko nemělo proti Kanadě šanci. Srážka s hokejovou dokonalostí bolela</szn:title>
-        <szn:height>40</szn:height>
-        <szn:previewtype>common</szn:previewtype>
-      </szn:image>
-      <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>298793</szn:uid>
-      <szn:ccid>100239443</szn:ccid>
-    </item>
-    <item>
-      <title>Belgická policie zasahovala v sídle Evropské komise kvůli prodeji nemovitostí</title>
-      <link>https://www.seznamzpravy.cz/clanek/zahranicni-belgicka-policie-zasahovala-v-sidle-evropske-komise-kvuli-prodeji-nemovitosti-298801</link>
-      <description>V rámci vyšetřování prodeje 23 budov za 900 milionů eur (21,8 miliardy korun) provedla belgická policie zásah v sídle Evropské komise. Ta v roce 2024 prodala nemovitosti belgickému státu.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/298801</guid>
-      <pubDate>Thu, 12 Feb 2026 19:15:47 +0100</pubDate>
-      <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_of_A/kOzkBkwYBTDgb7usyE9j1uv/94ce/sidlo-evropska-komise-brusel.jpeg?fl=cro,0,359,4096,2304|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Belgická policie zasahovala v sídle Evropské komise kvůli prodeji nemovitostí</szn:title>
-        <szn:height>40</szn:height>
-        <szn:previewtype>common</szn:previewtype>
-      </szn:image>
-      <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>298801</szn:uid>
-      <szn:ccid>100239509</szn:ccid>
-    </item>
-    <item>
-      <title>Ukrajinského skeletonistu diskvalifikovali kvůli helmě se zesnulými sportovci</title>
-      <link>https://www.seznamzpravy.cz/clanek/sport-olympiada-ukrajinskeho-skeletonistu-diskvalifikovali-kvuli-helme-s-mrtvymi-sportovci-298744</link>
-      <description>Skeletonista Vladyslav Heraskevyč se čtvrtečního olympijského závodu nezúčastní. Byl diskvalifikován kvůli své helmě. Ukrajinský prezident na to reagoval oznámením, že Heraskevyčovi udělí prestižní Řád svobody.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/298744</guid>
-      <pubDate>Thu, 12 Feb 2026 09:26:54 +0100</pubDate>
-      <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_p8_A/kY1K2LlXQDm6hJ0RFwBrsO/8ab8/heraskevyc.jpeg?fl=cro,0,111,4096,2304|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Ukrajinského skeletonistu diskvalifikovali kvůli helmě se zesnulými sportovci</szn:title>
-        <szn:height>40</szn:height>
-        <szn:previewtype>common</szn:previewtype>
-      </szn:image>
-      <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>298744</szn:uid>
-      <szn:ccid>100239095</szn:ccid>
-    </item>
-    <item>
-      <title>Začal festival Berlinale. Cenu na slavnostním večeru dostala Michelle Yeoh</title>
-      <link>https://www.seznamzpravy.cz/clanek/kultura-berlinale-2026-zahajeni-298820</link>
-      <description>Porotu vede Wim Wenders, autor slavného Nebe nad Berlínem. Filmaři by se neměli plést do politiky. Mohou ale zkusit změnit to, jak lidé přemýšlí, řekl.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/298820</guid>
-      <pubDate>Thu, 12 Feb 2026 19:09:00 +0100</pubDate>
-      <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_p8_A/kY1K2LlXQCEs3V9AFwQ4Id/47a9/berlinale.jpeg?fl=cro,0,0,1800,1012|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Začal festival Berlinale. Cenu na slavnostním večeru dostala Michelle Yeoh</szn:title>
-        <szn:height>40</szn:height>
-        <szn:previewtype>common</szn:previewtype>
-      </szn:image>
-      <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>298820</szn:uid>
-      <szn:ccid>100239686</szn:ccid>
+      <szn:uid>299227</szn:uid>
+      <szn:ccid>100243669</szn:ccid>
     </item>
     <item>
       <title>Češi v akci na olympiádě 2026: program a které Čechy sledovat</title>
       <link>https://www.seznamzpravy.cz/clanek/sport-olympiada-2026-program-cesi-295854</link>
       <description>Česká olympijská výprava má v Itálii 115 sportovců. Seznam Zprávy vám přinášejí program Čechů na každý den a koho sledovat.</description>
       <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/295854</guid>
-      <pubDate>Thu, 12 Feb 2026 07:00:00 +0100</pubDate>
+      <pubDate>Wed, 18 Feb 2026 07:00:00 +0100</pubDate>
       <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_p8_A/kY1K2LlXQDm6hJ2zFwEKI7/44a7/eva-adamczykova-snowboard.jpeg?fl=cro,0,0,1920,1080|res,1200,,3|jpg,80</szn:url>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_p8_A/kY1K2LlXQCNqj2CftFzjKp8/04e3/zoh-jilek.jpeg?fl=cro,0,0,1920,1080|res,1200,,3|jpg,80</szn:url>
         <szn:title>Češi v akci na olympiádě 2026: program a které Čechy sledovat</szn:title>
         <szn:height>40</szn:height>
         <szn:previewtype>common</szn:previewtype>
@@ -296,197 +147,357 @@
       <szn:ccid>None</szn:ccid>
     </item>
     <item>
-      <title>Podezření na potíže po závadné kojenecké výživě se objevila u čtyř dětí</title>
-      <link>https://www.seznamzpravy.cz/clanek/domaci-zivot-v-cesku-podezreni-na-potize-po-zavadne-kojenecke-vyzive-se-objevila-u-ctyr-deti-298814</link>
-      <description>Hygienici v Česku prošetřují už čtyři podezření na zdravotní potíže u kojenců po požití závadné kojenecké výživy. Olej, který byl jednou ze složek výživy, obsahoval bakterií produkovaný toxin způsobující otravy.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/298814</guid>
-      <pubDate>Thu, 12 Feb 2026 18:52:21 +0100</pubDate>
+      <title>Zeman žádá o humanitární gesto pro českého studenta, kterého zadržela Čína</title>
+      <link>https://www.seznamzpravy.cz/clanek/domaci-politika-zeman-zada-o-humanitarni-gesto-pro-ceskeho-studenta-ktereho-zadrzela-cina-299226</link>
+      <description>Bývalý prezident Miloš Zeman se u čínského prezidenta přimluvil za českého studenta, který byl zadržen v Číně.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/299226</guid>
+      <pubDate>Wed, 18 Feb 2026 18:59:06 +0100</pubDate>
       <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_p8_A/nPVpfd5QLLDqk1B1iFwPWOB/5e7c/kojeni-kojenec-kojenecka-vyziva-dite-mimino-lahvicka.jpeg?fl=cro,0,0,4096,2304|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Podezření na potíže po závadné kojenecké výživě se objevila u čtyř dětí</szn:title>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_QN_6/rdeE/milos-zeman-voli-europarlament-eurovolby-matejkova.jpeg?fl=cro,0,182,4096,2304|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Zeman žádá o humanitární gesto pro českého studenta, kterého zadržela Čína</szn:title>
         <szn:height>40</szn:height>
         <szn:previewtype>common</szn:previewtype>
       </szn:image>
       <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>298814</szn:uid>
-      <szn:ccid>100239653</szn:ccid>
+      <szn:uid>299226</szn:uid>
+      <szn:ccid>100243658</szn:ccid>
     </item>
     <item>
-      <title>Obrazem: Ukrajinští vojáci po sporu o helmu podpořili olympioniky</title>
-      <link>https://www.seznamzpravy.cz/clanek/zahranicni-obrazem-ukrajinsti-vojaci-po-sporu-o-helmu-podporili-olympioniky-298804</link>
-      <description>Skeletonista, který si přivezl helmu s fotografiemi mrtvých sportovců, si na olympiádě nezazávodí.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/298804</guid>
-      <pubDate>Thu, 12 Feb 2026 18:45:00 +0100</pubDate>
+      <title>Finanční gramotnost jako herní mise. Banka míří do gamingu</title>
+      <link>https://www.seznamzpravy.cz/clanek/ekonomika-finance-osobni-financni-gramotnost-jako-herni-mise-banka-miri-do-gamingu-299184</link>
+      <description>Dětem by s finanční gramotností měla pomoci nová vesmírná hra Cosmo Tales. Tuzemské studio Bohemia Interactive ji vyvíjí s Českou spořitelnou a slibuje propojení zábavy i praktických dovedností.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/299184</guid>
+      <pubDate>Wed, 18 Feb 2026 18:00:00 +0100</pubDate>
       <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_p8_A/kY1K2LlXQCEs3V5mFwKpwf/4a77/ukrajina-vojaci-podpora.jpeg?fl=cro,0,150,1600,900|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Obrazem: Ukrajinští vojáci po sporu o helmu podpořili olympioniky</szn:title>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_QL_r/qALBi/mg-3371-kv0rurmi.jpeg?fl=cro,0,292,5616,3159|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Finanční gramotnost jako herní mise. Banka míří do gamingu</szn:title>
         <szn:height>40</szn:height>
         <szn:previewtype>common</szn:previewtype>
       </szn:image>
       <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>298804</szn:uid>
-      <szn:ccid>100239526</szn:ccid>
+      <szn:uid>299184</szn:uid>
+      <szn:ccid>100243365</szn:ccid>
     </item>
     <item>
-      <title>Stanovisko k vymáhání dotací po Agrofertu bude podle Šebestyána v řádu dnů</title>
-      <link>https://www.seznamzpravy.cz/clanek/domaci-politika-stanovisko-k-vymahani-dotaci-po-agrofertu-bude-podle-sebestyana-v-radu-dnu-298813</link>
-      <description>Státní zemědělský a intervenční fond zveřejní do několika dní stanovisko k vymáhání dotací po holdingu Agrofert, řekl ve čtvrtek ministr zemědělství Šebestyán.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/298813</guid>
-      <pubDate>Thu, 12 Feb 2026 18:40:45 +0100</pubDate>
+      <title>Ústavní soud částečně vyhověl ženě, kterou roky sexuálně zneužíval otčím</title>
+      <link>https://www.seznamzpravy.cz/clanek/domaci-zivot-v-cesku-ustavni-soud-castecne-vyhovel-zene-kterou-roky-sexualne-zneuzival-otcim-299225</link>
+      <description>Ústavní soud vyhověl stížnosti roky zneužívané ženy, že obecné soudy ignorovaly její námitky. Tím zasáhly do jejího práva na soudní ochranu. Nevyhověl však návrhu zrušit rozsudky nad jejím otčímem.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/299225</guid>
+      <pubDate>Wed, 18 Feb 2026 17:56:14 +0100</pubDate>
       <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/nDJ4VEZEqDjvpWLegFOMsKa/ed52.jpeg?fl=cro,0,267,3200,1800|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Stanovisko k vymáhání dotací po Agrofertu bude podle Šebestyána v řádu dnů</szn:title>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_QO_BA/gPBHn.jpeg?fl=cro,0,213,4096,2304|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Ústavní soud částečně vyhověl ženě, kterou roky sexuálně zneužíval otčím</szn:title>
         <szn:height>40</szn:height>
         <szn:previewtype>common</szn:previewtype>
       </szn:image>
       <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>298813</szn:uid>
-      <szn:ccid>100239637</szn:ccid>
+      <szn:uid>299225</szn:uid>
+      <szn:ccid>100243611</szn:ccid>
     </item>
     <item>
-      <title>V pražské zoo potvrdili ptačí chřipku. Vyskytuje se i u komerčních chovů</title>
-      <link>https://www.seznamzpravy.cz/clanek/domaci-zivot-v-cesku-u-uhynulych-ptaku-v-prazske-zoo-byla-potvrzena-ptaci-chripka-298810</link>
-      <description>Zoo Praha kvůli výskytu ptačí chřipky omezí vstup návštěvníků do průchozích voliér a dočasně uzavře Rákosův pavilon a pavilon Sečuán. Veterináři také odhalili letošní první výskyt ptačí chřipky v komerčním chovu.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/298810</guid>
-      <pubDate>Thu, 12 Feb 2026 16:57:29 +0100</pubDate>
+      <title>Fotky: Betonová horečka poznamenala malebný řecký ostrov</title>
+      <link>https://www.seznamzpravy.cz/clanek/zahranicni-fotky-betonova-horecka-poznamenala-malebny-recky-ostrov-299068</link>
+      <description>Soukromé vily a luxusní komplexy. Kykladský ostrov Milos zachvátila realitní horečka podnícená turistickým boomem. Na vulkanické skále, která výspu tvoří, zanechala rozsáhlá stavba hlubokou jizvu.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/299068</guid>
+      <pubDate>Wed, 18 Feb 2026 17:45:00 +0100</pubDate>
       <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/nDJ4VEZEqb3AyLNPFQk1mH/bcc3.jpeg?fl=cro,0,156,3000,1687|res,1200,,3|jpg,80</szn:url>
-        <szn:title>V pražské zoo potvrdili ptačí chřipku. Vyskytuje se i u komerčních chovů</szn:title>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_p8_A/nPVpfd5QLLChvUCCjKFym46d/1371/recko.jpeg?fl=cro,0,182,3507,1972|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Fotky: Betonová horečka poznamenala malebný řecký ostrov</szn:title>
         <szn:height>40</szn:height>
         <szn:previewtype>common</szn:previewtype>
       </szn:image>
       <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>298810</szn:uid>
-      <szn:ccid>100239564</szn:ccid>
+      <szn:uid>299068</szn:uid>
+      <szn:ccid>100242216</szn:ccid>
     </item>
     <item>
-      <title>Sbohem ledové královny. Sáblíková končí bez medaile, přesto jako vítězka</title>
-      <link>https://www.seznamzpravy.cz/clanek/sport-olympiada-sbohem-ledove-kralovny-sablikova-konci-bez-medaile-presto-jako-vitezka-298808</link>
-      <description>Žádnou olympijskou medaili už mít nebude. Zůstane jich sedm, což je fenomenální. Šance na osmou placku vyprchala dřív než Martina Sáblíková poprvé vstoupila do olympiády v Miláně. Špatně se jí dýchá. A taky už jí bude 39 let.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/298808</guid>
-      <pubDate>Thu, 12 Feb 2026 18:06:09 +0100</pubDate>
+      <title>Exmajitel Barrandova Soukup zaplatil část peněz, které dluží Praze za nájem</title>
+      <link>https://www.seznamzpravy.cz/clanek/domaci-kauzy-exmajitel-barrandova-soukup-zaplatil-cast-penez-ktere-dluzi-praze-za-najem-299016</link>
+      <description>Problémy s areálem, který Praha předloni za podezřelých okolností vydražila po mediálním magnátovi Jaromíru Soukupovi, nekončí. Soukup sice začal hradit dlužný nájem, podle informací Seznam Zpráv ale zaplatil jen za jeden měsíc.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/299016</guid>
+      <pubDate>Wed, 18 Feb 2026 17:36:14 +0100</pubDate>
       <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_p8_A/nPVpfd5QLLDqk1B1iFwPBmg/c933/martina-sablikova-olympiada-v-milane-a-cortine-2026.jpeg?fl=cro,0,72,1400,787|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Sbohem ledové královny. Sáblíková končí bez medaile, přesto jako vítězka</szn:title>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_QQ_8/56UGZ.jpeg?fl=cro,0,161,4096,2304|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Exmajitel Barrandova Soukup zaplatil část peněz, které dluží Praze za nájem</szn:title>
         <szn:height>40</szn:height>
         <szn:previewtype>common</szn:previewtype>
       </szn:image>
       <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>298808</szn:uid>
-      <szn:ccid>100239550</szn:ccid>
+      <szn:uid>299016</szn:uid>
+      <szn:ccid>100241821</szn:ccid>
     </item>
     <item>
-      <title>Monroe, Trump, Putin a jejich doktríny</title>
-      <link>https://www.seznamzpravy.cz/clanek/zahranicni-komentar-monroe-trump-putin-a-jejich-doktriny-298463</link>
-      <description>Ještě před rokem bylo nepředstavitelné, že by se americká zahraniční politika tak nebezpečně přiblížila k chování autoritářského Ruska.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/298463</guid>
-      <pubDate>Thu, 12 Feb 2026 18:00:00 +0100</pubDate>
+      <title>Polsko vydalo zatykač na bývalého náměstka ministra, ten dostal azyl v Maďarsku</title>
+      <link>https://www.seznamzpravy.cz/clanek/zahranicni-polsko-vydalo-zatykac-na-byvaleho-namestka-ministra-ten-dostal-azyl-v-madarsku-299223</link>
+      <description>Bývalý polský náměstek ministra spravedlnosti Marcin Romanowski čelí obvinění z 11 trestných činů. Maďarsko mu mezitím udělilo azyl a Polsko na něj nyní vydalo evropský zatykač.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/299223</guid>
+      <pubDate>Wed, 18 Feb 2026 17:19:30 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_m3_A/nPt0vAiT3tBWQSrh8BzJAKn/562e/polsko.jpeg?fl=cro,0,75,1440,810|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Polsko vydalo zatykač na bývalého náměstka ministra, ten dostal azyl v Maďarsku</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>299223</szn:uid>
+      <szn:ccid>100243587</szn:ccid>
+    </item>
+    <item>
+      <title>Fotky: Prezident Pavel vyrazil na blátivou cestu Prahou</title>
+      <link>https://www.seznamzpravy.cz/clanek/obrazem-vyhledy-na-metropoli-kone-a-pivo-prezident-pavel-na-blative-ceste-prahou-299222</link>
+      <description>Svižné tempo dnes odpoledne prezident Petr Pavel nasadil při vycházce v Prokopském údolí na jihu Prahy. V Prokopském pivovaru pak nad půllitrem speciálu Generál zakončil oficiální dvoudenní návštěvu hlavního města.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/299222</guid>
+      <pubDate>Wed, 18 Feb 2026 17:14:01 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_p8_A/nPVpfd5QLLD53UiDD2Fzr7Xa/5812.jpeg?fl=cro,0,182,3500,1968|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Výhledy na metropoli, koně a pivo. Prezident Pavel na blátivé cestě Prahou</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>299222</szn:uid>
+      <szn:ccid>100243582</szn:ccid>
+    </item>
+    <item>
+      <title>Ministr s diplomkou, kterou by nikdo nečekal, a co spadne pod EET</title>
+      <link>https://www.seznamzpravy.cz/clanek/domaci-zivot-v-cesku-petka-sz-ministr-s-diplomkou-kterou-by-nikdo-necekal-a-co-spadne-pod-eet-299196</link>
+      <description>Denní přehled Seznam Zpráv.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/299196</guid>
+      <pubDate>Wed, 18 Feb 2026 17:00:00 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_of_A/nOztZkD4ZlC2Y2EbLE0UspT/5a04/petka-sz.jpeg?fl=cro,0,0,1920,1080|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Pětka SZ: Ministr s diplomkou, kterou by nikdo nečekal, a co spadne pod EET</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>299196</szn:uid>
+      <szn:ccid>100233651</szn:ccid>
+    </item>
+    <item>
+      <title>Poslední krok na odchodu. Buffett vyprodal Amazon a vstoupil do NY Times</title>
+      <link>https://www.seznamzpravy.cz/clanek/ekonomika-finance-akcie-fondy-posledni-krok-na-odchodu-buffett-vyprodal-amazon-a-vstoupil-do-ny-times-299165</link>
+      <description>Obří finanční kolos Berkshire Hathaway Warrena Buffetta na konci minulého roku zredukoval podíl v Amazonu. Zároveň investoval do vydavatelství New York Times, což je Buffettova poslední nová sázka v roli generálního ředitele.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/299165</guid>
+      <pubDate>Wed, 18 Feb 2026 17:00:00 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_QR_h/YOxX0/shutterstock-353934110.jpeg?fl=cro,0,360,3440,1935|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Poslední krok na odchodu. Buffett vyprodal Amazon a vstoupil do NY Times</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>299165</szn:uid>
+      <szn:ccid>100243197</szn:ccid>
+    </item>
+    <item>
+      <title>Čeští curleři podruhé vyhráli, Čínu porazili 10:5</title>
+      <link>https://www.seznamzpravy.cz/clanek/sport-olympiada-cesti-curleri-podruhe-vyhrali-cinu-porazili-10-5-299221</link>
+      <description>Českému curlingovému týmu se podařilo vyhrát podruhé, díky čemuž může na olympijském turnaji skončit sedmý.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/299221</guid>
+      <pubDate>Wed, 18 Feb 2026 16:58:15 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_p8_A/nPVpfd5QLLD53UiDEaFzsgEp/b1cc/curling.jpeg?fl=cro,0,130,4096,2304|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Čeští curleři podruhé vyhráli, Čínu porazili 10:5</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>299221</szn:uid>
+      <szn:ccid>100243580</szn:ccid>
+    </item>
+    <item>
+      <title>TMBK: Odborníci varují před vládou s Motoristy a SPD. Toto všechno hrozí</title>
+      <link>https://www.seznamzpravy.cz/clanek/tmbk-tmbk-odbornici-varuji-pred-vladou-s-motoristy-a-spd-toto-vsechno-hrozi-299220</link>
+      <description>Co se stane, když požijete tento zrádný lék na imunitu? TMBK pro SZ.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/299220</guid>
+      <pubDate>Wed, 18 Feb 2026 16:50:57 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_p8_A/kY1K2LlXQCEs3VCoOFzsKRN/2bc8/tmbk.jpeg?fl=cro,0,0,1336,752|res,1200,,3|jpg,80</szn:url>
+        <szn:title>TMBK: Odborníci varují před vládou s Motoristy a SPD. Toto všechno hrozí</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>299220</szn:uid>
+      <szn:ccid>100243573</szn:ccid>
+    </item>
+    <item>
+      <title>Macinka se v USA zúčastní i Valného shromáždění OSN. Přednese projev</title>
+      <link>https://www.seznamzpravy.cz/clanek/domaci-politika-macinka-se-v-usa-zucastni-i-valneho-shromazdeni-osn-prednese-projev-299218</link>
+      <description>Petr Macinka bude mít projev na mimořádném zasedání Valného shromáždění OSN v New Yorku. Přítomen bude i na jednání Rady bezpečnosti OSN svolané k situaci na Ukrajině britským předsednictvím.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/299218</guid>
+      <pubDate>Wed, 18 Feb 2026 16:38:21 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_oe_A/nPSV1TXV2nBaI13EnxEhBM6j/3ad6/petr-macinka-volby-motoriste.mpo?fl=cro,0,213,4096,2304|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Macinka se v USA zúčastní i Valného shromáždění OSN. Přednese projev</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>299218</szn:uid>
+      <szn:ccid>100243564</szn:ccid>
+    </item>
+    <item>
+      <title>Metnar chce snížit věk u trestní odpovědnosti a zvýšit sazby kvůli cizincům</title>
+      <link>https://www.seznamzpravy.cz/clanek/domaci-politika-metnar-chce-snizit-vek-u-trestni-odpovednosti-a-zvysit-sazby-kvuli-cizincum-299212</link>
+      <description>Ministr vnitra Lubomír Metnar podpořil snížení věku trestní odpovědnosti i zpřísnění trestů za činy, které jsou nejčastěji páchány cizinci. Resort zároveň připravuje novou novelu cizinecké legislativy.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/299212</guid>
+      <pubDate>Wed, 18 Feb 2026 16:30:01 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/nDJ4VEZEqb3AyJYrFNvGFp/31f6.jpeg?fl=cro,0,166,3200,1800|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Metnar chce snížit věk u trestní odpovědnosti a zvýšit sazby kvůli cizincům</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>299212</szn:uid>
+      <szn:ccid>100243541</szn:ccid>
+    </item>
+    <item>
+      <title>Recenze: Loučení Štefana Margity. V novém pražském provedení Wagnera exceluje</title>
+      <link>https://www.seznamzpravy.cz/clanek/kultura-narodni-divadlo-opera-zlato-ryna-recenze-299197</link>
+      <description>„Nestydím se říct – největší poezie, která kdy byla napsána,“ zhodnotil osobitým způsobem Richard Wagner vlastní libreto ke své operní tetralogii Prsten Nibelungův. Její první část nově uvádí pražské Národní divadlo.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/299197</guid>
+      <pubDate>Wed, 18 Feb 2026 16:30:00 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_p8_A/kY1K2LlXQB7HUzCgeFzopJs/6876/opera-zlato-ryna.jpeg?fl=cro,0,200,1920,1080|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Recenze: Loučení Štefana Margity. V novém pražském provedení Wagnera exceluje</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>299197</szn:uid>
+      <szn:ccid>100243480</szn:ccid>
+    </item>
+    <item>
+      <title>České biatlonistky do posledního úseku bojovaly o medaile, skončily páté</title>
+      <link>https://www.seznamzpravy.cz/clanek/sport-olympiada-ceske-biatlonistky-do-posledniho-useku-bojovaly-o-medaile-skoncily-pate-299214</link>
+      <description>Až do předposlední střelby byla ženská biatlonová štafeta ve hře o medailové umístění, nakonec si dojely pro páté místo.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/299214</guid>
+      <pubDate>Wed, 18 Feb 2026 16:20:22 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_p8_A/kY1K2LlXQDnuVLCjpFzreDS/4d5d/lucie-charvatova-zoh.jpeg?fl=cro,0,220,3147,1770|res,1200,,3|jpg,80</szn:url>
+        <szn:title>České biatlonistky do posledního úseku bojovaly o medaile, skončily páté</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>299214</szn:uid>
+      <szn:ccid>100243553</szn:ccid>
+    </item>
+    <item>
+      <title>„Jde o přežití národa.“ Ukrajinští vojáci si nechávají zmrazit sperma</title>
+      <link>https://www.seznamzpravy.cz/clanek/zahranicni-ukrajina-uprostred-demograficke-krize-vojakum-nabizi-zdarma-zmrazeni-spermatu-299045</link>
+      <description>Kyjev se snaží bojovat proti klesající porodnosti. Vojákům a vojačkám nabízí zdarma zmrazení spermatu a vajíček. Kliniky vzorky uchovávají po dobu tří let od úmrtí a jejich partnerům tak umožňují pořízení potomka.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/299045</guid>
+      <pubDate>Wed, 18 Feb 2026 16:00:00 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_oc_A/nPvSisOTaMtTNgBH8EELu2b/22dc/novorozenec-dite-miminko-porod.jpeg?fl=cro,0,208,4000,2250|res,1200,,3|jpg,80</szn:url>
+        <szn:title>„Jde o přežití národa.“ Ukrajinští vojáci si nechávají zmrazit sperma</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>299045</szn:uid>
+      <szn:ccid>100242034</szn:ccid>
+    </item>
+    <item>
+      <title>Slovenská euforie pokračuje. Podceňovaný tým hraje o medaile</title>
+      <link>https://www.seznamzpravy.cz/clanek/sport-olympiada-slovenska-euforie-pokracuje-podcenovany-tym-hraje-o-medaile-299200</link>
+      <description>Slovenská reprezentace se valí olympijským turnajem dál. Porazila Němce 6:2 a večer se dozví soupeře pro semifinále. Tým je postavený na pohybu a práci. A dělí ho jen krok od největšího úspěchu v historii.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/299200</guid>
+      <pubDate>Wed, 18 Feb 2026 15:49:52 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_p8_A/nPVpfd5QLLDoMo7EFAFzo99I/ed72/hokej.jpeg?fl=cro,0,93,1800,1012|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Slovenská euforie pokračuje. Podceňovaný tým hraje o medaile</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>299200</szn:uid>
+      <szn:ccid>100243484</szn:ccid>
+    </item>
+    <item>
+      <title>Slovenská vláda nařídila plošné kontroly nevládních organizací</title>
+      <link>https://www.seznamzpravy.cz/clanek/zahranicni-slovenska-vlada-naridila-plosne-kontroly-nevladnich-organizaci-299210</link>
+      <description>Slovenská vláda pokračuje v boji proti nevládním organizacím. Kabinet premiéra Roberta Fica vyzval úřady, aby provedly u nevládních organizací plošné kontroly.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/299210</guid>
+      <pubDate>Wed, 18 Feb 2026 15:48:41 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_p8_A/nPVpfd5QLLksKHBOXFwqMPE/93a3/robert-fico-slovensko.jpeg?fl=cro,0,106,2048,1152|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Slovenská vláda nařídila plošné kontroly nevládních organizací</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>299210</szn:uid>
+      <szn:ccid>100243539</szn:ccid>
+    </item>
+    <item>
+      <title>Strach z AI. Nálada investorů se dramaticky změnila</title>
+      <link>https://www.seznamzpravy.cz/clanek/ekonomika-finance-akcie-fondy-z-ai-forie-do-ai-fobie-nalada-investoru-se-dramaticky-zmenila-299140</link>
+      <description>Umělá inteligence poslala už dolů akcie softwarových společností, finančních poradenských skupin, ratingových agentur, ale i realitně-poradenských firem či správců majetku. Další na řadě mohou být poskytovatelé privátních úvěrů.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/299140</guid>
+      <pubDate>Wed, 18 Feb 2026 15:40:00 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_og_A/nDJ4VEZEqxmIDCotFK5pRy/b814/ai-techmix.png?fl=cro,0,0,1920,1080|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Z AI-fórie do AI-fóbie. Nálada investorů se dramaticky změnila</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>299140</szn:uid>
+      <szn:ccid>100242879</szn:ccid>
+    </item>
+    <item>
+      <title>Ukrajina uvalila sankce na běloruského prezidenta Lukašenka za podporu Moskvy</title>
+      <link>https://www.seznamzpravy.cz/clanek/zahranicni-ukrajina-uvalila-sankce-na-beloruskeho-prezidenta-lukasenka-za-podporu-moskvy-299204</link>
+      <description>Již nyní se na běloruského prezidenta vztahují evropské i americké sankce, stále je ale podle ukrajinského prezidenta Volodymyra Zelenského nutné zintenzivnit opatření proti Minsku. Bělorusko figuruje jako blízký spojenec Ruska.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/299204</guid>
+      <pubDate>Wed, 18 Feb 2026 15:26:26 +0100</pubDate>
+      <szn:image>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_QO_BC/vyA0O/alexandr-lukasenko-vladimir-putin-rusko-belorusko.jpeg?fl=cro,0,51,1880,1057|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Ukrajina uvalila sankce na běloruského prezidenta Lukašenka za podporu Moskvy</szn:title>
+        <szn:height>40</szn:height>
+        <szn:previewtype>common</szn:previewtype>
+      </szn:image>
+      <szn:_cls>ArticlePublished</szn:_cls>
+      <szn:uid>299204</szn:uid>
+      <szn:ccid>100243506</szn:ccid>
+    </item>
+    <item>
+      <title>Konec „parlamentní žvanírny“? Obstrukce si cestu vždycky najde</title>
+      <link>https://www.seznamzpravy.cz/clanek/domaci-politika-komentar-protiobstrukcni-novela-pomylena-snaha-zklidnit-snemovnu-299030</link>
+      <description>Nikdo už nebude paralyzovat Sněmovnu a snižovat efektivitu legislativního procesu. S těmito argumenty chtějí vládní strany a ODS napravit sněmovní jednací řád. Tím však vznikají ještě větší rizika.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/299030</guid>
+      <pubDate>Wed, 18 Feb 2026 15:20:00 +0100</pubDate>
       <szn:additionalType>Commentary</szn:additionalType>
       <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_p7_A/nPXMbbUsvqB6axW2iFkXnNn/d023/donald-trump.jpeg?fl=cro,81,57,2613,1470|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Komentář: Monroe, Trump, Putin a jejich doktríny</szn:title>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_of_A/kPRtHkVQLlDN44abeE0d5Ka/bd96.jpeg?fl=cro,0,267,3600,2025|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Komentář: Konec „parlamentní žvanírny“? Obstrukce si cestu vždycky najde</szn:title>
         <szn:height>40</szn:height>
         <szn:previewtype>common</szn:previewtype>
       </szn:image>
       <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>298463</szn:uid>
-      <szn:ccid>100236803</szn:ccid>
+      <szn:uid>299030</szn:uid>
+      <szn:ccid>100241916</szn:ccid>
     </item>
     <item>
-      <title>Při požáru výškového domu v Berlíně zemřel kojenec, matka a bratr jsou zranění</title>
-      <link>https://www.seznamzpravy.cz/clanek/zahranicni-v-berline-zachvatil-pozar-vyskovy-dum-podle-hasicu-je-mnoho-zranenych-298728</link>
-      <description>V Berlíně hořel ve středu dvacetipatrový dům, který si vyžádal jednu oběť, devítiměsíčního kojence. Na místo dorazilo zhruba 170 hasičů, kteří s dýchacími přístroji dům evakuovali. Policie nyní příčiny neštěstí vyšetřuje.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/298728</guid>
-      <pubDate>Wed, 11 Feb 2026 23:16:51 +0100</pubDate>
+      <title>Slováci jsou krok od překvapivé medaile. Němce porazili a jsou v semifinále</title>
+      <link>https://www.seznamzpravy.cz/clanek/sport-olympiada-slovaci-jsou-krok-od-prekvapive-medaile-nemce-porazili-a-jsou-v-semifinale-299202</link>
+      <description>Hokejisté Slovenska zdolali ve čtvrtfinále olympijského turnaje Německo 6:2 a budou hrát o medaile.</description>
+      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/299202</guid>
+      <pubDate>Wed, 18 Feb 2026 14:42:57 +0100</pubDate>
       <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_p8_A/kY1K2LlXQBsPCGnvFvv56A/b3ff/nemecko-hasici.jpeg?fl=cro,0,213,4096,2304|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Při požáru výškového domu v Berlíně zemřel kojenec, matka a bratr jsou zranění</szn:title>
+        <szn:url>https://d39-a.sdn.cz/d_39/c_img_p8_A/nPVpfd5QLLksKHDTpFzpHxK/1697/slovensko-hokej.jpeg?fl=cro,0,195,3766,2118|res,1200,,3|jpg,80</szn:url>
+        <szn:title>Slováci jsou krok od překvapivé medaile. Němce porazili a jsou v semifinále</szn:title>
         <szn:height>40</szn:height>
         <szn:previewtype>common</szn:previewtype>
       </szn:image>
       <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>298728</szn:uid>
-      <szn:ccid>100238974</szn:ccid>
-    </item>
-    <item>
-      <title>Draslovka upsala na severském trhu zajištěné dluhopisy za 6,6 miliardy korun</title>
-      <link>https://www.seznamzpravy.cz/clanek/ekonomika-draslovka-upsala-na-severskem-trhu-zajistene-dluhopisy-za-66-miliardy-korun-298803</link>
-      <description>Výrobce průmyslových chemikálií Draslovka upsala na severském trhu dluhopisy za téměř sedm miliard korun. Od transakce si firma slibuje vylepšení rozvahy firmy, také by měla přinést významné snížení nákladů na financování.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/298803</guid>
-      <pubDate>Thu, 12 Feb 2026 17:41:39 +0100</pubDate>
-      <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_m3_A/kPX8laQTIipeEeZC2PZN/ed0c/ceska-elita.jpeg?fl=cro,0,0,1200,675|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Draslovka upsala na severském trhu zajištěné dluhopisy za 6,6 miliardy korun</szn:title>
-        <szn:height>40</szn:height>
-        <szn:previewtype>common</szn:previewtype>
-      </szn:image>
-      <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>298803</szn:uid>
-      <szn:ccid>100239524</szn:ccid>
-    </item>
-    <item>
-      <title>Trumpův „Kissinger“ chce svrhnout diktátory, od Putina ale dává ruce pryč</title>
-      <link>https://www.seznamzpravy.cz/clanek/zahranicni-marco-rubio-trumpuv-kissinger-chce-svrhnout-diktatory-od-putina-ale-dava-ruce-pryc-298766</link>
-      <description>Ministr zahraničí a poradce pro národní bezpečnost Marco Rubio v pátek přijede na bezpečnostní konferenci do Mnichova. Jeho hlavním zájmem ale zůstává západní polokoule a především potom svržení diktatur ve Venezuele a na Kubě.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/298766</guid>
-      <pubDate>Thu, 12 Feb 2026 17:30:00 +0100</pubDate>
-      <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_p8_A/kY1K2LlXQD1lSJ4aFwLNma/10e3/marco-rubio.jpeg?fl=cro,0,96,1720,967|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Trumpův „Kissinger“ chce svrhnout diktátory, od Putina ale dává ruce pryč</szn:title>
-        <szn:height>40</szn:height>
-        <szn:previewtype>common</szn:previewtype>
-      </szn:image>
-      <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>298766</szn:uid>
-      <szn:ccid>100239292</szn:ccid>
-    </item>
-    <item>
-      <title>Na leteckou záchrannou službu v Líních bude kvůli šikaně dohlížet supervizor</title>
-      <link>https://www.seznamzpravy.cz/clanek/domaci-zivot-v-cesku-na-letecke-zachranne-sluzbe-v-linich-se-bude-kvuli-sikane-podilet-supervizor-298807</link>
-      <description>Kvůli údajné šikaně ze strany náčelnice Jany Piskačové bude na fungování armádní letecké záchranné služby v Líních u Plzně dohlížet nezávislý supervizor. Piskačová podle armády přijala kázeňskou zodpovědnost.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/298807</guid>
-      <pubDate>Thu, 12 Feb 2026 17:07:19 +0100</pubDate>
-      <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_p8_A/kY1K2LlXQB7HUz6TFwMbpB/2ede/letectvo-armada-cr-jana-piskacova.jpeg?fl=cro,0,53,1024,576|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Na leteckou záchrannou službu v Líních bude kvůli šikaně dohlížet supervizor</szn:title>
-        <szn:height>40</szn:height>
-        <szn:previewtype>common</szn:previewtype>
-      </szn:image>
-      <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>298807</szn:uid>
-      <szn:ccid>100239549</szn:ccid>
-    </item>
-    <item>
-      <title>Podezření na otravu kojenecké stravy a jak lidé přišli o peníze v kryptu</title>
-      <link>https://www.seznamzpravy.cz/clanek/domaci-zivot-v-cesku-petka-sz-podezreni-na-otravu-kojenecke-stravy-a-lide-prisli-o-penize-v-kryptu-298770</link>
-      <description>Denní přehled Seznam Zpráv.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/298770</guid>
-      <pubDate>Thu, 12 Feb 2026 17:00:00 +0100</pubDate>
-      <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_of_A/kPRtHkVQLlBaYpXBrrE3tilc/515e/petka-sz-krasnicky.jpeg?fl=cro,0,0,1920,1080|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Pětka SZ: Podezření na otravu kojenecké stravy a lidé přišli o peníze v kryptu</szn:title>
-        <szn:height>40</szn:height>
-        <szn:previewtype>common</szn:previewtype>
-      </szn:image>
-      <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>298770</szn:uid>
-      <szn:ccid>100236897</szn:ccid>
-    </item>
-    <item>
-      <title>Ukrajinské zbrojovky mohou poprvé od začátku války exportovat, oznámil Kyjev</title>
-      <link>https://www.seznamzpravy.cz/clanek/zahranicni-ukrajinske-zbrojovky-mohou-poprve-od-zacatku-valky-exportovat-oznamil-kyjev-298797</link>
-      <description>Poprvé od začátku války v roce 2022 mohou ukrajinské zbrojovky exportovat své výrobky do ciziny. Rozhodnutí, které má Ukrajině pomoct s expanzí zbrojního průmyslu, oznámil tajemník bezpečnostní rady Rustem Umerov tento čtvrtek.</description>
-      <guid isPermaLink="false">https://www.seznamzpravy.cz/clanek/298797</guid>
-      <pubDate>Thu, 12 Feb 2026 16:52:47 +0100</pubDate>
-      <szn:image>
-        <szn:url>https://d39-a.sdn.cz/d_39/c_img_p8_A/nPVpfd5QLLBPLz5zIFwKeIr/8129/zbrane-ukrajina.jpeg?fl=cro,0,210,4096,2304|res,1200,,3|jpg,80</szn:url>
-        <szn:title>Ukrajinské zbrojovky mohou poprvé od začátku války exportovat, oznámil Kyjev</szn:title>
-        <szn:height>40</szn:height>
-        <szn:previewtype>common</szn:previewtype>
-      </szn:image>
-      <szn:_cls>ArticlePublished</szn:_cls>
-      <szn:uid>298797</szn:uid>
-      <szn:ccid>100239469</szn:ccid>
+      <szn:uid>299202</szn:uid>
+      <szn:ccid>100243498</szn:ccid>
     </item>
   </channel>
 </rss>

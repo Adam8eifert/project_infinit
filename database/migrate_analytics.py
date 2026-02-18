@@ -7,6 +7,7 @@ Adds new tables, columns, and views for advanced analytics.
 
 import os
 import sys
+from pathlib import Path
 from sqlalchemy import text
 
 # Add project root to path

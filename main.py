@@ -58,11 +58,32 @@ def create_db():
         # Seed known movements from configuration (idempotent)
         try:
             from extracting.config_loader import get_config_loader
+            from sqlalchemy import text
+            
             loader = get_config_loader()
             known = loader.config.get('keywords', {}).get('known_movements', {}).get('new_religious_movements', [])
+            
+            print(f"🌱 Loading movements from config: {len(known)} movements found")
+            
             if known:
                 session = db.get_session()
+                
+                # Fix PostgreSQL sequence before seeding
+                if 'postgresql' in db.db_uri.lower():
+                    try:
+                        max_id_result = session.execute(text("SELECT MAX(id) FROM movements")).fetchone()
+                        max_id = max_id_result[0] if max_id_result and max_id_result[0] else 0
+                        new_seq_val = max_id + 1
+                        session.execute(text(f"SELECT setval('movements_id_seq', {new_seq_val}, false)"))
+                        session.commit()
+                        print(f"   🔧 Fixed sequence: Starting from ID {new_seq_val}")
+                    except Exception as seq_error:
+                        print(f"   ⚠️  Could not fix sequence: {seq_error}")
+                        session.rollback()
+                
                 seeded = 0
+                updated = 0
+                
                 for entry in known:
                     if not entry or not isinstance(entry, dict):
                         continue
@@ -84,19 +105,30 @@ def create_db():
                             active_status="unknown"
                         )
                         session.add(movement)
+                        # Flush after each insert to avoid sequence conflicts
+                        session.flush()
                         seeded += 1
                     else:
                         # Aktualizovat display_name pokud chybí
                         if not existing.display_name:
                             existing.display_name = display
-                            seeded += 1
+                            updated += 1
                 
-                if seeded:
-                    session.commit()
-                    print(f"✅ Seeded/updated {seeded} movements from configuration")
+                # Commit all changes at once
+                session.commit()
+                
+                if seeded > 0:
+                    print(f"✅ Seeded {seeded} new movements from configuration")
+                if updated > 0:
+                    print(f"✅ Updated {updated} existing movements with display names")
+                if seeded == 0 and updated == 0:
+                    print(f"ℹ️  All {len(known)} movements already in database")
+                    
                 session.close()
         except Exception as e:
             print(f"⚠️ Failed to seed known movements: {e}")
+            import traceback
+            traceback.print_exc()
 
     except Exception as e:
         print(f"❌ Error creating database: {e}")

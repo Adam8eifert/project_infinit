@@ -38,7 +38,20 @@ def load_movements_from_yaml() -> Dict[str, str]:
     try:
         with open(config_path, 'r', encoding='utf-8') as f:
             config = yaml.safe_load(f)
-            known = config.get('keywords', {}).get('known_movements', {}).get('new_religious_movements', [])
+            if not isinstance(config, dict):
+                return {}
+            
+            keywords = config.get('keywords', {})
+            if not isinstance(keywords, dict):
+                return {}
+            
+            known_movements = keywords.get('known_movements', {})
+            if not isinstance(known_movements, dict):
+                return {}
+            
+            known = known_movements.get('new_religious_movements', [])
+            if not isinstance(known, list):
+                return {}
             
             mapping = {}
             for entry in known:
@@ -98,10 +111,10 @@ def migrate_movements(dry_run: bool = True):
     print("-" * 70)
     
     for movement in movements:
-        canonical_current = movement.canonical_name
-        display_current = movement.display_name
+        canonical_current: str = movement.canonical_name  # type: ignore[assignment]
+        display_current: Optional[str] = movement.display_name  # type: ignore[assignment]
         
-        if not canonical_current:
+        if canonical_current is None or canonical_current == '':
             continue
         
         # Check if canonical_name is already a slug (no spaces, no uppercase, no diacritics)
@@ -113,14 +126,14 @@ def migrate_movements(dry_run: bool = True):
         
         if is_already_slug:
             # Already migrated, just update display_name if missing
-            if not display_current:
+            if display_current is None or display_current == '':
                 # Try to find display name in YAML
                 expected_display = yaml_movements.get(canonical_current)
                 if expected_display:
                     print(f"  [{movement.id}] {canonical_current}")
                     print(f"          Already slug, adding display_name: {expected_display}")
                     if not dry_run:
-                        movement.display_name = expected_display
+                        movement.display_name = expected_display  # type: ignore[assignment]
                     stats['updated'] += 1
                 else:
                     stats['skipped_already_canonical'] += 1
@@ -157,8 +170,8 @@ def migrate_movements(dry_run: bool = True):
             
             if not dry_run:
                 try:
-                    movement.canonical_name = final_canonical
-                    movement.display_name = expected_display
+                    movement.canonical_name = final_canonical  # type: ignore[assignment]
+                    movement.display_name = expected_display  # type: ignore[assignment]
                     stats['updated'] += 1
                 except Exception as e:
                     print(f"          ❌ Error: {e}")
