@@ -255,11 +255,13 @@ def process_entities():
                 'církev', 'cirkev', 'sekta', 'hnutí', 'hnuti', 'kult',
                 'ministerstvo', 'ministerstva', 'vláda', 'vláda',
                 'náboženství', 'nabozenstvi', 'společnost', 'spolecnost',
-                'organizace', 'skupina', 'komunita'
+                'organizace', 'skupina', 'komunita',
+                'náboženské hnutí (obecně)'
             ]
             
             blacklist_contains = [
                 'ministerstvo kultury', 'ministerstva kultury',
+                'obecně', 'obecný', 'obecné', '(obecně)', '(obecný)',
                 '##', 'hodnutími', 'je ', 'jsou ', 'byla ', 'bylo ',
                 'vnímají', 'používány', 'kritizovány', 'získává',
                 'stává', 'mohou', 'mají', 'spočívá'
