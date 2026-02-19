@@ -6,6 +6,7 @@ from processing.nlp_analysis import CzechTextAnalyzer
 from processing.import_csv_to_db import CSVtoDatabaseLoader
 from processing.import_pdf_to_db import DocumentsToDatabase, PDFtoDatabaseLoader
 from extracting.keywords import ALL_KNOWN_MOVEMENTS
+from database.utils import slugify
 
 def run_spiders():
     """Run all defined Scrapy spiders (RSS, API, web and social media)"""
@@ -251,7 +252,7 @@ def process_entities():
                         any(keyword in entity_text.lower() for keyword in ['hnutí', 'sekta', 'církev', 'kult'])):
                         potential_movements.append(entity_text)
             
-            # From regex patterns - look for "sekta X", "hnutí Y", etc. but only for known movements
+            # From regex patterns - look for "sekta X", "hnutí Y" (Czech religious keywords), etc. but only for known movements
             for keyword in ['sekta', 'hnutí', 'církev', 'kult']:
                 # Pattern: keyword + known movement name
                 for known_movement in known_nsm:
@@ -275,25 +276,29 @@ def process_entities():
                 # Flush session to ensure previous additions are visible
                 session.flush()
                 
+                # Slugify the extracted name
+                canonical_slug = slugify(movement_name)
+                
                 # Check if this is a known canonical name
-                if movement_name in known_nsm:
+                if canonical_slug in known_nsm:
                     # This is a canonical name - create or update movement
                     existing = session.query(Movement).filter(
-                        Movement.canonical_name.ilike(movement_name)
+                        Movement.canonical_name == canonical_slug
                     ).first()
                     
                     if not existing:
                         movement = Movement(
-                            canonical_name=movement_name,
+                            canonical_name=canonical_slug,
+                            display_name=movement_name,
                             category="religious",
                             description=f"Extracted from source: {source.url}",
                             active_status="unknown"
                         )
                         session.add(movement)
                         movements_created += 1
-                        print(f"  ➕ Created movement: {movement_name}")
+                        print(f"  ➕ Created movement: {canonical_slug} (display: {movement_name})")
                     else:
-                        print(f"  ⏭️  Movement already exists: {movement_name}")
+                        print(f"  ⏭️  Movement already exists: {canonical_slug}")
                 else:
                     # This is not a canonical name - find best match and create alias
                     best_match, score = extractOne(movement_name, known_nsm, scorer=fuzz.ratio)
@@ -304,14 +309,16 @@ def process_entities():
                         ).first()
                         
                         if not canonical_movement:
-                            # Create the canonical movement first
+                            # Create the canonical movement first (best_match is already a slug)
                             canonical_movement = Movement(
                                 canonical_name=best_match,
+                                display_name=best_match.replace('-', ' ').title(),  # Basic display name
                                 category="religious",
                                 description=f"Created for alias: {movement_name}",
                                 active_status="unknown"
                             )
                             session.add(canonical_movement)
+                            session.flush()  # Flush to get auto-generated ID before creating alias
                             movements_created += 1
                             print(f"  ➕ Created canonical movement: {best_match}")
                         
@@ -333,21 +340,23 @@ def process_entities():
                         else:
                             print(f"  ⏭️  Alias already exists: {movement_name}")
                     else:
-                        # Low confidence - create as new canonical movement anyway
+                        # Low confidence - create as new canonical movement with slug
+                        movement_slug = slugify(movement_name)
                         existing = session.query(Movement).filter(
-                            Movement.canonical_name.ilike(movement_name)
+                            Movement.canonical_name == movement_slug
                         ).first()
                         
                         if not existing:
                             movement = Movement(
-                                canonical_name=movement_name,
+                                canonical_name=movement_slug,
+                                display_name=movement_name,
                                 category="religious",
                                 description=f"Extracted from source: {source.url} (low confidence match)",
                                 active_status="unknown"
                             )
                             session.add(movement)
                             movements_created += 1
-                            print(f"  ➕ Created movement (low confidence): {movement_name}")
+                            print(f"  ➕ Created movement (low confidence): {movement_slug} (display: {movement_name})")
                         else:
                             print(f"  ⏭️  Movement already exists: {movement_name}")
             locations = []

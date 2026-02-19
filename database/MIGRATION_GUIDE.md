@@ -3,6 +3,7 @@
 ## Overview
 
 This migration adds support for canonical slugs + display names architecture:
+
 - **canonical_name**: normalized slug without diacritics (e.g., `"hnuti-hare-krsna"`)
 - **display_name**: official name with diacritics (e.g., `"Hnutí Hare Kršna"`)
 
@@ -17,6 +18,7 @@ Run the complete automated migration workflow:
 ```
 
 This will:
+
 1. Add `display_name` column to movements table
 2. Show preview of data changes (dry run)
 3. Ask for confirmation
@@ -37,6 +39,7 @@ python database/run_migration.py 002_add_display_name.sql --auto
 ```
 
 **Compatible with:**
+
 - PostgreSQL ✓
 - SQLite ✓
 
@@ -55,19 +58,22 @@ python processing/migrate_canonical_names.py --live
 ## What Gets Changed
 
 ### Schema Changes
+
 - New column: `movements.display_name` (VARCHAR(255), nullable)
 - New index: `idx_movements_display_name`
 
 ### Data Changes
 
 **Before:**
-```
+
+```text
 canonical_name: "Hnutí Hare Kršna"
 display_name:   NULL
 ```
 
 **After:**
-```
+
+```text
 canonical_name: "hnuti-hare-krsna"
 display_name:   "Hnutí Hare Kršna"
 ```
@@ -103,7 +109,8 @@ session.close()
 ```
 
 Expected output:
-```
+
+```text
 hnuti-hare-krsna               → Hnutí Hare Kršna
 cirkev-sjednoceni              → Církev sjednocení
 scientologicka-cirkev          → Scientologická církev
@@ -124,7 +131,7 @@ You need to run Step 1 (schema migration) first.
 
 Check that `extracting/sources_config.yaml` uses the new format:
 
-```yaml
+```yamlyaml
 known_movements:
   new_religious_movements:
     - canonical: "hnuti-gralu"
@@ -132,7 +139,8 @@ known_movements:
 ```
 
 Not the old format:
-```yaml
+
+```yamlyaml
 known_movements:
   new_religious_movements: ["Hnutí Grálu", ...]
 ```
@@ -142,6 +150,7 @@ known_movements:
 After successful migration:
 
 1. Run the ETL pipeline:
+
    ```bash
    python main.py
    ```
