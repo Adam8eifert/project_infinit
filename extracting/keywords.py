@@ -53,10 +53,7 @@ def _load_keywords_config() -> None:
                                     if display:
                                         ALL_KNOWN_MOVEMENTS.append(display)
                                 elif isinstance(entry, str):
-                                    # Fallback pro starý formát
-                                    ALL_KNOWN_MOVEMENTS.append(entry)
-                
-                logger.info(f"✓ Loaded {len(SEARCH_TERMS)} search terms, {len(ALL_KNOWN_MOVEMENTS)} known movements from sources_config.yaml")
+                                # Fallback for legacy format
     except FileNotFoundError:
         logger.error(f"❌ Config file not found: {CONFIG_PATH}")
     except Exception as e:

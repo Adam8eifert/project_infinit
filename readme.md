@@ -24,16 +24,37 @@ An ETL pipeline for collecting, analyzing, and visualizing information about new
 
 ## 🔧 Technology Stack
 
+### Core Technologies
 - **Python 3.10+** - Core programming language
-- **Scrapy** - Web scraping framework with custom settings
-- **spaCy** - NLP toolkit for Czech language processing
-- **Hugging Face Transformers** - Advanced NLP models for NER and sentiment
-- **SQLAlchemy** - Database ORM with PostgreSQL/SQLite support
-- **PRAW** - Reddit API client
-- **Tweepy** - X (Twitter) API client
-- **pandas** - Data manipulation and CSV processing
+- **Mamba/Conda** - Package and environment management
+- **PostgreSQL** - Primary database (with SQLite support)
+
+### Web Scraping
+- **Scrapy 2.14+** - Web scraping framework with ethical settings
+- **Feedparser 6.0+** - RSS/Atom feed parsing
+- **Requests 2.31+** - HTTP library
+
+### Natural Language Processing
+- **Stanza 1.8+** - Czech language NLP pipeline (tokenization, POS, NER, lemmatization)
+- **Hugging Face Transformers 4.52+** - Advanced NLP models for sentiment analysis
+- **spaCy 3.7+** (legacy) - Alternative NLP toolkit
+
+### Data Processing
+- **SQLAlchemy 2.0+** - Database ORM with PostgreSQL/SQLite support
+- **pandas 2.3+** - Data manipulation and CSV processing
+- **PyMuPDF (fitz) 1.23+** - PDF text extraction
+- **python-docx 1.1+** - Word document processing (.doc, .docx)
+- **FuzzyWuzzy 0.18+** - Fuzzy string matching for entity resolution
+
+### API Clients
+- **PRAW 7.8+** - Reddit API client
+- **Tweepy 4.14+** - X (Twitter) API client
+
+### Development & Testing
 - **pytest** - Testing framework with mocking
+- **Pyright/Pylance** - Type checking and IDE support
 - **PyYAML** - Configuration management
+- **python-dotenv 1.0+** - Environment variable management
 
 ## 🗂️ Project Structure
 
@@ -54,6 +75,7 @@ project_infinit/
 │   ├── nlp_analysis.py       # NLP pipeline with Czech support
 │   ├── import_csv_to_db.py   # CSV database ingestion utilities
 │   ├── import_pdf_to_db.py   # PDF processing and ingestion
+│   ├── manual_csv.py         # Manual CSV processing utilities
 │   └── __pycache__/         # Python bytecode
 ├── database/              # Database layer
 │   ├── db_loader.py          # SQLAlchemy models and connections
@@ -70,38 +92,62 @@ project_infinit/
 │   ├── views.sql            # Database views
 │   ├── deduplicate_sources.py # Source deduplication utilities
 │   ├── ANALYTICS_README.md  # Analytics documentation
+│   ├── DEDUPLICATION_README.md # Deduplication documentation
 │   ├── migrate_analytics.py # Analytics migration script
 │   ├── migrations/          # Database migrations
 │   └── __pycache__/         # Python bytecode
 ├── testing/               # Test suite
 │   ├── test_*.py           # Unit tests for all modules
+│   ├── conftest.py         # Pytest configuration
 │   ├── README.md           # Testing documentation
 │   └── __pycache__/         # Python bytecode
 ├── export/                # Output files and exports
 │   ├── csv/               # Scraped and processed CSV data
 │   └── to_powerbi.py      # Power BI export utilities
-├── data/                  # Input data directory
+├── data/                  # Application data directory
 ├── academic_data/         # Academic documents (PDF, DOC, DOCX)
+│   └── README.md          # Academic data documentation
+├── csv_manual/            # Manual CSV imports
+│   └── README.md          # Manual CSV documentation
 ├── nnh-db/                # Docker database setup
 │   ├── docker             # Docker files
 │   └── docker-compose.yml # Docker Compose configuration
 ├── .github/               # GitHub configuration
 │   └── copilot-instructions.md # AI assistant instructions
 ├── config.py              # Database and app configuration
+├── config_loader.py       # Configuration loader utility
+├── csv_utils.py           # CSV utility functions
 ├── main.py                # Main ETL orchestrator
-├── requirements.txt       # Python dependencies
-├── environment.yml        # Conda environment
+├── seed_movements.py      # Seed movements and aliases utility
+├── environment.yml        # Conda/Mamba environment
 ├── pyrightconfig.json    # Pyright type checking config
+├── .gitignore             # Git ignore patterns
 ├── LICENSE                # Project license
 ├── SOCIAL_MEDIA_SETUP.md  # Social media API setup guide
-├── import_log.txt         # CSV import log
-├── pdf_import_log.txt     # PDF import log
 └── readme.md             # This file
 ```
 
 ## 🚀 Quick Start
 
 ### 1. Clone and Setup Environment
+
+**Option A: Using Mamba/Conda (Recommended)**
+
+```bash
+git clone https://github.com/Adam8eifert/project_infinit.git
+cd project_infinit
+
+# Create Conda environment from environment.yml
+mamba create -n project_infinit -y --file environment.yml
+# or with conda:
+# conda env create -f environment.yml
+
+# Activate environment
+mamba activate project_infinit
+# or: conda activate project_infinit
+```
+
+**Option B: Using pip/venv**
 
 ```bash
 git clone https://github.com/Adam8eifert/project_infinit.git
@@ -120,7 +166,10 @@ pip install -r requirements.txt
 ### 2. Setup NLP Models
 
 ```bash
-# Download Czech spaCy model
+# Download Stanza Czech model (primary NLP pipeline)
+python -c "import stanza; stanza.download('cs')"
+
+# Optional: Download spaCy Czech model (legacy support)
 python -m spacy download cs_core_news_md
 ```
 
@@ -226,12 +275,18 @@ pytest testing/test_nlp_analysis.py -v
 
 ### Core Requirements
 
-- Python 3.10+
-- Scrapy 2.13+
+- Python 3.10.19+
+- Scrapy 2.14+
 - SQLAlchemy 2.0+
-- spaCy 3.7+
-- transformers 4.52+
+- Stanza 1.8+ (primary NLP)
+- Hugging Face Transformers 4.52+
 - pandas 2.3+
+
+### NLP & Text Processing
+
+- stanza 1.8+ (Czech NLP: tokenization, POS, NER, lemmatization)
+- transformers 4.52+ (sentiment analysis: WikiNeuralNER)
+- spaCy 3.7+ (legacy support)
 
 ### API Clients
 
@@ -242,16 +297,24 @@ pytest testing/test_nlp_analysis.py -v
 
 ### Data Processing
 
-- PyMuPDF 1.23+ (PDF extraction)
+- PyMuPDF (fitz) 1.23+ (PDF text extraction)
 - python-docx 1.1+ (Word documents: .doc, .docx)
 - openpyxl (Excel)
-- fuzzywuzzy 0.18+ (text matching)
-- python-dotenv 1.0+ (environment)
+- fuzzywuzzy 0.18+ (fuzzy string matching)
+- python-Levenshtein (fast string matching)
+- python-dotenv 1.0+ (environment variables)
+
+### Database
+
+- psycopg2-binary 2.9+ (PostgreSQL adapter)
+- SQLAlchemy 2.0+
 
 ### Development
 
-- pytest (testing)
+- pytest 8.0+ (testing)
+- pytest-mock (test mocking)
 - pyright (type checking)
+- pylance (IDE support)
 
 ## 📊 Outputs
 
@@ -333,16 +396,37 @@ ETL pipeline pro sběr, analýzu a vizualizaci informací o nových nábožensk�
 
 ## 🔧 Technologický stack
 
+### Základní technologie
 - **Python 3.10+** - Základní programovací jazyk
-- **Scrapy** - Framework pro web scraping s vlastními nastaveními
-- **spaCy** - NLP toolkit pro zpracování češtiny
-- **Hugging Face Transformers** - Pokročilé NLP modely pro NER a sentiment
-- **SQLAlchemy** - Database ORM s podporou PostgreSQL/SQLite
-- **PRAW** - Reddit API klient
-- **Tweepy** - X (Twitter) API klient
-- **pandas** - Manipulace s daty a CSV zpracování
+- **Mamba/Conda** - Správa balíčků a prostředí
+- **PostgreSQL** - Primární databáze (s podporou SQLite)
+
+### Web Scraping
+- **Scrapy 2.14+** - Framework pro web scraping s etickými nastaveními
+- **Feedparser 6.0+** - Parsování RSS/Atom feedů
+- **Requests 2.31+** - HTTP knihovna
+
+### Zpracování přirozeného jazyka
+- **Stanza 1.8+** - České NLP pipeline (tokenizace, POS, NER, lemmatizace)
+- **Hugging Face Transformers 4.52+** - Pokročilé NLP modely pro analýzu sentimentu
+- **spaCy 3.7+** (legacy) - Alternativní NLP toolkit
+
+### Zpracování dat
+- **SQLAlchemy 2.0+** - Database ORM s podporou PostgreSQL/SQLite
+- **pandas 2.3+** - Manipulace s daty a CSV zpracování
+- **PyMuPDF (fitz) 1.23+** - Extrakce textu z PDF
+- **python-docx 1.1+** - Zpracování Word dokumentů (.doc, .docx)
+- **FuzzyWuzzy 0.18+** - Fuzzy porovnávání řetězců pro rozlišení entit
+
+### API klienti
+- **PRAW 7.8+** - Reddit API klient
+- **Tweepy 4.14+** - X (Twitter) API klient
+
+### Vývoj a testování
 - **pytest** - Testovací framework s mocking
+- **Pyright/Pylance** - Type checking a IDE podpora
 - **PyYAML** - Správa konfigurace
+- **python-dotenv 1.0+** - Správa environment proměnných
 
 ## 🗂️ Struktura projektu
 
@@ -353,15 +437,18 @@ project_infinit/
 │   ├── spider_settings.py     # Etická scraping nastavení
 │   ├── keywords.py           # Utility pro filtrování klíčových slov
 │   ├── config_loader.py      # Načítání YAML konfigurace
-│   ├── rss_spider.py        # Univezální RSS feed scraper
-│   ├── api_spider.py        # Univezální API scraper
+│   ├── rss_spider.py        # Univerzální RSS feed scraper
+│   ├── api_spider.py        # Univerzální API scraper
 │   ├── social_media_spider.py # Social media API scraper
 │   ├── google_spider.py     # Google News scraper
 │   ├── medium_seznam_spider.py # Medium/Seznam scraper
 │   └── __pycache__/         # Python bytecode
 ├── processing/            # Zpracování a analýza dat
 │   ├── nlp_analysis.py       # NLP pipeline s podporou češtiny
-│   └── import_csv_to_db.py   # Utility pro import do databáze
+│   ├── import_csv_to_db.py   # Utility pro import CSV do databáze
+│   ├── import_pdf_to_db.py   # Zpracování a import PDF
+│   ├── manual_csv.py         # Manuální zpracování CSV
+│   └── __pycache__/         # Python bytecode
 ├── database/              # Databázová vrstva
 │   ├── db_loader.py          # SQLAlchemy modely a připojení
 │   ├── models/              # Databázové modely
@@ -369,22 +456,28 @@ project_infinit/
 │   │   ├── movement.py      # Model hnutí
 │   │   ├── alias.py         # Model aliasů
 │   │   └── location.py      # Model lokací
-│   └── schema.sql           # Databázové schéma
+│   ├── schema.sql           # Databázové schéma
+│   ├── views.sql            # Databázové views
+│   ├── migrations/          # Databázové migrace
+│   └── __pycache__/         # Python bytecode
 ├── testing/               # Testovací sada
 │   ├── test_*.py           # Unit testy pro všechny moduly
+│   ├── conftest.py         # Pytest konfigurace
 │   └── README.md           # Dokumentace testování
 ├── export/                # Výstupní soubory a exporty
 │   ├── csv/               # Scraped a zpracovaná CSV data
 │   └── to_powerbi.py      # Utility pro Power BI export
-├── data/                  # Vstupní data
-│   ├── pdf/               # PDF dokumenty pro zpracování
-│   └── xlsx/              # Excel soubory pro konverzi
-├── dags/                  # Apache Airflow DAGs (volitelné)
+├── data/                  # Aplikační data
+├── academic_data/         # Akademické dokumenty (PDF, DOC, DOCX)
+│   └── README.md          # Dokumentace akademických dat
+├── csv_manual/            # Manuální CSV importy
+│   └── README.md          # Dokumentace manuálních CSV
+├── nnh-db/                # Docker databázové nastavení
 ├── .github/               # GitHub konfigurace
 ├── config.py              # Konfigurace databáze a aplikace
 ├── main.py                # Hlavní ETL orchestrátor
-├── requirements.txt       # Python závislosti
-├── environment.yml        # Conda prostředí
+├── seed_movements.py      # Utility pro seed hnutí a aliasů
+├── environment.yml        # Conda/Mamba prostředí
 ├── pyrightconfig.json    # Konfigurace Pyright type checking
 └── readme.md             # Tento soubor
 ```
@@ -392,6 +485,24 @@ project_infinit/
 ## 🇨🇿 Rychlý start
 
 ### 1a. Klonování a příprava prostředí (CZ)
+
+**Možnost A: Použití Mamba/Conda (Doporučeno)**
+
+```bash
+git clone https://github.com/Adam8eifert/project_infinit.git
+cd project_infinit
+
+# Vytvoření Conda prostředí z environment.yml
+mamba create -n project_infinit -y --file environment.yml
+# nebo s conda:
+# conda env create -f environment.yml
+
+# Aktivace prostředí
+mamba activate project_infinit
+# nebo: conda activate project_infinit
+```
+
+**Možnost B: Použití pip/venv**
 
 ```bash
 git clone https://github.com/Adam8eifert/project_infinit.git
@@ -410,7 +521,10 @@ pip install -r requirements.txt
 ### 2. Nastavení NLP modelů
 
 ```bash
-# Stažení českého spaCy modelu
+# Stažení Stanza českého modelu (primární NLP pipeline)
+python -c "import stanza; stanza.download('cs')"
+
+# Volitelné: Stažení spaCy českého modelu (legacy podpora)
 python -m spacy download cs_core_news_md
 ```
 
@@ -514,12 +628,18 @@ pytest testing/test_nlp_analysis.py -v
 
 ### Základní požadavky
 
-- Python 3.10+
-- Scrapy 2.13+
+- Python 3.10.19+
+- Scrapy 2.14+
 - SQLAlchemy 2.0+
-- spaCy 3.7+
-- transformers 4.52+
+- Stanza 1.8+ (primární NLP)
+- Hugging Face Transformers 4.52+
 - pandas 2.3+
+
+### NLP & Zpracování textu
+
+- stanza 1.8+ (české NLP: tokenizace, POS, NER, lemmatizace)
+- transformers 4.52+ (analýza sentimentu: WikiNeuralNER)
+- spaCy 3.7+ (legacy podpora)
 
 ### API klienti
 
@@ -530,15 +650,24 @@ pytest testing/test_nlp_analysis.py -v
 
 ### Zpracování dat
 
-- PyMuPDF 1.23+ (PDF)
+- PyMuPDF (fitz) 1.23+ (extrakce textu z PDF)
+- python-docx 1.1+ (Word dokumenty: .doc, .docx)
 - openpyxl (Excel)
-- fuzzywuzzy 0.18+ (porovnávání textu)
-- python-dotenv 1.0+ (prostředí)
+- fuzzywuzzy 0.18+ (fuzzy porovnávání řetězců)
+- python-Levenshtein (rychlé porovnávání řetězců)
+- python-dotenv 1.0+ (environment proměnné)
+
+### Databáze
+
+- psycopg2-binary 2.9+ (PostgreSQL adapter)
+- SQLAlchemy 2.0+
 
 ### Vývoj
 
-- pytest (testování)
+- pytest 8.0+ (testování)
+- pytest-mock (test mocking)
 - pyright (type checking)
+- pylance (IDE podpora)
 
 ## 📊 Výstupy
 
@@ -596,11 +725,6 @@ Databáze používá SQLAlchemy ORM s následujícími hlavními entitami:
 
 ---
 
-Version: 2.1
-Author: Adam Šeifert
-License: MIT
-Last updated: 2025-12-18
-
 ### Setting Up Social Media Sources
 
 To enable Reddit and X (Twitter) data collection:
@@ -642,4 +766,4 @@ To enable Reddit and X (Twitter) data collection:
 
 ---
 
-**Version:** 2.1 | **Author:** Adam Seifert | **License:** MIT | **Updated:** 2025-02-13
+**Version:** 2.2 | **Author:** Adam Šeifert | **License:** MIT | **Updated:** 2026-02-19
