@@ -24,7 +24,7 @@ if len(db_movements) < len(yaml_movements):
     print()
     print("Database movements:")
     for m in db_movements:
-        print(f"  [{m.id}] {m.canonical_name} → {m.display_name}")
+        print(f"  [{m.id}] {m.canonical_name}")
     
     print()
     print("🔧 Solution: The seeding logic will add missing movements on next run.")

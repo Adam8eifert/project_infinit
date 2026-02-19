@@ -6,7 +6,6 @@ from processing.nlp_analysis import CzechTextAnalyzer
 from processing.import_csv_to_db import CSVtoDatabaseLoader
 from processing.import_pdf_to_db import DocumentsToDatabase, PDFtoDatabaseLoader
 from extracting.keywords import ALL_KNOWN_MOVEMENTS
-from database.utils import slugify
 
 def run_spiders():
     """Run all defined Scrapy spiders (RSS, API, web and social media)"""
@@ -83,24 +82,20 @@ def create_db():
                         session.rollback()
                 
                 seeded = 0
-                updated = 0
                 
-                for entry in known:
-                    if not entry or not isinstance(entry, dict):
+                for movement_name in known:
+                    if not movement_name or not isinstance(movement_name, str):
                         continue
                     
-                    canonical = entry.get('canonical', '').strip()
-                    display = entry.get('display', '').strip()
-                    
-                    if not canonical or not display:
+                    movement_name = movement_name.strip()
+                    if not movement_name:
                         continue
                     
-                    # Zkontrolovat podle canonical_name (unique key)
-                    existing = session.query(Movement).filter(Movement.canonical_name == canonical).first()
+                    # Check by canonical_name (unique key with diacritics)
+                    existing = session.query(Movement).filter(Movement.canonical_name == movement_name).first()
                     if not existing:
                         movement = Movement(
-                            canonical_name=canonical,  # slug bez diakritiky
-                            display_name=display,       # oficiální název s diakritikou
+                            canonical_name=movement_name,  # Name with diacritics (single source of truth)
                             category="religious",
                             description="Seeded from extracting/sources_config.yaml",
                             active_status="unknown"
@@ -109,20 +104,13 @@ def create_db():
                         # Flush after each insert to avoid sequence conflicts
                         session.flush()
                         seeded += 1
-                    else:
-                        # Aktualizovat display_name pokud chybí
-                        if not existing.display_name:
-                            existing.display_name = display
-                            updated += 1
                 
                 # Commit all changes at once
                 session.commit()
                 
                 if seeded > 0:
                     print(f"✅ Seeded {seeded} new movements from configuration")
-                if updated > 0:
-                    print(f"✅ Updated {updated} existing movements with display names")
-                if seeded == 0 and updated == 0:
+                if seeded == 0:
                     print(f"ℹ️  All {len(known)} movements already in database")
                     
                 session.close()
@@ -261,13 +249,41 @@ def process_entities():
             
             # Remove duplicates and filter
             potential_movements = list(set(potential_movements))
-            # Filter out obviously wrong names (too long, contains strange words)
+            
+            # Blacklist - generic/nonsense terms
+            blacklist_exact = [
+                'církev', 'cirkev', 'sekta', 'hnutí', 'hnuti', 'kult',
+                'ministerstvo', 'ministerstva', 'vláda', 'vláda',
+                'náboženství', 'nabozenstvi', 'společnost', 'spolecnost',
+                'organizace', 'skupina', 'komunita'
+            ]
+            
+            blacklist_contains = [
+                'ministerstvo kultury', 'ministerstva kultury',
+                '##', 'hodnutími', 'je ', 'jsou ', 'byla ', 'bylo ',
+                'vnímají', 'používány', 'kritizovány', 'získává',
+                'stává', 'mohou', 'mají', 'spočívá'
+            ]
+            
+            # Filter out obviously wrong names
             filtered_movements = []
             for m in potential_movements:
+                m_lower = m.lower()
                 words = m.split()
-                if (len(m) > 5 and len(m) < 80 and len(words) <= 5 and
-                    not any(word in m.lower() for word in ['jsou', 'je', 'byla', 'bylo', 'tak', 'prý', 'spíše', 'až', 'po', 'jako', 'má', 'vnímají', 'používány', 'patřil', 'navazuje', 'kritizovány', 'získává', 'stává', 'jednotný', 'nejsou', 'mohou', 'mají', 'spočívá', 'především', 'panuje', 'přísná', 'kázeň', 'pyramidová', 'ztrácí', 'vliv', 'nejednoznačné'])):
-                    filtered_movements.append(m)
+                
+                # Skip if exact match with blacklist
+                if m_lower in blacklist_exact:
+                    continue
+                
+                # Skip if contains blacklisted phrase
+                if any(phrase in m_lower for phrase in blacklist_contains):
+                    continue
+                
+                # Skip if too short, too long, or too many words
+                if not (5 < len(m) < 80 and len(words) <= 6):
+                    continue
+                
+                filtered_movements.append(m)
             
             potential_movements = filtered_movements[:3]  # Limit to 3 per source
             
@@ -276,43 +292,38 @@ def process_entities():
                 # Flush session to ensure previous additions are visible
                 session.flush()
                 
-                # Slugify the extracted name
-                canonical_slug = slugify(movement_name)
-                
-                # Check if this is a known canonical name
-                if canonical_slug in known_nsm:
-                    # This is a canonical name - create or update movement
+                # Check if this is a known movement name (direct match with diacritics)
+                if movement_name in known_nsm:
+                    # Direct match - create or update movement
                     existing = session.query(Movement).filter(
-                        Movement.canonical_name == canonical_slug
+                        Movement.canonical_name == movement_name
                     ).first()
                     
                     if not existing:
                         movement = Movement(
-                            canonical_name=canonical_slug,
-                            display_name=movement_name,
+                            canonical_name=movement_name,  # Name with diacritics (single source of truth)
                             category="religious",
                             description=f"Extracted from source: {source.url}",
                             active_status="unknown"
                         )
                         session.add(movement)
                         movements_created += 1
-                        print(f"  ➕ Created movement: {canonical_slug} (display: {movement_name})")
+                        print(f"  ➕ Created movement: {movement_name}")
                     else:
-                        print(f"  ⏭️  Movement already exists: {canonical_slug}")
+                        print(f"  ⏭️  Movement already exists: {movement_name}")
                 else:
-                    # This is not a canonical name - find best match and create alias
+                    # This is not a direct match - find best match and create alias
                     best_match, score = extractOne(movement_name, known_nsm, scorer=fuzz.ratio)
                     if score >= 80:  # High confidence match
                         # Find the movement
                         canonical_movement = session.query(Movement).filter(
-                            Movement.canonical_name.ilike(best_match)
+                            Movement.canonical_name == best_match
                         ).first()
                         
                         if not canonical_movement:
-                            # Create the canonical movement first (best_match is already a slug)
+                            # Create the canonical movement first
                             canonical_movement = Movement(
-                                canonical_name=best_match,
-                                display_name=best_match.replace('-', ' ').title(),  # Basic display name
+                                canonical_name=best_match,  # Name with diacritics (single source of truth)
                                 category="religious",
                                 description=f"Created for alias: {movement_name}",
                                 active_status="unknown"
@@ -325,7 +336,7 @@ def process_entities():
                         # Check if alias already exists
                         existing_alias = session.query(Alias).filter(
                             Alias.movement_id == canonical_movement.id,
-                            Alias.alias.ilike(movement_name)
+                            Alias.alias == movement_name
                         ).first()
                         
                         if not existing_alias:
@@ -340,23 +351,21 @@ def process_entities():
                         else:
                             print(f"  ⏭️  Alias already exists: {movement_name}")
                     else:
-                        # Low confidence - create as new canonical movement with slug
-                        movement_slug = slugify(movement_name)
+                        # Low confidence - create as new canonical movement
                         existing = session.query(Movement).filter(
-                            Movement.canonical_name == movement_slug
+                            Movement.canonical_name == movement_name
                         ).first()
                         
                         if not existing:
                             movement = Movement(
-                                canonical_name=movement_slug,
-                                display_name=movement_name,
+                                canonical_name=movement_name,  # Name with diacritics (single source of truth)
                                 category="religious",
                                 description=f"Extracted from source: {source.url} (low confidence match)",
                                 active_status="unknown"
                             )
                             session.add(movement)
                             movements_created += 1
-                            print(f"  ➕ Created movement (low confidence): {movement_slug} (display: {movement_name})")
+                            print(f"  ➕ Created movement (low confidence): {movement_name}")
                         else:
                             print(f"  ⏭️  Movement already exists: {movement_name}")
             locations = []

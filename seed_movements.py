@@ -60,18 +60,16 @@ def seed_movements():
     seeded = 0
     skipped = 0
     
-    for entry in movements_config:
-        if not isinstance(entry, dict):
+    for movement_name in movements_config:
+        if not isinstance(movement_name, str):
             continue
         
-        canonical = entry.get('canonical', '').strip()
-        display = entry.get('display', '').strip()
-        
-        if not canonical or not display:
+        movement_name = movement_name.strip()
+        if not movement_name:
             continue
         
-        # Check if already exists
-        existing = session.query(Movement).filter(Movement.canonical_name == canonical).first()
+        # Check if already exists (canonical_name with diacritics)
+        existing = session.query(Movement).filter(Movement.canonical_name == movement_name).first()
         
         if existing:
             skipped += 1
@@ -79,8 +77,7 @@ def seed_movements():
         
         # Create new movement
         movement = Movement(
-            canonical_name=canonical,
-            display_name=display,
+            canonical_name=movement_name,  # Name with diacritics (single source of truth)
             category="religious",
             description="Seeded from extracting/sources_config.yaml",
             active_status="unknown"
@@ -90,9 +87,9 @@ def seed_movements():
             session.add(movement)
             session.flush()  # Flush immediately to get ID assigned
             seeded += 1
-            print(f"  ✅ Seeded: {canonical} → {display}")
+            print(f"  ✅ Seeded: {movement_name}")
         except Exception as e:
-            print(f"  ❌ Failed to seed {canonical}: {e}")
+            print(f"  ❌ Failed to seed {movement_name}: {e}")
             session.rollback()
             # Re-establish session
             session = db.get_session()
@@ -138,15 +135,15 @@ def seed_movements():
     aliases_skipped = 0
     aliases_failed = 0
     
-    for canonical_slug, alias_list in aliases_config.items():
+    for movement_name, alias_list in aliases_config.items():
         if not isinstance(alias_list, list):
             continue
         
-        # Find the movement by canonical name
-        movement = session.query(Movement).filter(Movement.canonical_name == canonical_slug).first()
+        # Find the movement by canonical name (with diacritics)
+        movement = session.query(Movement).filter(Movement.canonical_name == movement_name).first()
         
         if not movement:
-            print(f"  ⚠️  Movement not found for canonical: {canonical_slug}")
+            print(f"  ⚠️  Movement not found: {movement_name}")
             aliases_failed += len(alias_list)
             continue
         
@@ -178,9 +175,9 @@ def seed_movements():
                 session.add(alias)
                 session.flush()  # Flush immediately
                 aliases_seeded += 1
-                print(f"  ✅ {canonical_slug} → {alias_name}")
+                print(f"  ✅ {movement_name} → {alias_name}")
             except Exception as e:
-                print(f"  ❌ Failed to seed alias '{alias_name}' for {canonical_slug}: {e}")
+                print(f"  ❌ Failed to seed alias '{alias_name}' for {movement_name}: {e}")
                 session.rollback()
                 # Re-establish session
                 session = db.get_session()

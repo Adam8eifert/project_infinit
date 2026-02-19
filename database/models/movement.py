@@ -8,8 +8,7 @@ class Movement(Base):
     __tablename__ = "movements"
 
     id = Column(Integer, primary_key=True, autoincrement=True)
-    canonical_name = Column(String(255), nullable=False, unique=True, index=True)  # slug without diacritics
-    display_name = Column(String(255), nullable=True)  # official name with diacritics
+    canonical_name = Column(String(255), nullable=False, unique=True, index=True)  # Official name with diacritics (single source of truth)
     
     # Legacy fields (from old schema)
     registration = Column(Integer, nullable=True)

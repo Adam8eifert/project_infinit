@@ -43,17 +43,15 @@ def _load_keywords_config() -> None:
                 KNOWN_MOVEMENTS = kw_cfg.get("known_movements", {})
                 YEAR_PATTERNS = kw_cfg.get("year_patterns", [])
                 
-                # Flatten known movements (new format: [{canonical, display}, ...])
+                # Flatten known movements (simple list format with diacritics)
                 if isinstance(KNOWN_MOVEMENTS, dict):
                     for group_movements in KNOWN_MOVEMENTS.values():
                         if isinstance(group_movements, list):
                             for entry in group_movements:
-                                if isinstance(entry, dict):
-                                    display = entry.get('display', '')
-                                    if display:
-                                        ALL_KNOWN_MOVEMENTS.append(display)
-                                elif isinstance(entry, str):
-                                # Fallback for legacy format
+                                if isinstance(entry, str):
+                                    ALL_KNOWN_MOVEMENTS.append(entry)
+                
+                logger.info(f"✓ Loaded {len(SEARCH_TERMS)} search terms, {len(ALL_KNOWN_MOVEMENTS)} known movements from sources_config.yaml")
     except FileNotFoundError:
         logger.error(f"❌ Config file not found: {CONFIG_PATH}")
     except Exception as e:
@@ -72,10 +70,10 @@ def match_movement_from_text(text: str, min_score: int = 80) -> Optional[int]:
     Returns movement_id from database if found, None otherwise.
     
     Matching strategy:
-    1. Direct substring match on display_name (with diacritics)
-    2. Check movement aliases (config, with diacritics)
-    3. Fuzzy matching on display_name and aliases
-    4. Return movement_id by canonical_name lookup
+    1. Direct substring match on canonical_name (with diacritics)
+    2. Check movement aliases (from config, with diacritics)
+    3. Fuzzy matching on canonical_name and aliases
+    4. Return movement_id if match found
     
     Args:
         text: Text to search for movement mentions
@@ -94,8 +92,7 @@ def match_movement_from_text(text: str, min_score: int = 80) -> Optional[int]:
         text_lower = text.lower()
         
         # Load movement config from YAML
-        display_to_canonical: Dict[str, str] = {}
-        canonical_to_display: Dict[str, str] = {}
+        known_movements: List[str] = []
         aliases_config: Dict[str, List[str]] = {}
         
         try:
@@ -105,17 +102,13 @@ def match_movement_from_text(text: str, min_score: int = 80) -> Optional[int]:
                 if config and isinstance(config, dict):
                     keywords = config.get('keywords', {})
                     if isinstance(keywords, dict):
-                        # Load known movements (new format: [{canonical, display}, ...])
+                        # Load known movements (simple string list with diacritics)
                         known = keywords.get('known_movements', {}).get('new_religious_movements', [])
                         for entry in known:
-                            if isinstance(entry, dict):
-                                canonical = entry.get('canonical', '').strip()
-                                display = entry.get('display', '').strip()
-                                if canonical and display:
-                                    display_to_canonical[display.lower()] = canonical
-                                    canonical_to_display[canonical] = display
+                            if isinstance(entry, str):
+                                known_movements.append(entry.strip())
                         
-                        # Load aliases (canonical_slug -> [display aliases])
+                        # Load aliases (canonical_name with diacritics -> [alias list])
                         aliases_config = keywords.get('movement_aliases', {})
         except Exception as e:
             logger.warning(f"Failed to load movement config: {e}")
@@ -127,42 +120,42 @@ def match_movement_from_text(text: str, min_score: int = 80) -> Optional[int]:
         best_match_id = None
         best_score = 0
         
-        # Strategy 1: Direct substring match on display names
-        for display_name, canonical in display_to_canonical.items():
-            if display_name in text_lower:
+        # Strategy 1: Direct substring match on canonical names
+        for movement_name in known_movements:
+            if movement_name.lower() in text_lower:
                 # Find movement by canonical_name
-                movement = session.query(Movement).filter(Movement.canonical_name == canonical).first()
+                movement = session.query(Movement).filter(Movement.canonical_name == movement_name).first()
                 if movement is not None:
                     session.close()
                     return int(movement.id)  # type: ignore[arg-type]
         
         # Strategy 2: Check aliases
-        for canonical_slug, aliases_list in aliases_config.items():
+        for movement_name, aliases_list in aliases_config.items():
             for alias in aliases_list:
                 if isinstance(alias, str) and alias.lower() in text_lower:
-                    # Find movement by canonical_name
-                    movement = session.query(Movement).filter(Movement.canonical_name == canonical_slug).first()
+                    # Find movement by canonical_name (with diacritics)
+                    movement = session.query(Movement).filter(Movement.canonical_name == movement_name).first()
                     if movement is not None:
                         session.close()
                         return int(movement.id)  # type: ignore[arg-type]
         
-        # Strategy 3: Fuzzy matching on display names
-        for display_name, canonical in display_to_canonical.items():
-            score = fuzz.partial_ratio(display_name, text_lower)
+        # Strategy 3: Fuzzy matching on canonical names
+        for movement_name in known_movements:
+            score = fuzz.partial_ratio(movement_name.lower(), text_lower)
             if score >= min_score:
-                movement = session.query(Movement).filter(Movement.canonical_name == canonical).first()
+                movement = session.query(Movement).filter(Movement.canonical_name == movement_name).first()
                 if movement is not None and score > best_score:
                     best_score = score
                     best_match_id = int(movement.id)  # type: ignore[arg-type]
         
         # Strategy 4: Fuzzy matching on aliases
         if best_match_id is None:
-            for canonical_slug, aliases_list in aliases_config.items():
+            for movement_name, aliases_list in aliases_config.items():
                 for alias in aliases_list:
                     if isinstance(alias, str):
                         score = fuzz.partial_ratio(alias.lower(), text_lower)
                         if score >= min_score:
-                            movement = session.query(Movement).filter(Movement.canonical_name == canonical_slug).first()
+                            movement = session.query(Movement).filter(Movement.canonical_name == movement_name).first()
                             if movement is not None and score > best_score:
                                 best_score = score
                                 best_match_id = int(movement.id)  # type: ignore[arg-type]
