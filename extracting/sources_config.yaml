@@ -4,6 +4,33 @@
 
 sources:
   # --- RSS FEEDS (Specialized) ---
+  religionistika_muni:
+    name: "Religionistika MU (Novinky)"
+    domain: "religionistika.phil.muni.cz"
+    url: "https://religionistika.phil.muni.cz/rss"
+    enabled: true
+    type: "rss"
+    output_csv: "export/csv/religionistika_muni_rss_raw.csv"
+    delay: 2
+  
+  dingir_main:
+    name: "Dingir.cz (Main RSS)"
+    domain: "dingir.cz"
+    url: "https://www.dingir.cz/feed/"
+    enabled: true
+    type: "rss"
+    output_csv: "export/csv/dingir_main_rss_raw.csv"
+    delay: 2
+  
+  apologet:
+    name: "Apologet.cz (RSS Feed)"
+    domain: "apologet.cz"
+    url: "https://www.apologet.cz/?feed=rss2"
+    enabled: true
+    type: "rss"
+    output_csv: "export/csv/apologet_rss_raw.csv"
+    delay: 2
+
   sekty_tv:
     name: "Sekty.TV (RSS Feed)"
     description: "Specialist website about cults and religious movements in CZ"
@@ -85,8 +112,44 @@ sources:
       date: "pubDate::text"
     output_csv: "export/csv/vira_cz_rss_raw.csv"
     delay: 2  
+  
+  justice:
+    name: "Ministerstvo spravedlnosti - Aktuality"
+    domain: "justice.cz"
+    url: "https://justice.cz/web/msp/rss"
+    enabled: true
+    type: "rss"
+    output_csv: "export/csv/justice_rss_raw.csv"
+    delay: 2
 
   # --- RSS FEEDS (Mainstream Media) ---
+  denik_cz:
+    name: "Deník.cz (RSS Feed)"
+    domain: "denik.cz"
+    url: "https://www.denik.cz/rss.html"
+    enabled: true
+    type: "rss"
+    output_csv: "export/csv/denik_cz_rss_raw.csv"
+    delay: 2
+  
+  idnes_domaci:
+    name: "iDNES.cz - Domaci"
+    domain: "idnes.cz"
+    url: "https://servis.idnes.cz/rss.aspx?c=zpravodaj_domaci"
+    enabled: true
+    type: "rss"
+    output_csv: "export/csv/idnes_domaci_rss_raw.csv"
+    delay: 2
+  
+  ct24_domaci:
+    name: "ČT24 - Domaci"
+    domain: "ct24.ceskatelevize.cz"
+    url: "https://ct24.ceskatelevize.cz/rss/domaci"
+    enabled: true
+    type: "rss"
+    output_csv: "export/csv/ct24_domaci_rss_raw.csv"
+    delay: 2
+
   seznam_zpravy:
     name: "Seznam Zpravy (RSS Feed)"
     domain: "seznamzpravy.cz"
