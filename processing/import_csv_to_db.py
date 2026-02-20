@@ -6,7 +6,7 @@ from sqlalchemy.exc import IntegrityError
 from database.db_loader import DBConnector, Source
 from datetime import datetime
 import logging
-from typing import Union
+from typing import Union, Optional
 import json
 import re
 
@@ -109,12 +109,14 @@ class CSVtoDatabaseLoader:
             return False
         return True
 
-    def clean_row(self, row):
+    def clean_row(self, row) -> Optional[dict]:
         """Clean and normalize data
 
         - Convert categories JSON string into a JSON string stored in `keywords_found` (preserve as JSON)
         - Convert scraped_at into a proper datetime for `publication_date`
         - Match movement from text content using fuzzy matching
+        
+        Returns dict or None if no default movement available
         """
         # Normalize categories
         categories = row.get("categories", "")

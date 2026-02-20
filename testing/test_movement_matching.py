@@ -86,8 +86,8 @@ class TestMovementMatching:
     
     def test_get_movement_name_by_id(self):
         """Test retrieving movement name by ID"""
-        # Test with ID 1 (should be default movement)
-        name = get_movement_name_by_id(1)
+        # Test with ID 282 (default movement: "Neidentifikované hnutí")
+        name = get_movement_name_by_id(282)
         assert name is not None
         assert isinstance(name, str)
         assert len(name) > 0
@@ -133,6 +133,9 @@ class TestMovementMatchingIntegration:
         }
         
         cleaned = loader.clean_row(test_row)
+        
+        # Should return a dict (not None)
+        assert cleaned is not None, "clean_row should return a dict for valid movement"
         
         # Should have movement_id assigned
         assert 'movement_id' in cleaned

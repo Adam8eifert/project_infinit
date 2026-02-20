@@ -159,8 +159,8 @@ sources:
     delay: 2
 
   # --- WEB SCRAPING & DYNAMIC SOURCES ---
-  medium_seznam:
-    name: "Medium.seznam.cz"
+  medium_seznam_web:
+    name: "Medium.seznam.cz (Web Scraping)"
     description: "Blogging platform articles"
     domain: "medium.seznam.cz"
     url: "https://medium.seznam.cz/"
@@ -170,7 +170,7 @@ sources:
       article: "article"
       title: "h3::text"
       link: "a::attr(href)"
-    output_csv: "export/csv/medium_seznam3_raw.csv"
+    output_csv: "export/csv/medium_seznam_web_raw.csv"
     delay: 3
 
   google_news:
@@ -277,7 +277,11 @@ keywords:
     "hudební skupina",
     "kapela",
     "album",
-    "počítačová hra"
+    "počítačová hra",
+    "politika",
+    "politiky",
+    "politické",
+    "volby"
   ]
   exclude_context_patterns: [
     'recenze\\s+filmu',
