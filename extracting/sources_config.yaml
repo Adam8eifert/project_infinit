@@ -26,7 +26,7 @@ sources:
     description: "Information portal on new religious movements"
     domain: "sekty.cz"
     url: "https://sekty.cz/novinky?feed=rss2/"
-    enabled: true
+    enabled: false # Disabled bad rss feed with missing content - consider re-enabling if feed is fixed
     type: "rss"
     selectors:
       item: "item"
@@ -95,7 +95,7 @@ sources:
     type: "rss"
     output_csv: "export/csv/seznam_zpravy_rss_raw.csv"
     delay: 2
-
+  
   irozhlas:
     name: "iRozhlas.cz (RSS Feed)"
     domain: "irozhlas.cz"
@@ -138,6 +138,15 @@ sources:
     enabled: true
     type: "rss"
     output_csv: "export/csv/blesk_rss_raw.csv"
+  
+  medium_seznam:
+    name: "Médium.cz (RSS Feed)"
+    domain: "medium.seznam.cz"
+    url: "https://medium.seznam.cz/rss"
+    enabled: true
+    type: "rss"
+    output_csv: "export/csv/medium_seznam_rss_raw.csv"
+    delay: 2
 
   medium_seznam_rss:
     name: "Medium Seznam (RSS Feed)"

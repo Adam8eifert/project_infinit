@@ -398,9 +398,17 @@ class DocumentsToDatabase:
             if matched_movement_id:
                 self.logger.info(f"  ✓ Matched to movement ID: {matched_movement_id}")
             else:
-                # Default to generic movement if no match found
-                matched_movement_id = 1
-                self.logger.info(f"  ℹ️  No specific movement match, using default (ID: {matched_movement_id})")
+                # Get default "Unidentified" movement ID from database
+                from database.db_loader import Movement
+                default = self.session.query(Movement).filter_by(
+                    canonical_name="Neidentifikované hnutí"
+                ).first()
+                matched_movement_id = default.id if default else None
+                if matched_movement_id:
+                    self.logger.info(f"  ℹ️  No specific movement match, using default (ID: {matched_movement_id})")
+                else:
+                    self.logger.warning(f"  ⚠️  No movement match and no default movement available - skipping")
+                    return None
 
             # Create source record
             source = Source(

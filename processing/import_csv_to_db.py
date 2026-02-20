@@ -138,9 +138,16 @@ class CSVtoDatabaseLoader:
         
         movement_id = match_movement_from_text(combined_text)
         if movement_id is None:
-            # Fallback to first movement if no match found
-            movement_id = 1
-            self.logger.debug(f"No movement match found for: {title_content[:50]}...")
+            # Fallback to default "Unidentified" movement if no match found
+            from database.db_loader import Movement
+            default = self.session.query(Movement).filter_by(
+                canonical_name="Neidentifikované hnutí"
+            ).first()
+            movement_id = default.id if default else None
+            if not movement_id:
+                self.logger.warning(f"No default movement available for: {title_content[:50]}...")
+                return None
+            self.logger.debug(f"No movement match found, using default (ID: {movement_id})")
 
         return {
             "movement_id": movement_id,

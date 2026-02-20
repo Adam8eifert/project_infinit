@@ -38,19 +38,24 @@ def create_db():
         db = DBConnector()
         db.create_tables()
         
-        # Seed default movement if not exists
+        # Create default "Unidentified" movement for documents without matches
         session = db.get_session()
         from database.db_loader import Movement
-        if session.query(Movement).count() == 0:
+        default_movement = session.query(Movement).filter_by(
+            canonical_name="Neidentifikované hnutí"
+        ).first()
+        if not default_movement:
             default_movement = Movement(
-                canonical_name="Náboženské hnutí (obecně)",
-                category="religious",
-                description="Obecné náboženské hnutí pro testování",
-                active_status="active"
+                canonical_name="Neidentifikované hnutí",
+                category="other",
+                description="Dokumenty bez odpovídajícího hnutí",
+                active_status="inactive"
             )
             session.add(default_movement)
             session.commit()
-            print("✅ Default movement created")
+            print(f"✅ Default movement created (ID: {default_movement.id})")
+        else:
+            print(f"✅ Default movement exists (ID: {default_movement.id})")
         session.close()
         
         print("✅ Database tables ready")
@@ -383,17 +388,24 @@ def process_entities():
                 if city in text_lower:
                     locations.append(city.capitalize())
             
+            # Get default movement ID for location fallback
+            default_movement = session.query(Movement).filter_by(
+                canonical_name="Neidentifikované hnutí"
+            ).first()
+            default_movement_id = default_movement.id if default_movement else None
+            
             for location_name in set(locations):
                 # Check if location exists
-                existing = session.query(Location).filter(Location.municipality.ilike(f"%{location_name}%")).first()
-                if not existing:
-                    location = Location(
-                        movement_id=1,  # Default movement
-                        municipality=location_name,
-                        region="Czech Republic" if any(city in location_name.lower() for city in czech_cities + ['česk', 'praha']) else None
-                    )
-                    session.add(location)
-                    locations_created += 1
+                if default_movement_id:
+                    existing = session.query(Location).filter(Location.municipality.ilike(f"%{location_name}%")).first()
+                    if not existing:
+                        location = Location(
+                            movement_id=default_movement_id,  # Use actual default movement ID
+                            municipality=location_name,
+                            region="Czech Republic" if any(city in location_name.lower() for city in czech_cities + ['česk', 'praha']) else None
+                        )
+                        session.add(location)
+                        locations_created += 1
             
             # Update source with sentiment if not set
             if source.sentiment_score is None:
