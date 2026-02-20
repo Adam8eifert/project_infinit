@@ -160,8 +160,8 @@ class SingleAPISpider(scrapy.Spider):
             raise ValueError(f"Source '{source_key}' not found in configuration")
         
         if self.source_config.get('type') != 'api':
-            # Tests expect a localized error message (Czech) - keep phrase
-            # 'není typu API' to match test assertions
+            # Tests expect this specific error message format
+            # Keep Czech phrase to match test assertions
             raise ValueError(f"Zdroj '{source_key}' není typu API")
         
         # At this point, source_config is guaranteed to be not None

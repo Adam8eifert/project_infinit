@@ -4,6 +4,33 @@
 
 sources:
   # --- RSS FEEDS (Specialized) ---
+  religionistika_muni:
+    name: "Religionistika MU (Novinky)"
+    domain: "religionistika.phil.muni.cz"
+    url: "https://religionistika.phil.muni.cz/rss"
+    enabled: true
+    type: "rss"
+    output_csv: "export/csv/religionistika_muni_rss_raw.csv"
+    delay: 2
+  
+  dingir_main:
+    name: "Dingir.cz (Main RSS)"
+    domain: "dingir.cz"
+    url: "https://www.dingir.cz/feed/"
+    enabled: true
+    type: "rss"
+    output_csv: "export/csv/dingir_main_rss_raw.csv"
+    delay: 2
+  
+  apologet:
+    name: "Apologet.cz (RSS Feed)"
+    domain: "apologet.cz"
+    url: "https://www.apologet.cz/?feed=rss2"
+    enabled: true
+    type: "rss"
+    output_csv: "export/csv/apologet_rss_raw.csv"
+    delay: 2
+
   sekty_tv:
     name: "Sekty.TV (RSS Feed)"
     description: "Specialist website about cults and religious movements in CZ"
@@ -26,7 +53,7 @@ sources:
     description: "Information portal on new religious movements"
     domain: "sekty.cz"
     url: "https://sekty.cz/novinky?feed=rss2/"
-    enabled: true
+    enabled: false # Disabled bad rss feed with missing content - consider re-enabling if feed is fixed
     type: "rss"
     selectors:
       item: "item"
@@ -85,8 +112,44 @@ sources:
       date: "pubDate::text"
     output_csv: "export/csv/vira_cz_rss_raw.csv"
     delay: 2  
+  
+  justice:
+    name: "Ministerstvo spravedlnosti - Aktuality"
+    domain: "justice.cz"
+    url: "https://justice.cz/web/msp/rss"
+    enabled: true
+    type: "rss"
+    output_csv: "export/csv/justice_rss_raw.csv"
+    delay: 2
 
   # --- RSS FEEDS (Mainstream Media) ---
+  denik_cz:
+    name: "Deník.cz (RSS Feed)"
+    domain: "denik.cz"
+    url: "https://www.denik.cz/rss.html"
+    enabled: true
+    type: "rss"
+    output_csv: "export/csv/denik_cz_rss_raw.csv"
+    delay: 2
+  
+  idnes_domaci:
+    name: "iDNES.cz - Domaci"
+    domain: "idnes.cz"
+    url: "https://servis.idnes.cz/rss.aspx?c=zpravodaj_domaci"
+    enabled: true
+    type: "rss"
+    output_csv: "export/csv/idnes_domaci_rss_raw.csv"
+    delay: 2
+  
+  ct24_domaci:
+    name: "ČT24 - Domaci"
+    domain: "ct24.ceskatelevize.cz"
+    url: "https://ct24.ceskatelevize.cz/rss/domaci"
+    enabled: true
+    type: "rss"
+    output_csv: "export/csv/ct24_domaci_rss_raw.csv"
+    delay: 2
+
   seznam_zpravy:
     name: "Seznam Zpravy (RSS Feed)"
     domain: "seznamzpravy.cz"
@@ -95,7 +158,7 @@ sources:
     type: "rss"
     output_csv: "export/csv/seznam_zpravy_rss_raw.csv"
     delay: 2
-
+  
   irozhlas:
     name: "iRozhlas.cz (RSS Feed)"
     domain: "irozhlas.cz"
@@ -138,10 +201,9 @@ sources:
     enabled: true
     type: "rss"
     output_csv: "export/csv/blesk_rss_raw.csv"
-
-  medium_seznam_rss:
-    name: "Medium Seznam (RSS Feed)"
-    description: "Blogging platform by Seznam.cz featuring diverse opinion pieces and articles"
+  
+  medium_seznam:
+    name: "Médium.cz (RSS Feed)"
     domain: "medium.seznam.cz"
     url: "https://medium.seznam.cz/rss"
     enabled: true
@@ -149,9 +211,19 @@ sources:
     output_csv: "export/csv/medium_seznam_rss_raw.csv"
     delay: 2
 
+  medium_seznam_rss:
+    name: "Medium Seznam (RSS Feed)"
+    description: "Blogging platform by Seznam.cz featuring diverse opinion pieces and articles"
+    domain: "medium.seznam.cz"
+    url: "https://www.seznam.cz/zdroj/4123-medium/rss"
+    enabled: true
+    type: "rss"
+    output_csv: "export/csv/medium_seznam2_rss_raw.csv"
+    delay: 2
+
   # --- WEB SCRAPING & DYNAMIC SOURCES ---
-  medium_seznam:
-    name: "Medium.seznam.cz"
+  medium_seznam_web:
+    name: "Medium.seznam.cz (Web Scraping)"
     description: "Blogging platform articles"
     domain: "medium.seznam.cz"
     url: "https://medium.seznam.cz/"
@@ -161,7 +233,7 @@ sources:
       article: "article"
       title: "h3::text"
       link: "a::attr(href)"
-    output_csv: "export/csv/medium_seznam_raw.csv"
+    output_csv: "export/csv/medium_seznam_web_raw.csv"
     delay: 3
 
   google_news:
@@ -268,7 +340,11 @@ keywords:
     "hudební skupina",
     "kapela",
     "album",
-    "počítačová hra"
+    "počítačová hra",
+    "politika",
+    "politiky",
+    "politické",
+    "volby"
   ]
   exclude_context_patterns: [
     'recenze\\s+filmu',
@@ -278,92 +354,163 @@ keywords:
     'trailer'
   ]
   known_movements:
-    new_religious_movements: [
-      "Hnutí Grálu",
-      "Církev sjednocení",
-      "Scientologická církev",
-      "Buddhismus Diamantové cesty",
-      "Imanuelité",
-      "Raeliáni",
-      "Osho",
-      "Sahadža jóga",
-      "Univerzální život",
-      "Vesmírní lidé",
-      "Universe People",
-      "Děti Boží",
-      "Rodina",
-      "Dvanáct kmenů",
-      "AllatRa",
-      "Fa-lun-kung",
-      "Anastasianismus",
-      "Transcendentální meditace",
-      "Subud",
-      "Škola ekonomické vědy",
-      "Teosofická společnost",
-      "Baháʼí víra",
-      "Hnutí Hare Kršna",
-      "Církev Ježíše Krista Svatých posledních dnů",
-      "Svědkové Jehovovi",
-      "Satanská církev",
-      "Chrám Satanův",
-      "Církev univerzální a vítězná",
-      "Církev všech světů",
-      "Církev Všemohoucího Boha",
-      "Ježíšova armáda",
-      "Jediismus",
-      "Křesťanská věda",
-      "LaVeyův satanismus",
-      "Kristadelfiáni",
-      "Řád ochránců Boží vůle na Zemi",
-      "Služebníci světla",
-      "Společenství Josefa Zezulky",
-      "Ánanda Márga",
-      "Cesta Guru Járy",
-      "Šinčchondži",
-      "Tvořivá společnost",
-      "The Revelation Spiritual Home",
-      "Kruh přátel Bruna Gröninga",
-      "Brahma Kumaris",
-      "Protestantská církev Svaté korony",
-      "Konopná církev",
-      "Církev militantního ateismu",
-      "Ček Árya Sabhá – Árjasamádž",
-      "Silvova metoda",
-      "Zodiakální škola",
-      "Poetrie",
-      "Kuřimská sekta",
-      "Škola Aria",
-      "Arnold Varvarinec",
-      "Zprávy z galaxie",
-      "Novija gána sepata",
-      "Science 21",
-      "Společenství legitimních věřitelů České republiky",
-      "Boží rodina",
-      "Radomír Wolf",
-      "Rezonance",
-      "AROPAL",
-      "Loving Hut",
-      "Bhakti Marga",
-      "Život v srdci",
-      "Zlatá éra",
-      "Plaváček",
-      "Slovanská košile",
-      "O9A",
-      "TVIND",
-      "Jarilo",
-      "Most ke svobodě",
-      "Alan Jarkovský",
-      "Jóga v denním životě",
-      "Život v Radosti",
-      "Dohnalité",
-      "Avenna",
-      "Ariadné",
-      "Happy Science",
-      "Tao Jóga",
-      "V lásce spolu",
-      "Mlýn Radunka",
-      "Farma Lovětín"
-    ]
+    # List of known new religious movements (with diacritics - single source of truth)
+    new_religious_movements:
+      - "AROPAL"
+      - "Alan Jarkovský"
+      - "AllatRa"
+      - "Anastasianismus"
+      - "Anthroposofická společnost"
+      - "Ariadné"
+      - "Arnold Varvarinec"
+      - "Avenna"
+      - "Baháʼí víra"
+      - "Bhakti Marga"
+      - "Boží kanál"
+      - "Boží mír"
+      - "Boží rodina"
+      - "Boží světlo"
+      - "Boží světlo – rodina"
+      - "Brahma Kumaris"
+      - "Buddhismus Diamantové cesty"
+      - "Cesta Guru Járy"
+      - "Chrám Satanův"
+      - "Chrám Setův"
+      - "Církev Armagedon"
+      - "Církev Boží celosvětová"
+      - "Církev Boží v Kristu"
+      - "Církev Ježíše Krista Svatých posledních dnů"
+      - "Církev Kristova vědomí"
+      - "Církev Maitreya"
+      - "Církev Posledního soudu"
+      - "Církev Světla"
+      - "Církev Všemohoucího Boha"
+      - "Církev jednoty"
+      - "Církev militantního ateismu"
+      - "Církev sjednocené vědy"
+      - "Církev sjednoceného rodinného života"
+      - "Církev sjednoceného vědomí"
+      - "Církev sjednocení"
+      - "Církev univerzální a vítězná"
+      - "Církev všech světů"
+      - "Dohnalité"
+      - "Dvanáct kmenů"
+      - "Děti Boží"
+      - "Děti světla"
+      - "Eckankar"
+      - "Fa-lun-kung"
+      - "Farma Lovětín"
+      - "Happy Science"
+      - "Hnutí Dvanáct paprsků"
+      - "Hnutí Grálu"
+      - "Hnutí Hare Kršna"
+      - "Hnutí I AM"
+      - "Hnutí Jednota vědomí"
+      - "Hnutí Maitréja"
+      - "Hnutí Most"
+      - "Hnutí Nové země"
+      - "Hnutí Nového věku"
+      - "Hnutí Ohnivý keř"
+      - "Hnutí Poselství Světla"
+      - "Hnutí Sjednocená rodina"
+      - "Hnutí Svatého Ducha pro sjednocení světového křesťanství"
+      - "Hnutí Univerzální energie"
+      - "Hnutí Zlatého úsvitu"
+      - "Hnutí přirozeného zákona"
+      - "Hnutí vnitřního světla"
+      - "Imanuelité"
+      - "Jarilo"
+      - "Jedi"
+      - "Ježíšova armáda"
+      - "Jóga v denním životě"
+      - "Konopná církev"
+      - "Kosmická univerzita"
+      - "Kosmické bratrstvo"
+      - "Kristadelfiáni"
+      - "Kruh přátel Bruna Gröninga"
+      - "Kuřimská sekta"
+      - "Křesťanská věda"
+      - "Křesťanské společenství Logos"
+      - "LaVeyův satanismus"
+      - "Lectorium Rosicrucianum"
+      - "Loving Hut"
+      - "Mezinárodní škola Zlatého růžového kříže"
+      - "Mlýn Radunka"
+      - "Most ke svobodě"
+      - "Novija gána sepata"
+      - "O9A"
+      - "Osho"
+      - "Plaváček"
+      - "Poetrie"
+      - "Protestantská církev Svaté korony"
+      - "Radomír Wolf"
+      - "Raeliáni"
+      - "Rezonance"
+      - "Rodina"
+      - "Rodina světla"
+      - "Rodná víra"
+      - "Rosenkruciánské hnutí AMORC"
+      - "Sahadža jóga"
+      - "Satanská církev"
+      - "Science 21"
+      - "Scientologická církev"
+      - "Silvova metoda"
+      - "Slovanská košile"
+      - "Slovanské rodnověří"
+      - "Služebníci světla"
+      - "Soka Gakkai International"
+      - "Společenství Bílého bratrstva"
+      - "Společenství Josefa Zezulky"
+      - "Společenství Nový Jeruzalém"
+      - "Společenství Světlo života"
+      - "Společenství legitimních věřitelů České republiky"
+      - "Subud"
+      - "Svědkové Jehovovi"
+      - "Světlonoši"
+      - "TVIND"
+      - "Tao Jóga"
+      - "Temple of Set"
+      - "Teosofická společnost"
+      - "The Revelation Spiritual Home"
+      - "Transcendentální meditace"
+      - "Tvořivá společnost"
+      - "Unarius"
+      - "Universe People"
+      - "Univerzální bratrstvo"
+      - "Univerzální život"
+      - "V lásce spolu"
+      - "Velké Bílé bratrstvo"
+      - "Vesmírní lidé"
+      - "Wicca"
+      - "Zlatá éra"
+      - "Zodiakální škola"
+      - "Zprávy z galaxie"
+      - "Ánanda Márga"
+      - "Ásatrú"
+      - "Ček Árya Sabhá – Árjasamádž"
+      - "Česká pohanská společnost"
+      - "Řád ochránců Boží vůle na Zemi"
+      - "Řád zlatého úsvitu"
+      - "Šinčchondží"
+      - "Škola Aria"
+      - "Škola ekonomické vědy"
+      - "Život v Radosti"
+      - "Život v srdci"
+  # Movement aliases for fuzzy matching (movement_name -> [aliases for matching])
+  movement_aliases:
+    "AllatRa": ["Hnutí AllatRa", "Sekta AllatRa", "Hnuti Allatra"]
+    "Anastasianismus": ["Anastasia", "Hnutí Anastasia", "Anastasians"]
+    "Církev Ježíše Krista Svatých posledních dnů": ["Mormoni", "LDS", "Mormons"]
+    "Církev sjednocení": ["Mun", "Munisté", "Moonies", "Unification Church"]
+    "Děti Boží": ["Sekta Děti Boží", "Children of God", "The Family"]
+    "Fa-lun-kung": ["Falun Gong", "Hnutí Fa-lun-kung"]
+    "Hnutí Hare Kršna": ["ISKCON", "Hare Kršna", "Hare Krishna", "International Society for Krishna Consciousness"]
+    "Osho": ["Bhagwan", "Rajneesh", "Bhagwan Shree Rajneesh"]
+    "Scientologická církev": ["Scientologie", "Právev scientologie", "Scientology"]
+    "Svědkové Jehovovi": ["Jehovah's Witnesses", "JW"]
+    "Transcendentální meditace": ["TM", "Transcendental Meditation"]
+    "Universe People": ["Vesmírní lidé", "Cosmic People"]
+    "Vesmírní lidé": ["Universe People", "Cosmic People"]
   year_patterns: [
     'založen[aáoý]\\s+v\\s+roce\\s+(\\d{4})',
     'vznik(?:lo|la|l)\\s+v\\s+roce\\s+(\\d{4})',

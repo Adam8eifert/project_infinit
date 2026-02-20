@@ -38,19 +38,24 @@ def create_db():
         db = DBConnector()
         db.create_tables()
         
-        # Seed default movement if not exists
+        # Create default "Unidentified" movement for documents without matches
         session = db.get_session()
         from database.db_loader import Movement
-        if session.query(Movement).count() == 0:
+        default_movement = session.query(Movement).filter_by(
+            canonical_name="Neidentifikované hnutí"
+        ).first()
+        if not default_movement:
             default_movement = Movement(
-                canonical_name="Náboženské hnutí (obecně)",
-                category="religious",
-                description="Obecné náboženské hnutí pro testování",
-                active_status="active"
+                canonical_name="Neidentifikované hnutí",
+                category="other",
+                description="Dokumenty bez odpovídajícího hnutí",
+                active_status="inactive"
             )
             session.add(default_movement)
             session.commit()
-            print("✅ Default movement created")
+            print(f"✅ Default movement created (ID: {default_movement.id})")
+        else:
+            print(f"✅ Default movement exists (ID: {default_movement.id})")
         session.close()
         
         print("✅ Database tables ready")
@@ -58,33 +63,66 @@ def create_db():
         # Seed known movements from configuration (idempotent)
         try:
             from extracting.config_loader import get_config_loader
+            from sqlalchemy import text
+            
             loader = get_config_loader()
             known = loader.config.get('keywords', {}).get('known_movements', {}).get('new_religious_movements', [])
+            
+            print(f"🌱 Loading movements from config: {len(known)} movements found")
+            
             if known:
                 session = db.get_session()
+                
+                # Fix PostgreSQL sequence before seeding
+                if 'postgresql' in db.db_uri.lower():
+                    try:
+                        max_id_result = session.execute(text("SELECT MAX(id) FROM movements")).fetchone()
+                        max_id = max_id_result[0] if max_id_result and max_id_result[0] else 0
+                        new_seq_val = max_id + 1
+                        session.execute(text(f"SELECT setval('movements_id_seq', {new_seq_val}, false)"))
+                        session.commit()
+                        print(f"   🔧 Fixed sequence: Starting from ID {new_seq_val}")
+                    except Exception as seq_error:
+                        print(f"   ⚠️  Could not fix sequence: {seq_error}")
+                        session.rollback()
+                
                 seeded = 0
-                for name in known:
-                    if not name or not isinstance(name, str):
+                
+                for movement_name in known:
+                    if not movement_name or not isinstance(movement_name, str):
                         continue
-                    nm = name.strip()
-                    if not nm:
+                    
+                    movement_name = movement_name.strip()
+                    if not movement_name:
                         continue
-                    existing = session.query(Movement).filter(Movement.canonical_name.ilike(nm)).first()
+                    
+                    # Check by canonical_name (unique key with diacritics)
+                    existing = session.query(Movement).filter(Movement.canonical_name == movement_name).first()
                     if not existing:
                         movement = Movement(
-                            canonical_name=nm,
+                            canonical_name=movement_name,  # Name with diacritics (single source of truth)
                             category="religious",
                             description="Seeded from extracting/sources_config.yaml",
                             active_status="unknown"
                         )
                         session.add(movement)
+                        # Flush after each insert to avoid sequence conflicts
+                        session.flush()
                         seeded += 1
-                if seeded:
-                    session.commit()
-                    print(f"✅ Seeded {seeded} canonical movements from configuration")
+                
+                # Commit all changes at once
+                session.commit()
+                
+                if seeded > 0:
+                    print(f"✅ Seeded {seeded} new movements from configuration")
+                if seeded == 0:
+                    print(f"ℹ️  All {len(known)} movements already in database")
+                    
                 session.close()
         except Exception as e:
             print(f"⚠️ Failed to seed known movements: {e}")
+            import traceback
+            traceback.print_exc()
 
     except Exception as e:
         print(f"❌ Error creating database: {e}")
@@ -207,7 +245,7 @@ def process_entities():
                         any(keyword in entity_text.lower() for keyword in ['hnutí', 'sekta', 'církev', 'kult'])):
                         potential_movements.append(entity_text)
             
-            # From regex patterns - look for "sekta X", "hnutí Y", etc. but only for known movements
+            # From regex patterns - look for "sekta X", "hnutí Y" (Czech religious keywords), etc. but only for known movements
             for keyword in ['sekta', 'hnutí', 'církev', 'kult']:
                 # Pattern: keyword + known movement name
                 for known_movement in known_nsm:
@@ -216,13 +254,43 @@ def process_entities():
             
             # Remove duplicates and filter
             potential_movements = list(set(potential_movements))
-            # Filter out obviously wrong names (too long, contains strange words)
+            
+            # Blacklist - generic/nonsense terms
+            blacklist_exact = [
+                'církev', 'cirkev', 'sekta', 'hnutí', 'hnuti', 'kult',
+                'ministerstvo', 'ministerstva', 'vláda', 'vláda',
+                'náboženství', 'nabozenstvi', 'společnost', 'spolecnost',
+                'organizace', 'skupina', 'komunita',
+                'náboženské hnutí (obecně)'
+            ]
+            
+            blacklist_contains = [
+                'ministerstvo kultury', 'ministerstva kultury',
+                'obecně', 'obecný', 'obecné', '(obecně)', '(obecný)',
+                '##', 'hodnutími', 'je ', 'jsou ', 'byla ', 'bylo ',
+                'vnímají', 'používány', 'kritizovány', 'získává',
+                'stává', 'mohou', 'mají', 'spočívá'
+            ]
+            
+            # Filter out obviously wrong names
             filtered_movements = []
             for m in potential_movements:
+                m_lower = m.lower()
                 words = m.split()
-                if (len(m) > 5 and len(m) < 80 and len(words) <= 5 and
-                    not any(word in m.lower() for word in ['jsou', 'je', 'byla', 'bylo', 'tak', 'prý', 'spíše', 'až', 'po', 'jako', 'má', 'vnímají', 'používány', 'patřil', 'navazuje', 'kritizovány', 'získává', 'stává', 'jednotný', 'nejsou', 'mohou', 'mají', 'spočívá', 'především', 'panuje', 'přísná', 'kázeň', 'pyramidová', 'ztrácí', 'vliv', 'nejednoznačné'])):
-                    filtered_movements.append(m)
+                
+                # Skip if exact match with blacklist
+                if m_lower in blacklist_exact:
+                    continue
+                
+                # Skip if contains blacklisted phrase
+                if any(phrase in m_lower for phrase in blacklist_contains):
+                    continue
+                
+                # Skip if too short, too long, or too many words
+                if not (5 < len(m) < 80 and len(words) <= 6):
+                    continue
+                
+                filtered_movements.append(m)
             
             potential_movements = filtered_movements[:3]  # Limit to 3 per source
             
@@ -231,16 +299,16 @@ def process_entities():
                 # Flush session to ensure previous additions are visible
                 session.flush()
                 
-                # Check if this is a known canonical name
+                # Check if this is a known movement name (direct match with diacritics)
                 if movement_name in known_nsm:
-                    # This is a canonical name - create or update movement
+                    # Direct match - create or update movement
                     existing = session.query(Movement).filter(
-                        Movement.canonical_name.ilike(movement_name)
+                        Movement.canonical_name == movement_name
                     ).first()
                     
                     if not existing:
                         movement = Movement(
-                            canonical_name=movement_name,
+                            canonical_name=movement_name,  # Name with diacritics (single source of truth)
                             category="religious",
                             description=f"Extracted from source: {source.url}",
                             active_status="unknown"
@@ -251,30 +319,31 @@ def process_entities():
                     else:
                         print(f"  ⏭️  Movement already exists: {movement_name}")
                 else:
-                    # This is not a canonical name - find best match and create alias
+                    # This is not a direct match - find best match and create alias
                     best_match, score = extractOne(movement_name, known_nsm, scorer=fuzz.ratio)
                     if score >= 80:  # High confidence match
                         # Find the movement
                         canonical_movement = session.query(Movement).filter(
-                            Movement.canonical_name.ilike(best_match)
+                            Movement.canonical_name == best_match
                         ).first()
                         
                         if not canonical_movement:
                             # Create the canonical movement first
                             canonical_movement = Movement(
-                                canonical_name=best_match,
+                                canonical_name=best_match,  # Name with diacritics (single source of truth)
                                 category="religious",
                                 description=f"Created for alias: {movement_name}",
                                 active_status="unknown"
                             )
                             session.add(canonical_movement)
+                            session.flush()  # Flush to get auto-generated ID before creating alias
                             movements_created += 1
                             print(f"  ➕ Created canonical movement: {best_match}")
                         
                         # Check if alias already exists
                         existing_alias = session.query(Alias).filter(
                             Alias.movement_id == canonical_movement.id,
-                            Alias.alias.ilike(movement_name)
+                            Alias.alias == movement_name
                         ).first()
                         
                         if not existing_alias:
@@ -289,14 +358,14 @@ def process_entities():
                         else:
                             print(f"  ⏭️  Alias already exists: {movement_name}")
                     else:
-                        # Low confidence - create as new canonical movement anyway
+                        # Low confidence - create as new canonical movement
                         existing = session.query(Movement).filter(
-                            Movement.canonical_name.ilike(movement_name)
+                            Movement.canonical_name == movement_name
                         ).first()
                         
                         if not existing:
                             movement = Movement(
-                                canonical_name=movement_name,
+                                canonical_name=movement_name,  # Name with diacritics (single source of truth)
                                 category="religious",
                                 description=f"Extracted from source: {source.url} (low confidence match)",
                                 active_status="unknown"
@@ -319,17 +388,24 @@ def process_entities():
                 if city in text_lower:
                     locations.append(city.capitalize())
             
+            # Get default movement ID for location fallback
+            default_movement = session.query(Movement).filter_by(
+                canonical_name="Neidentifikované hnutí"
+            ).first()
+            default_movement_id = default_movement.id if default_movement else None
+            
             for location_name in set(locations):
                 # Check if location exists
-                existing = session.query(Location).filter(Location.municipality.ilike(f"%{location_name}%")).first()
-                if not existing:
-                    location = Location(
-                        movement_id=1,  # Default movement
-                        municipality=location_name,
-                        region="Czech Republic" if any(city in location_name.lower() for city in czech_cities + ['česk', 'praha']) else None
-                    )
-                    session.add(location)
-                    locations_created += 1
+                if default_movement_id:
+                    existing = session.query(Location).filter(Location.municipality.ilike(f"%{location_name}%")).first()
+                    if not existing:
+                        location = Location(
+                            movement_id=default_movement_id,  # Use actual default movement ID
+                            municipality=location_name,
+                            region="Czech Republic" if any(city in location_name.lower() for city in czech_cities + ['česk', 'praha']) else None
+                        )
+                        session.add(location)
+                        locations_created += 1
             
             # Update source with sentiment if not set
             if source.sentiment_score is None:

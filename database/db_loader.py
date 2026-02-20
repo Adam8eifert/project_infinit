@@ -2,7 +2,6 @@
 from sqlalchemy import create_engine, event
 from sqlalchemy.orm import sessionmaker, scoped_session
 from sqlalchemy.engine import Engine
-import sqlite3
 import datetime
 import hashlib
 from typing import Optional, List
@@ -12,7 +11,7 @@ import config  # expects config.DB_URI
 
 class DBConnector:
     """
-    Portable DB connector using SQLAlchemy. Works with both SQLite and PostgreSQL.
+    PostgreSQL database connector using SQLAlchemy.
     Exposes:
       - create_tables()
       - get_session()
@@ -22,11 +21,9 @@ class DBConnector:
         if uri is not None:
             self.db_uri = uri
         else:
-            self.db_uri = getattr(config, "DB_URI", "sqlite:///data.db")
-        connect_args = {}
-        if self.db_uri.startswith("sqlite"):
-            connect_args = {"check_same_thread": False}
-        self.engine = create_engine(self.db_uri, connect_args=connect_args, future=True)
+            self.db_uri = getattr(config, "DB_URI", "postgresql+psycopg2://localhost/nsm_db")
+        
+        self.engine = create_engine(self.db_uri, future=True)
         self.SessionFactory = scoped_session(sessionmaker(bind=self.engine, autoflush=False, expire_on_commit=False))
 
     def create_tables(self):
@@ -383,10 +380,3 @@ class DBConnector:
         finally:
             session.close()
 
-# Ensure SQLite enforces foreign key constraints when a sqlite3 connection is used
-@event.listens_for(Engine, "connect")
-def _set_sqlite_pragma(dbapi_connection, connection_record):
-    if isinstance(dbapi_connection, sqlite3.Connection):
-        cursor = dbapi_connection.cursor()
-        cursor.execute("PRAGMA foreign_keys=ON")
-        cursor.close()

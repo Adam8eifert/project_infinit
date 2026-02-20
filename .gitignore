@@ -147,6 +147,8 @@ csv_manual/
 # Logs
 *.log
 import_log.txt
+document_import_log.txt
+pdf_import_log.txt
 logs/
 
 # Scrapy cache
@@ -178,6 +180,7 @@ Thumbs.db
 *.tmp
 *.temp
 *.bak
+mamba*  # Temporary mamba files
 
 # Config files with sensitive data
 config.py

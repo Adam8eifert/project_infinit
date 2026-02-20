@@ -49,7 +49,7 @@ class RedditSpider(scrapy.Spider):
         if not all([client_id, client_secret, user_agent]):
             self.logger.warning("⚠️ Reddit API keys are not set. Set environment variables:")
             self.logger.warning("   REDDIT_CLIENT_ID, REDDIT_CLIENT_SECRET, REDDIT_USER_AGENT")
-            # Lokalizované chybové hlášení pro testy
+            # Tests expect this specific error message format
             raise ValueError("Chybějí Reddit API klíče")
         
         # Initialize Reddit API
@@ -196,7 +196,7 @@ class XTwitterSpider(scrapy.Spider):
         if not self.bearer_token:
             self.logger.warning("⚠️ X/Twitter API token is not set. Set environment variable:")
             self.logger.warning("   X_BEARER_TOKEN")
-            # Lokalizované chybové hlášení pro testy
+            # Tests expect this specific error message format
             raise ValueError("Chybí X/Twitter API token")
         
         self.base_url = self.source_config.get('url', 'https://api.twitter.com/2')

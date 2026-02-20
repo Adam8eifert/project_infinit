@@ -1,5 +1,3 @@
-# 📁 testing/README.md
-
 # Testing Guide for Project Infinit
 
 Complete test suite for the Project Infinit. All tests use pytest and monkeypatching for testing without external dependencies.
@@ -12,7 +10,7 @@ pip install pytest pytest-cov pytest-mock
 
 ## Test structure
 
-```
+```text
 testing/
 ├── test_keywords.py           # Tests for keyword filtering
 ├── test_db_loader.py          # Tests for database layer (in-memory SQLite)
@@ -61,17 +59,17 @@ pytest -q testing/
 
 ## Test suite overview
 
-### 1. **test_keywords.py** — Keyword filtering
+### 1. ### 1. **test_keywords.py** — Keyword filtering
 
 - ✅ `test_contains_relevant_keywords_positive` — Positive test for relevant content
 - ✅ `test_contains_relevant_keywords_negative` — Negative test for irrelevant content
 - ✅ `test_is_excluded_content` — Test for excluded terms
 
-### 2. **test_db_loader.py** — Database layer
+### 2. ### 2. **test_db_loader.py** — Database layer
 
 - ✅ `test_dbconnector_insert_and_query` — Insert and query sources (in-memory SQLite)
 
-### 3. **test_nlp_analysis.py** — NLP pipeline
+### 3. ### 3. **test_nlp_analysis.py** — NLP pipeline
 
 - ✅ `test_nlp_analysis_monkeypatched` — Test analyzer with mock Stanza/Transformers
 

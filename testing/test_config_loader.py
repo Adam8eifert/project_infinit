@@ -48,7 +48,7 @@ def test_get_source_urls():
     urls = loader.get_source_urls()
     assert isinstance(urls, dict)
     assert 'sekty_tv' in urls
-    assert urls['sekty_tv'] == 'https://sekty.tv/'
+    assert urls['sekty_tv'] == 'https://sekty.tv/feed/'
 
 
 def test_get_scraping_settings():
