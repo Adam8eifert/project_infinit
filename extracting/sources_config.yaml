@@ -16,8 +16,8 @@ sources:
   dingir_main:
     name: "Dingir.cz (Main RSS)"
     domain: "dingir.cz"
-    url: "https://www.dingir.cz/feed/"
-    enabled: true
+    url: "https://www.dingir.cz/"
+    enabled: false # RSS feed not available (404)
     type: "rss"
     output_csv: "export/csv/dingir_main_rss_raw.csv"
     delay: 2
@@ -52,8 +52,8 @@ sources:
     name: "Sekty.cz"
     description: "Information portal on new religious movements"
     domain: "sekty.cz"
-    url: "https://sekty.cz/novinky?feed=rss2/"
-    enabled: false # Disabled bad rss feed with missing content - consider re-enabling if feed is fixed
+    url: "https://sekty.cz/novinky/feed/"
+    enabled: false # Returns 403 Forbidden (bot/crawler detection via ATS)
     type: "rss"
     selectors:
       item: "item"
@@ -116,8 +116,8 @@ sources:
   justice:
     name: "Ministerstvo spravedlnosti - Aktuality"
     domain: "justice.cz"
-    url: "https://justice.cz/web/msp/rss"
-    enabled: true
+    url: "https://msp.gov.cz/web/msp"
+    enabled: false # RSS feed not found; site uses Liferay without public RSS
     type: "rss"
     output_csv: "export/csv/justice_rss_raw.csv"
     delay: 2
@@ -126,7 +126,7 @@ sources:
   denik_cz:
     name: "Deník.cz (RSS Feed)"
     domain: "denik.cz"
-    url: "https://www.denik.cz/rss.html"
+    url: "https://www.denik.cz/rss/zpravy.html"
     enabled: true
     type: "rss"
     output_csv: "export/csv/denik_cz_rss_raw.csv"
