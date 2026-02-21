@@ -26,32 +26,38 @@ An ETL pipeline for collecting, analyzing, and visualizing information about new
 ## 🔧 Technology Stack
 
 ### Core Technologies
+
 - **Python 3.10+** - Core programming language
 - **Mamba/Conda** - Package and environment management
 - **PostgreSQL** - Primary database (with SQLite support)
 
 ### Web Scraping
+
 - **Scrapy 2.14+** - Web scraping framework with ethical settings
 - **Feedparser 6.0+** - RSS/Atom feed parsing
 - **Requests 2.31+** - HTTP library
 
 ### Natural Language Processing
+
 - **Stanza 1.8+** - Czech language NLP pipeline (tokenization, POS, NER, lemmatization)
 - **Hugging Face Transformers 4.52+** - Advanced NLP models for sentiment analysis
 - **spaCy 3.7+** (legacy) - Alternative NLP toolkit
 
 ### Data Processing
+
 - **SQLAlchemy 2.0+** - Database ORM with PostgreSQL/SQLite support
 - **pandas 2.3+** - Data manipulation and CSV processing
 - **PyMuPDF (fitz) 1.23+** - PDF text extraction
 - **python-docx 1.1+** - Word document processing (.doc, .docx)
 - **FuzzyWuzzy 0.18+** - Fuzzy string matching for entity resolution
 
-### API Clients
+### API Clients (Dependencies)
+
 - **PRAW 7.8+** - Reddit API client
 - **Tweepy 4.14+** - X (Twitter) API client
 
 ### Development & Testing
+
 - **pytest** - Testing framework with mocking
 - **Pyright/Pylance** - Type checking and IDE support
 - **PyYAML** - Configuration management
@@ -132,7 +138,7 @@ project_infinit/
 
 ### 1. Clone and Setup Environment
 
-**Option A: Using Mamba/Conda (Recommended)**
+#### Option A: Using Mamba/Conda (Recommended)
 
 ```bash
 git clone https://github.com/Adam8eifert/project_infinit.git
@@ -148,7 +154,7 @@ mamba activate project_infinit
 # or: conda activate project_infinit
 ```
 
-**Option B: Using pip/venv**
+#### Option B: Using pip/venv
 
 ```bash
 git clone https://github.com/Adam8eifert/project_infinit.git
@@ -413,33 +419,39 @@ ETL pipeline pro sběr, analýzu a vizualizaci informací o nových nábožensk�
 
 ## 🔧 Technologický stack
 
-### Základní technologie
+### Základní technologie (detail)
+
 - **Python 3.10+** - Základní programovací jazyk
 - **Mamba/Conda** - Správa balíčků a prostředí
 - **PostgreSQL** - Primární databáze (s podporou SQLite)
 
-### Web Scraping
+### Web Scraping (CZ)
+
 - **Scrapy 2.14+** - Framework pro web scraping s etickými nastaveními
 - **Feedparser 6.0+** - Parsování RSS/Atom feedů
 - **Requests 2.31+** - HTTP knihovna
 
 ### Zpracování přirozeného jazyka
+
 - **Stanza 1.8+** - České NLP pipeline (tokenizace, POS, NER, lemmatizace)
 - **Hugging Face Transformers 4.52+** - Pokročilé NLP modely pro analýzu sentimentu
 - **spaCy 3.7+** (legacy) - Alternativní NLP toolkit
 
 ### Zpracování dat
+
 - **SQLAlchemy 2.0+** - Database ORM s podporou PostgreSQL/SQLite
 - **pandas 2.3+** - Manipulace s daty a CSV zpracování
 - **PyMuPDF (fitz) 1.23+** - Extrakce textu z PDF
 - **python-docx 1.1+** - Zpracování Word dokumentů (.doc, .docx)
 - **FuzzyWuzzy 0.18+** - Fuzzy porovnávání řetězců pro rozlišení entit
 
-### API klienti
+### API klienti (detail)
+
 - **PRAW 7.8+** - Reddit API klient
 - **Tweepy 4.14+** - X (Twitter) API klient
 
 ### Vývoj a testování
+
 - **pytest** - Testovací framework s mocking
 - **Pyright/Pylance** - Type checking a IDE podpora
 - **PyYAML** - Správa konfigurace
@@ -503,7 +515,7 @@ project_infinit/
 
 ### 1a. Klonování a příprava prostředí (CZ)
 
-**Možnost A: Použití Mamba/Conda (Doporučeno)**
+#### Možnost A: Použití Mamba/Conda (Doporučeno)
 
 ```bash
 git clone https://github.com/Adam8eifert/project_infinit.git
@@ -519,7 +531,7 @@ mamba activate project_infinit
 # nebo: conda activate project_infinit
 ```
 
-**Možnost B: Použití pip/venv**
+#### Možnost B: Použití pip/venv
 
 ```bash
 git clone https://github.com/adamseifert/project_infinit.git
@@ -582,6 +594,7 @@ python -c "from main import process_academic_documents; process_academic_documen
 ### Konfigurace
 
 Veškerá konfigurace je centralizována v `extracting/sources_config.yaml`:
+
 - Definice zdrojů (RSS, API, webscraping)
 - NLP klíčová slova a vzory
 - Known movements (75+ českých NRM)
@@ -683,14 +696,14 @@ pytest testing/test_nlp_analysis.py -v
 - transformers 4.52+ (analýza sentimentu: WikiNeuralNER)
 - spaCy 3.7+ (legacy podpora)
 
-### API klienti
+### API klienti (minimální)
 
 - praw 7.8+ (Reddit)
 - tweepy 4.14+ (X/Twitter)
 - requests 2.31+
 - feedparser 6.0+
 
-### Zpracování dat
+### Zpracování dat (detail)
 
 - PyMuPDF (fitz) 1.23+ (extrakce textu z PDF)
 - python-docx 1.1+ (Word dokumenty: .doc, .docx)

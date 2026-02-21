@@ -55,5 +55,6 @@ def test_clean_row_serializes_categories():
         'categories': '["a","b"]'
     }
     cleaned = loader.clean_row(row)
+    assert cleaned is not None
     assert 'keywords_found' in cleaned
     assert cleaned['keywords_found'] == '["a", "b"]' or cleaned['keywords_found'] == '["a","b"]'

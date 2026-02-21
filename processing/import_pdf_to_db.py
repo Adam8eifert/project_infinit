@@ -8,7 +8,7 @@ from sqlalchemy.orm import selectinload
 from database.db_loader import DBConnector, Source
 from datetime import datetime
 import logging
-from typing import List, Optional, Dict, Tuple
+from typing import List, Optional, Dict, Tuple, cast
 import re
 import hashlib
 import shutil
@@ -395,7 +395,7 @@ class DocumentsToDatabase:
 
             # Try to match to a known movement
             matched_movement_id = self.match_movement(text)
-            if matched_movement_id:
+            if matched_movement_id is not None:
                 self.logger.info(f"  ✓ Matched to movement ID: {matched_movement_id}")
             else:
                 # Get default "Unidentified" movement ID from database
@@ -403,12 +403,12 @@ class DocumentsToDatabase:
                 default = self.session.query(Movement).filter_by(
                     canonical_name="Neidentifikované hnutí"
                 ).first()
-                matched_movement_id = default.id if default else None
-                if matched_movement_id:
+                matched_movement_id = cast(int, default.id) if default is not None else None
+                if matched_movement_id is not None:
                     self.logger.info(f"  ℹ️  No specific movement match, using default (ID: {matched_movement_id})")
                 else:
                     self.logger.warning(f"  ⚠️  No movement match and no default movement available - skipping")
-                    return None
+                    return False
 
             # Create source record
             source = Source(
