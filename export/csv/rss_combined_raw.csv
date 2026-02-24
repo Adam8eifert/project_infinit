@@ -1,126 +1,751 @@
 source_name,source_type,title,url,text,scraped_at,author,published_at,categories
-Religionistika MU (Novinky),RSS,Ondřej Homolka obhájil disertaci a&#160;má PhD,https://religionistika.phil.muni.cz/cedrr/cs/news/clanky/ondrej-homolka-obhajil-disertaci-a-ma-phd,5. února 2026 Ondřej Homolka obhájil disertační práci s názvem Prostorová dynamika mariánského kultu v pozdní antice a úspěšně složil Státní zkoušku.,2026-02-22T21:56:02.541735+00:00,Unknown,"Thu, 05 Feb 2026 23:00:00 Z",
-Sekty.TV (RSS Feed),RSS,Historie sekty MISA a její vlaječky ArtExtasia,https://sekty.tv/2026/02/21/historie-sekty-misa-a-jeji-vlajecky-artextasia/?utm_source=rss&utm_medium=rss&utm_campaign=historie-sekty-misa-a-jeji-vlajecky-artextasia,"1952 (12. března): Gregorian (“Grieg”) Bivolaru se narodil v Tărtăşeşti, v rumunském regionu Muntenia.
+Religionistika MU (Novinky),RSS,Ondřej Homolka obhájil disertaci a&#160;má PhD,https://religionistika.phil.muni.cz/cedrr/cs/news/clanky/ondrej-homolka-obhajil-disertaci-a-ma-phd,5. února 2026 Ondřej Homolka obhájil disertační práci s názvem Prostorová dynamika mariánského kultu v pozdní antice a úspěšně složil Státní zkoušku.,2026-02-24T20:57:22.319007+00:00,Unknown,"Thu, 05 Feb 2026 23:00:00 Z",
+ČT24 - Domaci,RSS,Před 70 lety padla Stalinova modla. Pomohl k tomu ze záhrobí i Lenin,https://ct24.ceskatelevize.cz/clanek/domaci/pred-70-lety-padla-stalinova-modla-pomohl-k-tomu-ze-zahrobi-i-lenin-370382,"Takzvaná „Fronta na maso“ – monumentální Stalinův pomník na pražské Letné – stál na místě necelý rok, když se nad jeho existencí už začaly stahovat mraky. Před 70 lety totiž začal XX. sjezd Komunistické strany Sovětského svazu. Tehdejší první tajemník Nikita Chruščov na něm poprvé veřejně odsoudil Stalinovy zločiny a vytváření jeho kultu osobnosti. Projev byl tajný, brzo se ale dostal do světa. A Stalinova sláva začala uvadat. Příslib společenského uvolnění ale Sověti následně rázně utnuli.",2026-02-24T20:57:25.819260+00:00,Unknown,"Tue, 24 Feb 2026 06:00:00 GMT",Domácí
+ČT24 - Domaci,RSS,Zákaz mobilů ve školách dle výzkumu přímo nezlepšuje známky ani duševní pohodu,https://ct24.ceskatelevize.cz/clanek/veda/zakaz-mobilu-ve-skolach-dle-vyzkumu-primo-nezlepsuje-znamky-ani-dusevni-pohodu-370620,"Zákaz mobilních telefonů ve školách nevede přímočaře ke zlepšení studijních výsledků. Žáci sice nejsou tak rozptylováni, ale na druhou stranu roste neklid a nekázeň ve třídách. Vyplývá to z dat z 21 zemí včetně Česka, která analyzovali vědci výzkumného týmu IRTIS Fakulty sociálních studií Masarykovy univerzity v Brně. Podle tohoto výzkumu plošné zákazy nefungují a nejsou tedy ani univerzálním řešením. Vhodnější je přizpůsobit pravidla místním podmínkám.",2026-02-24T20:57:25.823919+00:00,Unknown,"Mon, 23 Feb 2026 10:24:52 GMT",Věda
+ČT24 - Domaci,RSS,Auto s Klempířem mělo nehodu,https://ct24.ceskatelevize.cz/clanek/domaci/auto-s-klempirem-melo-nehodu-370619,"Auto s ministrem kultury Otou Klempířem (za Motoristy) mělo v Praze dopravní nehodu. Klempíře po nehodě odvezl náhradní vůz na ministerstvo, kde se mu ale udělalo nevolno a začal mít závratě, proto ho sanitka převezla do Ústřední vojenské nemocnice (ÚVN). Vyšetření nepotvrdilo krvácení do mozku a v úterý se ministr vrátí do práce. Policejní mluvčí Eva Kropáčová řekla, že policie okolnosti srážky dvou osobních aut na Vítězném náměstí vyšetřuje.",2026-02-24T20:57:25.824950+00:00,Unknown,"Mon, 23 Feb 2026 09:44:00 GMT",Domácí
+Denik Alarm (RSS Feed),RSS,Proč přední vyjednavač EU Ondřej Knotek pořádá akci s apokalyptickou sektou AllatRa?,https://denikalarm.cz/2026/02/proc-predni-vyjednavac-eu-ondrej-knotek-porada-akci-s-apokalyptickou-sektou-allatra/,"Bizarní sekta AllatRa, známá děsivými videy, ve kterých falešní odborníci předpovídají blízkou apokalypsu, organizuje 24. února konferenci s europoslancem za ANO.",2026-02-24T20:57:28.528815+00:00,evidence.ninja,"Tue, 24 Feb 2026 05:05:00 +0000","Česko,Svět,fake news,komentář"
+Denik Alarm (RSS Feed),RSS,Stokařská romantika. Vzpomínky na bratislavský klub Fuga,https://denikalarm.cz/2026/02/stokarska-romantika-vzpominky-na-bratislavsky-klub-fuga/,Po čtrnácti letech skončil kultovní undergroundový prostor v slovenské metropoli. Nikdy tu nešlo o peníze a hudba byla vždy na prvním místě.,2026-02-24T20:57:28.532961+00:00,Andrej Kabal,"Mon, 23 Feb 2026 05:00:00 +0000","Kultura,Bratislava,esej,hudba,klub,nezávislá scéna"
+Denik Alarm (RSS Feed),RSS,"Několik poznámek k hetero kultuře, Epsteinovi a Heated Rivalry: když si svět řekl o dávku queer terapie",https://denikalarm.cz/2026/02/nekolik-poznamek-k-hetero-kulture-epsteinovi-a-heated-rivalry-kdyz-si-svet-rekl-o-davku-queer-terapie/,"Každá sexuální preference si zaslouží vlastní porci banální romantiky. A minisérie Heated Rivalry přichází na pomoc teď, kdy ji nejvíce potřebujeme: po četbě Epsteinových dokumentů, svědectví o odvrácené straně hegemonie heteráctví.",2026-02-24T20:57:28.533652+00:00,Eva Klíčová,"Sat, 21 Feb 2026 05:05:00 +0000","Kultura,devadesátá léta,esej,film,patriarchát,Queer,seriál"
+Dingir.cz (RSS Feed),RSS,Turkestán – návštěva Kulturního centra národů Uzbekistánu,https://info.dingir.cz/2026/02/turkestan-navsteva-kulturniho-centra-narodu-uzbekistanu/,"Kulturní centrum Turkestán sídlí na adrese Roháčova 42, Praha 3. Webové stránky nejsou dostupné, jen zřídka aktualizovaná prezentace centra je dostupná na sociální síti Facebook. Vzniklo v&#160;roce 2021 jako nezisková &#8230;",2026-02-24T20:57:29.755032+00:00,David Novák,"Thu, 12 Feb 2026 10:00:24 +0000",Články
+Sekty.TV (RSS Feed),RSS,12 KMENŮV RUMUNSKU: „Kontroverzní sekta s kontakty v USA přistála v Kluži a otevřela pekárnu. Kdo stojí za pekárnou?“,https://sekty.tv/2026/02/24/12-kmenuv-rumunsku-kontroverzni-sekta-s-kontakty-v-usa-pristala-v-kluzi-a-otevrela-pekarnu-kdo-stoji-za-pekarnou/?utm_source=rss&utm_medium=rss&utm_campaign=12-kmenuv-rumunsku-kontroverzni-sekta-s-kontakty-v-usa-pristala-v-kluzi-a-otevrela-pekarnu-kdo-stoji-za-pekarnou,"Zdroj: https://gazetadebistrita.ro/o-secta-controversata-cu-conexiuni-in-sua-a-aterizat-in-cluj-napoca-si-a-deschis-o-brutarie-cine-se-afla-in-spatele-the-bakery/
 
 
 
-1970: Bivolaru začal učit jógu v Bukurešti.
+Na okraji Kluže, v obci Săvădisla, žije diskrétní komunita, která je součástí mezinárodního hnutí „Dvanáct kmenů“, kontroverzní náboženské skupiny známé svým izolovaným životním stylem a přísnými pravidly. Nedávno členové komunity otevřeli v Kluži pekárnu, kde řemeslné výrobky denně lákají zákazníky, aniž by mnozí věděli, kdo za firmou skutečně stojí. Podnik&nbsp;s vůní teplého chleba a čistým marketingem, ale s příběhem, který sahá daleko za pult. Gazeta de Cluj zjistila, kdo stojí za podnikem The Bakery.&nbsp;
 
 
 
-1971: Bivolaru byl kvůli svému zájmu o jógu a ezoteriku pod dohledem rumunské politické policie Securitate.
+Zákazníci kupují chléb. Málokdo ví, komu nechávají peníze.
 
 
 
-1972: Bivolaru dostal varování od Securitate.
+Dvanáct kmenů je náboženské hnutí založené v 70. letech 20. století ve Spojených státech Genem Spriggsem, známým také jako&nbsp;&nbsp;Yoneq&nbsp;. Skupina se prezentuje jako křesťanská komunita, která se snaží žít jako první věřící Nového zákona: členové sdílejí statky, pracují společně a žijí v kolektivním prostředí, často izolovaně od zbytku společnosti.
 
 
 
-1973-1974: Bivolaru byl opakovaně vyslýchán Securitate.
+Mezinárodně se komunity Dvanácti kmenů rozšířily do několika zemí, včetně Německa, Francie, Austrálie, Kanady a Argentiny. Členové žijí na farmách, mají vlastní školy a dílny a jejich podniky – restaurace, pekárny, obchody – spravuje přímo komunita.
 
 
 
-1982: Komunistický režim zakázal v Rumunsku praktikování jógy a pornografie
+Komunita Dvanácti kmenů se zapojila do několika mezinárodních kontroverzí, zejména v souvislosti s dětskou prací, fyzickým týráním a domácím vzděláváním.
 
 
 
-1984: Bivolaru byl zatčen, protože pokračoval ve výuce jógy a distribuci pornografie. Uprchl z vězení Securitate (což byl v komunistickém Rumunsku ojedinělý jev) a za tento únik byl odsouzen k jednomu roku vězení.
+Toto hnutí je v některých zemích vyšetřováno z důvodu:
 
 
 
-1986: Bivolaru obdržel od Securitate další varování.
+1. Dětská práce ve Spojených státech
 
 
 
-1989 (20. července):  Bivolaru byl znovu zatčen.
+V roce 2018 vyšetřování newyorského ministerstva práce odhalilo v továrně Common Sense Farm provozované organizací Twelve Tribes několik porušení zákonů o dětské práci. Do výroby, která je zákonem zakázána, bylo zapojeno dvanáct nezletilých osob. V důsledku toho úřady zahájily řízení, která mohla vést k vysokým pokutám.
 
 
 
-1989 (15. srpna): Bivolaru byl prohlášen za duševně nemocného a násilně umístěn do psychiatrické léčebny
+2. Pronásledování související s domácím vzděláváním v Německu
 
 
 
-1990 (leden): Bivolaru obnovil své kurzy jógy a jeho škola byla registrována jako Hnutí za duchovní integraci do Absolutního (MISA).
+V Německu se komunita Dvanácti kmenů dostala do konfliktu s bavorskými školskými úřady. Ačkoli je domácí vzdělávání v Německu nelegální, tato skupina provozovala soukromou školu pod státním dohledem, která nesplňovala vzdělávací standardy, včetně absence sexuální výchovy a teorie evoluce. V roce 2013 úřady odebraly škole provozní licenci poté, co obdržely stížnosti na fyzické týrání a nedostatek certifikovaných učitelů.
 
 
 
-1991-1993: MISA se rychle rozrůstala, s desítkami tisíc členů v Rumunsku a pobočkami založenými v několika zahraničních zemích.
+3. Razie a ochrana dětí v Německu
 
 
 
-1993-1994: V rumunských médiích začaly kampaně proti Bivolaruovi jako „vůdci kultu“, obviněnému z používání deviantních praktik.
+V roce 2013 provedla německá policie razii ve dvou komunitách Dvanácti kmenů v Bavorsku a odebrala 40 dětí, aby je ochránila před fyzickým týráním. Vyšetřování bylo podníceno tajnými záběry, které ukazují, jak jsou děti bity „holí podobnou biči“. Komunita přiznala použití tohoto předmětu k disciplíně, ale popřela obvinění ze zneužívání. V roce 2018 Evropský soud pro lidská práva potvrdil rozhodnutí německých úřadů odebrat děti z komunity.
 
 
 
-1997: Rumunská zpravodajská služba, dříve „Securitate“, začala sledovat MISA s tvrzením, že představuje hrozbu pro národní bezpečnost.
 
+Obvinění z emocionálního zneužívání a kontroly ve Spojených státech
 
 
-2004 (18. května): Rumunská policie provedla razie v ášramech MISA po celé zemi a zatkla Bivolarua a obvinila ho ze sexuálního vztahu se sedmnáctiletým studentem MISA, MD.
 
 
+V roce 2021 bývalá členka Carolyn Figuera řekla televizi CBS Boston, že byla v komunitě Dvanácti kmenů vystavena emocionálnímu zneužívání a přísné kontrole. Skupinu popsala jako kult, který zaváděl přísná pravidla a za jejich porušení přísné tresty.&nbsp;
 
-2005: Bivolaru byl propuštěn z vězení, zatímco čekal na soud, a uprchl do Švédska. 
 
 
 
-2012 (6. prosince): Italská policie provedla razii v domech studentů MISA v Itálii. 
 
 
 
-2013: Rumunský nejvyšší soud zrušil rozhodnutí nižších soudů, shledal Bivolaru vinným ze sexuálního vztahu se sedmnáctiletou dívkou, tj. MD, a odsoudil ho k šesti letům vězení.
+Komunita Săvădisla
 
 
 
-2016 (26. února): Bivolaru byl zatčen při cestě do Francie.
 
 
 
-2016 (22. července): Bivolaru byl vydán z Francie a převezen do rumunského vězení.
 
+„Toto je nový začátek v rumunské zemi. Jsme vděční, že jsme tady a za přátele, které jsme si v této zemi našli,“ píší členové komunity na svých oficiálních webových stránkách.
 
 
-2016: Skupina umělců praktikujících jógu podle výuky MISA zahájila projekt ArtExtasia
 
+Na oficiálních webových stránkách komunita popisuje, jak mohou návštěvníci přistupovat ke svému životu:
 
 
-2017 (13. září): Bivolaru byl propuštěn na podmínku.
 
+„Pokud žijete blízko nějaké komunity, návštěva je velmi snadná. Páteční večer je skvělá doba k návštěvě, protože na sabat budeme všichni doma a atmosféra je velmi uvolněná. Rádi si uděláme čas na rozhovor s vámi.“
 
 
-2017 (říjen): Bivolaru byl Finskem zařazen na seznam hledaných osob Interpolu, obviněn ze sexuálního zneužívání a obchodování s lidmi mezi finskými učednicemi a skrýval se.
 
+Také uvádějí, že mnoho návštěvníků se přijíždí účastnit aktivit farmy:
 
 
-2020 (17. ledna): Tribunál v Kluži v Rumunsku shledal Bivolarua a jeho spoluobžalované nevinnými z obchodování s lidmi.
 
+„Měli jsme mnoho návštěvníků, kteří přijeli jako dobrovolníci na farmy, na stálou práci nebo na delší pobyty. Naši hosté jsou s námi a učí se s námi hlubším věcem života.“
 
 
-2021: MISA se mezinárodně stala zastánkyní obou teorií proti očkování a tvrdila, že vakcína proti COVID-19 je nástrojem používaným zlými silami k ovládání lidstva, a Donalda Trumpa, prezentovaného jako jednoho z mála politiků ochotných se těmto zlým silám postavit.
 
+Farmy dvanácti kmenů jsou popisovány jako kolektivní prostory, kde lidé žijí jako širší rodina:
 
 
-2021 (16. února): Odvolací soud v Kluži v Rumunsku ve svém konečném rozhodnutí potvrdil verdikt prvního stupně a prohlásil obvinění z obchodování s lidmi proti Bivolaruovi a jeho spoluobžalovaným
 
+„Na našich farmách a v našich komunitách žijeme společně jako jedna velká rodina a sdílíme vše společné, stejně jako Yahshuovi učedníci v prvním století. Je to úžasný život a můžete se o něm sami přesvědčit na kterémkoli z těchto míst.“
 
 
-2023 (28. listopadu): Bivolaru byl zatčen ve Francii s několika následovníky.
 
+Ačkoli farmy produkují potraviny pro komunitu, někdy je prodávají na místních trzích nebo na vlastních stáncích. Veškerý výtěžek je vkládán do společného fondu na pokrytí potřeb členů, bez individuálního příjmu nebo osobního dluhu, jak komunita uvádí:
 
 
-2024 (22. srpna): Zástupce MISA, Mihai Stoian, a jeho manželka Alina byli na žádost Francie zatčeni při vstupu do Gruzie z Turecka. Další představitelé této sekty jsou hledáni Interpolem.The post Historie sekty MISA a její vlaječky ArtExtasia first appeared on Informace o sektách.",2026-02-22T21:56:02.737111+00:00,sekty,"Sat, 21 Feb 2026 23:09:04 +0000","Rezonance/Misa/Atmán,Zahraniční sekty,Guruové,Konspirace,Manipulace,Násilí,Oddělování od rodiny,Zdraví,Znásilnění"
-Sekty.TV (RSS Feed),RSS,CNN PRIMA: Jógová sekta „Sdružení Rezonance“ a znásilňování žen (ArtExtasia),https://sekty.tv/2026/02/21/cnn-prima-jogova-sekta-sdruzeni-rezonance-a-znasilnovani-zen-artextasia/?utm_source=rss&utm_medium=rss&utm_campaign=cnn-prima-jogova-sekta-sdruzeni-rezonance-a-znasilnovani-zen-artextasia,The post CNN PRIMA: Jógová sekta „Sdružení Rezonance“ a znásilňování žen (ArtExtasia) first appeared on Informace o sektách.,2026-02-22T21:56:02.738318+00:00,sekty,"Sat, 21 Feb 2026 23:02:18 +0000","Rezonance/Misa/Atmán,Zahraniční sekty,artextasia,Guruové,Manipulace,Násilí,Oddělování od rodiny,Zdraví,Znásilnění"
-Sekty.TV (RSS Feed),RSS,NA VLASTNÍ OČI: Scientologie,https://sekty.tv/2026/02/20/na-vlastni-oci-scientologove/?utm_source=rss&utm_medium=rss&utm_campaign=na-vlastni-oci-scientologove,"Reportáž: Sekta s.r.o., TV Nova, Na vlastni oči, 1998The post NA VLASTNÍ OČI: Scientologie first appeared on Informace o sektách.",2026-02-22T21:56:02.739447+00:00,sekty,"Fri, 20 Feb 2026 23:19:00 +0000","Scientologie,Zahraniční sekty,dianetika,hubbard,Manipulace,oxfordský test,Scientológia,scientologická cirkev,Scientológovia,Scientológovia v školách"
-Sekty.TV (RSS Feed),RSS,NA VLASTNÍ OČI: Svědkové Jehovovi,https://sekty.tv/2026/02/19/historicka-reportaz-o-odmitani-transfuze-sektou-svedkove-jehovovi/?utm_source=rss&utm_medium=rss&utm_campaign=historicka-reportaz-o-odmitani-transfuze-sektou-svedkove-jehovovi,"Reportáž: Armagedon, Nova, Na vlastní oči, 1998The post NA VLASTNÍ OČI: Svědkové Jehovovi first appeared on Informace o sektách.",2026-02-22T21:56:02.740241+00:00,sekty,"Thu, 19 Feb 2026 23:56:02 +0000","Svědkové Jehovovi,Zahraniční sekty,odmítaní transfúze,sekta,transfúze,transfuze"
-ČT24 - Domaci,RSS,Děkanem katolické fakulty UK může být odvolaný Brož nebo církevní právník Dvořáček,https://ct24.ceskatelevize.cz/clanek/domaci/dekanem-katolicke-fakulty-uk-muze-byt-odvolany-broz-nebo-cirkevni-pravnik-dvoracek-370547,"O post děkana Katolické teologické fakulty Univerzity Karlovy se uchází bývalý děkan fakulty Jaroslav Brož a církevní právník Jiří Dvořáček. Podle volební komise splňují obě kandidatury všechny náležitosti, uvedl její předseda David Bouma. Fakultu nyní vede rektor univerzity Jiří Zima, od konce loňského září je v nucené správě. Tu na ni uvalilo ministerstvo školství v důsledku sporů, které na fakultě panují několik měsíců a týkají se toho, kdo ji má vést po odvolání Brože. Volba je plánovaná na úterý 3. března.",2026-02-22T21:56:02.778546+00:00,Unknown,"Fri, 20 Feb 2026 13:34:09 GMT",Domácí
-ČT24 - Domaci,RSS,"Zástupci slovenské kultury varovali, že Česko se může vydat slovenskou cestou",https://ct24.ceskatelevize.cz/clanek/domaci/zastupci-slovenske-kultury-varovali-ze-cesko-se-muze-vydat-slovenskou-cestou-370513,"Více než sedm set představitelů slovenské kultury, včetně herců a režisérů, vyjádřilo obavy z příštích kroků českého ministra kultury Oty Klempíře (za Motoristy). Vyslovili proto podporu tuzemským kolegům v obraně před případnými mocenskými útoky. V otevřeném dopise vyslovili názor, že podobnost současné situace v Česku s tou slovenskou je „nepřehlédnutelná“.",2026-02-22T21:56:02.782282+00:00,Unknown,"Thu, 19 Feb 2026 15:39:51 GMT",Domácí
-Denik Alarm (RSS Feed),RSS,"Několik poznámek k hetero kultuře, Epsteinovi a Heated Rivalry: když si svět řekl o dávku queer terapie",https://denikalarm.cz/2026/02/nekolik-poznamek-k-hetero-kulture-epsteinovi-a-heated-rivalry-kdyz-si-svet-rekl-o-davku-queer-terapie/,"Každá sexuální preference si zaslouží vlastní porci banální romantiky. A minisérie Heated Rivalry přichází na pomoc teď, kdy ji nejvíce potřebujeme: po četbě Epsteinových dokumentů, svědectví o odvrácené straně hegemonie heteráctví.",2026-02-22T21:56:05.696559+00:00,Eva Klíčová,"Sat, 21 Feb 2026 05:05:00 +0000","Kultura,devadesátá léta,esej,film,patriarchát,Queer,seriál"
-Denik Alarm (RSS Feed),RSS,"Spisovatelka Roy nedorazí na Berlinale kvůli výrokům Wima Wenderse, že umění má být nepolitické",https://denikalarm.cz/2026/02/spisovatelka-roy-nedorazi-na-berlinale-kvuli-vyrokum-wima-wenderse-ze-umeni-ma-byt-nepoliticke/,Wenders svými čtvrtečními výroky podle Arundhati Roy obhajoval německou podporu Izraele.,2026-02-22T21:56:05.699704+00:00,kve,"Mon, 16 Feb 2026 04:35:35 +0000","Zprávy,izraelsko-palestinský konflikt,kultura,zprávy"
-Dingir.cz (RSS Feed),RSS,Turkestán – návštěva Kulturního centra národů Uzbekistánu,https://info.dingir.cz/2026/02/turkestan-navsteva-kulturniho-centra-narodu-uzbekistanu/,"Kulturní centrum Turkestán sídlí na adrese Roháčova 42, Praha 3. Webové stránky nejsou dostupné, jen zřídka aktualizovaná prezentace centra je dostupná na sociální síti Facebook. Vzniklo v&#160;roce 2021 jako nezisková &#8230;",2026-02-22T21:56:07.192905+00:00,David Novák,"Thu, 12 Feb 2026 10:00:24 +0000",Články
-Médium.cz (RSS Feed),RSS,Proč kult „spasitele“ není cestou k dospělosti občanské společnosti,https://medium.seznam.cz/clanek/petr-suda-proc-kult-spasitele-neni-cestou-k-dospelosti-obcanske-spolecnosti-244160,"Česká veřejná debata se ocitla v nebezpečné smyčce, kterou až příliš dobře známe z let po listopadu 1989.",2026-02-22T21:56:07.382523+00:00,Unknown,"Sun, 22 Feb 2026 18:47:12 +0100",
-Blesk.cz (RSS Feed),RSS,Zemřel politik František Mezihorák (†88): Uznávaný pedagog a senátor za ČSSD,https://www.blesk.cz/clanek/zpravy-pribehy/833760/zemrel-politik-frantisek-mezihorak-88-uznavany-pedagog-a-senator-za-cssd.html,"Ve věku 88 let zemřel historik a pedagog František Mezihorák, významná olomoucká osobnost a iniciátor vzniku dnešní katedry společenských věd Pedagogické fakulty Univerzity Palackého v Olomouci. Bývalý děkan fakulty byl také senátorem, dlouholetým zastupitelem Olomouce a výrazným zástupcem olomouckých sociálních demokratů. Byl také držitelem řady ocenění a laureátem Ceny města Olomouce. O jeho úmrtí informovala univerzita na svém webu.",2026-02-22T21:56:12.283653+00:00,Unknown,"Sun, 22 Feb 2026 17:56:00 +0100",
-Blesk.cz (RSS Feed),RSS,Maminka z USA promluvila o životě v Česku: Chaotické školství i zírání v MHD,https://www.blesk.cz/clanek/zpravy-pribehy/833745/maminka-z-usa-promluvila-o-zivote-v-cesku-chaoticke-skolstvi-i-zirani-v-mhd.html,Američanka Amanda Meyerová se do Česka přestěhovala před 8 lety. V Praze s manželem vychovává dvě děti. Na místní kulturu si přitom maminka musela dlouho zvykat. Tohle dělají v zámoří jinak! Některé věci zaručeně překvapí.,2026-02-22T21:56:12.286849+00:00,Unknown,"Sun, 22 Feb 2026 13:50:00 +0100",
-Blesk.cz (RSS Feed),RSS,Tereza Maxová v Hráčích: Kult mládí a plastik není pro mě!,https://www.blesk.cz/clanek/zpravy-hraci/833668/tereza-maxova-v-hracich-kult-mladi-a-plastik-neni-pro-me.html,"Její krása jí umožňuje vydělávat peníze i pomáhat jiným už skoro čtyři desetiletí. Ne vždy se ale v zrcadle uměla správně vnímat. Dnes čtyřiapadesátiletá modelka a filantropka Tereza Maxová odmítá podléhat kultu mládí i dokonalosti a v Hráčích otevřeně popsala, proč si nikdy nenechala „sáhnout“ na obličej.",2026-02-22T21:56:12.291545+00:00,Unknown,"Sun, 22 Feb 2026 05:00:00 +0100",
-Deník.cz (RSS Feed),RSS,"Nová lákadla na streamech: Olověné děti, Metoda Markovič, Rytíř sedmi království",https://www.denik.cz/film-a-televize/olovene-deti-metoda-markovic-i-rytir-sedmi-kralovstvi-co-sledovat-na-streamu-202.html?utm_source=rss&utm_medium=feed&utm_campaign=www.denik.cz&utm_content=zpravy,"Skutečný příběh lékařky, která se postavila režimu v minisérii Olověné děti, kompletní kriminální série Metoda Markovič: Straka, fantasy prequel Rytíř sedmi království i komediální návrat značky Bláznivá střela s Liamem Neesonem. Přidává se druhá řada Pod hladinou, thriller Krása od Ryana Murphyho i kultovní britský seriál Mighty Boosh. Deník přináší přehled titulů, které teď stojí za pozornost na streamovacích platformách.",2026-02-22T21:56:12.317309+00:00,Unknown,"Sat, 21 Feb 2026 16:30:00 +0100",Zprávy
-Forum24.cz (RSS Feed),RSS,Ozbrojený muž se pokusil vniknout do Trumpova sídla. Tajná služba ho zastřelila,https://www.forum24.cz/ozbrojeny-muz-se-pokusil-vniknout-do-trumpova-sidla-tajna-sluzba-ho-zastrelila,"Agenti Tajné služby Spojených států zastřelili ozbrojeného muže, který se pokusil proniknout do zabezpečeného perimetru resortu Mar-a-Lago, floridského sídla prezidenta Donalda Trumpa. Informují o tom tiskové agentury. K incidentu došlo v noci na neděli kolem půl druhé ráno. Podle Tajné služby byl muž u severní brány areálu spatřen s předměty připomínajícími brokovnici a kanystr s palivem. Ve chvíli, kdy branou projížděl jiný vůz, vnikl do areálu. Prezident Trump s první dámou Melanií se v té době nacházeli v Bílém domě, informuje agentura AP. Agenti Tajné služby muže konfrontovali a následně jej smrtelně postřelili. Na zásahu se podílel také zástupce šerifa okresu Palm Beach. Podle mluvčího Tajné služby Anthonyho Guglielmiho byl podezřelý muž ve věku kolem dvaceti let a pocházel ze Severní Karolíny. Jeho rodina jej před několika dny nahlásila jako pohřešovaného. Vyšetřovatelé se domnívají, že opustil Severní Karolínu a zamířil na jih, přičemž si cestou opatřil brokovnici. Krabice od zbraně byla nalezena v jeho vozidle. Úřady nyní pracují na sestavení psychologického profilu a motiv činu zůstává předmětem vyšetřování. Jméno zastřeleného nebylo zveřejněno. Nejde o první případ, kdy Trump čelil hrozbě atentátu. V červenci 2024 byl zraněn při pokusu o atentát během předvolebního mítinku v Butleru v Pensylvánii. Útočník tehdy vypálil osm ran, přičemž jedna kulka Trumpovi poranila ucho. Pachatele následně zastřelil agent Tajné služby. O dva měsíce později byl zadržen muž s puškou poblíž Trumpova golfového hřiště ve West Palm Beach na Floridě, zatímco tam prezident hrál golf. Agenti Tajné služby si všimli muže, později identifikovaného…",2026-02-22T21:56:12.646882+00:00,Karolína Němcová,"Sun, 22 Feb 26 15:24:31 +0100","Zpravodajství,Zahraničí"
-Vira.cz (RSS Feed),RSS,Neexistuje dokonalá rodina,https://www.vira.cz/texty/aktuality/neexistuje-dokonala-rodina,Vztahy rodičů jsou pro rozvoj dětí rozhodující... (Texty o rodině.),2026-02-22T21:56:13.662918+00:00,Unknown,"Wed, 24. Dec 2025 23:00:00 GMT",
+
+„Nemáme žádný nezávislý příjem ani dluhy, které bychom museli nést sami, kromě dluhu lásky, který dlužíme našemu Spasiteli, a který splácíme tím, že se navzájem milujeme a staráme se o sebe.“
+
+
+
+
+
+
+
+Kdo stojí za pekárnou The Bakery?
+
+
+
+Pekárna, kterou nedávno otevřela komunita Twelve Tribes v Kluži, funguje pod názvem COMMUNITY FOODS SOCIETATE COOPERATIVĂ. Společnost byla založena 26. listopadu 2024.&nbsp;
+
+
+
+Administrátoři společnosti jsou:
+
+
+
+Krisztian Szabó – Rumunsko
+
+
+
+Veuthey Guillaume – Švýcarsko
+
+
+
+Marusic Gouablin Krishna – Francie
+
+
+
+Asociace a jejich kvóty účasti&nbsp;:
+
+
+
+Veuthey Guillaume – Švýcarsko (4,76 %)
+
+
+
+Marusic Gouablin Krishna – Francie (4,76 %)
+
+
+
+Szabo Krisztian – Rumunsko (4,8 %)
+
+
+
+Puissant Benjamin Anthony – Francie (2,38 %)
+
+
+
+Joga Eitan – Francie (2,38 %)
+
+
+
+Lembert Rivkah – Francie (2,38 %)
+
+
+
+Fillos Hannah – Francie (2,38 %)
+
+
+
+Rukojeti Sheqet – Francie (2,38 %)
+
+
+
+Cassar Fanny – Francie (2,38 %)
+
+
+
+Schnell Shelevah – Švýcarsko (2,38 %)
+
+
+
+Grzebezyk Vincent Julien David – Francie (2,38 %)
+
+
+
+Krumbacher David – Německo (2,38 %)
+
+
+
+Jegu Maxime Michel Daniel – Francie (2,38 %)
+
+
+
+Fillos David – Francie (2,38 %)
+
+
+
+Cazal Felicite Marie Leonie Ode – Francie (2,38 %)
+
+
+
+Lotus Joga – Francie (2,38 %)
+
+
+
+Busser Yemimah – Francie (2,38 %)
+
+
+
+Rouaux Ruhamah – Francie (2,38 %)
+
+
+
+Robertet Ezra – Francie (2,38 %)
+
+
+
+Joga Guillaume Nicolas – Francie (2,38 %)
+
+
+
+Mezi příjemce podpory firmy patří převážně Francie, Německo, Portugalsko a Švýcarsko a patří mezi ně:
+
+
+
+Busser Yemimah – Francie
+
+
+
+Cassar Fanny – Francie
+
+
+
+Cazal Felicite Marie Leonie Ode – Francie
+
+
+
+Fillos David – Francie
+
+
+
+Fillos Hannah – Francie
+
+
+
+Fukušima Lecouvreur Yosef – Francie
+
+
+
+Grzebezyk Vincent Julien David – Francie
+
+
+
+Jegu Maxime Michel Daniel – Francie
+
+
+
+Joga Eitan – Francie
+
+
+
+Joga Guillaume Nicolas – Francie
+
+
+
+Lotus Jóga – Francie
+
+
+
+Joga Meirah – Francie
+
+
+
+Nadab Joga – Francie
+
+
+
+Lembert Gabar – Francie
+
+
+
+Lembert Johan – Francie
+
+
+
+Lembert Rivkah – Francie
+
+
+
+Rukojeti Sheqet – Francie
+
+
+
+Krumbacher David – Německo
+
+
+
+Lembert Fillos Isis Colette – Portugalsko
+
+
+
+Krumbacher Anna Barbara – Švýcarsko
+
+
+
+Vzhledem k tomu, že společnost byla nově otevřena, v současné době nemá žádné vykázané finanční údaje.
+
+
+
+Pekárna v Kluži představuje první viditelnou přítomnost sekty Dvanácti kmenů v Rumunsku. Skupina byla v několika zemích vyšetřována kvůli zneužívání dětí, drsné fyzické disciplíně, dětské práci a přísné kontrole nad členy. Vznik komunity v Săvădisle vyvolává otázky, jak lze těmto praktikám předcházet nebo je monitorovat.&nbsp;The post 12 KMENŮV RUMUNSKU: „Kontroverzní sekta s kontakty v USA přistála v Kluži a otevřela pekárnu. Kdo stojí za pekárnou?“ first appeared on Informace o sektách.",2026-02-24T20:57:30.774943+00:00,sekty,"Tue, 24 Feb 2026 18:18:32 +0000","Spriggs a 12 kmenů,Zahraniční sekty,Děti,Manipulace,Násilí,Oddělování od rodiny,Zdraví"
+Sekty.TV (RSS Feed),RSS,Sekta 12 kmenů se rozšířila do Rumunska,https://sekty.tv/2026/02/24/sekta-12-kmenu-se-rozsirila-do-rumunska/?utm_source=rss&utm_medium=rss&utm_campaign=sekta-12-kmenu-se-rozsirila-do-rumunska,"Zdroj https://www.twelvetribes.org/community/cluj
+
+
+
+The post Sekta 12 kmenů se rozšířila do Rumunska first appeared on Informace o sektách.",2026-02-24T20:57:30.777204+00:00,sekty,"Tue, 24 Feb 2026 18:16:24 +0000","Spriggs a 12 kmenů,Zahraniční sekty,Děti,Manipulace,Násilí,Oddělování od rodiny"
+Sekty.TV (RSS Feed),RSS,"Řeči o zabití i sebevraždě rodiny, soud ale vidí činy vůdce sekty jako přestupek",https://sekty.tv/2026/02/24/reci-o-zabiti-i-sebevrazde-rodiny-soud-ale-vidi-ciny-vudce-sekty-jako-prestupek/?utm_source=rss&utm_medium=rss&utm_campaign=reci-o-zabiti-i-sebevrazde-rodiny-soud-ale-vidi-ciny-vudce-sekty-jako-prestupek,"Zdroj:&nbsp;https://www.idnes.cz/plzen/zpravy/plasy-buh-sasek-stihani-soud-obvineni-domaci-porod-sekta.A241216_115519_plzen-zpravy_jzk
+
+
+
+Zakladatel náboženské sekty Lukáš S. z Plas na Plzeňsku i přes obvinění z pěti přečinů možná neskončí před soudem. Po podání obžaloby totiž soudce zastavil jeho stíhání s tím, že případ by se měl řešit jako přestupek. Muže policie stíhá kvůli jeho výrokům na sociálních sítích, kde vyhrožoval násilím a mluvil o hromadné sebevraždě členů sekty včetně miminka. V září přitom v domě sekty porodila žena, která později zemřela. I tento případ vyšetřuje policie.
+
+
+
+Samosoudce rozhodl o zastavení trestního stíhání Lukáše S. a postoupení jeho věci úředníkům do Plas v závěru listopadu. Redakce iDNES.cz nyní zjistila z databáze soudních případů, že je proti rozhodnutí od konce minulého týdne podaná stížnost.
+
+
+
+To znamená, že případ dostane k posouzení Krajský soud v Plzni, aby rozhodl, jestli věc skončí jako přestupek, nebo zda případ bude muset dál řešit Okresní soud Plzeň-sever.
+
+
+
+10&nbsp;fotografií
+
+
+
+Rozhodnutí o zastavení trestního stíhání a vyřešení případu jako možný přestupek tak není pravomocné.
+
+
+
+Šestačtyřicetiletý zakladatel náboženské sekty Cesta světla Lukáš S., který si říká bůh šašek, je obviněný z pěti přečinů &#8211; šíření poplašné zprávy, pomluvy, vyhrožování s cílem působit na úřední osobu, podněcování k nenávisti vůči skupině osob nebo k omezování jejich práv a svobod a podněcování k trestnému činu.
+
+
+
+Od září, kdy došlo v domě náboženské sekty k tragickému domácímu porodu, totiž přijali policisté několik desítek oznámení o protiprávním jednání vůdce sekty. Na Youtube vyhrožoval lidem zabitím, přál jim smrt, ať všichni dostanou rakovinu, vyhrožoval i kriminalistům, kteří ho vyslýchali.
+
+
+
+Zakladatel sekty z Plas přišel k soudu v obleku šaška, policie jej musí pustit
+
+
+
+Lukáš S. čelí obvinění mimo jiné kvůli veřejným výhrůžkám policistovi, který pracoval na jeho případu. Po obvinění byl muž několik desítek hodin v cele, soudkyně nakonec neshledala důvody k uvalení vazby. Uložila mu dohled probačního úředníka a nařídila, že nesmí vystupovat ve videích, která zveřejňoval na internetu.
+
+
+
+„Pokud to nebude respektovat, bude důvod pro uvalení vazby,“ uvedla v říjnu soudkyně Zuzana Sperková.
+
+
+
+Obviněný tehdy přišel k soudu v šaškovském obleku s rolničkami. Potvrdil, že má zakázáno točit a zveřejňovat videa. Verdikt soudkyně respektoval měsíc. Jedenáctého listopadu zveřejnil video, kde předpovídal konec apokalypsu, umírání a konec světa. Naštvalo ho, že policisté ten den hlídkovali před plaskými školami a také blízko domu, kde v Plasích přebývá zmíněná náboženská skupina.
+
+
+
+„Jste vedle, ale já to přijímám. Narodil jsem se sem a nikdy jsem nikomu předtím ani potom neukřivdil! Tak co je! Mám zakázáno jako člověk hovořit pravdu a lásku do mainstreamu a internetu. A já se ptám za co? Co jsem komu udělal? Tak mě tedy zavřete! Můžete na mě. Vystoupil jsem tedy,“ křičel ve videu a očekával příjezd kriminalistů.
+
+
+
+„Jste psychopati, vy všichni. Jste svině. Policie České republiky je svině! Celá policie! To, co dneska (11. 11. 2024) udělala, že tady hlídkuje?! Že tu bude atentát a že je to jasné? Zakázali jste mi vysílat, tak jak jsem mohl zveřejnit videa o konci světa? To se pos*al svět? Jste svině a já se vám dávám. Jsem člověk bitej vámi všemi. A mě to nevadí. Ukažte, co ve vás je. Vy svině!“ připomněl se 11. listopadu ve videu.
+
+
+
+Tragický domácí porod
+
+
+
+Žena na podzim porodila v domku sekty holčičku, ale zůstala s ní dlouhé hodiny spojená pupeční šňůrou.&nbsp;Až když rodička zkolabovala, zavolali jí členové domácnosti záchranku. To už ale bylo pozdě, žena zemřela v nemocnici.
+
+
+
+Záchranáři měli obavy i o život novorozené dívenky, ta přežila a je u pěstounů. I tento případ vyšetřuje policie, kvůli smrti rodičky ale zatím nikoho neobvinila. Mimo jiné se čeká na znalecké posudky.
+
+
+
+Lukáš S. už dříve vysvětloval, proč žena po porodu zemřela. „Vypnula ji Bába šedivá, na tom se s ní Linda domluvila. Ale zároveň je to medicínsky postavené na tom, že je to mozková mrtvice. Koho byste tedy chtěli vinit z toho, že se tady stalo něco špatně? Nechceme se z toho vykroutit, ale tady vše proběhlo v pořádku. Akorát Linda si sama v místnosti v rozhovoru s Bábou šedivou řekla, že pokud Bába šedivá chce dítě, ať si raději vezme ji a dítě nechá žít,“ prohlásil.
+
+
+
+Vůdce sekty z Plas zřejmě půjde do vazby, přes zákaz soudu vysílal na internetu
+
+
+
+Zakladatel sekty a jeho přívrženci se netají tím, že nemají peníze, nechodí do práce a odmítají se stát součástí sociálního systému. Snaží se žít láskou v srdci a tento cit prý celý den rozvíjejí. Na videích ale Lukáš S. často používá vulgarismy a přeje lidem rakovinu či smrt.The post Řeči o zabití i sebevraždě rodiny, soud ale vidí činy vůdce sekty jako přestupek first appeared on Informace o sektách.",2026-02-24T20:57:30.778596+00:00,sekty,"Tue, 24 Feb 2026 00:52:05 +0000","Česko-slovenské sekty,Lukáš Stančík / Bůh Šašek,Děti,Guruové,Manipulace,Násilí,Oddělování od rodiny,Zdraví"
+Sekty.TV (RSS Feed),RSS,Soudní bitva o dítě z Ohnivého draka z Plas nekončí. Otce hájí Bůh Šašek,https://sekty.tv/2026/02/24/soudni-bitva-o-dite-z-ohniveho-draka-z-plas-nekonci-otce-haji-buh-sasek/?utm_source=rss&utm_medium=rss&utm_campaign=soudni-bitva-o-dite-z-ohniveho-draka-z-plas-nekonci-otce-haji-buh-sasek,"Za zesílených bezpečnostních opatření začal v úterý Okresní soud Plzeň-sever projednávat osud holčičky Evelínky, která vloni na podzim přišla na svět v centru Ohnivý drak v Plasích na severu Plzeňska. Její matka několik dní po domácím porodu v náboženské skupině zemřela.
+
+
+
+Holčičku chce podle informací Deníku do své péče její otec Marian P., pěstounka a také pozůstalí po její matce Lindě. U&nbsp;jednání nechyběl ani vůdce skupiny Lukáš Stančík, který dle svých slov hájí práva otce dítěte. Ač jednání trvalo až do odpoledních hodin, verdikt nepadl.
+
+
+
+Zaznít by měl v&nbsp;únoru.Soudkyně Kateřina Tomanová rozhodla o&nbsp;tom, že se jednání bude konat za zavřenými dveřmi, s&nbsp;vyloučením veřejnosti. Do jednací síně směli jen účastníci řízení, na chodbě tak museli zůstat podporovatelé Mariana P., pozůstalí po Lindě i&nbsp;zástupci médií. Na dění dohlížel zvýšený počet příslušníků justiční stráže, v&nbsp;budově soudu byli na případný zásah připraveni i&nbsp;policisté. Vše se ale obešlo bez jakýchkoliv incidentů.
+
+
+
+Ještě před začátkem zasedání soudu potvrdil Marian P., jehož jméno ani tvář nezveřejňujeme kvůli ochraně identity nezletilé holčičky, že bude usilovat o&nbsp;svoji dceru, která je nyní v&nbsp;pěstounské péči a on ji smí vídat jen hodinu týdně. „Já jsem se jí nikdy nevzdal. Úřady mi ji odebraly a není důvod, abych o&nbsp;ni neusiloval. Počítám, že bude u&nbsp;nás,“ řekl Deníku s&nbsp;tím, že by holčička bydlela s&nbsp;ním, jeho synem Štěpánem, synovou přítelkyní Martinou a dalšími lidmi v&nbsp;domě, kde sídlí i&nbsp;centrum Ohnivý drak. Z&nbsp;čeho by žili, nedokáže v&nbsp;současné době říci. „Oslovujeme naším projektem Karla Janečka (český miliardář – pozn. aut.). Kdy se to stane, nevíme, ale víme, že nás podpoří,“ uvedl otec Evelínky. Tu by rád měl doma i&nbsp;jeho 16letý syn Štěpán, nevlastní sourozenec holčičky, který u&nbsp;soudu také nechyběl. „Přišel jsem podpořit tátu. Evelínka je moje ségra a musí to vyjít, musí být doma,“ prohlásil Štěpán pro Deník s&nbsp;tím, že miminko zatím viděl jen dvakrát, ještě když bylo v&nbsp;porodnici. Nad otázkou, zda se mu stýská po Lindě, zakroutil hlavou. „Stýská? To ne. Ale byla to skvělá kamarádka, měl jsem ji moc rád. Ale být z&nbsp;toho smutný, že tu není, to není život,“ řekl mladík, jehož jméno ani tvář nezveřejňujeme ze stejného důvodu jako u&nbsp;jeho otce.
+
+
+
+Mariana P. k&nbsp;soudu doprovázel Lukáš Stančík, vůdce náboženské skupiny, známý svými kontroverzními videi, kvůli nimž na něj byla podána obžaloba, a to ke stejnému soudu, který projednává osud Evelínky.
+
+
+
+„Jsem Marianův veřejný obhájce. Legislativa to umožňuje, jednou za život si to můžete vybrat. To, co se tu děje, to, co dělá OSPOD, je zločin, že čtyři, pět měsíců unáší dítě, aniž by nás kdokoli z&nbsp;tohoto orgánu prozkoumával,“ řekl muž, jenž si také říká Bůh Šašek. Zatímco na loňské vazební zasedání se dostavil v&nbsp;kostýmu šaška, tentokrát přišel solidně oblečen. „Já jsem uctivý člověk a ctím soud. To, že jsem tu byl jednou v&nbsp;šaškovském, tak to bylo proto, že mě policisté takto zatkli. Byl jsem v&nbsp;kostýmu šaška v&nbsp;šatlavě a musel jsme v&nbsp;něm jít i&nbsp;sem,“ vysvětlil Stančík. Kritizoval, že OSPOD dle něj měří dvojím metrem. „Paradoxem je, že jedno dítě u&nbsp;nás být může a druhé ne,“ řekl Stančík. „Žije s&nbsp;námi moje dcera, které je teď pět měsíců,“ uvedl k&nbsp;tomu Štěpán Faun, člen komunity.
+
+
+
+Ještě před začátkem soudního jednání natočil Stančík video, v&nbsp;němž dění komentoval, pak si udělali s&nbsp;Marianem P. a dalšími společnou rozesmátou fotografii a poté se již odebrali do soudní síně, spolu s&nbsp;dalšími účastníky řízení.
+
+
+
+
+
+
+
+Vyvázne Bůh Šašek jen s pokutou za přestupek? Na tahu je státní zastupitelství
+
+
+
+K&nbsp;zástupcům OSPOD a dalším účastníkům řízení neměli novináři přístup. Pozůstalí po Lindě jen sdělili, že si přejí, aby se Evelínka měla dobře a aby ji nepoznamenalo to, co prožila v&nbsp;prvních dnech svého života. Více pro ně stále velmi citlivou věc komentovat nechtěli.Jednání soudu se protáhlo až do odpoledne, trvalo s&nbsp;přestávkami zhruba pět hodin.
+
+
+
+Porodem se policie stále zabývá
+
+
+
+I&nbsp;tak ale o&nbsp;osudu holčičky zatím nebylo rozhodnuto. Jednání bylo odročeno.Porodem se policie stále zabýváEvelínka se narodila v&nbsp;neděli 8.&nbsp;září v&nbsp;centru Ohnivý drak v&nbsp;Plasích, kde sídlí náboženská skupina Život v&nbsp;srdci, vedená Lukášem Stančíkem, který se nazývá Bůh Šašek. Otec dítěte, Marian P., potvrdil, že jeho partnerce Lindě po porodu, jenž byl dle něj bezproblémový, nevyšla placenta a s&nbsp;dcerou byla rodička spojenou až do pondělního rána pupeční šňůrou. Její stav se zhoršoval, a tak byla přivolána záchranná služba. Ta matku v&nbsp;kritickém stavu i&nbsp;miminko odvezla do nemocnice. Tam žena v&nbsp;pátek 13.&nbsp;září zemřela. Policie případ dosud neuzavřela. „Kriminalisté případ stále prověřují,“ potvrdila tento týden Deníku policejní mluvčí Dagmar Brožová. Evelínčin otec Marian P. se holčičku pokoušel získat do péče, sháněl na to finance prostřednictvím sociálních sítí, ale u&nbsp;veřejnosti tvrdě narazil. Dítě bylo následně umístěno do pěstounské péče na přechodnou dobu, o&nbsp;čemž vloni v&nbsp;září rozhodl Okresní soud Plzeň-město.
+
+
+
+Související články
+
+
+
+
+Narcis a manipulátor. Znalec popsal vůdce sekty z Plas na Plzeňsku
+
+
+
+Holčička, které po porodu v Ohnivém drakovi zemřela matka, je v pěstounské péči
+
+
+
+Matka zemřela po porodu v sektě, otec prosí veřejnost o peníze
+The post Soudní bitva o dítě z Ohnivého draka z Plas nekončí. Otce hájí Bůh Šašek first appeared on Informace o sektách.",2026-02-24T20:57:30.780175+00:00,sekty,"Tue, 24 Feb 2026 00:50:03 +0000","Česko-slovenské sekty,Lukáš Stančík / Bůh Šašek,Děti,Guruové,Manipulace,Oddělování od rodiny,Zdraví"
+Sekty.TV (RSS Feed),RSS,"Sekta z Plzeňska láká na Karlu Janečkovy peníze? Bůh Šašek tvrdí, že jim miliardář slíbil podporu",https://sekty.tv/2026/02/24/sekta-z-plzenska-laka-na-karlu-janeckovy-penize-buh-sasek-tvrdi-ze-jim-miliardar-slibil-podporu/?utm_source=rss&utm_medium=rss&utm_campaign=sekta-z-plzenska-laka-na-karlu-janeckovy-penize-buh-sasek-tvrdi-ze-jim-miliardar-slibil-podporu,"Redakce CNN Prima NEWS přišla na další detaily o poměrech v sektě Ohnivý drak. Vůdce Bůh Šašek láká na peníze miliardáře a bývalého kandidáta na prezidenta Karla Janečka. Ten podle něj sektě slíbil 125 milionů korun. Janeček přiznává, že se s členy sekty potkal, její finanční podporu však odmítá. O sektě se začalo více mluvit po tom, co v jejím domě na Plzeňsku po domácím porodu zemřela žena.
+
+
+
+Ohnivý drak je streamovací sekta, která sídlí v Plasích na Plzeňsku. Její vůdce Lukáš Stančík, který vystupuje pod přezdívkou Bůh Šašek, věří v to, že je osvícený mesiáš. Jenže jeho svátost mu peníze nepřináší, a tak on i jeho ovečky doufají, že dostanou miliony korun od Karla Janečka, tedy muže, který se v minulosti ucházel o křeslo hlavy státu.
+
+
+
+ČTĚTE TAKÉ:&nbsp;Záhadný porod v Plasích. V sektě zkolabovala matka, zasáhl „Bůh Šašek“, vyvstala řada otázek
+
+
+
+„Ze 121 milionů se zaplatí společný dům a těch pár milionů nám zůstane na život,“ popsal Stančík. On sám redakci CNN Prima NEWS setkání se známým českým miliardářem popsal i na kameru, členové sekty jsou prý podle něj výjimeční lidé. „Ke Karlu Janečkovi jsem přišel poprvé asi před rokem a půl. Karel nám řekl, že se ještě nesetkal s&nbsp;takovými zajímavými lidmi, jako jsme my,“ sdělil vůdce sekty.
+
+
+
+Karel Janeček ale jakoukoliv podporu skupiny popírá. „S dotyčnou osobou v žádných oblastech nespolupracuji ani jsem nikdy nespolupracoval. Setkali jsme se pouze jako účastníci stejné akce. Nikdy jsem ani neuvažoval o tom, že bych jeho aktivity podporoval,“ sdělil miliardář pro CNN Prima NEWS.
+
+
+
+Skupina ale v&nbsp;každém případě nelení a i po&nbsp;tragické smrti jedné z členek&nbsp;je na sociálních sítích velmi aktivní a snaží se získat nové finanční prostředky. Ostatní členové hojně verbují nové ovečky přes video vzkazy. Pro sektu, jejíž členové nepracují, jsou spásou. Vnitřní pravidla jsou totiž jasně nastavená – každý, kdo přijde, vloží veškerý svůj kapitál do chodu sekty a všichni z něj žijí společně. Když peníze dojdou, je třeba přilákat někoho nového.
+
+
+
+MOHLI JSTE PŘEHLÉDNOUT:&nbsp;Vůdce sekty v Plasích se vysmíval policistům, že jim zemřou děti, říká expert. Jak získává věrné?The post Sekta z Plzeňska láká na Karlu Janečkovy peníze? Bůh Šašek tvrdí, že jim miliardář slíbil podporu first appeared on Informace o sektách.",2026-02-24T20:57:30.782135+00:00,sekty,"Tue, 24 Feb 2026 00:47:52 +0000","Česko-slovenské sekty,Lukáš Stančík / Bůh Šašek,Guruové,Manipulace,Násilí,Oddělování od rodiny,Zdraví"
+Sekty.TV (RSS Feed),RSS,"Jsem Ježíš, říká Bůh šašek při výslechu policistům. Příbuzní členů jeho sekty mezitím trpí",https://sekty.tv/2026/02/24/jsem-jezis-rika-buh-sasek-pri-vyslechu-policistum-pribuzni-clenu-jeho-sekty-mezitim-trpi/?utm_source=rss&utm_medium=rss&utm_campaign=jsem-jezis-rika-buh-sasek-pri-vyslechu-policistum-pribuzni-clenu-jeho-sekty-mezitim-trpi,"Zdroj: https://cnn.iprima.cz/vudce-sekty-stancik-se-prohlasuje-za-jezise-pribuzni-clenu-jeho-skupiny-mezitim-trpi-490145
+
+
+
+Lukáš Stančík alias Bůh Šašek znovu pobuřuje svými výroky. Natáčí se při policejním výslechu a prohlašuje se za Ježíše. I když v sektě žije mnohem méně členů než kdysi, někteří jejich příbuzní stále trpí. Jedna žena například marně bojuje o to, aby byl její syn výhradně v její péči a nemusel navštěvovat sektu, kde žije jeho otec.
+
+
+
+Sekta Ohnivý drak zaplavila média loni v&nbsp;září, kdy ve skupině proběhl nevydařený domácí porod, během kterého zemřela rodička. Stančík alias Bůh Šašek nedávno umístil na internet video z&nbsp;jednoho ze svých posledních policejních výslechů. „Bůh,“ odpovídá Stančík policistovi, který se ho ptá na zaměstnavatele. Na další otázku, jak ho lidé v zaměstnání oslovují, odpovídá „Ježíš Švamberecký zvěstovatel“.
+
+
+
+I když v posledních měsících o Stančíkovi nebylo slyšet, trápení lidí, kteří mají své příbuzné v sektě, neskončilo. Své o tom ví žena, která má ve skupině bývalého partnera. A marně bojovala o to, aby společného syna dostala do výhradní péče.
+
+
+
+Kriminalisté zadrželi Boha šaška, vůdce sekty z Plas. Měl vyhrožovat soudcům a policistům
+
+
+
+„Jednou za 14 dní by tam měl chodit, s&nbsp;tím, že by tam neměl nocovat. Soud rozhodl, že v&nbsp;době, kdy tam bude, tam nesmí být přítomný Stančík,“ popsala pro CNN Prima NEWS paní Lucie.
+
+
+
+Stančík byl vyšetřován policií
+
+
+
+Jestli bude sekta pravidla dodržovat, není jasné. Možné je i to, že se bývalý partner proti rozhodnutí soudu odvolá. V&nbsp;jednom z archivních videí mluví Stančík o Bábě šedivé – entitě, která podle něj posedne ženy a dostat se z nich musí fyzickým násilím.
+
+
+
+„A tak si s ní zase ta Šedivá bába prostě včera vytřela prd*l, a já potom jsem si vytřel prd*l s tou Šedivou bábou. Zmydlil jsem tady Gabrielu tak, jako nikdy. Zmydlil jsem ji, zmlátil jsem ji, ano,“ říká Stančík na záznamu.3fotografií
+
+
+
+Kvůli podobným videím byl několikrát vyšetřován policií a skončil i před soudem. Tam ostatně na konci měsíce poputuje znovu. „Chci mít přístupná k puštění u soudu všechna videa, ze kterých já jsem souzený, abychom si o tom s tím soudcem mohli povídat,“ uvedl Stančík pro CNN Prima NEWS.
+
+
+
+Ze sekty v posledních měsících odešla jedna z mladých rodin. Skupina kolem Stančíka, který si dnes přezdívá Ježíš Švamberecký, má tak už velmi málo členů.The post Jsem Ježíš, říká Bůh šašek při výslechu policistům. Příbuzní členů jeho sekty mezitím trpí first appeared on Informace o sektách.",2026-02-24T20:57:30.783217+00:00,sekty,"Tue, 24 Feb 2026 00:46:36 +0000","Česko-slovenské sekty,Lukáš Stančík / Bůh Šašek,Děti,Guruové,Konspirace,Manipulace,Násilí,Oddělování od rodiny,Zdraví"
+Sekty.TV (RSS Feed),RSS,Z boha šaška je Joker. Za výhrůžky soudci sektář z Plas nesmí vystupovat ve videích,https://sekty.tv/2026/02/24/z-boha-saska-je-joker-za-vyhruzky-soudci-sektar-z-plas-nesmi-vystupovat-ve-videich/?utm_source=rss&utm_medium=rss&utm_campaign=z-boha-saska-je-joker-za-vyhruzky-soudci-sektar-z-plas-nesmi-vystupovat-ve-videich,"Zdroj:&nbsp;https://www.idnes.cz/plzen/zpravy/soud-tachov-lukas-stancik-sekta-plasy-plzensko-vyhrozovani-soudci.A251030_084652_plzen-zpravy_vb
+
+
+
+Tachovský soud Lukáše Stančíka potrestal 14 měsíci na zkušební dobu dvou let s dohledem. Navíc má zákaz zveřejňování a sdílení videí na všech platformách i jinými uživateli a zákaz vystupovat v živých internetových vysíláních.
+
+
+
+„Není mu patnáct let, aby nevěděl, jak se má chovat, že společnost má mantinely, a pokud z nich vybočí, musí následovat přiměřený postih,“ vysvětlil žalobce Pavel Reiser, který pro obžalovaného navrhoval stejný trest. Rozsudek není pravomocný, Stančík řekl, že se k němu vyjádří, až ho dostane písemně.
+
+
+
+„Soud je přesvědčen, že video bylo schopné vyvolat pohoršení u veřejnosti. Soud nemá pochybnosti, že jednal úmyslně. Video je hrubé, útočné, vulgární, tak vystupuje opakovaně,“ shrnul soudce, podle kterého závažnost byla dána, ale nebyla tak zásadního charakteru, aby byl vysloven nepodmíněný trest.
+
+
+
+Řeči o zabití i sebevraždě rodiny, soud ale vidí činy vůdce sekty jako přestupek
+
+
+
+Podle soudu nebyl problém v tom, že videa Stančík zveřejnil, ale že u poškozeného soudce Radka Vydry dokázala vyvolat obavy.
+
+
+
+„Vy mi tedy zakazujete být na sociálních sítích. Když je to tedy se mnou tak strašně závažné, tak já to tedy přijímám. To jsme tedy skončili,“ řekl těsně před opuštěním soudní síně Stančík.
+
+
+
+Lukáš Stančík alias bůh šašek dnes přišel k Okresnímu soudu v Tachově v oblečku záporné komiksové postavy Jokera známého ze série filmů s Batmanem. Doposud si oblékal šaškovský oblek.
+
+
+
+Přímo v soudní síni chtěl natáčet stream, aby ho pak sdílel na sociální síti. To mu ale soudce nedovolil. Přišel sám, bez advokáta. Jako svědek ho doprovázel Marian P., v jehož domě sídlí sekta Cesta světla a jemuž po domácím porodu zemřela přítelkyně, a jeho sedmnáctiletý syn.
+
+
+
+14&nbsp;fotografií
+
+
+
+Stančík měl již dříve několik konfliktů se zákonem, jeho vyhrožováním se policie několikrát zabývala a několikrát ho i obvinila. Soudy ho za to doposud potrestaly buď podmínkou, nebo případ vyhodnotily jako přestupek, který pak řešila přestupková komise.
+
+
+
+Stančík tak ve svých internetových videích na YouTube vulgárně vyhrožoval právě předsedkyni přestupkové komise v Plasích či soudkyni Okresního soudu Plzeň-sever Kateřině Tomanové, která&nbsp;rozhodovala o osudu miminka narozeného v sektě. V této souvislosti ho také letos v dubnu policisté obvinili, zadrželi a navrhli vazbu. Žalobce jim ale nevyhověl a Stančík byl ze zadržení propuštěn.
+
+
+
+„Jsi podjatá jako kráva!“ Za výhrůžky soudkyni vůdce sekty obvinili a zadrželi
+
+
+
+Vulgárně se vyjadřoval i k soudci Okresního soudu Plzeň-sever Radku Vydrovi, který ho za přečiny vyhrožování a výtržnictví již dříve potrestal. Uložil mu trestním příkazem podmíněný trest osm měsíců vězení s odkladem na 18 měsíců.&nbsp;Bylo to za napadení muže v Plasích holí.
+
+
+
+Ve videu z března letošního roku nadává na již zmíněnou soudkyni a soudce. „Soudnictví je to čů&#8230;ovina, soudkyně vzala otci dítě, to jste pos..li. Vy sv&#8230; z plzeňského soudu, bůh a satan si s tebou vytře pr&#8230;. S nikým z vás se sr&#8230; nebudu, zavřete mě vy sv&#8230;. Jste povrchní zm&#8230; Už teď ti říkám Vydro, že jsi čů&#8230; jako vrata. Já jsem bůh na zemi,“ řval vulgárně v jednom ze svých videí Stančík.
+
+
+
+Podle státního zástupce se tak dopustil výtržnictví a přečinu vyhrožování s cílem působit na orgány veřejné moci. Hrozilo mu až tříleté vězení.
+
+
+
+Chová se jako guru. Matka se marně snaží vyrvat syna ze spárů sekty „boha šaška“
+
+
+
+„Jsem profesionál, na podobné výpady bych měl být zvyklý a připravený. V tomto konkrétním případě ale výrazy přesáhly únosnou mez, bylo to přes čáru, vnímal jsem je nejen jako útok na moji osobu, ale na celou justici. Tedy jako útok na jeden ze tří pilířů demokracie,“ uvedl soudce Radek Vydra, který se připojuje s nárokem na nemajetkovou újmu ve výši 10 tisíc korun. Tachovský soudce ho nakonec s nárokem odkázal na občansko-právní řízení.
+
+
+
+„Já bych to i přešel, ale moje okolí ne. Moje rodiče a přítelkyně se o mě báli. Je pravda, že některé výrazy zaváněly hrozbou. Už jsem obžalovaného soudil a vím, že je schopen fyzického ataku. Nechtěl jsem to brát na lehkou váhu. Byla poškozena moje důstojnost a čest nejen jako soudce, ale i jako občana,“ dodal.
+
+
+
+Zakladatel sekty z Plas přišel k soudu v obleku šaška, policie jej musí pustit
+
+
+
+„Stojím si za tím, co jsem řekl. Nesouhlasím s tím, že bych vyhrožoval s cílem působit na orgán veřejné moci. Neměl jsem za cíl manipulovat, šlo jen o mé čisté sdělení,“ řekl dnes bůh šašek a stejně jako ve svých videích i u soudu zvyšoval hlas a mluvil vulgárně. „Nejsem psychopat, všechno je to jen prožitkové interaktivní divadlo,“ vysvětlil.
+
+
+
+Na otázku, proč přišel k soudu v kostýmu Jokera, odpověděl, že právě za tento kostým ho policie poprvé zavřela. „Zveřejnil jsem na YouTube úryvek z tohoto filmu a kvůli tomu mě zavřeli. Policisté tehdy řekli a dost, to je šílený. Je to na počest prvního zavření,“ vysvětlil svůj dnešní převlek Stančík.
+
+
+
+Podle znaleckého posudku z oboru psychologie je Stančík přesvědčený o své výjimečnosti. Chybí mu pocity zodpovědnosti, viny, lítosti. „Užívá si situace, kdy má moc nad druhými, špatně snáší situace, kdy je podřízen, negativně snáší nesouhlas a kritiku, potřebuje vzrušení a pozornost, aby se nenudil,“ zaznělo dnes u soudu.
+
+
+
+Tragický domácí porod
+
+
+
+Náboženská sekta sídlící v Plasích se do povědomí veřejnosti dostala loni v září právě po zpackaném domácím porodu. Rodičce, člence sekty, nevyšla z těla placenta, zkolabovala a přivolaní záchranáři ji pak odvezli do nemocnice. Tam po několika dnech zemřela.
+
+
+
+Bůh šašek i otec narozené holčičky tvrdí, že si&nbsp;rodičku vzala Bába šedivá. Ta ženy ovládá a je třeba ji z nich dostat, vymlátit. Žena před tragédií oznámila, že chce ze sekty odejít a jít si vlastní cestou. To jí ale Stančík nechtěl dovolit.
+
+
+
+Soud, který rozhodoval o dítěti, nakonec dospěl k závěru, že jeho otec žije natolik odlišným způsobem života, že to pro dítě není dobré, a svěřil ho trvalým pěstounům. Policie případ&nbsp;tragického porodu nakonec odložila.
+
+
+
+Bůh šašek o sobě tvrdí, že žije láskou. Ve svých videích ale lidem&nbsp;přeje smrt, rakovinu, vulgárně nadává na všechny a všechno. Odmítá být součástí sociálního systému, nechodí do práce, nemá žádné peníze a žádá je po veřejnosti.
+
+
+
+Zdroj:&nbsp;https://www.idnes.cz/plzen/zpravy/soud-tachov-lukas-stancik-sekta-plasy-plzensko-vyhrozovani-soudci.A251030_084652_plzen-zpravy_vb
+
+
+
+The post Z boha šaška je Joker. Za výhrůžky soudci sektář z Plas nesmí vystupovat ve videích first appeared on Informace o sektách.",2026-02-24T20:57:30.784970+00:00,sekty,"Tue, 24 Feb 2026 00:44:55 +0000","Česko-slovenské sekty,Lukáš Stančík / Bůh Šašek,Děti,Guruové,Manipulace,Násilí,Oddělování od rodiny,Zdraví"
+Sekty.TV (RSS Feed),RSS,NA VLASTNÍ OČI: Sekta Světlík,https://sekty.tv/2026/02/24/na-vlastni-oci-svetlik/?utm_source=rss&utm_medium=rss&utm_campaign=na-vlastni-oci-svetlik,"Reportáž: TV Nova, Na vlastní oči, 1998The post NA VLASTNÍ OČI: Sekta Světlík first appeared on Informace o sektách.",2026-02-24T20:57:30.785837+00:00,sekty,"Tue, 24 Feb 2026 00:43:26 +0000","Česko-slovenské sekty,Eko-sekta ve Světlíku,eko-sekta,Světlík"
+Sekty.TV (RSS Feed),RSS,Zdeněk Vojtíšek: Každá sekta je nebezpečná,https://sekty.tv/2026/02/24/zdenek-vojtisek-kazda-sekta-je-nebezpecna/?utm_source=rss&utm_medium=rss&utm_campaign=zdenek-vojtisek-kazda-sekta-je-nebezpecna,"SPECIALISTA NA STUDIUM SEKT ZDENĚK VOJTÍŠEK PRO PRÁVO: 
+
+
+
+Ve Společnosti pro studium sekt a nových náboženských společností působíte zároveň jako mluvčí. Můžete říci, kolik se u nás vyskytuje sekt?
+
+
+
+Zdeněk Vojtíšek: Za sektu považujeme dnes takovou společnost, která má vyhraněnou totalitní strukturu, kde je veškerá moc postavená na jednom vůdci, který rozhoduje o všem, a druhý pól je závislý jedinec, který si lehce nechá mluvit do života. Sektářství se vyskytuje úplně všude, nejen v náboženských organizacích, ale i v některých politických, ekologických a společenských organizacích. V užším pohledu lze říci, že sektářství je spojeno i s náboženstvím a že se týká několika desítek tzv. sekt. V cizině je jich prý několik tisíc, u nás mluvíme tak o 40 až 50 organizacích, kde bychom prvky sektářství mohli objevit. 
+
+
+
+
+
+
+
+Kolik asi lidí u nás inklinuje k sektám či už k nim patří?
+
+
+
+Zdeněk Vojtíšek: Odhadujeme, že zhruba 30 tisíc lidí žije ve vypjatém vztahu závislém na sektářském životě. 
+
+
+
+
+
+
+
+Existují v Česku i nebezpečné sekty?
+
+
+
+Vojtíšek: V podstatě je nebezpečná každá totalitní organizace, protože u žádné nevíme, kam až zajde. Nebezpečnost nemůžete určit předem, ale je předpoklad, že tam, kde vám sektářský vůdce řekne, že máte opustit vysokou školu, nebo nařídí, co si máte obléci na sebe, může vás časem vyzvat i k odložení hmotného těla. Jde hlavně o ty sekty, které žijí komunitním způsobem života a které mají vypjaté očekávání konce světa. A také ty, které jsou společností zahnány do kouta a jsou policejně pronásledovány.
+
+
+
+
+
+
+
+Už teď je ale u nás registrováno 21 církví a náboženských společností, a kdyby každá chtěla působit ve školách nebo ve vězeňství, organizačně se to možná nezvládne, ne?
+
+
+
+Zdeněk Vojtíšek: Není přece problém vytvořit jednadvacet nebo pětadvacet smluv. Stát by zároveň deklaroval, že má o ně zájem. A když se vyskytne například pedofilní učitel náboženství, tak společnost s tím něco jasně a rychle udělá, protože při prodlužování smlouvy by už měla potíže. Svědkové Jehovovi v současné době mají celní úlevy na dovoz tiskovin ze zahraničí a v nich se propaguje zákaz transfúze krve pro nezletilé. Jestliže to dělají, neměli by mít od státu úlevy. 
+
+
+
+
+
+
+
+Podle vás tedy Svědkové Jehovovi mají zákaz transfúze krve?
+
+
+
+Zdeněk Vojtíšek: Jednoznačně. Podívejte se do jakéhokoliv jejich materiálu. 
+
+
+
+
+
+
+
+Napsal nám do redakce MUDr. Jan Klika, který tvrdí, že Svědkové se sice chtějí &#8222;zdržovat&#8220; krve, ale nikdy se prý nesetkal s tím, že by rodiče byli kýmkoliv &#8222;vyučováni, aby bránili&#8220; poskytnutí nutné lékařské péče. Pouze prý žádají lékaře, aby léčili kvalitně, bez použití krve&#8230;
+
+
+
+Zdeněk Vojtíšek: To je vrchní lékař Svědků Jehovových. Mohu vám na spoustě jejich publikací dokázat, že krevní transfúze je spojena s vyloučením z jejich společnosti.. 
+
+
+
+
+
+
+
+Máte skutečně svědectví o tom, že v nemocnicích odmítají transfúze?
+
+
+
+Zdeněk Vojtíšek: Jistě. 
+
+
+
+The post Zdeněk Vojtíšek: Každá sekta je nebezpečná first appeared on Informace o sektách.",2026-02-24T20:57:30.786829+00:00,sekty,"Tue, 24 Feb 2026 00:31:14 +0000","Svědkové Jehovovi,Zahraniční sekty,Zdeněk Vojtíšek,Děti,Guruové,Manipulace,Oddělování od rodiny,Pedofilie,Vojtíšek,Zdraví"
+Sekty.TV (RSS Feed),RSS,Pedofilní dětský divadelní spolek Hudradlo fungoval jako sekta,https://sekty.tv/2026/02/24/pedofilni-detsky-divadelni-spolek-hudradlo-fungoval-jako-sekta/?utm_source=rss&utm_medium=rss&utm_campaign=pedofilni-detsky-divadelni-spolek-hudradlo-fungoval-jako-sekta,"Na osm let do vězení poslal ve čtvrtek senát Krajského soudu v Českých Budějovicích třiačtyřicetiletého učitele Základní školy ve Zlivi na Českobudějovicku a vedoucího dětského divadelního spolku Hudradlo, Miroslava Slavíka, za pohlavní zneužívání členek souboru. V zásadě se tak přiklonil k verdiktu českobudějovického soudu z prosince loňského roku. Součástí trestu je ústavní sexuologická léčba, pětiletý zákaz práce s dětmi a propadnutí videokazet. &#8222;Jde o případ výjimečný svým rozsahem. V našem kraji za dlouhé roky nic podobného nenajdeme. Obžalovaný se svých skutků dopouštěl nejméně 12 let souvisle na velkém počtu poškozených, na dívkách velmi útlého věku, o mnoho mladších patnácti let. Často na dívkách sedmi- a osmiletých,&#8220; uvedl ve své závěrečné řeči státní zástupce Pavel Losenický, který požadoval trest u desetileté hranice trestní sazby. Soud prokázal, že Slavík nejméně od roku 1990 až do svého loňského zadržení pohlavně zneužil 12 dívek mladších patnácti let a tři dívky, kterým nebylo ještě osmnáct let. Děvčata osahával, strkal jim prsty do přirození a s mnoha opakovaně souložil. Své počínání přitom natáčel na videokazety, které se staly také hlavním důkazem obžaloby. Přes nezvratné důkazy, které sám vyrobil a které i otrlí policisté označili za otřesné, se Slavík hájil třeba i tím, že podle jeho mínění kriminalisté a soudci některé výjevy na videokazetách špatně pochopili. Jeden ze znalců ale uvedl, že sexuální zkušenosti jedné z dívek, kterou Slavík zneužíval, odpovídaly v jejích devíti letech zkušenostem třicetileté prostitutky. Hudradlo, které bodovalo na mnoha přehlídkách dětských souborů, oslavilo začátkem loňského roku dvacáté výročí své existence. Slavík, který stál u jeho zrodu, byl letos v únoru zatčen a obviněn. Jeho skutky se po letech utajení dostaly na světlo až poté, co byla v opravně videokamer nalezena kazeta s pornografickými nahrávkami. I z tohoto důvodu soud připomněl, že rozsah deliktu pedofilního učitele může přesahovat prokázané skutky. &#8222;S něčím podobným jsme se ve své praxi ještě nesetkali,&#8220; zdůraznil předseda senátu Jiří Trnka.
+
+
+
+Srovnávaly soubor se sektou 
+
+
+
+Na otázku, jak je vůbec možné, že případ pronikl na světlo světa až po takové době, odpověděli částečně psychologové, podle nichž si pedofil své oběti dlouhodobě a systematicky připravoval. Mladičké dívky čekající na chodbě soudu pak stejnou otázku vysvětlovaly poměry v souboru, jež jim s odstupem času připomínají život v sektě. Slavík se svou lékařsky prokázanou sexuální deviací a učitelskými schopnostmi nakládal až s neuvěřitelně zvrhlou dokonalostí. Dívky nejprve osahával, postupně přidával další sexuální prvky, které okolo třináctého roku věku obětí v mnoha případech vyvrcholily pravidelnými pohlavními styky. Znalci uvedli, že si byl svého jednání vědom, ale nehodlal s tím nic dělat. &#8222;Nevěděly jsme, že to není normální, říkal nám, že se to děje všude,&#8220; řekla další z dívek, která se rozhodla proti Slavíkovi vypovídat. Podle ní to byl také důvod, proč ve svém okolí hned nic neřekla, dokonce ani své matce. Dívky se obávaly, že by jejich nařčení nikdo nevěřil. Když Slavíka odváděla od soudu eskorta, poslala mu jeho manželka vzduchem letmý polibek. Jediným opravným prostředkem proti tomuto rozsudku je dovolání k Nejvyššímu soudu.The post Pedofilní dětský divadelní spolek Hudradlo fungoval jako sekta first appeared on Informace o sektách.",2026-02-24T20:57:30.787903+00:00,sekty,"Tue, 24 Feb 2026 00:23:48 +0000","Pedofilní sítě,Zahraniční sekty,Děti,Guruové,Manipulace,Pedofilie,Znásilnění"
+Aktualne.cz (RSS Feed),RSS,Kulturní stanice Galaxie pořádá Týden pro Ukrajinu. Nabízí divadlo i výstavu,https://magazin.aktualne.cz/kultura/kulturni-stanice-galaxie-porada-tyden-pro-ukrajinu-nabizi-divadlo-i-vystavu/r~aaa29297bd5e4b4fb5e89aeef948b01f/,"V týdnu od 23. února do 1. března probíhá v Kulturní stanici Galaxie na pražských Hájích akce věnovaná největšímu vojenskému konfliktu v Evropě od druhé světové války. Návštěvníky Týdne pro Ukrajinu čeká v Galaxii např. benefiční představení Dejvického divadla, výstava, přednášky i přímá svědectví účastníků konfliktu.",2026-02-24T20:57:36.605118+00:00,Kultura,"Tue, 24 Feb 2026 17:30:00 +0100",Kultura
+Blesk.cz (RSS Feed),RSS,"Pavel si rýpl do vlády: Ukrajině pomáháme, ale... na způsob chytré horákyně!",https://www.blesk.cz/clanek/zpravy-politika/833932/pavel-si-rypl-do-vlady-ukrajine-pomahame-ale-na-zpusob-chytre-horakyne.html,"Česká republika pokračuje v podpoře Ukrajiny, i když je to takový způsob chytrá horákyně. Na debatě se studenty a akademiky na Přírodovědecké fakultě Univerzity Karlovy to dnes řekl prezident Petr Pavel. Je rád, že se podařilo přesvědčit nejen premiéra Andreje Babiše (ANO), ale i ministry, že má muniční iniciativa pokračovat. Připomněl, že iniciativa pokračuje bez české finanční účasti.",2026-02-24T20:57:37.390717+00:00,Unknown,"Tue, 24 Feb 2026 20:58:00 +0100",
+Blesk.cz (RSS Feed),RSS,Detaily Klempířovy nehody: Policie už zná viníka! Způsobil ji ministrův řidič s majákem,https://www.blesk.cz/clanek/zpravy-politika/833861/detaily-klempirovy-nehody-policie-uz-zna-vinika-zpusobil-ji-ministruv-ridic-s-majakem.html,"Pondělní srážku dvou osobních automobilů na pražské Vítězném náměstí, po níž musel ministr kultury Oto Klempíř (za Motoristy) vyhledat vyšetření v Ústřední vojenské nemocnici, zavinil řidič jeho služebního automobilu. Jel se zapnutým majákem, řekl dnes mluvčí pražské policie Jan Daněk.",2026-02-24T20:57:37.397681+00:00,Unknown,"Tue, 24 Feb 2026 09:55:00 +0100",
+Forum24.cz (RSS Feed),RSS,Nick Reiner stanul před soudem. Za vraždu rodičů mu hrozí velmi přísný trest,https://www.forum24.cz/nick-reiner-stanul-pred-soudem-za-vrazdu-rodicu-mu-hrozi-velmi-prisny-trest,"Rodina Reinerových se 14. prosince 2025 zahalila do smutku a celý svět si přečetl šokující zprávu. Slavný hollywoodský režisér Rob Reiner byl společně s manželkou zavražděn. Podezřelým z vraždy se stal jejich syn Nick Reiner, který v pondělí 23. února 2026 stanul před soudem v Los Angeles. Vinu odmítá. Těla svých rodičů našla v domě v Brentwoodu jejich dcera Romy. Jako příčinu úmrtí Roba a Michele Reinerových uvedl koroner „mnohonásobná poranění ostrým předmětem“. Podle obžaloby je měl jejich syn Nick pobodat v jejich ložnici a následně z domu uprchnout. Zatčen byl ještě tentýž den v Los Angeles. Nyní dvaatřicetiletý Nick Reiner čelí dvěma bodům obžaloby z vraždy prvního stupně se zvláštními přitěžujícími okolnostmi vícenásobné vraždy. Ačkoliv vinu u pondělního soudu odmítl, v případě jejího prokázání mu hrozí doživotní trest bez možnosti podmíněného propuštění či dokonce trest smrti. Soudkyně stanovila další předběžné slyšení na 29. dubna 2026. Motiv vraždy zatím není známý, a tak kolem vraždy známého páru zůstává stále mnoho otázek. Jejich další dvě děti Jake a Romy jsou naprosto zdrceni. Ve veřejném prohlášení uvedli, že prožívají „nepředstavitelnou bolest“. Rob Reiner byl velmi respektovaným režisérem Hollywoodu a nesmazatelně se zapsal do světa kinematografie. Z jeho tvorby jste mohli vidět například snímky „Hraje skupina Spinal Tap“, „Princezna Nevěsta“, „Když Harry potkal Sally“, „Misery nechce zemřít“, „Americký prezident“, „Druhá šance“, „Než si pro nás přijde“ nebo „Lepší teď než nikdy“. Jeho žena Michele Singer Reinerová pak působila jako herečka, producentka a fotografka – byla zakladatelkou fotografické agentury a produkční společnosti Reiner Light.",2026-02-24T20:57:37.806331+00:00,Iveta Reinisch,"Tue, 24 Feb 26 15:27:41 +0100","Life &amp; Style,Společnost"
+Seznam Zpravy (RSS Feed),RSS,Liberecký kraj koupí hotel a vysílač Ještěd. Za budovu dá 181 milionů korun,https://www.seznamzpravy.cz/clanek/domaci-zivot-v-cesku-liberecky-kraj-koupi-hotel-a-vysilac-jested-za-budovu-da-181-milionu-korun-299625,"Horský hotel a vysílač Ještěd, který slouží od roku 1973 a už dvě dekády je národní kulturní památkou, odkoupí ve středu Liberecký kraj.",2026-02-24T20:57:42.843379+00:00,Unknown,"Tue, 24 Feb 2026 17:24:39 +0100",
+Seznam Zpravy (RSS Feed),RSS,Íránský soud vynesl první rozsudek smrti za protirežimní protesty,https://www.seznamzpravy.cz/clanek/zahranicni-iransky-soud-vynesl-prvni-rozsudek-smrti-za-protirezimni-protesty-299641,"Íránec čelí obvinění z údajné vraždy příslušníka bezpečnostních složek, přičemž jeho rodina osočení odmítá. Tamní soud nad ním však vynesl rozsudek smrti. V současné chvíli není jasné, jestli k němu skutečně dojde.",2026-02-24T20:57:42.846821+00:00,Unknown,"Tue, 24 Feb 2026 18:12:51 +0100",
+Seznam Zpravy (RSS Feed),RSS,Americká moderátorka nabízí milion dolarů za nalezení svojí unesené matky,https://www.seznamzpravy.cz/clanek/zahranicni-americke-moderatorka-nabizi-milion-dolaru-za-nalezeni-svoji-matky-299629,"Čtyřiaosmdesátiletá matka americké moderátorky Savannah Guthrieové se stále pohřešuje. Rodina nyní vybízí veřejnost k poskytnutí informací, které by seniorku pomohly najít. Odměnou je milion dolarů.",2026-02-24T20:57:42.847325+00:00,Unknown,"Tue, 24 Feb 2026 17:55:00 +0100",
+Vira.cz (RSS Feed),RSS,Neexistuje dokonalá rodina,https://www.vira.cz/texty/aktuality/neexistuje-dokonala-rodina,Vztahy rodičů jsou pro rozvoj dětí rozhodující... (Texty o rodině.),2026-02-24T20:57:43.300674+00:00,Unknown,"Wed, 24. Dec 2025 23:00:00 GMT",

@@ -23,6 +23,17 @@ class CSVtoDatabaseLoader:
         self.db = DBConnector()
         self.session = self.db.get_session()
         self.setup_logging()
+        
+        # Cache default movement ID to avoid repeated queries
+        from database.db_loader import Movement
+        default = self.session.query(Movement).filter_by(
+            canonical_name="Neidentifikované hnutí"
+        ).first()
+        if not default:
+            self.logger.error("CRITICAL: Default movement 'Neidentifikované hnutí' not found in database!")
+            raise ValueError("Default movement must exist before importing CSV data")
+        self.default_movement_id = default.id
+        self.logger.info(f"Default movement ID cached: {self.default_movement_id}")
 
     def setup_logging(self):
         """Setup logging for import tracking"""
@@ -140,15 +151,8 @@ class CSVtoDatabaseLoader:
         
         movement_id = match_movement_from_text(combined_text)
         if movement_id is None:
-            # Fallback to default "Unidentified" movement if no match found
-            from database.db_loader import Movement
-            default = self.session.query(Movement).filter_by(
-                canonical_name="Neidentifikované hnutí"
-            ).first()
-            movement_id = default.id if default else None
-            if not movement_id:
-                self.logger.warning(f"No default movement available for: {title_content[:50]}...")
-                return None
+            # Fallback to cached default movement
+            movement_id = self.default_movement_id
             self.logger.debug(f"No movement match found, using default (ID: {movement_id})")
 
         return {
@@ -200,6 +204,11 @@ class CSVtoDatabaseLoader:
                             continue
                             
                         cleaned_data = self.clean_row(row)
+                        # Skip if clean_row returned None (no movement match)
+                        if cleaned_data is None:
+                            skipped += 1
+                            continue
+                        
                         source = Source(**cleaned_data)
                         self.session.add(source)
                         imported += 1
