@@ -135,11 +135,21 @@ sources:
   idnes_domaci:
     name: "iDNES.cz - Domaci"
     domain: "idnes.cz"
-    url: "https://servis.idnes.cz/rss.aspx?c=zpravodaj_domaci"
+    url: "https://servis.idnes.cz/rss.aspx?c=domaci"
     enabled: true
     type: "rss"
     output_csv: "export/csv/idnes_domaci_rss_raw.csv"
     delay: 2
+  
+  idnes_sekty:
+    name: "iDNES.cz - Sekty, kulty, mesiáši"
+    description: "Archive section dedicated to cults and religious movements"
+    domain: "idnes.cz"
+    url: "https://www.idnes.cz/zpravy/archiv/sekty-kulty-mesiasi.K64268"
+    enabled: true
+    type: "web"
+    output_csv: "export/csv/idnes_sekty_raw.csv"
+    delay: 3
   
   ct24_domaci:
     name: "ČT24 - Domaci"
@@ -300,8 +310,10 @@ content_filters:
   exclude_keywords: ["sport", "film", "počasí"]
 
 # Centralized keywords configuration for all spiders, API scrapers and NLP modules
+# IMPORTANT: Must be defined BEFORE document_validation to use YAML anchor
 keywords:
-  required: [
+  # Unified religious keywords list - shared across RSS filtering, PDF validation, and NLP
+  required: &religious_keywords [
     "sekta",
     "kult",
     "destruktivní kult",
@@ -330,7 +342,18 @@ keywords:
     "NDH",
     "nové duchovní hnutí",
     "nová duchovní hnutí",
-    "nové spirituální hnutí"
+    "nové spirituální hnutí",
+    "hnutí",
+    "církev",
+    "náboženství",
+    "náboženský",
+    "duchovní",
+    "religiozní",
+    "spirituální",
+    "věřící",
+    "bratrstvo",
+    "společenství",
+    "uctívání"
   ]
   exclude: [
     "film",
@@ -433,6 +456,7 @@ keywords:
       - "LaVeyův satanismus"
       - "Lectorium Rosicrucianum"
       - "Loving Hut"
+      - "Malá atlantida"
       - "Mezinárodní škola Zlatého růžového kříže"
       - "Mlýn Radunka"
       - "Most ke svobodě"
@@ -495,21 +519,21 @@ keywords:
       - "Škola ekonomické vědy"
       - "Život v Radosti"
       - "Život v srdci"
-  # Movement aliases for fuzzy matching (movement_name -> [aliases for matching])
-  movement_aliases:
-    "AllatRa": ["Hnutí AllatRa", "Sekta AllatRa", "Hnuti Allatra"]
-    "Anastasianismus": ["Anastasia", "Hnutí Anastasia", "Anastasians"]
-    "Církev Ježíše Krista Svatých posledních dnů": ["Mormoni", "LDS", "Mormons"]
-    "Církev sjednocení": ["Mun", "Munisté", "Moonies", "Unification Church"]
-    "Děti Boží": ["Sekta Děti Boží", "Children of God", "The Family"]
-    "Fa-lun-kung": ["Falun Gong", "Hnutí Fa-lun-kung"]
-    "Hnutí Hare Kršna": ["ISKCON", "Hare Kršna", "Hare Krishna", "International Society for Krishna Consciousness"]
-    "Osho": ["Bhagwan", "Rajneesh", "Bhagwan Shree Rajneesh"]
-    "Scientologická církev": ["Scientologie", "Právev scientologie", "Scientology"]
-    "Svědkové Jehovovi": ["Jehovah's Witnesses", "JW"]
-    "Transcendentální meditace": ["TM", "Transcendental Meditation"]
-    "Universe People": ["Vesmírní lidé", "Cosmic People"]
-    "Vesmírní lidé": ["Universe People", "Cosmic People"]
+    # Movement aliases for fuzzy matching (movement_name -> [aliases for matching])
+    movement_aliases:
+      "AllatRa": ["Hnutí AllatRa", "Sekta AllatRa", "Hnuti Allatra"]
+      "Anastasianismus": ["Anastasia", "Hnutí Anastasia", "Anastasians"]
+      "Církev Ježíše Krista Svatých posledních dnů": ["Mormoni", "LDS", "Mormons"]
+      "Církev sjednocení": ["Mun", "Munisté", "Moonies", "Unification Church"]
+      "Děti Boží": ["Sekta Děti Boží", "Children of God", "The Family"]
+      "Fa-lun-kung": ["Falun Gong", "Hnutí Fa-lun-kung"]
+      "Hnutí Hare Kršna": ["ISKCON", "Hare Kršna", "Hare Krishna", "International Society for Krishna Consciousness"]
+      "Osho": ["Bhagwan", "Rajneesh", "Bhagwan Shree Rajneesh"]
+      "Scientologická církev": ["Scientologie", "Právev scientologie", "Scientology"]
+      "Svědkové Jehovovi": ["Jehovah's Witnesses", "JW"]
+      "Transcendentální meditace": ["TM", "Transcendental Meditation"]
+      "Universe People": ["Vesmírní lidé", "Cosmic People"]
+      "Vesmírní lidé": ["Universe People", "Cosmic People"]
   year_patterns: [
     'založen[aáoý]\\s+v\\s+roce\\s+(\\d{4})',
     'vznik(?:lo|la|l)\\s+v\\s+roce\\s+(\\d{4})',
@@ -519,4 +543,36 @@ keywords:
     'činnost\\s+zahájena\\s+v\\s+roce\\s+(\\d{4})',
     'registrován[aáoý]\\s+v\\s+(?:ČR|České\\s+republice)\\s+v\\s+roce\\s+(\\d{4})',
     'zaregistrován[ao]?\\s+dne\\s+\\d{1,2}\\.\\s*\\d{1,2}\\.\\s*(\\d{4})'
+  ]
+
+# Document validation settings for PDF/DOC imports
+document_validation:
+  # Uses unified keywords list from keywords.required (via YAML anchor)
+  czech_religious_keywords: *religious_keywords
+  
+  # Minimum word count for documents
+  min_word_count: 50
+  
+  # Minimum text length in characters
+  min_text_length: 100
+  exclude: [
+    "film",
+    "seriál",
+    "videohra",
+    "pc hra",
+    "hudební skupina",
+    "kapela",
+    "album",
+    "počítačová hra",
+    "politika",
+    "politiky",
+    "politické",
+    "volby"
+  ]
+  exclude_context_patterns: [
+    'recenze\\s+filmu',
+    'hra\\s+roku',
+    'herní\\s+recenze',
+    'soundtrack',
+    'trailer'
   ]

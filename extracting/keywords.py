@@ -64,7 +64,7 @@ _load_keywords_config()
 # MOVEMENT MATCHING WITH FUZZY SEARCH
 # ============================================================
 
-def match_movement_from_text(text: str, min_score: int = 80) -> Optional[int]:
+def match_movement_from_text(text: str, min_score: int = 70) -> Optional[int]:
     """
     Match text to a known movement using keywords and aliases.
     Returns movement_id from database if found, None otherwise.
@@ -72,7 +72,7 @@ def match_movement_from_text(text: str, min_score: int = 80) -> Optional[int]:
     Matching strategy:
     1. Direct substring match on canonical_name (with diacritics)
     2. Check movement aliases (from config, with diacritics)
-    3. Fuzzy matching on canonical_name and aliases
+    3. Fuzzy matching on canonical_name and aliases (min 70% similarity)
     4. Return movement_id if match found
     
     Args:

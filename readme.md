@@ -1,6 +1,8 @@
 # 📘 Project Infinit - Analysis of New Religious Movements in the Czech Republic
 
-An ETL pipeline for collecting, analyzing, and visualizing information about new religious movements in the Czech Republic. Features ethical web scraping, NLP analysis, and structured data storage.
+An ETL pipeline for collecting, analyzing, and visualizing information about new religious movements in the Czech Republic. Features ethical web scraping, NLP analysis, fuzzy entity matching, and structured data storage.
+
+**License:** GNU General Public License v3.0 (GPLv3)
 
 [🇨🇿 Česká verze níže](#-projekt-infinit---analýza-nových-náboženských-hnutí-v-čr)
 
@@ -16,8 +18,10 @@ An ETL pipeline for collecting, analyzing, and visualizing information about new
   - **Multilingual support**: Czech (Stanza) and English (Stanza) with automatic language detection
   - Named Entity Recognition via Hugging Face Transformers (WikiNeural, BioBERT)
   - Sentiment analysis via multilingual BERT models (nlptown/bert-base-multilingual)
+  - **Fuzzy entity matching**: 70% similarity threshold with 4-tier matching (direct name → direct alias → fuzzy name → fuzzy alias)
   - Movement classification and relationship analysis
   - Academic document processing (PDF, DOC, DOCX text extraction)
+  - **139 known religious movements** with alias matching
 - Structured data storage in PostgreSQL/SQLite
 - Export capabilities for further analysis and Power BI integration
 - Comprehensive testing suite with pytest
@@ -34,6 +38,7 @@ An ETL pipeline for collecting, analyzing, and visualizing information about new
 ### Web Scraping
 
 - **Scrapy 2.14+** - Web scraping framework with ethical settings
+- **Scrapy-Playwright 0.0.46+** - JavaScript-rendered page scraping (iDNES archiv)
 - **Feedparser 6.0+** - RSS/Atom feed parsing
 - **Requests 2.31+** - HTTP library
 
@@ -154,21 +159,7 @@ mamba activate project_infinit
 # or: conda activate project_infinit
 ```
 
-#### Option B: Using pip/venv
-
-```bash
-git clone https://github.com/Adam8eifert/project_infinit.git
-cd project_infinit
-
-# Create virtual environment
-python -m venv venv
-source venv/bin/activate  # Linux/macOS
-# or
-# venv\Scripts\activate   # Windows
-
-# Install dependencies
-pip install -r requirements.txt
-```
+**Note:** This project uses Conda/Mamba exclusively. Traditional pip/venv setup is not supported due to complex dependencies (Playwright, Stanza models, etc.).
 
 ### 2. Setup NLP Models and Dependencies
 
@@ -267,11 +258,13 @@ The pipeline collects data from multiple sources configured in `extracting/sourc
 | RSS        | Dingir.cz                   | Feed Parser   | ✅ Active     | Academic religious studies   |
 | RSS        | Pastorální péče             | Feed Parser   | ✅ Active     | Pastoral care resources      |
 | RSS        | Seznam Zprávy               | Feed Parser   | ✅ Active     | Czech news portal            |
+| RSS        | iDNES.cz - Domácí           | Feed Parser   | ✅ Active     | Czech mainstream news        |
 | RSS        | Český rozhlas (iRozhlas.cz) | Feed Parser   | ✅ Active     | Public radio news            |
 | RSS        | Aktuálně.cz                 | Feed Parser   | ✅ Active     | Czech news website           |
 | RSS        | Forum24.cz                  | Feed Parser   | ✅ Active     | Discussion forum             |
 | RSS        | Deník Alarm                 | Feed Parser   | ✅ Active     | Investigative journalism     |
 | RSS        | Blesk.cz                    | Feed Parser   | ✅ Active     | Tabloid news                 |
+| Web        | iDNES archiv (Playwright)   | Scrapy        | 🚧 Blocked    | Sekty-kulty-mesiáši section  |
 | Web        | Medium.seznam.cz            | Scrapy        | ✅ Active     | Blog articles                |
 | API        | Sociologický ústav AVČR     | MediaWiki API | ✅ Active     | Academic research database   |
 | API        | Wikipedia (Czech)           | MediaWiki API | ✅ Active     | Encyclopedia articles        |
@@ -284,14 +277,17 @@ The pipeline collects data from multiple sources configured in `extracting/sourc
 Run the comprehensive test suite:
 
 ```bash
-# Install test dependencies
-pip install pytest pytest-mock
+# Test dependencies are in environment.yml
+mamba activate project_infinit
 
 # Run all tests
 pytest testing/
 
 # Run specific test
 pytest testing/test_nlp_analysis.py -v
+
+# Test fuzzy matching (70% threshold)
+pytest testing/test_keywords.py -v
 ```
 
 ## 📦 Dependencies
@@ -307,9 +303,11 @@ pytest testing/test_nlp_analysis.py -v
 
 ### NLP & Text Processing
 
-- stanza 1.8+ (Czech NLP: tokenization, POS, NER, lemmatization)
-- transformers 4.52+ (sentiment analysis: WikiNeuralNER)
-- spaCy 3.7+ (legacy support)
+- stanza 1.8+ (Primary: Czech/English NLP - tokenization, POS, NER, lemmatization)
+- transformers 4.52+ (sentiment analysis: multilingual BERT)
+- langdetect (automatic language detection)
+- FuzzyWuzzy + Levenshtein (70% threshold fuzzy matching for 139 movements)
+- spaCy 3.7+ (optional legacy support)
 
 ### API Clients
 
@@ -411,7 +409,9 @@ ETL pipeline pro sběr, analýzu a vizualizaci informací o nových nábožensk�
   - Podpora češtiny přes spaCy
   - Rozpoznávání entit přes Hugging Face Transformers
   - Analýza sentimentu přes multijazyčné BERT modely
+  - **Fuzzy matching entit**: Prahová hodnota 70% s 4-úrovňovým matchováním
   - Klasifikace hnutí a analýza vztahů
+  - **139 známých náboženských hnutí** s aliasovým matchováním
 - Strukturované ukládání dat v PostgreSQL/SQLite
 - Exportní možnosti pro další analýzu a Power BI integraci
 - Komplexní testovací sada s pytest
@@ -428,6 +428,7 @@ ETL pipeline pro sběr, analýzu a vizualizaci informací o nových nábožensk�
 ### Web Scraping (CZ)
 
 - **Scrapy 2.14+** - Framework pro web scraping s etickými nastaveními
+- **Scrapy-Playwright 0.0.46+** - Scraping stránek s JavaScriptem (iDNES archiv)
 - **Feedparser 6.0+** - Parsování RSS/Atom feedů
 - **Requests 2.31+** - HTTP knihovna
 
@@ -443,7 +444,7 @@ ETL pipeline pro sběr, analýzu a vizualizaci informací o nových nábožensk�
 - **pandas 2.3+** - Manipulace s daty a CSV zpracování
 - **PyMuPDF (fitz) 1.23+** - Extrakce textu z PDF
 - **python-docx 1.1+** - Zpracování Word dokumentů (.doc, .docx)
-- **FuzzyWuzzy 0.18+** - Fuzzy porovnávání řetězců pro rozlišení entit
+- **FuzzyWuzzy 0.18+ + Levenshtein** - Fuzzy porovnávání řetězců (70% threshold pro 139 hnutí)
 
 ### API klienti (detail)
 
@@ -531,19 +532,7 @@ mamba activate project_infinit
 # nebo: conda activate project_infinit
 ```
 
-#### Možnost B: Použití pip/venv
-
-```bash
-git clone https://github.com/adamseifert/project_infinit.git
-cd project_infinit
-
-# Vytvoření Mamba environment (doporučeno)
-mamba create -n project_infinit -y --file environment.yml
-mamba activate project_infinit
-
-# Nebo pip (fallback)
-pip install -r requirements.txt
-```
+**Poznámka:** Projekt využívá výhradně Conda/Mamba. Tradiční pip/venv setup není podporován kvůli komplexním závislostem (Playwright, Stanza modely, atd.).
 
 ### 2. Nastavení NLP a závislostí
 
@@ -652,11 +641,13 @@ Pipeline sbírá data z více zdrojů nakonfigurovaných v `extracting/sources_c
 | RSS          | Dingir.cz                   | Feed Parser   | ✅ Aktivní         | Akademické náboženské studie       |
 | RSS          | Pastorální péče             | Feed Parser   | ✅ Aktivní         | Pastorační péče                    |
 | RSS          | Seznam Zprávy               | Feed Parser   | ✅ Aktivní         | Český zpravodajský portál          |
+| RSS          | iDNES.cz - Domácí           | Feed Parser   | ✅ Aktivní         | Hlavní české zprávy                |
 | RSS          | Český rozhlas (iRozhlas.cz) | Feed Parser   | ✅ Aktivní         | Veřejnoprávní rozhlasové noviny    |
 | RSS          | Aktuálně.cz                 | Feed Parser   | ✅ Aktivní         | České zpravodajské stránky         |
 | RSS          | Forum24.cz                  | Feed Parser   | ✅ Aktivní         | Diskuzní fórum                     |
 | RSS          | Deník Alarm                 | Feed Parser   | ✅ Aktivní         | Investigativní žurnalistika        |
 | RSS          | Blesk.cz                    | Feed Parser   | ✅ Aktivní         | Bulvární noviny                    |
+| Web          | iDNES archiv (Playwright)   | Scrapy        | 🚧 Blokováno      | Sekce Sekty-kulty-mesiáši          |
 | Web          | Medium.seznam.cz            | Scrapy        | ✅ Aktivní         | Blogové články                     |
 | API          | Sociologický ústav AVČR     | MediaWiki API | ✅ Aktivní         | Akademická výzkumná databáze       |
 | API          | Wikipedia (Czech)           | MediaWiki API | ✅ Aktivní         | Encyklopedické články              |
@@ -669,14 +660,17 @@ Pipeline sbírá data z více zdrojů nakonfigurovaných v `extracting/sources_c
 Spuštění komplexní testovací sady:
 
 ```bash
-# Instalace testovacích závislostí
-pip install pytest pytest-mock
+# Testovací závislosti jsou v environment.yml
+mamba activate project_infinit
 
 # Spuštění všech testů
 pytest testing/
 
 # Spuštění specifického testu
 pytest testing/test_nlp_analysis.py -v
+
+# Test fuzzy matchingu (70% threshold)
+pytest testing/test_keywords.py -v
 ```
 
 ## 📦 Závislosti
@@ -821,4 +815,4 @@ To enable Reddit and X (Twitter) data collection:
 
 ---
 
-**Version:** 2.2 | **Author:** Adam Šeifert | **License:** MIT | **Updated:** 2026-02-19
+**Version:** 2.3 | **Author:** Adam Seifert | **License:** GNU General Public License v3.0 | **Updated:** 2026-02-25

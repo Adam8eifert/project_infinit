@@ -16,7 +16,8 @@ def run_spiders():
         "extracting/api_spider.py",            # Universal API spider
         # Social media spiders
         "extracting/social_media_spider.py",   # Reddit + X/Twitter API
-        # Older web spiders (still supported)
+        # Web scraping spiders
+        "extracting/idnes_spider.py",          # iDNES.cz Sekty rubrika
         "extracting/medium_seznam_spider.py",
         "extracting/google_spider.py"
     ]

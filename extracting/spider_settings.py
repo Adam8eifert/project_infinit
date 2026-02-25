@@ -50,4 +50,8 @@ CSV_EXPORT_SETTINGS = {
     "format": "csv",
     "overwrite": True,
     "encoding": "utf8",
+    "fields": ["source_name", "source_type", "title", "url", "text", "scraped_at", "author", "published_at", "categories"],
+    "delimiter": ",",
+    "quotechar": '"',
+    "quoting": 1,  # csv.QUOTE_ALL - quotes all fields to avoid comma conflicts
 }

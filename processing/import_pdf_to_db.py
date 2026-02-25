@@ -22,6 +22,7 @@ class DocumentsToDatabase:
         self.db = DBConnector()
         self.session = self.db.get_session()
         self.setup_logging()
+        self._load_validation_config()
         self.last_skip_reason = None
 
     def setup_logging(self):
@@ -35,7 +36,30 @@ class DocumentsToDatabase:
             ]
         )
         self.logger = logging.getLogger(__name__)
-
+    def _load_validation_config(self):
+        """Load document validation settings from sources_config.yaml"""
+        try:
+            import yaml
+            from pathlib import Path
+            config_path = Path(__file__).parent.parent / 'extracting' / 'sources_config.yaml'
+            
+            with open(config_path, 'r', encoding='utf-8') as f:
+                config = yaml.safe_load(f)
+            
+            doc_validation = config.get('document_validation', {})
+            self.czech_keywords = doc_validation.get('czech_religious_keywords', [
+                'sekta', 'hnutí', 'církev', 'náboženství', 'duchovní', 'religiozní', 'spirituální'
+            ])
+            self.min_word_count = doc_validation.get('min_word_count', 50)
+            self.min_text_length = doc_validation.get('min_text_length', 100)
+            
+            self.logger.info(f"Loaded {len(self.czech_keywords)} validation keywords from config")
+        except Exception as e:
+            # Fallback to defaults if config load fails
+            self.logger.warning(f"Could not load validation config: {e}. Using defaults.")
+            self.czech_keywords = ['sekta', 'hnutí', 'církev', 'náboženství', 'duchovní', 'religiozní', 'spirituální']
+            self.min_word_count = 50
+            self.min_text_length = 100
     def preprocess_text(self, text: str) -> str:
         """Clean and normalize extracted text"""
         if not text:
@@ -305,23 +329,23 @@ class DocumentsToDatabase:
         errors = []
         warnings = []
 
-        if not text or len(text.strip()) < 100:
-            errors.append("Extracted text too short or empty")
+        if not text or len(text.strip()) < self.min_text_length:
+            errors.append(f"Extracted text too short or empty (< {self.min_text_length} chars)")
             return False, errors
 
         word_count = self.calculate_word_count(text)
         
-        # Check minimum word count (at least 50 words)
-        if word_count < 50:
-            errors.append(f"Text too short ({word_count} words, minimum 50)")
+        # Check minimum word count
+        if word_count < self.min_word_count:
+            errors.append(f"Text too short ({word_count} words, minimum {self.min_word_count})")
             return False, errors
 
-        # Check for Czech/religious content keywords
-        czech_keywords = ['sekta', 'hnutí', 'církev', 'náboženství', 'duchovní', 'religiozní', 'krčem', 'spirituální']
-        has_relevant_content = any(keyword in text.lower() for keyword in czech_keywords)
+        # Check for Czech/religious content keywords (loaded from config)
+        text_lower = text.lower()
+        has_relevant_content = any(keyword in text_lower for keyword in self.czech_keywords)
 
         if not has_relevant_content:
-            errors.append("Content doesn't appear to be relevant (missing Czech/religious keywords)")
+            errors.append(f"Content doesn't appear to be relevant (missing keywords: {', '.join(self.czech_keywords[:5])}...)")
             return False, errors
 
         # Check for excessive non-text content (OCR noise)

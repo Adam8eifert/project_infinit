@@ -176,7 +176,15 @@ class CSVtoDatabaseLoader:
 
         try:
             try:
-                df = pd.read_csv(csv_path)
+                # Proper CSV handling for multiline content, quoted text, and different encodings
+                df = pd.read_csv(
+                    csv_path,
+                    encoding='utf-8',
+                    quotechar='"',
+                    escapechar='\\',
+                    on_bad_lines='warn',  # Log problematic lines but continue
+                    engine='python'  # More robust CSV parser
+                )
             except pd.errors.EmptyDataError:
                 self.logger.info(f"Skipping empty CSV (no columns): {csv_path}")
                 return
