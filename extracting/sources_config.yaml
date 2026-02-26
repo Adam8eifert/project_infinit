@@ -469,7 +469,7 @@ keywords:
       - "Kosmické bratrstvo"
       - "Kristadelfiáni"
       - "Kruh přátel Bruna Gröninga"
-      - "Kuřimská sekta"
+      - "Kuřimská komunita"
       - "Křesťanská věda"
       - "Křesťanské společenství Logos"
       - "LaVeyův satanismus"
@@ -540,11 +540,11 @@ keywords:
       - "Život v srdci"
     # Movement aliases for fuzzy matching (movement_name -> [aliases for matching])
     movement_aliases:
-      "AllatRa": ["Hnutí AllatRa", "Sekta AllatRa", "Hnuti Allatra"]
+      "AllatRa": ["Hnutí AllatRa", "Hnuti Allatra"]
       "Anastasianismus": ["Anastasia", "Hnutí Anastasia", "Anastasians"]
-      "Církev Ježíše Krista Svatých posledních dnů": ["Mormoni", "LDS", "Mormons"]
+      "Církev Ježíša Krista Svatých posledních dnů": ["Mormoni", "LDS", "Mormons"]
       "Církev sjednocení": ["Mun", "Munisté", "Moonies", "Unification Church"]
-      "Děti Boží": ["Sekta Děti Boží", "Children of God", "The Family"]
+      "Děti Boží": ["Children of God", "The Family"]
       "Fa-lun-kung": ["Falun Gong", "Hnutí Fa-lun-kung"]
       "Hnutí Hare Kršna": ["ISKCON", "Hare Kršna", "Hare Krishna", "International Society for Krishna Consciousness"]
       "Osho": ["Bhagwan", "Rajneesh", "Bhagwan Shree Rajneesh"]

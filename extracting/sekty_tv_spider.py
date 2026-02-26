@@ -125,7 +125,7 @@ class SektyTVSpider(scrapy.Spider):
                 
                 # Write to CSV
                 try:
-                    append_row('export/csv/sekty_tv_web_raw.csv', item)
+                    append_row(Path('export/csv/sekty_tv_web_raw.csv'), item)
                 except Exception as e:
                     self.logger.warning(f"⚠️ Could not write CSV: {e}")
                 

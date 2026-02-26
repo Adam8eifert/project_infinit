@@ -210,6 +210,16 @@ def process_entities():
         movements_created = 0
         locations_created = 0
         
+        # Helper function to remove "sekta" from movement names
+        def clean_movement_name(name: str) -> str:
+            """Remove 'sekta' word from movement names for canonical storage"""
+            import re
+            # Remove variations: "sekta", "Sekta", "SEKTA" (case-insensitive)
+            cleaned = re.sub(r'\bsekta\b', '', name, flags=re.IGNORECASE).strip()
+            # Clean up extra spaces
+            cleaned = ' '.join(cleaned.split())
+            return cleaned
+        
         # Czech NSM keywords
         nsm_keywords = [
             'hnutí', 'sekta', 'kult', 'církev', 'společenství', 'grál', 'svědkové', 'jehova',
@@ -221,7 +231,9 @@ def process_entities():
         known_nsm = ALL_KNOWN_MOVEMENTS
         
         for source in sources:
-            text = (source.content_full or "") + " " + (source.content_excerpt or "")
+            full_text = str(source.content_full or "")
+            excerpt_text = str(source.content_excerpt or "")
+            text = full_text + " " + excerpt_text
             if not text or len(text.strip()) < 50:
                 continue
                 
@@ -301,82 +313,93 @@ def process_entities():
                 # Flush session to ensure previous additions are visible
                 session.flush()
                 
+                # Clean movement name (remove "sekta")
+                clean_name = clean_movement_name(movement_name)
+                if not clean_name:  # Skip if empty after cleaning
+                    continue
+                
                 # Check if this is a known movement name (direct match with diacritics)
-                if movement_name in known_nsm:
+                if clean_name in known_nsm:
                     # Direct match - create or update movement
                     existing = session.query(Movement).filter(
-                        Movement.canonical_name == movement_name
+                        Movement.canonical_name == clean_name
                     ).first()
                     
                     if not existing:
                         movement = Movement(
-                            canonical_name=movement_name,  # Name with diacritics (single source of truth)
+                            canonical_name=clean_name,  # Name with diacritics (single source of truth)
                             category="religious",
                             description=f"Extracted from source: {source.url}",
                             active_status="unknown"
                         )
                         session.add(movement)
                         movements_created += 1
-                        print(f"  ➕ Created movement: {movement_name}")
+                        print(f"  ➕ Created movement: {clean_name}")
                     else:
-                        print(f"  ⏭️  Movement already exists: {movement_name}")
+                        print(f"  ⏭️  Movement already exists: {clean_name}")
                 else:
                     # This is not a direct match - find best match and create alias
-                    best_match, score = extractOne(movement_name, known_nsm, scorer=fuzz.ratio)
+                    result = extractOne(clean_name, known_nsm, scorer=fuzz.ratio)
+                    if result is None:
+                        continue
+                    best_match, score = result[0], result[1]
                     if score >= 80:  # High confidence match
+                        # Clean the best_match name too
+                        clean_best_match = clean_movement_name(best_match)
+                        
                         # Find the movement
                         canonical_movement = session.query(Movement).filter(
-                            Movement.canonical_name == best_match
+                            Movement.canonical_name == clean_best_match
                         ).first()
                         
                         if not canonical_movement:
                             # Create the canonical movement first
                             canonical_movement = Movement(
-                                canonical_name=best_match,  # Name with diacritics (single source of truth)
+                                canonical_name=clean_best_match,  # Name with diacritics (single source of truth)
                                 category="religious",
-                                description=f"Created for alias: {movement_name}",
+                                description=f"Created for alias: {clean_name}",
                                 active_status="unknown"
                             )
                             session.add(canonical_movement)
                             session.flush()  # Flush to get auto-generated ID before creating alias
                             movements_created += 1
-                            print(f"  ➕ Created canonical movement: {best_match}")
+                            print(f"  ➕ Created canonical movement: {clean_best_match}")
                         
                         # Check if alias already exists
                         existing_alias = session.query(Alias).filter(
                             Alias.movement_id == canonical_movement.id,
-                            Alias.alias == movement_name
+                            Alias.alias == clean_name
                         ).first()
                         
                         if not existing_alias:
                             alias = Alias(
                                 movement_id=canonical_movement.id,
-                                alias=movement_name,
+                                alias=clean_name,
                                 alias_type="extracted",
                                 confidence_score=score / 100.0
                             )
                             session.add(alias)
-                            print(f"  ➕ Created alias: {movement_name} -> {best_match} (score: {score})")
+                            print(f"  ➕ Created alias: {clean_name} -> {clean_best_match} (score: {score})")
                         else:
-                            print(f"  ⏭️  Alias already exists: {movement_name}")
+                            print(f"  ⏭️  Alias already exists: {clean_name}")
                     else:
                         # Low confidence - create as new canonical movement
                         existing = session.query(Movement).filter(
-                            Movement.canonical_name == movement_name
+                            Movement.canonical_name == clean_name
                         ).first()
                         
                         if not existing:
                             movement = Movement(
-                                canonical_name=movement_name,  # Name with diacritics (single source of truth)
+                                canonical_name=clean_name,  # Name with diacritics (single source of truth)
                                 category="religious",
                                 description=f"Extracted from source: {source.url} (low confidence match)",
                                 active_status="unknown"
                             )
                             session.add(movement)
                             movements_created += 1
-                            print(f"  ➕ Created movement (low confidence): {movement_name}")
+                            print(f"  ➕ Created movement (low confidence): {clean_name}")
                         else:
-                            print(f"  ⏭️  Movement already exists: {movement_name}")
+                            print(f"  ⏭️  Movement already exists: {clean_name}")
             locations = []
             czech_cities = ['praha', 'brno', 'ostrava', 'plzeň', 'liberec', 'olomouc', 'české budějovice', 'hradec králové', 'pardubice', 'zlín']
             
@@ -398,7 +421,7 @@ def process_entities():
             
             for location_name in set(locations):
                 # Check if location exists
-                if default_movement_id:
+                if default_movement_id is not None:
                     existing = session.query(Location).filter(Location.municipality.ilike(f"%{location_name}%")).first()
                     if not existing:
                         location = Location(
@@ -424,11 +447,13 @@ def process_entities():
                         score = 0.5
                     label = sentiment
                 else:
-                    score = sentiment.get('score', 0.5)
-                    label = sentiment.get('label', 'neutral')
+                    score = float(sentiment.get('score', 0.5))
+                    label = str(sentiment.get('label', 'neutral'))
 
-                source.sentiment_score = score
-                source.classification_label = label
+                # Use update() to properly assign values to ORM object
+                session.query(Source).filter(Source.id == source.id).update(
+                    {Source.sentiment_score: score, Source.classification_label: label}
+                )
         
         session.commit()
         session.close()
