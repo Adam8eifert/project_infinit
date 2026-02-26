@@ -48,6 +48,25 @@ sources:
     output_csv: "export/csv/sekty_tv_rss_raw.csv"
     delay: 2
 
+  sekty_tv_web:
+    name: "Sekty.TV (Web Scraping)"
+    description: "Web scraper for sekty.tv with full article extraction"
+    domain: "sekty.tv"
+    url: "https://sekty.tv/"
+    enabled: true
+    type: "web"
+    selectors:
+      article: "article.post, div.post.entry"
+      title: "h3.feature-posts-title a::text, h2 a::text, h3 a::text"
+      link: "h3.feature-posts-title a::attr(href), h2 a::attr(href)"
+      excerpt: ".entry-excerpt::text, p::text"
+      date: "time::attr(datetime)"
+      author: ".author::text, .post-author::text"
+      categories: "a[rel='category tag']::text"
+    output_csv: "export/csv/sekty_tv_web_raw.csv"
+    delay: 3
+    max_pages: 5  # Limit pagination to prevent excessive scraping
+
   sekty_cz:
     name: "Sekty.cz"
     description: "Information portal on new religious movements"
