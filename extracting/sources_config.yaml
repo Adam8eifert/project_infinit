@@ -218,7 +218,7 @@ sources:
   denik_alarm:
     name: "Denik Alarm (RSS Feed)"
     domain: "denikalarm.cz"
-    url: "https://denikalarm.cz/rss"
+    url: "https://denikalarm.cz/feed/"
     enabled: true
     type: "rss"
     output_csv: "export/csv/denik_alarm_rss_raw.csv"
@@ -288,9 +288,15 @@ sources:
     name: "Sociologicky ustav AVCR (MediaWiki API)"
     domain: "rg-encyklopedie.soc.cas.cz"
     url: "https://rg-encyklopedie.soc.cas.cz/api.php"
-    enabled: true
+    enabled: false # Disabled: needs specific article list + api_params configured
     type: "api"
     output_csv: "export/csv/soccas_api_raw.csv"
+    # Example api_params needed:
+    # api_params:
+    #   action: "parse"
+    #   page: "Article_Name"
+    #   format: "json"
+    #   prop: "wikitext"
 
   wikipedia:
     name: "Wikipedia (Czech)"

@@ -73,6 +73,14 @@ class APISpider(scrapy.Spider):
         Extracts relevant content and saves to CSV.
         """
         try:
+            # Check if response has content
+            if not response.text or not response.text.strip():
+                self.logger.error(f"❌ Empty response from {response.meta['source_name']}")
+                return
+            
+            # Log first 200 chars for debugging
+            self.logger.debug(f"Response preview: {response.text[:200]}")
+            
             data = json.loads(response.text)
             source_config = response.meta['source_config']
             api_method = source_config.get('api_method', 'parse')
@@ -191,6 +199,14 @@ class SingleAPISpider(scrapy.Spider):
     def parse(self, response):
         """Same as APISpider.parse_api."""
         try:
+            # Check if response has content
+            if not response.text or not response.text.strip():
+                self.logger.error(f"❌ Empty response from {response.meta['source_name']}")
+                return
+            
+            # Log response details for debugging
+            self.logger.info(f"Response length: {len(response.text)} chars, status: {response.status}")
+            
             data = json.loads(response.text)
             
             if 'parse' in data:
