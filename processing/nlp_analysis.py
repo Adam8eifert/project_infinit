@@ -106,50 +106,63 @@ class CzechTextAnalyzer:
 
         return result
 
-    def extract_named_entities(self, text: str) -> List[Dict[str, Any]]:
+    def extract_named_entities(self, text: str) -> Dict[str, List[str]]:
         """
-        Extract named entities using Hugging Face NER model or spaCy fallback.
+        Extract named entities grouped by type (movements, persons, locations).
+        Returns dict with 'movements', 'persons', 'locations' keys.
         """
         if not text:
-            return []
+            return {'movements': [], 'persons': [], 'locations': []}
 
+        result = {'movements': [], 'persons': [], 'locations': []}
+        
         # Try Hugging Face NER first
         if self.ner_available and self.ner_analyzer is not None:
             try:
-                # Truncate text to avoid model limits
                 entities = self.ner_analyzer(text[:512])
-                return [{
-                    'text': str(e['word']),
-                    'label': str(e['entity_group']),
-                    'confidence': float(e['score']),
-                    'start': int(e['start']),
-                    'end': int(e['end'])
-                } for e in entities]
+                for e in entities:
+                    label = str(e.get('entity_group', '')).upper()
+                    word = str(e.get('word', '')).strip()
+                    
+                    if label == 'PER':
+                        result['persons'].append(word)
+                    elif label == 'LOC':
+                        result['locations'].append(word)
+                    elif label == 'ORG':
+                        result['movements'].append(word)
+                
+                return result
             except Exception as e:
                 print(f"⚠️ NER analysis failed: {e}")
 
         # Fallback to spaCy NER
         if self.spacy_available and self.nlp is not None:
             doc = self.nlp(text)
-            return [{
-                'text': ent.text,
-                'label': ent.label_,
-                'confidence': 0.8,
-                'start': ent.start_char,
-                'end': ent.end_char
-            } for ent in doc.ents]
+            for ent in doc.ents:
+                label = ent.label_.upper()
+                if label == 'PERSON':
+                    result['persons'].append(ent.text)
+                elif label == 'GPE' or label == 'LOC':
+                    result['locations'].append(ent.text)
+                elif label == 'ORG':
+                    result['movements'].append(ent.text)
 
-        return []
+        return result
 
-    def analyze_sentiment(self, text: str) -> str:
+    def analyze_sentiment(self, text: str) -> Dict[str, Any]:
         """
-        Analyze sentiment (1-5 stars) and return the best label (e.g., '3 stars').
+        Analyze sentiment and return dict with score (-1 to 1) and label.
+        
+        Returns:
+            dict with keys:
+            - 'score': float between -1 (negative) and 1 (positive)
+            - 'label': 'positive' | 'neutral' | 'negative'
         """
         if not text or not self.sentiment_available:
-            return 'neutral'
+            return {'score': 0.0, 'label': 'neutral'}
 
         try:
-            # Initialize pipeline lazily so test monkeypatches can take effect
+            # Initialize pipeline lazily
             if self.sentiment_analyzer is None and not getattr(self, 'sentiment_tried', False):
                 try:
                     self.sentiment_analyzer = _transformers.pipeline(
@@ -162,36 +175,100 @@ class CzechTextAnalyzer:
                 finally:
                     self.sentiment_tried = True
 
-            # BERT model limit is 512 tokens
             if not self.sentiment_analyzer:
-                # Fallback heuristic: simple keyword-based sentiment for tests / offline mode
-                import unicodedata
-                lower = (text or '').lower()
-                lower_norm = ''.join(c for c in unicodedata.normalize('NFKD', lower) if not unicodedata.combining(c))
-                if 'dobr' in lower_norm or 'good' in lower_norm:
-                    return '3 stars'
-                return 'neutral'
+                # Fallback heuristic
+                return self._heuristic_sentiment(text)
 
             result = self.sentiment_analyzer(text[:512])
             if result:
-                # Some pipelines return a list of lists (scores for many classes)
-                # e.g. [[{...}, {...}]] — select the first reported label.
                 first = result[0]
                 if isinstance(first, list):
                     best = first[0]
                 else:
                     best = first
-                # Allow simple keyword override for deterministic tests / offline modes
-                import unicodedata
-                lower = (text or '').lower()
-                lower_norm = ''.join(c for c in unicodedata.normalize('NFKD', lower) if not unicodedata.combining(c))
-                if 'dobr' in lower_norm:
-                    return '3 stars'
-                return str(best.get('label'))
+                
+                label = str(best.get('label', 'NEUTRAL')).lower()
+                score_value = float(best.get('score', 0.0))
+                
+                # Convert label to internal format and score to -1..1 range
+                if 'positive' in label:
+                    sentiment_label = 'positive'
+                    sentiment_score = abs(score_value)
+                elif 'negative' in label:
+                    sentiment_label = 'negative'
+                    sentiment_score = -abs(score_value)
+                else:
+                    sentiment_label = 'neutral'
+                    sentiment_score = 0.0
+                
+                return {
+                    'score': max(-1.0, min(1.0, sentiment_score)),
+                    'label': sentiment_label
+                }
         except Exception as e:
             print(f"⚠️ Sentiment analysis failed: {e}")
 
-        return 'neutral'
+        return {'score': 0.0, 'label': 'neutral'}
+
+    def _heuristic_sentiment(self, text: str) -> Dict[str, Any]:
+        """Fallback sentiment analysis using keyword heuristics"""
+        import unicodedata
+        
+        lower = (text or '').lower()
+        lower_norm = ''.join(c for c in unicodedata.normalize('NFKD', lower) 
+                            if not unicodedata.combining(c))
+        
+        positive_words = ['dobrý', 'dobry', 'pozitivní', 'pozitivni', 'dobrá', 'dobrych', 'skvělý', 'skvelý', 'geniální', 'genialni']
+        negative_words = ['špatný', 'spatny', 'negativní', 'negativni', 'horší', 'horsi', 'hrozný', 'hrozny', 'zlý', 'zly']
+        
+        pos_count = sum(1 for word in positive_words if word in lower_norm)
+        neg_count = sum(1 for word in negative_words if word in lower_norm)
+        
+        if pos_count > neg_count:
+            return {'score': 0.5, 'label': 'positive'}
+        elif neg_count > pos_count:
+            return {'score': -0.5, 'label': 'negative'}
+        else:
+            return {'score': 0.0, 'label': 'neutral'}
+
+    def calculate_risk_score(self, text: str) -> float:
+        """
+        Calculate risk score (0.0 to 1.0) based on text content.
+        Higher score = higher risk.
+        
+        Based on:
+        - Presence of extreme language
+        - Mentions of harm, violence
+        - NER confidence for organization mentions
+        """
+        if not text:
+            return 0.0
+        
+        lower = text.lower()
+        
+        # High-risk keywords
+        high_risk = ['násilí', 'navrh', 'sebevražda', 'vražda', 'zbraň', 'smrt', 'chaos', 'zavraždění']
+        medium_risk = ['kontrola', 'manipulace', 'psychologický', 'psychologicka', 'kult', 'sekt']
+        low_risk = ['hnutí', 'hnutim', 'komunita', 'organizace']
+        
+        high_count = sum(1 for word in high_risk if word in lower)
+        med_count = sum(1 for word in medium_risk if word in lower)
+        low_count = sum(1 for word in low_risk if word in lower)
+        
+        # Calculate score (0.0 to 1.0)
+        total_words = len(text.split())
+        risk_ratio = (high_count * 0.9 + med_count * 0.5 + low_count * 0.1) / max(total_words, 100)
+        
+        return max(0.0, min(1.0, risk_ratio * 2))  # Scale and cap
+
+    def get_risk_level(self, risk_score: float) -> str:
+        """Convert risk score to risk level enum"""
+        if risk_score < 0.33:
+            return 'low'
+        elif risk_score < 0.66:
+            return 'medium'
+        else:
+            return 'high'
 
     def extract_keywords(self, text: str, top_n: int = 10) -> List[str]:
         """
@@ -228,7 +305,7 @@ class CzechTextAnalyzer:
         return [w.lower() for w in text.split() if len(w) > 4 and w.isalpha()][:top_n]
 
     def preprocess_text(self, text: str) -> str:
-        """
+        r"""
         Clean text: join hyphenated line-breaks, normalize whitespace, and lowercase.
         - remove hyphen + newline sequences that split words (r"-\n\s*")
         - collapse any whitespace sequence into single space

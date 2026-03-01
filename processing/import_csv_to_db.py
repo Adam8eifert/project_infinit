@@ -1,28 +1,29 @@
 # 📁 processing/import_csv_to_db.py
+# CSV to Articles Database Loader with New Schema
 
 import pandas as pd
 from pathlib import Path
 from sqlalchemy.exc import IntegrityError
-from database.db_loader import DBConnector, Source
+from database.db_loader import DBConnector, Article, Movement
 from datetime import datetime
 import logging
 from typing import Union, Optional
 import json
 import re
-
-# Import movement matching function
+from fuzzywuzzy import fuzz
 import sys
-from pathlib import Path
+
+# Add parent directory to path for imports
 sys.path.insert(0, str(Path(__file__).parent.parent))
-from extracting.keywords import match_movement_from_text
 
 class CSVtoDatabaseLoader:
-    """Safe import of CSV data to database with validation and logging"""
+    """Load CSV articles to database with new schema (Article → M:N Movements)"""
 
-    def __init__(self):
-        self.db = DBConnector()
+    def __init__(self, db: Optional[DBConnector] = None):
+        self.db = db or DBConnector()
         self.session = self.db.get_session()
         self.setup_logging()
+        self.movement_cache = {}  # Cache for movement fuzzy matching
 
     def setup_logging(self):
         """Setup logging for import tracking"""
@@ -36,13 +37,44 @@ class CSVtoDatabaseLoader:
         )
         self.logger = logging.getLogger(__name__)
 
-    def validate_row(self, row, csv_path):
-        """Validate individual data rows
-
-        New checks:
-        - `scraped_at` must be parseable as a datetime (ISO or common formats)
-        - `categories` if present must be valid JSON that resolves to a list
+    def match_movement_fuzzy(self, text: str, threshold: float = 70) -> Optional[Movement]:
+        """Fuzzy match article text to find related Movement
+        
+        Args:
+            text: Article title + content
+            threshold: Minimum similarity score (0-100)
+            
+        Returns:
+            Movement object if found, else None
         """
+        if not text.strip():
+            return None
+        
+        # Get all movements from database
+        all_movements = self.session.query(Movement).all()
+        
+        best_match = None
+        best_score = 0
+        
+        for movement in all_movements:
+            # Try matching against movement name and alias
+            scores = [
+                fuzz.token_set_ratio(text.lower(), movement.name.lower()) if movement.name else 0,
+                fuzz.token_set_ratio(text.lower(), movement.alias.lower()) if movement.alias else 0,
+            ]
+            
+            max_score = max(scores)
+            if max_score > best_score:
+                best_score = max_score
+                best_match = movement
+        
+        if best_score >= threshold:
+            return best_match
+        
+        return None
+
+    def validate_row(self, row, csv_path):
+        """Validate individual data rows"""
         errors = []
         
         # Check for empty values
@@ -57,175 +89,132 @@ class CSVtoDatabaseLoader:
         if row.get("url") and not row["url"].startswith(("http://", "https://")):
             errors.append("Invalid URL")
             
-        # Date validation - use pandas to parse and check for NaT
+        # Date validation
         dt = pd.to_datetime(row.get("scraped_at"), errors="coerce")
         if pd.isna(dt):
             errors.append("Invalid date")
-
-        # Categories validation - accept empty, or JSON list or plain string; coerce where possible
-        cats = row.get("categories", "")
-        # Handle pandas NaN/null values gracefully by treating them as empty
-        try:
-            if pd.isna(cats):
-                row['categories'] = []
-                cats = []
-        except Exception:
-            # If pd.isna fails for any reason, continue with original value
-            pass
-
-        if cats and not isinstance(cats, (list, tuple)):
-            try:
-                parsed = json.loads(cats)
-                if not isinstance(parsed, list):
-                    # If JSON parsed to a scalar, wrap as a single-item list
-                    parsed = [parsed]
-            except Exception:
-                # Not valid JSON; reject if it's clearly JSON-like (e.g., starts with '{' or '[')
-                if isinstance(cats, str) and cats.strip():
-                    s = cats.strip()
-                    if s[0] in ('{', '['):
-                        errors.append("categories must be a JSON list or non-empty string")
-                        parsed = None
-                    else:
-                        # Try splitting on common separators
-                        if any(sep in s for sep in [',',';','|']):
-                            parts = [p.strip() for p in re.split('[,;|]', s) if p.strip()]
-                            parsed = parts if parts else [s]
-                        else:
-                            parsed = [s]
-                else:
-                    # Treat empty/non-string categories as empty list (no categories)
-                    parsed = []
-
-            # If parsed is a list, normalize it back into the row for downstream processing
-            if isinstance(parsed, list):
-                row['categories'] = parsed
-            else:
-                # Keep the original value (and allow validation to fail above)
-                pass
-
+        
         if errors:
             self.logger.warning(f"Validation errors in {csv_path}: {', '.join(errors)}")
             return False
         return True
 
     def clean_row(self, row) -> Optional[dict]:
-        """Clean and normalize data
-
-        - Convert categories JSON string into a JSON string stored in `keywords_found` (preserve as JSON)
-        - Convert scraped_at into a proper datetime for `publication_date`
-        - Match movement from text content using fuzzy matching
+        """Clean and normalize article data
         
-        Returns dict or None if no default movement available
+        Returns dict with Article fields or None if validation fails
         """
-        # Normalize categories
-        categories = row.get("categories", "")
-        keywords_json = "[]"
-        if categories:
-            if isinstance(categories, (list, tuple)):
-                keywords_json = json.dumps(categories, ensure_ascii=False)
-            else:
-                try:
-                    parsed = json.loads(categories)
-                    if isinstance(parsed, list):
-                        keywords_json = json.dumps(parsed, ensure_ascii=False)
-                except Exception:
-                    # leave as empty list if parsing fails; validation should have caught it
-                    keywords_json = "[]"
+        try:
+            title = str(row.get("title", "")).strip()
+            text = str(row.get("text", "")).strip()
+            url = str(row.get("url", "")).strip()
+            source_name = str(row.get("source_name", "")).strip()
+            scraped_at = pd.to_datetime(row.get("scraped_at"), errors="coerce")
+            
+            return {
+                "title": title[:500],  # Limit title length
+                "content": text[:10000],  # Limit content length
+                "source": source_name,
+                "url": url,
+                "published_at": scraped_at if not pd.isna(scraped_at) else datetime.utcnow()
+            }
+        except Exception as e:
+            self.logger.error(f"Error cleaning row: {e}")
+            return None
 
-        # Try to match movement from text content
-        text_content = str(row.get("text", "")).strip()
-        title_content = str(row.get("title", "")).strip()
-        combined_text = f"{title_content} {text_content}"
+    def load_csv_to_articles(self, csv_path: Union[str, Path]) -> int:
+        """Import CSV to Articles table
         
-        movement_id = match_movement_from_text(combined_text)
-        if movement_id is None:
-            # Fallback to default "Unidentified" movement if no match found
-            from database.db_loader import Movement
-            default = self.session.query(Movement).filter_by(
-                canonical_name="Neidentifikované hnutí"
-            ).first()
-            movement_id = default.id if default else None
-            if not movement_id:
-                self.logger.warning(f"No default movement available for: {title_content[:50]}...")
-                return None
-            self.logger.debug(f"No movement match found, using default (ID: {movement_id})")
-
-        return {
-            "movement_id": movement_id,
-            "source_name": str(row.get("source_name", "")).strip(),
-            "source_type": str(row.get("source_type", "")).strip(),
-            "url": str(row.get("url", "")).strip(),
-            "content_excerpt": str(row.get("title", "")).strip(),  # map title to content_excerpt
-            "content_full": str(row.get("text", "")).strip(),      # map text to content_full
-            "sentiment_score": None,  # will be filled during NLP
-            "publication_date": pd.to_datetime(row.get("scraped_at"), errors="coerce"),
-            "keywords_found": keywords_json
-        }
-
-    def load_csv_to_sources(self, csv_path: Union[str, Path]):
-        """Import CSV to database with validation and error handling"""
+        Returns number of articles imported
+        """
         csv_path = Path(csv_path)
         if not csv_path.exists():
             self.logger.error(f"File does not exist: {csv_path}")
-            return
+            return 0
 
         try:
             try:
                 df = pd.read_csv(csv_path)
             except pd.errors.EmptyDataError:
-                self.logger.info(f"Skipping empty CSV (no columns): {csv_path}")
-                return
+                self.logger.info(f"Skipping empty CSV: {csv_path}")
+                return 0
+            
             self.logger.info(f"Loading {len(df)} rows from {csv_path}")
 
             # Check required columns
-            required_columns = {"source_name", "source_type", "title", "url", "text", "scraped_at"}
+            required_columns = {"source_name", "title", "url", "text", "scraped_at"}
             if not required_columns.issubset(df.columns):
                 missing = required_columns - set(df.columns)
                 raise ValueError(f"Missing columns: {missing}")
 
-            # Import in batches for better performance and rollback capability
-            batch_size = 100
             imported = 0
             skipped = 0
+            batch_size = 100
 
             for batch_start in range(0, len(df), batch_size):
                 batch = df.iloc[batch_start:batch_start + batch_size]
                 
                 for _, row in batch.iterrows():
                     try:
-                        # Validation and cleaning
+                        # Validation
                         if not self.validate_row(row, csv_path):
                             skipped += 1
                             continue
-                            
-                        cleaned_data = self.clean_row(row)
-                        source = Source(**cleaned_data)
-                        self.session.add(source)
+                        
+                        # Clean data
+                        cleaned = self.clean_row(row)
+                        if not cleaned:
+                            skipped += 1
+                            continue
+                        
+                        # Check for duplicate URL
+                        existing = self.session.query(Article).filter(
+                            Article.url == cleaned["url"]
+                        ).first()
+                        
+                        if existing:
+                            self.logger.debug(f"Skipping duplicate URL: {cleaned['url']}")
+                            skipped += 1
+                            continue
+                        
+                        # Create article
+                        article = Article(**cleaned)
+                        self.session.add(article)
+                        self.session.flush()
+                        
+                        # Try to match and link movement
+                        movement_text = f"{cleaned['title']} {cleaned['content']}"
+                        matched_movement = self.match_movement_fuzzy(movement_text, threshold=70)
+                        
+                        if matched_movement:
+                            article.movements.append(matched_movement)
+                            self.logger.debug(f"Linked article to movement: {matched_movement.name}")
+                        
                         imported += 1
                         
+                    except IntegrityError as e:
+                        self.session.rollback()
+                        self.logger.warning(f"Integrity error: {e}")
+                        skipped += 1
+                        continue
                     except Exception as e:
                         self.logger.error(f"Error processing row: {e}")
                         skipped += 1
                         continue
                 
+                # Commit batch
                 try:
                     self.session.commit()
-                except IntegrityError:
-                    self.session.rollback()
-                    self.logger.warning("Duplicate URL - skipping batch")
-                    skipped += len(batch)
                 except Exception as e:
                     self.session.rollback()
                     self.logger.error(f"Error saving batch: {e}")
-                    skipped += len(batch)
 
-            self.logger.info(f"Import completed: {imported} imported, {skipped} skipped")
-        except IntegrityError:
-            self.session.rollback()
-            print("⚠️ Duplicate URL – some records already exist.")
+            self.logger.info(f"Import completed: {imported} imported, {skipped} skipped from {csv_path}")
+            return imported
+            
         except Exception as e:
             self.session.rollback()
-            print(f"❌ Error loading CSV: {e}")
+            self.logger.error(f"Error loading CSV: {e}")
+            return 0
         finally:
             self.session.close()

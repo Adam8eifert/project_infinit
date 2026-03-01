@@ -1,382 +1,430 @@
-# database/db_connector.py
-from sqlalchemy import create_engine, event
-from sqlalchemy.orm import sessionmaker, scoped_session
-from sqlalchemy.engine import Engine
-import datetime
-import hashlib
-from typing import Optional, List
+# 📁 database/db_loader.py
+# SQLAlchemy models and database connector for new schema
+# Project Infinit - Religious Movements Analysis
 
-from .models import Base, Movement, Alias, Location, Source, TemporalAnalysis, GeographicAnalysis, SourceQuality
-import config  # expects config.DB_URI
+import os
+from sqlalchemy import create_engine, Column, Integer, String, Text, TIMESTAMP, Numeric, ForeignKey, Enum, DateTime, Table
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker, relationship
+from datetime import datetime
+import enum
+
+# Database connection setup
+DB_URI = os.getenv(
+    'DB_URI',
+    'postgresql+psycopg2://username:20665166@localhost:5432/nsm_db'
+)
+
+engine = create_engine(DB_URI, echo=False)
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+Base = declarative_base()
+
+
+# ============================================================
+# ENUM TYPES
+# ============================================================
+
+class SentimentLabel(str, enum.Enum):
+    """Sentiment classification"""
+    positive = "positive"
+    neutral = "neutral"
+    negative = "negative"
+
+
+class RiskLevel(str, enum.Enum):
+    """Risk level classification"""
+    low = "low"
+    medium = "medium"
+    high = "high"
+
+
+# ============================================================
+# ASSOCIATION TABLES (M:N Relationships)
+# ============================================================
+
+article_movements = Table(
+    'article_movements',
+    Base.metadata,
+    Column('article_id', Integer, ForeignKey('articles.id', ondelete='CASCADE'), primary_key=True),
+    Column('movement_id', Integer, ForeignKey('movements.id', ondelete='CASCADE'), primary_key=True)
+)
+
+article_persons = Table(
+    'article_persons',
+    Base.metadata,
+    Column('article_id', Integer, ForeignKey('articles.id', ondelete='CASCADE'), primary_key=True),
+    Column('person_id', Integer, ForeignKey('persons.id', ondelete='CASCADE'), primary_key=True)
+)
+
+article_locations = Table(
+    'article_locations',
+    Base.metadata,
+    Column('article_id', Integer, ForeignKey('articles.id', ondelete='CASCADE'), primary_key=True),
+    Column('location_id', Integer, ForeignKey('locations.id', ondelete='CASCADE'), primary_key=True)
+)
+
+
+# ============================================================
+# MODELS (ORM)
+# ============================================================
+
+class Article(Base):
+    """
+    Main articles table - stores scraped content with sentiment & risk analysis
+    """
+    __tablename__ = "articles"
+    
+    id = Column(Integer, primary_key=True, index=True)
+    title = Column(Text, nullable=False)
+    content = Column(Text, nullable=False)
+    source = Column(String(255), nullable=True)
+    url = Column(String(500), nullable=True, index=True, unique=True)
+    published_at = Column(TIMESTAMP, nullable=True)
+    
+    # NLP Analysis
+    sentiment_score = Column(Numeric(4, 3), nullable=True)  # -1 to 1
+    sentiment_label = Column(Enum(SentimentLabel), nullable=True)
+    risk_score = Column(Numeric(4, 3), nullable=True)  # 0 to 1
+    risk_level = Column(Enum(RiskLevel), nullable=True)
+    
+    # Metadata
+    created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
+    
+    # Relationships (M:N)
+    movements = relationship(
+        "Movement",
+        secondary="article_movements",
+        back_populates="articles"
+    )
+    persons = relationship(
+        "Person",
+        secondary="article_persons",
+        back_populates="articles"
+    )
+    locations = relationship(
+        "Location",
+        secondary="article_locations",
+        back_populates="articles"
+    )
+
+
+class Movement(Base):
+    """
+    Religious movements/cults database
+    """
+    __tablename__ = "movements"
+    
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String(255), nullable=False, unique=True, index=True)
+    alias = Column(String(255), nullable=True)
+    category = Column(String(100), nullable=True)
+    
+    # Relationships
+    articles = relationship(
+        "Article",
+        secondary="article_movements",
+        back_populates="movements"
+    )
+
+
+class Person(Base):
+    """
+    Notable persons - leaders, members, researchers mentioned in articles
+    """
+    __tablename__ = "persons"
+    
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String(255), nullable=False, unique=True, index=True)
+    alias = Column(String(255), nullable=True)
+    
+    # Relationships
+    articles = relationship(
+        "Article",
+        secondary="article_persons",
+        back_populates="persons"
+    )
+
+
+class Location(Base):
+    """
+    Geographic locations - countries, cities, regions
+    """
+    __tablename__ = "locations"
+    
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String(255), nullable=False, index=True)
+    country = Column(String(100), nullable=True)
+    
+    # Relationships
+    articles = relationship(
+        "Article",
+        secondary="article_locations",
+        back_populates="locations"
+    )
+
+
+# ============================================================
+# DATABASE CONNECTOR CLASS
+# ============================================================
 
 class DBConnector:
     """
-    PostgreSQL database connector using SQLAlchemy.
-    Exposes:
-      - create_tables()
-      - get_session()
-      - helper methods for common inserts
+    Database management and helper methods
     """
-    def __init__(self, uri: Optional[str] = None):
-        if uri is not None:
-            self.db_uri = uri
-        else:
-            self.db_uri = getattr(config, "DB_URI", "postgresql+psycopg2://localhost/nsm_db")
-        
-        self.engine = create_engine(self.db_uri, future=True)
-        self.SessionFactory = scoped_session(sessionmaker(bind=self.engine, autoflush=False, expire_on_commit=False))
-
+    
+    def __init__(self):
+        self.engine = engine
+        self.SessionLocal = SessionLocal
+    
     def create_tables(self):
-        Base.metadata.create_all(self.engine, checkfirst=True)
-
-    def drop_tables(self):
-        Base.metadata.drop_all(self.engine)
-
+        """Create all tables from models"""
+        try:
+            Base.metadata.create_all(bind=self.engine)
+            print("✅ Database tables created successfully")
+        except Exception as e:
+            print(f"❌ Error creating tables: {e}")
+            raise
+    
+    def drop_all_tables(self):
+        """Drop all tables (dangerous - for testing only)"""
+        try:
+            Base.metadata.drop_all(bind=self.engine)
+            print("⚠️  All tables dropped")
+        except Exception as e:
+            print(f"❌ Error dropping tables: {e}")
+            raise
+    
     def get_session(self):
-        return self.SessionFactory()
-
-    # ========================================
-    # DUPLICATE DETECTION & CLEANUP METHODS
-    # ========================================
-
-    def calculate_content_hash(self, text: str) -> str:
-        """
-        Calculate SHA-256 hash of content for duplicate detection.
-        Normalizes text by removing extra whitespace and converting to lowercase.
-        """
-        if not text:
-            return ""
-
-        # Normalize text: lowercase, strip whitespace, normalize spaces
-        normalized = " ".join(text.lower().split())
-        return hashlib.sha256(normalized.encode('utf-8')).hexdigest()
-
-    def find_duplicates(self, content_hash: Optional[str] = None, url: Optional[str] = None, title: Optional[str] = None) -> List[Source]:
-        """
-        Find duplicate sources based on content hash, URL, or title similarity.
-        Returns list of duplicate sources (excluding the most recent one).
-        """
+        """Get new database session"""
+        return self.SessionLocal()
+    
+    def add_article(self, title, content, source=None, url=None, published_at=None):
+        """Add new article"""
         session = self.get_session()
         try:
-            query = session.query(Source)
-
-            if content_hash:
-                # Find by content hash
-                duplicates = query.filter(Source.content_hash == content_hash).all()
-            elif url:
-                # Find by URL
-                duplicates = query.filter(Source.url == url).all()
-            elif title:
-                # Find by similar title (basic implementation)
-                title_lower = title.lower()
-                duplicates = query.filter(Source.source_name.ilike(f"%{title_lower}%")).all()
-            else:
-                return []
-
-            # Sort by creation date, keep the most recent, return others as duplicates
-            if len(duplicates) > 1:
-                duplicates.sort(key=lambda x: x.created_at, reverse=True)
-                return duplicates[1:]  # Return all except the most recent
-
-            return []
-
-        finally:
-            session.close()
-
-    def remove_duplicates(self, dry_run: bool = True) -> dict:
-        """
-        Remove duplicate sources from database.
-        Returns statistics about what was found and removed.
-        """
-        session = self.get_session()
-        stats = {
-            'scanned': 0,
-            'duplicates_found': 0,
-            'duplicates_removed': 0,
-            'errors': 0
-        }
-
-        try:
-            # Get all sources with content_hash
-            sources = session.query(Source).filter(Source.content_hash.isnot(None)).all()
-            stats['scanned'] = len(sources)
-
-            # Group by content_hash
-            hash_groups = {}
-            for source in sources:
-                if source.content_hash not in hash_groups:
-                    hash_groups[source.content_hash] = []
-                hash_groups[source.content_hash].append(source)
-
-            # Process each group with duplicates
-            for content_hash, group_sources in hash_groups.items():
-                if len(group_sources) > 1:
-                    stats['duplicates_found'] += len(group_sources) - 1
-
-                    # Sort by creation date (newest first), keep the first one
-                    group_sources.sort(key=lambda x: x.created_at, reverse=True)
-                    duplicates_to_remove = group_sources[1:]
-
-                    if not dry_run:
-                        # Remove duplicates
-                        for duplicate in duplicates_to_remove:
-                            try:
-                                session.delete(duplicate)
-                                stats['duplicates_removed'] += 1
-                            except Exception as e:
-                                print(f"Error removing duplicate {duplicate.id}: {e}")
-                                stats['errors'] += 1
-                    else:
-                        stats['duplicates_removed'] += len(duplicates_to_remove)
-
-            if not dry_run:
-                session.commit()
-
-            return stats
-
-        except Exception as e:
-            session.rollback()
-            raise e
-        finally:
-            session.close()
-
-    def update_content_hashes(self, batch_size: int = 1000) -> dict:
-        """
-        Update content_hash for sources that don't have it yet.
-        Processes in batches to avoid memory issues.
-        """
-        session = self.get_session()
-        stats = {
-            'processed': 0,
-            'updated': 0,
-            'errors': 0
-        }
-
-        try:
-            # Get sources without content_hash
-            while True:
-                sources = session.query(Source).filter(
-                    Source.content_hash.is_(None),
-                    Source.content_full.isnot(None)
-                ).limit(batch_size).all()
-
-                if not sources:
-                    break
-
-                for source in sources:
-                    try:
-                        content_hash = self.calculate_content_hash(source.content_full)  # type: ignore
-                        if content_hash:
-                            source.content_hash = content_hash  # type: ignore
-                            stats['updated'] += 1
-                    except Exception as e:
-                        print(f"Error calculating hash for source {source.id}: {e}")
-                        stats['errors'] += 1
-
-                    stats['processed'] += 1
-
-                session.commit()
-                print(f"Processed {stats['processed']} sources, updated {stats['updated']}...")
-
-            return stats
-
-        except Exception as e:
-            session.rollback()
-            raise e
-        finally:
-            session.close()
-
-    # ========================================
-    # EXISTING METHODS
-    # ========================================
-
-    # Example helper: upsert movement by canonical_name
-    def upsert_movement(self, canonical_name: str, **kwargs):
-        session = self.get_session()
-        try:
-            m = session.query(Movement).filter(Movement.canonical_name == canonical_name).one_or_none()
-            if m is None:
-                m = Movement(canonical_name=canonical_name, **kwargs)
-                session.add(m)
-            else:
-                for k, v in kwargs.items():
-                    if hasattr(m, k) and v is not None:
-                        setattr(m, k, v)
-                # updated_at will be set automatically by SQLAlchemy onupdate
-            session.commit()
-            return m
-        except Exception:
-            session.rollback()
-            raise
-        finally:
-            session.close()
-
-    def add_source(self, source_dict: dict):
-        """
-        source_dict should contain keys: movement_id (or canonical_name), url, source_name, domain, content_full, etc.
-        If movement_id not provided, we can try to resolve by canonical_name.
-        """
-        session = self.get_session()
-        try:
-            movement_id = source_dict.get("movement_id")
-            canonical_name = source_dict.get("canonical_name")
-            if not movement_id and canonical_name:
-                m = session.query(Movement).filter(Movement.canonical_name == canonical_name).one_or_none()
-                if m:
-                    movement_id = m.id
-                else:
-                    m = Movement(canonical_name=canonical_name)
-                    session.add(m)
-                    session.flush()  # assign id
-                    movement_id = m.id
-
-            src = Source(
-                movement_id=movement_id,
-                source_name=source_dict.get("source_name"),
-                source_type=source_dict.get("source_type"),
-                author=source_dict.get("author"),
-                domain=source_dict.get("domain"),
-                language=source_dict.get("language"),
-                publication_date=source_dict.get("publication_date"),
-                url=source_dict.get("url"),
-                content_excerpt=source_dict.get("content_excerpt"),
-                content_full=source_dict.get("content_full"),
-                lemma_text=source_dict.get("lemma_text"),
-                keywords_found=source_dict.get("keywords_found"),
-                sentiment_score=source_dict.get("sentiment_score"),
-                toxicity_score=source_dict.get("toxicity_score"),
-                classification_label=source_dict.get("classification_label"),
+            # Check if URL already exists
+            if url:
+                existing = session.query(Article).filter(Article.url == url).first()
+                if existing:
+                    print(f"⚠️  Article with URL already exists: {url}")
+                    session.close()
+                    return existing
+            
+            article = Article(
+                title=title,
+                content=content,
+                source=source,
+                url=url,
+                published_at=published_at
             )
-            session.add(src)
+            session.add(article)
             session.commit()
-            return src
-        except Exception:
+            article_id = article.id
+            session.close()
+            return article
+        except Exception as e:
             session.rollback()
+            print(f"❌ Error adding article: {e}")
+            raise
+    
+    def add_movement(self, name, alias=None, category=None):
+        """Add or get movement"""
+        session = self.get_session()
+        try:
+            # Check if exists
+            movement = session.query(Movement).filter(Movement.name == name).first()
+            if movement:
+                session.close()
+                return movement
+            
+            # Create new
+            movement = Movement(name=name, alias=alias, category=category)
+            session.add(movement)
+            session.commit()
+            session.close()
+            return movement
+        except Exception as e:
+            session.rollback()
+            print(f"❌ Error adding movement: {e}")
+            raise
+    
+    def add_person(self, name, alias=None):
+        """Add or get person"""
+        session = self.get_session()
+        try:
+            # Check if exists
+            person = session.query(Person).filter(Person.name == name).first()
+            if person:
+                session.close()
+                return person
+            
+            # Create new
+            person = Person(name=name, alias=alias)
+            session.add(person)
+            session.commit()
+            session.close()
+            return person
+        except Exception as e:
+            session.rollback()
+            print(f"❌ Error adding person: {e}")
+            raise
+    
+    def add_location(self, name, country=None):
+        """Add or get location"""
+        session = self.get_session()
+        try:
+            # Check if exists (not unique to allow duplicates with different countries)
+            location = session.query(Location).filter(
+                Location.name == name,
+                Location.country == country
+            ).first()
+            if location:
+                session.close()
+                return location
+            
+            # Create new
+            location = Location(name=name, country=country)
+            session.add(location)
+            session.commit()
+            session.close()
+            return location
+        except Exception as e:
+            session.rollback()
+            print(f"❌ Error adding location: {e}")
+            raise
+    
+    def link_article_movement(self, article_id, movement_id):
+        """Link article to movement"""
+        session = self.get_session()
+        try:
+            article = session.query(Article).filter(Article.id == article_id).first()
+            movement = session.query(Movement).filter(Movement.id == movement_id).first()
+            
+            if not article or not movement:
+                raise ValueError("Article or Movement not found")
+            
+            if movement not in article.movements:
+                article.movements.append(movement)
+            
+            session.commit()
+            session.close()
+        except Exception as e:
+            session.rollback()
+            print(f"❌ Error linking article to movement: {e}")
+            raise
+    
+    def link_article_person(self, article_id, person_id):
+        """Link article to person"""
+        session = self.get_session()
+        try:
+            article = session.query(Article).filter(Article.id == article_id).first()
+            person = session.query(Person).filter(Person.id == person_id).first()
+            
+            if not article or not person:
+                raise ValueError("Article or Person not found")
+            
+            if person not in article.persons:
+                article.persons.append(person)
+            
+            session.commit()
+            session.close()
+        except Exception as e:
+            session.rollback()
+            print(f"❌ Error linking article to person: {e}")
+            raise
+    
+    def link_article_location(self, article_id, location_id):
+        """Link article to location"""
+        session = self.get_session()
+        try:
+            article = session.query(Article).filter(Article.id == article_id).first()
+            location = session.query(Location).filter(Location.id == location_id).first()
+            
+            if not article or not location:
+                raise ValueError("Article or Location not found")
+            
+            if location not in article.locations:
+                article.locations.append(location)
+            
+            session.commit()
+            session.close()
+        except Exception as e:
+            session.rollback()
+            print(f"❌ Error linking article to location: {e}")
+            raise
+    
+    def get_article_count(self):
+        """Get total article count"""
+        session = self.get_session()
+        try:
+            count = session.query(Article).count()
+            return count
+        finally:
+            session.close()
+    
+    def get_movement_count(self):
+        """Get total movement count"""
+        session = self.get_session()
+        try:
+            count = session.query(Movement).count()
+            return count
+        finally:
+            session.close()
+    
+    def get_person_count(self):
+        """Get total person count"""
+        session = self.get_session()
+        try:
+            count = session.query(Person).count()
+            return count
+        finally:
+            session.close()
+    
+    def get_location_count(self):
+        """Get total location count"""
+        session = self.get_session()
+        try:
+            count = session.query(Location).count()
+            return count
+        finally:
+            session.close()
+    
+    def bulk_insert_articles(self, articles_data):
+        """Bulk insert articles"""
+        session = self.get_session()
+        try:
+            count = 0
+            for article_data in articles_data:
+                # Check for duplicate URL
+                if article_data.get('url'):
+                    existing = session.query(Article).filter(
+                        Article.url == article_data['url']
+                    ).first()
+                    if existing:
+                        continue
+                
+                article = Article(**article_data)
+                session.add(article)
+                count += 1
+            
+            session.commit()
+            print(f"✅ Inserted {count} articles")
+            return count
+        except Exception as e:
+            session.rollback()
+            print(f"❌ Error bulk inserting articles: {e}")
             raise
         finally:
             session.close()
 
-    def insert_source_safe(self, movement_id: int, url: str, content_full: Optional[str] = None,
-                          check_duplicates: bool = True, **kwargs) -> Source:
-        """
-        Insert a new source with automatic duplicate detection.
-        Returns existing source if duplicate found, otherwise creates new one.
-        """
-        session = self.get_session()
-        try:
-            # Check for URL duplicate first (fast check)
-            existing = session.query(Source).filter(Source.url == url).first()
-            if existing:
-                print(f"⚠️  Source with URL already exists: {url}")
-                return existing
 
-            # Calculate content hash if content provided
-            content_hash = None
-            if content_full and check_duplicates:
-                content_hash = self.calculate_content_hash(content_full)
+# ============================================================
+# INITIALIZATION
+# ============================================================
 
-                # Check for content duplicate
-                if content_hash:
-                    duplicate = session.query(Source).filter(Source.content_hash == content_hash).first()
-                    if duplicate:
-                        print(f"⚠️  Duplicate content found (hash: {content_hash[:8]}...), returning existing source")
-                        return duplicate
-
-            # Create new source
-            source_data = {
-                'movement_id': movement_id,
-                'url': url,
-                'content_full': content_full,
-                'content_hash': content_hash,
-                **kwargs
-            }
-
-            new_source = Source(**source_data)
-            session.add(new_source)
-            session.commit()
-
-            print(f"✅ New source inserted: {url}")
-            return new_source
-
-        except Exception as e:
-            session.rollback()
-            raise e
-        finally:
-            session.close()
-
-    def bulk_insert_sources_safe(self, sources_data: List[dict], check_duplicates: bool = True) -> dict:
-        """
-        Bulk insert sources with duplicate detection.
-        sources_data: List of dicts with source data including 'movement_id', 'url', etc.
-        Returns statistics about insertions.
-        """
-        session = self.get_session()
-        stats = {
-            'total': len(sources_data),
-            'inserted': 0,
-            'duplicates_skipped': 0,
-            'errors': 0
-        }
-
-        try:
-            for i, source_data in enumerate(sources_data):
-                try:
-                    # Extract required fields
-                    movement_id = source_data.pop('movement_id')
-                    url = source_data.pop('url')
-                    content_full = source_data.pop('content_full', None)
-
-                    # Check for duplicates
-                    skip = False
-
-                    # URL check
-                    existing = session.query(Source).filter(Source.url == url).first()
-                    if existing:
-                        stats['duplicates_skipped'] += 1
-                        skip = True
-
-                    # Content hash check
-                    if not skip and content_full and check_duplicates:
-                        content_hash = self.calculate_content_hash(content_full)
-                        if content_hash:
-                            duplicate = session.query(Source).filter(Source.content_hash == content_hash).first()
-                            if duplicate:
-                                stats['duplicates_skipped'] += 1
-                                skip = True
-                            else:
-                                source_data['content_hash'] = content_hash
-
-                    if not skip:
-                        new_source = Source(
-                            movement_id=movement_id,
-                            url=url,
-                            content_full=content_full,
-                            **source_data
-                        )
-                        session.add(new_source)
-                        stats['inserted'] += 1
-
-                    # Progress reporting
-                    if (i + 1) % 100 == 0:
-                        print(f"Processed {i + 1}/{stats['total']} sources...")
-
-                except Exception as e:
-                    print(f"Error processing source {i}: {e}")
-                    stats['errors'] += 1
-
-            session.commit()
-
-            print("✅ Bulk insert completed:")
-            print(f"   • Total: {stats['total']}")
-            print(f"   • Inserted: {stats['inserted']}")
-            print(f"   • Duplicates skipped: {stats['duplicates_skipped']}")
-            print(f"   • Errors: {stats['errors']}")
-
-            return stats
-
-        except Exception as e:
-            session.rollback()
-            raise e
-        finally:
-            session.close()
+if __name__ == "__main__":
+    # Test connection
+    db = DBConnector()
+    db.create_tables()
+    print(f"✅ Database initialized: {DB_URI}")
 
