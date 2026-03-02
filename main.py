@@ -4,10 +4,12 @@
 
 import subprocess
 import os
+import yaml
 from pathlib import Path
 from database.db_loader import DBConnector, Article, Movement, Person, Location
 from processing.nlp_analysis import CzechTextAnalyzer
 from processing.import_csv_to_db import CSVtoDatabaseLoader
+from fuzzywuzzy import fuzz
 
 
 def run_spiders():
@@ -128,10 +130,26 @@ def analyze_sentiment_and_risk(db):
 
 
 def extract_entities(db):
-    """Extract and link entities to articles"""
+    """Extract and link entities to articles - FILTERED by known_movements"""
     try:
         print("\n🔍 Extracting entities...")
         analyzer = CzechTextAnalyzer()
+        
+        # Load known_movements from sources_config.yaml
+        config_path = Path("extracting/sources_config.yaml")
+        with open(config_path, 'r', encoding='utf-8') as f:
+            config = yaml.safe_load(f)
+        
+        # known_movements is under keywords.known_movements.new_religious_movements
+        known_movements = config.get('keywords', {}).get('known_movements', {}).get('new_religious_movements', [])
+        movement_aliases = config.get('keywords', {}).get('known_movements', {}).get('movement_aliases', {})
+        
+        print(f"📋 Loaded {len(known_movements)} known movements from config")
+        
+        # Build normalized movements list for fuzzy matching
+        all_movement_variants = known_movements.copy()
+        for aliases in movement_aliases.values():
+            all_movement_variants.extend(aliases)
         
         session = db.get_session()
         articles = session.query(Article).all()
@@ -141,23 +159,57 @@ def extract_entities(db):
         movements_linked = 0
         persons_linked = 0
         locations_linked = 0
+        movements_skipped = 0
         
         for article in articles:
             try:
                 # Extract named entities
                 entities = analyzer.extract_named_entities(article.content)
                 
-                # Process movements
+                # Process movements - ONLY if they match known_movements
                 for movement_text in entities.get('movements', []):
                     try:
-                        # Try to find or create movement
+                        movement_text = movement_text.strip()
+                        if not movement_text or len(movement_text) < 3:
+                            continue
+                        
+                        # Fuzzy match against known movements
+                        best_match = None
+                        best_score = 0
+                        
+                        for known_movement in all_movement_variants:
+                            score = fuzz.token_set_ratio(movement_text.lower(), known_movement.lower())
+                            if score > best_score:
+                                best_score = score
+                                best_match = known_movement
+                        
+                        # Only link if fuzzy match score is high enough
+                        fuzzy_threshold = 80
+                        if best_score < fuzzy_threshold:
+                            movements_skipped += 1
+                            continue
+                        
+                        # Map to canonical movement name (from known_movements list)
+                        canonical_name = None
+                        if best_match in known_movements:
+                            canonical_name = best_match
+                        else:
+                            # Find which known_movement this alias belongs to
+                            for main_movement, aliases in movement_aliases.items():
+                                if best_match in aliases:
+                                    canonical_name = main_movement
+                                    break
+                        
+                        if not canonical_name:
+                            canonical_name = best_match
+                        
+                        # Try to find or create movement with CANONICAL name
                         movement = session.query(Movement).filter(
-                            Movement.name.ilike(f"%{movement_text}%")
+                            Movement.name.ilike(f"%{canonical_name}%")
                         ).first()
                         
                         if not movement:
-                            # Create new movement if not exists
-                            movement = Movement(name=movement_text)
+                            movement = Movement(name=canonical_name)
                             session.add(movement)
                             session.flush()
                         
@@ -165,12 +217,17 @@ def extract_entities(db):
                         if movement not in article.movements:
                             article.movements.append(movement)
                             movements_linked += 1
+                    
                     except Exception as e:
                         continue
                 
-                # Process persons
+                # Process persons (no filtering - keep as-is)
                 for person_text in entities.get('persons', []):
                     try:
+                        person_text = person_text.strip()
+                        if not person_text or len(person_text) < 3:
+                            continue
+                        
                         person = session.query(Person).filter(
                             Person.name.ilike(f"%{person_text}%")
                         ).first()
@@ -186,9 +243,13 @@ def extract_entities(db):
                     except Exception as e:
                         continue
                 
-                # Process locations
+                # Process locations (no filtering - keep as-is)
                 for location_text in entities.get('locations', []):
                     try:
+                        location_text = location_text.strip()
+                        if not location_text or len(location_text) < 3:
+                            continue
+                        
                         location = session.query(Location).filter(
                             Location.name.ilike(f"%{location_text}%")
                         ).first()
@@ -212,7 +273,8 @@ def extract_entities(db):
         session.close()
         
         print(f"✅ Entity extraction completed:")
-        print(f"   • Movements linked: {movements_linked}")
+        print(f"   • Movements linked: {movements_linked} (fuzzy matched to known movements)")
+        print(f"   • Movements skipped: {movements_skipped} (no match with known movements)")
         print(f"   • Persons linked: {persons_linked}")
         print(f"   • Locations linked: {locations_linked}")
         

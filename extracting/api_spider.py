@@ -73,6 +73,11 @@ class APISpider(scrapy.Spider):
         Extracts relevant content and saves to CSV.
         """
         try:
+            # Validate response is not empty
+            if not response.text or not response.text.strip():
+                self.logger.warning(f"⚠️  Empty response from {response.meta['source_name']}")
+                return
+            
             data = json.loads(response.text)
             source_config = response.meta['source_config']
             api_method = source_config.get('api_method', 'parse')

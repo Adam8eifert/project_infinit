@@ -82,8 +82,9 @@ class CSVtoDatabaseLoader:
             errors.append("Missing URL")
         if not row.get("title"):
             errors.append("Missing title")
-        if not row.get("text") or len(str(row.get("text", "")).strip()) < 10:
-            errors.append("Missing or too short text")
+        # Text can be very short for web-scraped content
+        if not row.get("text"):
+            errors.append("Missing text")
             
         # URL validation
         if row.get("url") and not row["url"].startswith(("http://", "https://")):
