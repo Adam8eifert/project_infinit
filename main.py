@@ -4,8 +4,11 @@
 
 import subprocess
 import os
+import re
+import unicodedata
 import yaml
 from pathlib import Path
+from typing import Dict, List, Optional, Tuple
 from database.db_loader import DBConnector, Article, Movement, Person, Location
 from processing.nlp_analysis import CzechTextAnalyzer
 from processing.import_csv_to_db import CSVtoDatabaseLoader
@@ -129,155 +132,365 @@ def analyze_sentiment_and_risk(db):
         raise
 
 
+def _normalize_text(value: str) -> str:
+    text = (value or "").strip().lower()
+    text = unicodedata.normalize("NFKD", text)
+    text = "".join(ch for ch in text if not unicodedata.combining(ch))
+    text = re.sub(r"[^a-z0-9\s\-]", " ", text)
+    text = re.sub(r"\s+", " ", text).strip()
+    return text
+
+
+def _clean_person_name(raw_name: str) -> str:
+    name = (raw_name or "").strip()
+    name = name.replace("/", " ")
+    name = re.sub(r"\s*-\s*", "-", name)
+    name = re.sub(r"\s+", " ", name)
+    return name.strip(" .,:;!?\"'()[]{}")
+
+
+def _is_valid_person_name(name: str) -> bool:
+    if not name:
+        return False
+    if "##" in name:
+        return False
+
+    normalized = _normalize_text(name)
+    if not normalized:
+        return False
+
+    blocked = {
+        "se", "jeho", "jeji", "pan", "pani", "rod", "bro", "listu", "alla"
+    }
+    if normalized in blocked:
+        return False
+
+    tokens = [token for token in normalized.split() if token]
+    if len(tokens) < 2:
+        return False
+    if any(len(token) < 2 for token in tokens):
+        return False
+    return True
+
+
+def _stem_name_token(token: str) -> str:
+    suffixes = [
+        "ove", "ova", "ovi", "ove", "ech", "ich", "emu", "eho", "ami", "emi",
+        "ou", "em", "om", "mi", "mu", "ho", "ch", "y", "i", "a", "e", "u"
+    ]
+    stem = token
+    for suffix in suffixes:
+        if len(stem) > 4 and stem.endswith(suffix):
+            stem = stem[:-len(suffix)]
+            break
+    return stem
+
+
+def _tokenize_person(name: str) -> List[str]:
+    normalized = _normalize_text(name)
+    return [token for token in normalized.split() if token]
+
+
+def _is_same_person_name(name_a: str, name_b: str) -> bool:
+    norm_a = _normalize_text(name_a)
+    norm_b = _normalize_text(name_b)
+
+    if not norm_a or not norm_b:
+        return False
+    if norm_a == norm_b:
+        return True
+
+    tokens_a = _tokenize_person(name_a)
+    tokens_b = _tokenize_person(name_b)
+    if len(tokens_a) < 2 or len(tokens_b) < 2:
+        return False
+
+    first_a, last_a = _stem_name_token(tokens_a[0]), _stem_name_token(tokens_a[-1])
+    first_b, last_b = _stem_name_token(tokens_b[0]), _stem_name_token(tokens_b[-1])
+
+    full_score = fuzz.token_set_ratio(norm_a, norm_b)
+    first_score = fuzz.ratio(first_a, first_b)
+    last_score = fuzz.ratio(last_a, last_b)
+
+    if full_score >= 95:
+        return True
+    if first_score >= 88 and last_score >= 88 and full_score >= 78:
+        return True
+    if first_score >= 95 and last_score >= 85 and full_score >= 82:
+        return True
+
+    same_first = tokens_a[0] == tokens_b[0]
+    initial_match = (
+        len(tokens_a[-1]) == 1 and tokens_b[-1].startswith(tokens_a[-1])
+    ) or (
+        len(tokens_b[-1]) == 1 and tokens_a[-1].startswith(tokens_b[-1])
+    )
+    if same_first and initial_match:
+        return True
+
+    return False
+
+
+def _load_entity_linking_config() -> Tuple[List[str], Dict[str, List[str]]]:
+    config_path = Path("extracting/sources_config.yaml")
+    with open(config_path, "r", encoding="utf-8") as file:
+        loaded = yaml.safe_load(file)
+
+    config = loaded if isinstance(loaded, dict) else {}
+    keywords = config.get("keywords", {}) if isinstance(config.get("keywords", {}), dict) else {}
+    known_container = keywords.get("known_movements", {}) if isinstance(keywords.get("known_movements", {}), dict) else {}
+
+    known_movements = known_container.get("new_religious_movements", [])
+
+    movement_aliases = keywords.get("movement_aliases", {})
+    if not movement_aliases:
+        movement_aliases = known_container.get("movement_aliases", {})
+
+    if not isinstance(known_movements, list):
+        known_movements = []
+    if not isinstance(movement_aliases, dict):
+        movement_aliases = {}
+
+    return known_movements, movement_aliases
+
+
+def _seed_known_movements(session, known_movements: List[str]) -> Dict[str, Movement]:
+    movement_by_name: Dict[str, Movement] = {
+        movement.name: movement for movement in session.query(Movement).all()
+    }
+
+    for movement_name in known_movements:
+        name = (movement_name or "").strip()
+        if not name:
+            continue
+        if name not in movement_by_name:
+            movement = Movement(name=name)
+            session.add(movement)
+            session.flush()
+            movement_by_name[name] = movement
+
+    return movement_by_name
+
+
+def _resolve_movement_name(
+    movement_text: str,
+    known_movements: List[str],
+    movement_aliases: Dict[str, List[str]]
+) -> Optional[str]:
+    entity = _normalize_text(movement_text)
+    if not entity or len(entity) < 3:
+        return None
+
+    known_map = {_normalize_text(name): name for name in known_movements if name}
+
+    alias_map: Dict[str, str] = {}
+    for canonical, aliases in movement_aliases.items():
+        if canonical:
+            alias_map[_normalize_text(canonical)] = canonical
+        for alias in aliases or []:
+            alias_map[_normalize_text(alias)] = canonical
+
+    if entity in known_map:
+        return known_map[entity]
+    if entity in alias_map:
+        return alias_map[entity]
+
+    candidates: List[Tuple[str, str]] = []
+    for name in known_movements:
+        normalized = _normalize_text(name)
+        if normalized:
+            candidates.append((normalized, name))
+    for alias_norm, canonical in alias_map.items():
+        if alias_norm and canonical:
+            candidates.append((alias_norm, canonical))
+
+    best_score = 0
+    best_canonical: Optional[str] = None
+    for candidate_norm, canonical in candidates:
+        score = fuzz.token_set_ratio(entity, candidate_norm)
+        if score > best_score:
+            best_score = score
+            best_canonical = canonical
+
+    if best_score >= 84:
+        return best_canonical
+
+    return None
+
+
+def _find_matching_person(person_name: str, cached_persons: List[Person]) -> Optional[Person]:
+    for person in cached_persons:
+        if _is_same_person_name(str(person.name), person_name):
+            return person
+    return None
+
+
+def _prune_invalid_persons(
+    session,
+    known_movements: List[str],
+    movement_aliases: Dict[str, List[str]]
+) -> int:
+    persons = session.query(Person).all()
+    removed = 0
+
+    for person in persons:
+        person_name = _clean_person_name(str(person.name))
+        is_valid = _is_valid_person_name(person_name)
+        movement_match = _resolve_movement_name(person_name, known_movements, movement_aliases)
+
+        if is_valid and not movement_match:
+            continue
+
+        for article in list(person.articles):
+            if person in article.persons:
+                article.persons.remove(person)
+
+        session.delete(person)
+        removed += 1
+
+    return removed
+
+
+def _deduplicate_persons(session) -> int:
+    persons = session.query(Person).order_by(Person.id.asc()).all()
+    removed = 0
+    deleted_ids = set()
+
+    for index, base_person in enumerate(persons):
+        if base_person.id in deleted_ids:
+            continue
+
+        for candidate in persons[index + 1:]:
+            if candidate.id in deleted_ids:
+                continue
+
+            if not _is_same_person_name(base_person.name, candidate.name):
+                continue
+
+            for article in list(candidate.articles):
+                if base_person not in article.persons:
+                    article.persons.append(base_person)
+
+            session.delete(candidate)
+            deleted_ids.add(candidate.id)
+            removed += 1
+
+    return removed
+
+
 def extract_entities(db):
-    """Extract and link entities to articles - FILTERED by known_movements"""
+    """Extract and link entities to articles using known movements and deduplicated persons."""
     try:
         print("\n🔍 Extracting entities...")
         analyzer = CzechTextAnalyzer()
-        
-        # Load known_movements from sources_config.yaml
-        config_path = Path("extracting/sources_config.yaml")
-        with open(config_path, 'r', encoding='utf-8') as f:
-            config = yaml.safe_load(f)
-        
-        # known_movements is under keywords.known_movements.new_religious_movements
-        known_movements = config.get('keywords', {}).get('known_movements', {}).get('new_religious_movements', [])
-        movement_aliases = config.get('keywords', {}).get('known_movements', {}).get('movement_aliases', {})
-        
+
+        known_movements, movement_aliases = _load_entity_linking_config()
         print(f"📋 Loaded {len(known_movements)} known movements from config")
-        
-        # Build normalized movements list for fuzzy matching
-        all_movement_variants = known_movements.copy()
-        for aliases in movement_aliases.values():
-            all_movement_variants.extend(aliases)
-        
+        print(f"📋 Loaded {len(movement_aliases)} movement alias groups")
+
         session = db.get_session()
+        movement_by_name = _seed_known_movements(session, known_movements)
+
         articles = session.query(Article).all()
-        
+        cached_persons = session.query(Person).all()
+
         print(f"📄 Processing {len(articles)} articles...")
-        
+
         movements_linked = 0
         persons_linked = 0
         locations_linked = 0
         movements_skipped = 0
-        
+        persons_skipped = 0
+
         for article in articles:
             try:
-                # Extract named entities
                 entities = analyzer.extract_named_entities(article.content)
-                
-                # Process movements - ONLY if they match known_movements
+
                 for movement_text in entities.get('movements', []):
                     try:
-                        movement_text = movement_text.strip()
-                        if not movement_text or len(movement_text) < 3:
-                            continue
-                        
-                        # Fuzzy match against known movements
-                        best_match = None
-                        best_score = 0
-                        
-                        for known_movement in all_movement_variants:
-                            score = fuzz.token_set_ratio(movement_text.lower(), known_movement.lower())
-                            if score > best_score:
-                                best_score = score
-                                best_match = known_movement
-                        
-                        # Only link if fuzzy match score is high enough
-                        fuzzy_threshold = 80
-                        if best_score < fuzzy_threshold:
+                        canonical_name = _resolve_movement_name(
+                            movement_text,
+                            known_movements,
+                            movement_aliases
+                        )
+                        if not canonical_name:
                             movements_skipped += 1
                             continue
-                        
-                        # Map to canonical movement name (from known_movements list)
-                        canonical_name = None
-                        if best_match in known_movements:
-                            canonical_name = best_match
-                        else:
-                            # Find which known_movement this alias belongs to
-                            for main_movement, aliases in movement_aliases.items():
-                                if best_match in aliases:
-                                    canonical_name = main_movement
-                                    break
-                        
-                        if not canonical_name:
-                            canonical_name = best_match
-                        
-                        # Try to find or create movement with CANONICAL name
-                        movement = session.query(Movement).filter(
-                            Movement.name.ilike(f"%{canonical_name}%")
-                        ).first()
-                        
+
+                        movement = movement_by_name.get(canonical_name)
                         if not movement:
-                            movement = Movement(name=canonical_name)
-                            session.add(movement)
-                            session.flush()
-                        
-                        # Link to article
+                            continue
+
                         if movement not in article.movements:
                             article.movements.append(movement)
                             movements_linked += 1
-                    
-                    except Exception as e:
+                    except Exception:
                         continue
-                
-                # Process persons (no filtering - keep as-is)
+
                 for person_text in entities.get('persons', []):
                     try:
-                        person_text = person_text.strip()
-                        if not person_text or len(person_text) < 3:
+                        person_name = _clean_person_name(person_text)
+                        if not _is_valid_person_name(person_name):
+                            persons_skipped += 1
                             continue
-                        
-                        person = session.query(Person).filter(
-                            Person.name.ilike(f"%{person_text}%")
-                        ).first()
-                        
+                        if _resolve_movement_name(person_name, known_movements, movement_aliases):
+                            persons_skipped += 1
+                            continue
+
+                        person = _find_matching_person(person_name, cached_persons)
                         if not person:
-                            person = Person(name=person_text)
+                            person = Person(name=person_name)
                             session.add(person)
                             session.flush()
-                        
+                            cached_persons.append(person)
+
                         if person not in article.persons:
                             article.persons.append(person)
                             persons_linked += 1
-                    except Exception as e:
+                    except Exception:
                         continue
-                
-                # Process locations (no filtering - keep as-is)
+
                 for location_text in entities.get('locations', []):
                     try:
                         location_text = location_text.strip()
                         if not location_text or len(location_text) < 3:
                             continue
-                        
+
                         location = session.query(Location).filter(
                             Location.name.ilike(f"%{location_text}%")
                         ).first()
-                        
+
                         if not location:
                             location = Location(name=location_text)
                             session.add(location)
                             session.flush()
-                        
+
                         if location not in article.locations:
                             article.locations.append(location)
                             locations_linked += 1
-                    except Exception as e:
+                    except Exception:
                         continue
-            
+
             except Exception as e:
                 print(f"   ⚠️  Error extracting entities from article {article.id}: {e}")
                 continue
-        
+
+        persons_pruned = _prune_invalid_persons(session, known_movements, movement_aliases)
+        persons_merged = _deduplicate_persons(session)
+
         session.commit()
         session.close()
-        
+
         print(f"✅ Entity extraction completed:")
-        print(f"   • Movements linked: {movements_linked} (fuzzy matched to known movements)")
-        print(f"   • Movements skipped: {movements_skipped} (no match with known movements)")
+        print(f"   • Known movements in DB: {len(known_movements)}")
+        print(f"   • Movements linked: {movements_linked}")
+        print(f"   • Movements skipped: {movements_skipped}")
         print(f"   • Persons linked: {persons_linked}")
+        print(f"   • Persons skipped: {persons_skipped}")
+        print(f"   • Persons pruned: {persons_pruned}")
+        print(f"   • Persons merged: {persons_merged}")
         print(f"   • Locations linked: {locations_linked}")
-        
+
     except Exception as e:
         print(f"❌ Error extracting entities: {e}")
         raise

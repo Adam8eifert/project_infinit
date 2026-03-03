@@ -67,10 +67,15 @@ def test_nlp_analysis_monkeypatched(monkeypatch):
     assert any(item['lemma'] == 'grál' for item in lemmas)
 
     entities = analyzer.extract_named_entities('Hnutí Grálu')
-    assert isinstance(entities, list)
+    assert isinstance(entities, dict)
+    assert 'movements' in entities
+    assert 'persons' in entities
+    assert 'locations' in entities
 
     sentiment = analyzer.analyze_sentiment('Dobrá zkušenost')
-    assert sentiment == '3 stars'
+    assert isinstance(sentiment, dict)
+    assert 'label' in sentiment
+    assert 'score' in sentiment
 
     keywords = analyzer.extract_keywords('Hnutí Grálu je zajímavé')
     assert isinstance(keywords, list)
