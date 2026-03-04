@@ -17,7 +17,7 @@ sources:
     name: "Dingir.cz (Main RSS)"
     domain: "dingir.cz"
     url: "https://www.dingir.cz/feed/"
-    enabled: true
+    enabled: false # DISABLED: Returns 404, use info_dingir instead which works (11 items)
     type: "rss"
     output_csv: "export/csv/dingir_main_rss_raw.csv"
     delay: 2
@@ -26,7 +26,7 @@ sources:
     name: "Apologet.cz (RSS Feed)"
     domain: "apologet.cz"
     url: "https://www.apologet.cz/?feed=rss2"
-    enabled: true
+    enabled: false # DISABLED: Returns malformed/broken RSS (XML parse error)
     type: "rss"
     output_csv: "export/csv/apologet_rss_raw.csv"
     delay: 2
@@ -117,7 +117,7 @@ sources:
     name: "Ministerstvo spravedlnosti - Aktuality"
     domain: "justice.cz"
     url: "https://justice.cz/web/msp/rss"
-    enabled: true
+    enabled: false # DISABLED: Returns 404, no RSS available from justice ministry
     type: "rss"
     output_csv: "export/csv/justice_rss_raw.csv"
     delay: 2
@@ -126,8 +126,8 @@ sources:
   denik_cz:
     name: "Deník.cz (RSS Feed)"
     domain: "denik.cz"
-    url: "https://www.denik.cz/rss.html"
-    enabled: true
+    url: "https://www.denik.cz/rss/zpravy.html"
+    enabled: true # FIXED: Corrected URL from /rss.html to /rss/zpravy.html (25 items)
     type: "rss"
     output_csv: "export/csv/denik_cz_rss_raw.csv"
     delay: 2
@@ -216,7 +216,7 @@ sources:
     description: "Blogging platform by Seznam.cz featuring diverse opinion pieces and articles"
     domain: "medium.seznam.cz"
     url: "https://www.seznam.cz/zdroj/4123-medium/rss"
-    enabled: true
+    enabled: false # DISABLED: Returns malformed XML (invalid token), use medium_seznam instead
     type: "rss"
     output_csv: "export/csv/medium_seznam2_rss_raw.csv"
     delay: 2
@@ -483,7 +483,6 @@ keywords:
       - "V lásce spolu"
       - "Velké Bílé bratrstvo"
       - "Vesmírní lidé"
-      - "Wicca"
       - "Zlatá éra"
       - "Zodiakální škola"
       - "Zprávy z galaxie"
