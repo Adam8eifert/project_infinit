@@ -131,7 +131,7 @@ project_infinit/
 
 ### 1. Clone and Setup Environment
 
-**Option A: Using Mamba/Conda (Recommended)**
+#### Option A: Using Mamba/Conda (Recommended)
 
 ```bash
 git clone https://github.com/Adam8eifert/project_infinit.git
@@ -147,7 +147,7 @@ mamba activate project_infinit
 # or: conda activate project_infinit
 ```
 
-**Option B: Using pip/venv**
+#### Option B: Using pip/venv
 
 ```bash
 git clone https://github.com/Adam8eifert/project_infinit.git
@@ -486,7 +486,7 @@ project_infinit/
 
 ### 1a. Klonování a příprava prostředí (CZ)
 
-**Možnost A: Použití Mamba/Conda (Doporučeno)**
+#### Možnost A: Použití Mamba/Conda (Doporučeno)
 
 ```bash
 git clone https://github.com/Adam8eifert/project_infinit.git
@@ -502,7 +502,7 @@ mamba activate project_infinit
 # nebo: conda activate project_infinit
 ```
 
-**Možnost B: Použití pip/venv**
+#### Možnost B: Použití pip/venv
 
 ```bash
 git clone https://github.com/Adam8eifert/project_infinit.git

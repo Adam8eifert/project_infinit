@@ -169,13 +169,13 @@ When adding a new module, add tests:
 
 ## Troubleshooting
 
-**Tests won't run: "No module named pytest"**
+### Tests won't run: "No module named pytest"
 
 ```bash
 pip install pytest
 ```
 
-**ImportError in tests: "No module named scraping"**
+### ImportError in tests: "No module named scraping"
 
 ```bash
 cd /home/adam/Dokumenty/projects/project_infinit
@@ -183,7 +183,7 @@ export PYTHONPATH="${PYTHONPATH}:$(pwd)"
 pytest testing/
 ```
 
-**Monkeypatching doesn't work**
+### Monkeypatching doesn't work
 
 - Make sure you import the correct module (`import scraping.xxx`)
 - Make sure you mock the correct path (`monkeypatch.setattr('scraping.xxx.function', ...)`)

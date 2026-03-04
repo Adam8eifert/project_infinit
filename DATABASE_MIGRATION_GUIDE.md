@@ -6,7 +6,7 @@ Databáze byla kompletně přepracována s novým schématem pro lepší normali
 
 ## New Schema Architecture
 
-```
+```text
 ┌─────────────────┐
 │    Articles     │  ←─ Centrální tabulka (obsah článků)
 ├─────────────────┤
@@ -25,6 +25,7 @@ Databáze byla kompletně přepracována s novým schématem pro lepší normali
 ## Database Tables
 
 ### 1. **articles** (Hlavní tabulka)
+
 ```sql
 CREATE TABLE articles (
     id SERIAL PRIMARY KEY,
