@@ -42,11 +42,13 @@ CREATE TABLE articles (
 ```
 
 **Poznámky:**
+
 - `url` je UNIQUE pro zabránění duplikátům
 - `sentiment_score` a `risk_score` se vyplňují během NLP analýzy
 - Timestamps se automaticky vytvářejí
 
 ### 2. **movements** (Hnutí/sekty)
+
 ```sql
 CREATE TABLE movements (
     id SERIAL PRIMARY KEY,
@@ -57,6 +59,7 @@ CREATE TABLE movements (
 ```
 
 ### 3. **persons** (Osobnosti)
+
 ```sql
 CREATE TABLE persons (
     id SERIAL PRIMARY KEY,
@@ -66,6 +69,7 @@ CREATE TABLE persons (
 ```
 
 ### 4. **locations** (Místa)
+
 ```sql
 CREATE TABLE locations (
     id SERIAL PRIMARY KEY,
@@ -75,6 +79,7 @@ CREATE TABLE locations (
 ```
 
 ### 5-7. **M:N Association Tables**
+
 ```sql
 -- Linkování mezi Articles a Movements
 CREATE TABLE article_movements (
@@ -169,6 +174,7 @@ python main.py
 ```
 
 **Kroky:**
+
 1. **create_db()** - Vytvoří databázové tabulky
 2. **run_spiders()** - Spustí všechny web scrapery (RSS, API, sociální média)
 3. **import_csv_data()** - Naimportuje CSV soubory do `articles` tabulky
@@ -177,39 +183,41 @@ python main.py
 
 ## Migration from Old Database
 
-### Postup:
+### Postup
 
 1. **Smazat starou databázi** (vytvořenou v předchozí iteraci)
-```bash
-docker compose down -v  # Smaže všechny Docker volumes
-```
 
-2. **Spustit PostgreSQL znovu**
-```bash
-cd nnh-db
-docker compose up -d
-```
+    ```bash
+    docker compose down -v  # Smaže všechny Docker volumes
+    ```
 
-3. **Vytvořit nové tabulky**
-```bash
-python -c "from database.db_loader import DBConnector; DBConnector().create_tables()"
-```
+1. **Spustit PostgreSQL znovu**
 
-4. **Spustit novou pipeline**
-```bash
-python main.py
-```
+    ```bash
+    cd nnh-db
+    docker compose up -d
+    ```
+
+1. **Vytvořit nové tabulky**
+
+    ```bash
+    python -c "from database.db_loader import DBConnector; DBConnector().create_tables()"
+    ```
+
+1. **Spustit novou pipeline**
+
+    ```bash
+    python main.py
+    ```
 
 ## Key Differences from Old Schema
 
-| Aspekt | Staré schéma | Nové schéma |
-|--------|-------------|-----------|
-| Obsah | Source (s JSON) | Article (s normalizací) |
-| Hnutí | Movement (canonical_name, description) | Movement (name, alias, category) |
-| Lokace | Vložená v Source | Samostatná tabulka s M:N |
-| Entity linking | Ruční mapování | Fuzzy matching + NER |
-| Sentiment | Uloženo v Source | Normalizováno (-1 to 1) |
-| Risk | Nebylo | risk_score + risk_level |
+- **Obsah**: Source (s JSON) → Article (s normalizací)
+- **Hnutí**: Movement (canonical_name, description) → Movement (name, alias, category)
+- **Lokace**: Vložená v Source → Samostatná tabulka s M:N
+- **Entity linking**: Ruční mapování → Fuzzy matching + NER
+- **Sentiment**: Uloženo v Source → Normalizováno (-1 to 1)
+- **Risk**: Nebylo → risk_score + risk_level
 
 ## Database Statistics
 
@@ -241,13 +249,16 @@ python
 ## Troubleshooting
 
 **Problem**: "FATAL: password authentication failed"
-- **Fix**: Zkontroluj `config.py` nebo environment variables `DB_URI`
+
+**Fix**: Zkontroluj `config.py` nebo environment variables `DB_URI`
 
 **Problem**: "Table already exists"
-- **Fix**: To je OK - tabulky se při `create_tables()` nebudou duplikovat
+
+**Fix**: To je OK - tabulky se při `create_tables()` nebudou duplikovat
 
 **Problem**: "Foreign key constraint violated"
-- **Fix**: Ujisti se, že movimento/osoba/lokace existují před linkováním
+
+**Fix**: Ujisti se, že movimento/osoba/lokace existují před linkováním
 
 ## Performance Tips
 

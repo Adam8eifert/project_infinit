@@ -319,6 +319,32 @@ class CzechTextAnalyzer:
         text = re.sub(r"\s+", " ", text)
         return text.strip().lower()
 
+    def normalize_person_name(self, name: str) -> str:
+        """
+        Normalize Czech person name by removing accents and extra spaces.
+        Note: Czech declension handling is done via fuzzy matching in _is_same_person_name.
+        """
+        import unicodedata
+        import re
+        
+        if not name:
+            return ""
+        
+        # Normalize: lowercase, remove diacritics
+        normalized = name.lower()
+        
+        # Remove Czech diacritics
+        normalized = unicodedata.normalize("NFKD", normalized)
+        normalized = "".join(ch for ch in normalized if not unicodedata.combining(ch))
+        
+        # Remove non-alphanumeric except spaces
+        normalized = re.sub(r"[^a-z0-9\s]", "", normalized)
+        
+        # Collapse multiple spaces
+        normalized = re.sub(r"\s+", " ", normalized).strip()
+        
+        return normalized
+
     def get_text_stats(self, text: str) -> Dict[str, int]:
         """Return basic text statistics used in tests.
 

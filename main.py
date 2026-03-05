@@ -8,7 +8,7 @@ import re
 import unicodedata
 import yaml
 from pathlib import Path
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, List, Optional, Tuple, cast
 from database.db_loader import DBConnector, Article, Movement, Person, Location
 from processing.nlp_analysis import CzechTextAnalyzer
 from processing.import_csv_to_db import CSVtoDatabaseLoader
@@ -174,11 +174,13 @@ def _is_valid_person_name(name: str) -> bool:
 
 
 def _stem_name_token(token: str) -> str:
+    """Remove Czech grammatical suffixes from a name token."""
+    token_lower = token.lower()
     suffixes = [
         "ove", "ova", "ovi", "ove", "ech", "ich", "emu", "eho", "ami", "emi",
         "ou", "em", "om", "mi", "mu", "ho", "ch", "y", "i", "a", "e", "u"
     ]
-    stem = token
+    stem = token_lower
     for suffix in suffixes:
         if len(stem) > 4 and stem.endswith(suffix):
             stem = stem[:-len(suffix)]
@@ -191,9 +193,16 @@ def _tokenize_person(name: str) -> List[str]:
     return [token for token in normalized.split() if token]
 
 
-def _is_same_person_name(name_a: str, name_b: str) -> bool:
+def _is_same_person_name(name_a: str, name_b: str, analyzer=None, debug: bool = False) -> bool:
+    """
+    Check if two person names refer to the same person.
+    Handles Czech declension variants like "Jana Kyslíková" vs "Jany Kyslíkové".
+    """
     norm_a = _normalize_text(name_a)
     norm_b = _normalize_text(name_b)
+
+    if debug:
+        print(f"[DEBUG] Comparing: '{name_a}' vs '{name_b}'")
 
     if not norm_a or not norm_b:
         return False
@@ -202,32 +211,81 @@ def _is_same_person_name(name_a: str, name_b: str) -> bool:
 
     tokens_a = _tokenize_person(name_a)
     tokens_b = _tokenize_person(name_b)
-    if len(tokens_a) < 2 or len(tokens_b) < 2:
+    if len(tokens_a) < 1 or len(tokens_b) < 1:
+        if debug:
+            print(f"[DEBUG] Not enough tokens: {len(tokens_a)} vs {len(tokens_b)}")
         return False
 
-    first_a, last_a = _stem_name_token(tokens_a[0]), _stem_name_token(tokens_a[-1])
-    first_b, last_b = _stem_name_token(tokens_b[0]), _stem_name_token(tokens_b[-1])
+    # For single token names, just compare them
+    if len(tokens_a) == 1 and len(tokens_b) == 1:
+        ratio = fuzz.ratio(tokens_a[0].lower(), tokens_b[0].lower())
+        if debug:
+            print(f"[DEBUG] Single token: {ratio}")
+        return ratio >= 85
 
+    # For two+ token names: compare first 3 chars of first name + first 3 chars of last name
+    first_a_short = tokens_a[0].lower()[:3]
+    last_a_short = tokens_a[-1].lower()[:3]
+    first_b_short = tokens_b[0].lower()[:3]
+    last_b_short = tokens_b[-1].lower()[:3]
+
+    # Also compute fuzzy
     full_score = fuzz.token_set_ratio(norm_a, norm_b)
-    first_score = fuzz.ratio(first_a, first_b)
-    last_score = fuzz.ratio(last_a, last_b)
+    
+    if debug:
+        print(f"[DEBUG]   1st3: {first_a_short}vs{first_b_short}, Last3: {last_a_short}vs{last_b_short}, Full={full_score}")
 
-    if full_score >= 95:
+    # Match if first 3 chars AND last 3 chars are similar
+    first_match = fuzz.ratio(first_a_short, first_b_short) >= 60
+    last_match = fuzz.ratio(last_a_short, last_b_short) >= 80
+    
+    if first_match and last_match:
+        if debug:
+            print(f"[DEBUG] MATCH: first and last 3-char match")
         return True
-    if first_score >= 88 and last_score >= 88 and full_score >= 78:
-        return True
-    if first_score >= 95 and last_score >= 85 and full_score >= 82:
+    
+    # Fallback: very high token_set_ratio
+    if full_score >= 92:
+        if debug:
+            print(f"[DEBUG] MATCH: full_score >= 92")
         return True
 
-    same_first = tokens_a[0] == tokens_b[0]
-    initial_match = (
-        len(tokens_a[-1]) == 1 and tokens_b[-1].startswith(tokens_a[-1])
-    ) or (
-        len(tokens_b[-1]) == 1 and tokens_a[-1].startswith(tokens_b[-1])
-    )
-    if same_first and initial_match:
-        return True
+    if debug:
+        print(f"[DEBUG] NO MATCH")
+    return False
 
+
+def _is_bad_person_entity(name: str) -> bool:
+    """
+    Detect poorly extracted person entities from NER.
+    Examples: "Terén Kristiny Cirokové", "Boží Jan", "Josef SV", "Buddha Shiva Yaktshi"
+    """
+    if not name:
+        return True
+    
+    # Check for whitespace-delimited corruption patterns
+    patterns = [
+        r'Boží\s',  # "Boží X" pattern (likely error)
+        r'\s(SV|FA|ST|AB)$',  # Abbreviations at end (likely corrupted)
+        r'Buddha\s+Shiva',  # Multiple titles
+        r'Panem\s',  # "Panem X" (Latin nominative error)
+        r'Terén\s',  # "Terén X" (place instead of person)
+        r'^Commona\s',  # Old English proper adjective mistagged
+    ]
+    
+    for pattern in patterns:
+        if re.search(pattern, name, re.IGNORECASE):
+            return True
+    
+    # Too many words (likely corruption)
+    words = name.split()
+    if len(words) > 5:
+        return True
+    
+    # Single letter or very short names are suspicious
+    if len(name.strip()) <= 3:
+        return True
+    
     return False
 
 
@@ -288,13 +346,15 @@ def _seed_known_movements(session, known_movements: List[str], movement_aliases:
         else:
             # Update existing movement with aliases if they don't have any
             movement = movement_by_name[name]
-            if not movement.alias:
+            current_alias = cast(Optional[str], getattr(movement, "alias", None))
+            if not current_alias:
                 aliases = movement_aliases.get(name, [])
                 if aliases:
-                    movement.alias = ", ".join(aliases)
+                    setattr(movement, "alias", ", ".join(aliases))
                     print(f"  🔄 Aktualizováno aliasy pro: {name} ({len(aliases)} aliasů)")
-            if not movement.category:
-                movement.category = "nové náboženské hnutí"
+            current_category = cast(Optional[str], getattr(movement, "category", None))
+            if not current_category:
+                setattr(movement, "category", "nové náboženské hnutí")
 
     session.commit()
     print(f"\n✅ Celkem movements v DB: {len(movement_by_name)}")
@@ -347,9 +407,9 @@ def _resolve_movement_name(
     return None
 
 
-def _find_matching_person(person_name: str, cached_persons: List[Person]) -> Optional[Person]:
+def _find_matching_person(person_name: str, cached_persons: List[Person], analyzer=None) -> Optional[Person]:
     for person in cached_persons:
-        if _is_same_person_name(str(person.name), person_name):
+        if _is_same_person_name(str(person.name), person_name, analyzer):
             return person
     return None
 
@@ -380,7 +440,26 @@ def _prune_invalid_persons(
     return removed
 
 
-def _deduplicate_persons(session) -> int:
+def _deduplicate_persons(session, analyzer=None) -> int:
+    """
+    Deduplicate persons by name similarity, including Czech declension variants.
+    Also remove badly extracted entities.
+    """
+    # First pass: remove bad entities
+    bad_removed = 0
+    persons = session.query(Person).all()
+    for person in persons:
+        if _is_bad_person_entity(person.name):
+            for article in list(person.articles):
+                if person in article.persons:
+                    article.persons.remove(person)
+            session.delete(person)
+            bad_removed += 1
+    
+    print(f"  🗑️  Odstraněno {bad_removed} špatně extrahovaných entit")
+    session.commit()
+    
+    # Second pass: merge duplicates with lemmatization support
     persons = session.query(Person).order_by(Person.id.asc()).all()
     removed = 0
     deleted_ids = set()
@@ -393,7 +472,7 @@ def _deduplicate_persons(session) -> int:
             if candidate.id in deleted_ids:
                 continue
 
-            if not _is_same_person_name(base_person.name, candidate.name):
+            if not _is_same_person_name(base_person.name, candidate.name, analyzer):
                 continue
 
             for article in list(candidate.articles):
@@ -403,8 +482,9 @@ def _deduplicate_persons(session) -> int:
             session.delete(candidate)
             deleted_ids.add(candidate.id)
             removed += 1
-
-    return removed
+    
+    session.commit()
+    return bad_removed + removed
 
 
 def extract_entities(db):
@@ -462,11 +542,14 @@ def extract_entities(db):
                         if not _is_valid_person_name(person_name):
                             persons_skipped += 1
                             continue
+                        if _is_bad_person_entity(person_name):
+                            persons_skipped += 1
+                            continue
                         if _resolve_movement_name(person_name, known_movements, movement_aliases):
                             persons_skipped += 1
                             continue
 
-                        person = _find_matching_person(person_name, cached_persons)
+                        person = _find_matching_person(person_name, cached_persons, analyzer)
                         if not person:
                             person = Person(name=person_name)
                             session.add(person)
@@ -505,7 +588,7 @@ def extract_entities(db):
                 continue
 
         persons_pruned = _prune_invalid_persons(session, known_movements, movement_aliases)
-        persons_merged = _deduplicate_persons(session)
+        persons_merged = _deduplicate_persons(session, analyzer)
 
         session.commit()
         session.close()
