@@ -251,10 +251,14 @@ def _load_entity_linking_config() -> Tuple[List[str], Dict[str, List[str]]]:
     if not isinstance(movement_aliases, dict):
         movement_aliases = {}
 
+    print(f"✅ Načteno {len(known_movements)} known_movements ze config")
+    print(f"✅ Načteno {len(movement_aliases)} movement_aliases ze config")
+
     return known_movements, movement_aliases
 
 
-def _seed_known_movements(session, known_movements: List[str]) -> Dict[str, Movement]:
+def _seed_known_movements(session, known_movements: List[str], movement_aliases: Dict[str, List[str]]) -> Dict[str, Movement]:
+    """Seed known movements into DB with aliases and category"""
     movement_by_name: Dict[str, Movement] = {
         movement.name: movement for movement in session.query(Movement).all()
     }
@@ -263,12 +267,37 @@ def _seed_known_movements(session, known_movements: List[str]) -> Dict[str, Move
         name = (movement_name or "").strip()
         if not name:
             continue
+        
         if name not in movement_by_name:
-            movement = Movement(name=name)
+            # Get aliases for this movement from config
+            aliases = movement_aliases.get(name, [])
+            alias_str = ", ".join(aliases) if aliases else None
+            
+            # Create movement with alias and default category
+            movement = Movement(
+                name=name,
+                alias=alias_str,
+                category="nové náboženské hnutí"
+            )
             session.add(movement)
             session.flush()
             movement_by_name[name] = movement
+            
+            if aliases:
+                print(f"  ➕ {name} (aliasy: {len(aliases)})")
+        else:
+            # Update existing movement with aliases if they don't have any
+            movement = movement_by_name[name]
+            if not movement.alias:
+                aliases = movement_aliases.get(name, [])
+                if aliases:
+                    movement.alias = ", ".join(aliases)
+                    print(f"  🔄 Aktualizováno aliasy pro: {name} ({len(aliases)} aliasů)")
+            if not movement.category:
+                movement.category = "nové náboženské hnutí"
 
+    session.commit()
+    print(f"\n✅ Celkem movements v DB: {len(movement_by_name)}")
     return movement_by_name
 
 
@@ -389,7 +418,7 @@ def extract_entities(db):
         print(f"📋 Loaded {len(movement_aliases)} movement alias groups")
 
         session = db.get_session()
-        movement_by_name = _seed_known_movements(session, known_movements)
+        movement_by_name = _seed_known_movements(session, known_movements, movement_aliases)
 
         articles = session.query(Article).all()
         cached_persons = session.query(Person).all()
