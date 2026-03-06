@@ -289,7 +289,8 @@ def _is_bad_person_entity(name: str) -> bool:
     return False
 
 
-def _load_entity_linking_config() -> Tuple[List[str], Dict[str, List[str]]]:
+def _load_entity_linking_config() -> Tuple[List[str], Dict[str, List[str]], Dict[str, List[str]]]:
+    """Load known movements, persons and their aliases from config."""
     config_path = Path("extracting/sources_config.yaml")
     with open(config_path, "r", encoding="utf-8") as file:
         loaded = yaml.safe_load(file)
@@ -304,6 +305,11 @@ def _load_entity_linking_config() -> Tuple[List[str], Dict[str, List[str]]]:
     if not movement_aliases:
         movement_aliases = known_container.get("movement_aliases", {})
 
+    # Load known persons and their aliases
+    person_aliases = keywords.get("known_persons_aliases", {})
+    if not isinstance(person_aliases, dict):
+        person_aliases = {}
+
     if not isinstance(known_movements, list):
         known_movements = []
     if not isinstance(movement_aliases, dict):
@@ -311,8 +317,9 @@ def _load_entity_linking_config() -> Tuple[List[str], Dict[str, List[str]]]:
 
     print(f"✅ Načteno {len(known_movements)} known_movements ze config")
     print(f"✅ Načteno {len(movement_aliases)} movement_aliases ze config")
+    print(f"✅ Načteno {len(person_aliases)} known_persons_aliases ze config")
 
-    return known_movements, movement_aliases
+    return known_movements, movement_aliases, person_aliases
 
 
 def _seed_known_movements(session, known_movements: List[str], movement_aliases: Dict[str, List[str]]) -> Dict[str, Movement]:
@@ -359,6 +366,85 @@ def _seed_known_movements(session, known_movements: List[str], movement_aliases:
     session.commit()
     print(f"\n✅ Celkem movements v DB: {len(movement_by_name)}")
     return movement_by_name
+
+
+def _seed_known_persons(session, person_aliases: Dict[str, List[str]]) -> Dict[str, Person]:
+    """Seed known persons into DB with their aliases."""
+    person_by_name: Dict[str, Person] = {
+        person.name: person for person in session.query(Person).all()
+    }
+
+    for canonical_name, aliases in person_aliases.items():
+        name = (canonical_name or "").strip()
+        if not name:
+            continue
+        
+        if name not in person_by_name:
+            # Create person with canonical name and aliases
+            alias_str = ", ".join(aliases) if aliases else None
+            
+            person = Person(
+                name=name,
+                alias=alias_str
+            )
+            session.add(person)
+            session.flush()
+            person_by_name[name] = person
+            
+            if aliases:
+                print(f"  ➕ {name} (aliasy: {len(aliases)})")
+        else:
+            # Update existing person with aliases if they don't have any
+            person = person_by_name[name]
+            current_alias = cast(Optional[str], getattr(person, "alias", None))
+            if not current_alias:
+                if aliases:
+                    setattr(person, "alias", ", ".join(aliases))
+                    print(f"  🔄 Aktualizováno aliasy pro: {name} ({len(aliases)} aliasů)")
+
+    session.commit()
+    print(f"\n✅ Celkem known persons v DB: {len(person_aliases)}")
+    return person_by_name
+
+
+def _resolve_person_name(
+    person_text: str,
+    person_aliases: Dict[str, List[str]]
+) -> Optional[str]:
+    """Resolve person name from text using canonical names and aliases."""
+    entity = _normalize_text(person_text)
+    if not entity or len(entity) < 3:
+        return None
+
+    # Build normalized maps
+    canonical_map = {_normalize_text(name): name for name in person_aliases.keys() if name}
+
+    alias_map: Dict[str, str] = {}
+    for canonical, aliases in person_aliases.items():
+        if canonical:
+            alias_map[_normalize_text(canonical)] = canonical
+        for alias in aliases or []:
+            alias_map[_normalize_text(alias)] = canonical
+
+    # Try exact match first
+    if entity in canonical_map:
+        return canonical_map[entity]
+    if entity in alias_map:
+        return alias_map[entity]
+
+    # Try fuzzy matching on canonical names and aliases
+    for canonical, aliases in person_aliases.items():
+        all_variants = [canonical] + (aliases or [])
+        for variant in all_variants:
+            variant_norm = _normalize_text(variant)
+            if not variant_norm:
+                continue
+            # Use token_set_ratio for better matching
+            score = fuzz.token_set_ratio(entity, variant_norm)
+            if score >= 90:  # High threshold for person matching
+                return canonical
+
+    return None
 
 
 def _resolve_movement_name(
@@ -493,12 +579,14 @@ def extract_entities(db):
         print("\n🔍 Extracting entities...")
         analyzer = CzechTextAnalyzer()
 
-        known_movements, movement_aliases = _load_entity_linking_config()
+        known_movements, movement_aliases, person_aliases = _load_entity_linking_config()
         print(f"📋 Loaded {len(known_movements)} known movements from config")
         print(f"📋 Loaded {len(movement_aliases)} movement alias groups")
+        print(f"📋 Loaded {len(person_aliases)} known persons from config")
 
         session = db.get_session()
         movement_by_name = _seed_known_movements(session, known_movements, movement_aliases)
+        person_by_canonical = _seed_known_persons(session, person_aliases)
 
         articles = session.query(Article).all()
         cached_persons = session.query(Person).all()
@@ -539,6 +627,18 @@ def extract_entities(db):
                 for person_text in entities.get('persons', []):
                     try:
                         person_name = _clean_person_name(person_text)
+                        
+                        # Try to resolve to canonical known person first
+                        canonical_person = _resolve_person_name(person_name, person_aliases)
+                        if canonical_person:
+                            # Use canonical person from config
+                            person = person_by_canonical.get(canonical_person)
+                            if person and person not in article.persons:
+                                article.persons.append(person)
+                                persons_linked += 1
+                            continue
+                        
+                        # Regular person processing
                         if not _is_valid_person_name(person_name):
                             persons_skipped += 1
                             continue
