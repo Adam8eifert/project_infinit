@@ -27,15 +27,22 @@ class CSVtoDatabaseLoader:
 
     def setup_logging(self):
         """Setup logging for import tracking"""
-        logging.basicConfig(
-            level=logging.INFO,
-            format='%(asctime)s - %(levelname)s - %(message)s',
-            handlers=[
-                logging.FileHandler('import_log.txt'),
-                logging.StreamHandler()
-            ]
-        )
         self.logger = logging.getLogger(__name__)
+        if self.logger.handlers:
+            return
+
+        self.logger.setLevel(logging.INFO)
+        formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+
+        file_handler = logging.FileHandler('import_log.txt')
+        file_handler.setFormatter(formatter)
+
+        stream_handler = logging.StreamHandler()
+        stream_handler.setFormatter(formatter)
+
+        self.logger.addHandler(file_handler)
+        self.logger.addHandler(stream_handler)
+        self.logger.propagate = False
 
     def match_movement_fuzzy(self, text: str, threshold: float = 70) -> Optional[Movement]:
         """Fuzzy match article text to find related Movement
@@ -94,6 +101,18 @@ class CSVtoDatabaseLoader:
         dt = pd.to_datetime(row.get("scraped_at"), errors="coerce")
         if pd.isna(dt):
             errors.append("Invalid date")
+
+        categories_raw = row.get("categories")
+        if categories_raw not in (None, "", []):
+            if isinstance(categories_raw, str):
+                categories_text = categories_raw.strip()
+                if categories_text:
+                    try:
+                        json.loads(categories_text)
+                    except (json.JSONDecodeError, TypeError):
+                        errors.append("Invalid categories JSON")
+            elif not isinstance(categories_raw, (list, tuple, dict)):
+                errors.append("Invalid categories type")
         
         if errors:
             self.logger.warning(f"Validation errors in {csv_path}: {', '.join(errors)}")
@@ -111,13 +130,45 @@ class CSVtoDatabaseLoader:
             url = str(row.get("url", "")).strip()
             source_name = str(row.get("source_name", "")).strip()
             scraped_at = pd.to_datetime(row.get("scraped_at"), errors="coerce")
+
+            categories_raw = row.get("categories", [])
+            if isinstance(categories_raw, str):
+                categories_text = categories_raw.strip()
+                if categories_text:
+                    try:
+                        categories = json.loads(categories_text)
+                    except (json.JSONDecodeError, TypeError):
+                        categories = []
+                else:
+                    categories = []
+            elif isinstance(categories_raw, (list, tuple, dict)):
+                categories = categories_raw
+            else:
+                categories = []
+
+            keywords_found = json.dumps(categories, ensure_ascii=False)
+
+            movement_text = f"{title} {text}".strip()
+            movement_id = None
+            try:
+                from extracting.keywords import match_movement_from_text
+                movement_id = match_movement_from_text(movement_text)
+            except Exception:
+                movement_id = None
+
+            if movement_id is None:
+                matched_movement = self.match_movement_fuzzy(movement_text, threshold=70)
+                if matched_movement is not None:
+                    movement_id = int(matched_movement.id)  # type: ignore[arg-type]
             
             return {
                 "title": title[:500],  # Limit title length
                 "content": text[:10000],  # Limit content length
                 "source": source_name,
                 "url": url,
-                "published_at": scraped_at if not pd.isna(scraped_at) else datetime.utcnow()
+                "published_at": scraped_at if not pd.isna(scraped_at) else datetime.utcnow(),
+                "keywords_found": keywords_found,
+                "movement_id": movement_id,
             }
         except Exception as e:
             self.logger.error(f"Error cleaning row: {e}")
@@ -178,14 +229,29 @@ class CSVtoDatabaseLoader:
                             skipped += 1
                             continue
                         
-                        # Create article
-                        article = Article(**cleaned)
+                        # Create article (only Article fields)
+                        article_payload = {
+                            "title": cleaned["title"],
+                            "content": cleaned["content"],
+                            "source": cleaned["source"],
+                            "url": cleaned["url"],
+                            "published_at": cleaned["published_at"],
+                        }
+                        article = Article(**article_payload)
                         self.session.add(article)
                         self.session.flush()
                         
-                        # Try to match and link movement
-                        movement_text = f"{cleaned['title']} {cleaned['content']}"
-                        matched_movement = self.match_movement_fuzzy(movement_text, threshold=70)
+                        # Try to link movement from clean_row or fallback fuzzy match
+                        matched_movement = None
+                        movement_id = cleaned.get("movement_id")
+                        if movement_id is not None:
+                            matched_movement = self.session.query(Movement).filter(
+                                Movement.id == movement_id
+                            ).first()
+
+                        if matched_movement is None:
+                            movement_text = f"{cleaned['title']} {cleaned['content']}"
+                            matched_movement = self.match_movement_fuzzy(movement_text, threshold=70)
                         
                         if matched_movement:
                             article.movements.append(matched_movement)

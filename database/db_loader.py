@@ -4,15 +4,20 @@
 
 import os
 from sqlalchemy import create_engine, Column, Integer, String, Text, TIMESTAMP, Numeric, ForeignKey, Enum, DateTime, Table
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker, relationship
+from sqlalchemy.orm import declarative_base, sessionmaker, relationship
 from datetime import datetime
 import enum
+
+try:
+    import config as app_config
+    CONFIG_DB_URI = getattr(app_config, 'DB_URI', None)
+except Exception:
+    CONFIG_DB_URI = None
 
 # Database connection setup
 DB_URI = os.getenv(
     'DB_URI',
-    'postgresql+psycopg2://username:20665166@localhost:5432/nsm_db'
+    CONFIG_DB_URI or 'postgresql+psycopg2://username:20665166@localhost:5432/nsm_db'
 )
 
 engine = create_engine(DB_URI, echo=False)
@@ -163,6 +168,23 @@ class Location(Base):
     )
 
 
+class Source(Base):
+    """
+    Legacy Source model kept for compatibility with existing tests and scripts.
+    """
+    __tablename__ = "sources"
+
+    id = Column(Integer, primary_key=True, index=True)
+    movement_id = Column(Integer, ForeignKey('movements.id'), nullable=True)
+    source_name = Column(String(255), nullable=True)
+    source_type = Column(String(100), nullable=True)
+    publication_date = Column(TIMESTAMP, nullable=True)
+    sentiment_rating = Column(String(50), nullable=True)
+    url = Column(String(500), nullable=False, unique=True, index=True)
+    content_full = Column(Text, nullable=True)
+    created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
+
+
 # ============================================================
 # DATABASE CONNECTOR CLASS
 # ============================================================
@@ -225,6 +247,41 @@ class DBConnector:
         except Exception as e:
             session.rollback()
             print(f"❌ Error adding article: {e}")
+            raise
+
+    def add_source(self, source_data):
+        """Add or get source record (legacy compatibility helper)"""
+        session = self.get_session()
+        try:
+            url = source_data.get('url')
+            if not url:
+                raise ValueError("Source URL is required")
+
+            existing = session.query(Source).filter(Source.url == url).first()
+            if existing:
+                session.close()
+                return existing
+
+            allowed_keys = {
+                'movement_id',
+                'source_name',
+                'source_type',
+                'publication_date',
+                'sentiment_rating',
+                'url',
+                'content_full'
+            }
+            payload = {k: v for k, v in source_data.items() if k in allowed_keys}
+
+            source = Source(**payload)
+            session.add(source)
+            session.commit()
+            session.refresh(source)
+            session.close()
+            return source
+        except Exception as e:
+            session.rollback()
+            print(f"❌ Error adding source: {e}")
             raise
     
     def add_movement(self, name, alias=None, category=None):

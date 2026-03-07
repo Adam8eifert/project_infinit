@@ -5,7 +5,8 @@ from docx import Document  # type: ignore  # python-docx (Pylance stubs incomple
 from pathlib import Path
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import selectinload
-from database.db_loader import DBConnector, Source
+from database.db_loader import DBConnector
+from database.models.source import Source
 from datetime import datetime
 import logging
 from typing import List, Optional, Dict, Tuple
@@ -26,15 +27,22 @@ class DocumentsToDatabase:
 
     def setup_logging(self):
         """Setup logging for import tracking"""
-        logging.basicConfig(
-            level=logging.INFO,
-            format='%(asctime)s - %(levelname)s - %(message)s',
-            handlers=[
-                logging.FileHandler('document_import_log.txt'),
-                logging.StreamHandler()
-            ]
-        )
         self.logger = logging.getLogger(__name__)
+        if self.logger.handlers:
+            return
+
+        self.logger.setLevel(logging.INFO)
+        formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+
+        file_handler = logging.FileHandler('document_import_log.txt')
+        file_handler.setFormatter(formatter)
+
+        stream_handler = logging.StreamHandler()
+        stream_handler.setFormatter(formatter)
+
+        self.logger.addHandler(file_handler)
+        self.logger.addHandler(stream_handler)
+        self.logger.propagate = False
 
     def preprocess_text(self, text: str) -> str:
         """Clean and normalize extracted text"""
@@ -399,7 +407,7 @@ class DocumentsToDatabase:
                 self.logger.info(f"  ✓ Matched to movement ID: {matched_movement_id}")
             else:
                 # Get default "Unidentified" movement ID from database
-                from database.db_loader import Movement
+                from database.models.movement import Movement
                 default = self.session.query(Movement).filter_by(
                     canonical_name="Neidentifikované hnutí"
                 ).first()

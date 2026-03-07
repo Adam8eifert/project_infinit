@@ -1,0 +1,26 @@
+name: Tests
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Prepare CI environment file
+        run: sed '/^prefix:/d' environment.yml > environment.ci.yml
+
+      - name: Set up micromamba environment
+        uses: mamba-org/setup-micromamba@v2
+        with:
+          environment-name: project_infinit-ci
+          environment-file: environment.ci.yml
+          cache-environment: true
+
+      - name: Run tests (strict warnings)
+        run: micromamba run -n project_infinit-ci python -m pytest -W error -v testing/

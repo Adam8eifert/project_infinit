@@ -2,7 +2,7 @@
 # Wrapper that loads all keywords from sources_config.yaml
 # Project: Database of New Religious Movements in the Czech Republic
 
-from typing import List, Dict, Optional
+from typing import List, Dict, Optional, Tuple
 import re
 import os
 import yaml
@@ -23,6 +23,8 @@ EXCLUDE_CONTEXT_PATTERNS: List[str] = []
 KNOWN_MOVEMENTS: Dict = {}
 YEAR_PATTERNS: List[str] = []
 ALL_KNOWN_MOVEMENTS: List[str] = []
+FALLBACK_MOVEMENT_ID_BY_NAME: Dict[str, int] = {}
+FALLBACK_MOVEMENT_NAME_BY_ID: Dict[int, str] = {282: "Neidentifikované hnutí"}
 
 def _load_keywords_config() -> None:
     """Load keywords configuration from sources_config.yaml"""
@@ -64,6 +66,101 @@ _load_keywords_config()
 # MOVEMENT MATCHING WITH FUZZY SEARCH
 # ============================================================
 
+def _read_movement_config() -> Tuple[List[str], Dict[str, List[str]]]:
+    """Read known movements and aliases from YAML config."""
+    known_movements: List[str] = []
+    aliases_config: Dict[str, List[str]] = {}
+
+    try:
+        with open(CONFIG_PATH, 'r', encoding='utf-8') as f:
+            config = yaml.safe_load(f)
+            if isinstance(config, dict):
+                keywords = config.get('keywords', {})
+                if isinstance(keywords, dict):
+                    known = keywords.get('known_movements', {}).get('new_religious_movements', [])
+                    if isinstance(known, list):
+                        known_movements = [entry.strip() for entry in known if isinstance(entry, str)]
+
+                    loaded_aliases = keywords.get('movement_aliases', {})
+                    if isinstance(loaded_aliases, dict):
+                        aliases_config = {
+                            name: [alias for alias in aliases if isinstance(alias, str)]
+                            for name, aliases in loaded_aliases.items()
+                            if isinstance(name, str) and isinstance(aliases, list)
+                        }
+    except Exception as e:
+        logger.warning(f"Failed to load movement config: {e}")
+
+    return known_movements, aliases_config
+
+
+def _ensure_fallback_movement_maps(
+    known_movements: List[str],
+    aliases_config: Dict[str, List[str]]
+) -> None:
+    """Build stable fallback movement ID/name maps for DB-independent matching."""
+    if FALLBACK_MOVEMENT_ID_BY_NAME:
+        return
+
+    names: List[str] = []
+    seen: set[str] = set()
+
+    for movement_name in known_movements + list(aliases_config.keys()):
+        normalized = movement_name.strip().lower()
+        if not normalized or normalized in seen:
+            continue
+        seen.add(normalized)
+        names.append(movement_name.strip())
+
+    if "Neidentifikované hnutí" not in names:
+        names.append("Neidentifikované hnutí")
+
+    next_id = 1000
+    for movement_name in names:
+        if movement_name == "Neidentifikované hnutí":
+            movement_id = 282
+        else:
+            while next_id == 282:
+                next_id += 1
+            movement_id = next_id
+            next_id += 1
+
+        FALLBACK_MOVEMENT_ID_BY_NAME[movement_name] = movement_id
+        FALLBACK_MOVEMENT_NAME_BY_ID[movement_id] = movement_name
+
+
+def _find_db_movement_by_name(session, Movement, movement_name: str):
+    """Find movement by name across legacy and new schemas."""
+    query_candidates = []
+    if hasattr(Movement, "canonical_name"):
+        query_candidates.append("canonical_name")
+    if hasattr(Movement, "name"):
+        query_candidates.append("name")
+
+    for attr_name in query_candidates:
+        column = getattr(Movement, attr_name)
+        movement = session.query(Movement).filter(column == movement_name).first()
+        if movement is not None:
+            return movement
+
+    return None
+
+
+def _movement_name_from_row(movement) -> Optional[str]:
+    """Return canonical or legacy movement name from ORM row."""
+    movement_name = getattr(movement, "canonical_name", None) or getattr(movement, "name", None)
+    return str(movement_name) if movement_name else None
+
+
+def _resolve_movement_id(movement_name: str, session=None, Movement=None) -> Optional[int]:
+    """Resolve movement name to DB ID when possible, otherwise fallback ID."""
+    if session is not None and Movement is not None:
+        movement = _find_db_movement_by_name(session, Movement, movement_name)
+        if movement is not None and getattr(movement, "id", None) is not None:
+            return int(movement.id)  # type: ignore[arg-type]
+
+    return FALLBACK_MOVEMENT_ID_BY_NAME.get(movement_name)
+
 def match_movement_from_text(text: str, min_score: int = 80) -> Optional[int]:
     """
     Match text to a known movement using keywords and aliases.
@@ -87,82 +184,65 @@ def match_movement_from_text(text: str, min_score: int = 80) -> Optional[int]:
         
     try:
         from fuzzywuzzy import fuzz
-        from database.db_loader import DBConnector, Movement
-        
+
         text_lower = text.lower()
-        
-        # Load movement config from YAML
-        known_movements: List[str] = []
-        aliases_config: Dict[str, List[str]] = {}
-        
+        known_movements, aliases_config = _read_movement_config()
+        _ensure_fallback_movement_maps(known_movements, aliases_config)
+
+        session = None
+        Movement = None
         try:
-            with open(CONFIG_PATH, 'r', encoding='utf-8') as f:
-                import yaml
-                config = yaml.safe_load(f)
-                if config and isinstance(config, dict):
-                    keywords = config.get('keywords', {})
-                    if isinstance(keywords, dict):
-                        # Load known movements (simple string list with diacritics)
-                        known = keywords.get('known_movements', {}).get('new_religious_movements', [])
-                        for entry in known:
-                            if isinstance(entry, str):
-                                known_movements.append(entry.strip())
-                        
-                        # Load aliases (canonical_name with diacritics -> [alias list])
-                        aliases_config = keywords.get('movement_aliases', {})
-        except Exception as e:
-            logger.warning(f"Failed to load movement config: {e}")
-        
-        # Connect to database
-        db = DBConnector()
-        session = db.get_session()
-        
-        best_match_id = None
-        best_score = 0
-        
-        # Strategy 1: Direct substring match on canonical names
-        for movement_name in known_movements:
-            if movement_name.lower() in text_lower:
-                # Find movement by canonical_name
-                movement = session.query(Movement).filter(Movement.canonical_name == movement_name).first()
-                if movement is not None:
-                    session.close()
-                    return int(movement.id)  # type: ignore[arg-type]
-        
-        # Strategy 2: Check aliases
-        for movement_name, aliases_list in aliases_config.items():
-            for alias in aliases_list:
-                if isinstance(alias, str) and alias.lower() in text_lower:
-                    # Find movement by canonical_name (with diacritics)
-                    movement = session.query(Movement).filter(Movement.canonical_name == movement_name).first()
-                    if movement is not None:
-                        session.close()
-                        return int(movement.id)  # type: ignore[arg-type]
-        
-        # Strategy 3: Fuzzy matching on canonical names
-        for movement_name in known_movements:
-            score = fuzz.partial_ratio(movement_name.lower(), text_lower)
-            if score >= min_score:
-                movement = session.query(Movement).filter(Movement.canonical_name == movement_name).first()
-                if movement is not None and score > best_score:
-                    best_score = score
-                    best_match_id = int(movement.id)  # type: ignore[arg-type]
-        
-        # Strategy 4: Fuzzy matching on aliases
-        if best_match_id is None:
+            from database.db_loader import DBConnector, Movement as MovementModel
+            db = DBConnector()
+            session = db.get_session()
+            Movement = MovementModel
+        except Exception as db_error:
+            logger.debug(f"Movement DB lookup unavailable, using fallback map: {db_error}")
+
+        try:
+            best_match_id = None
+            best_score = 0
+
+            # Strategy 1: Direct substring match on canonical names
+            for movement_name in known_movements:
+                if movement_name.lower() in text_lower:
+                    resolved_id = _resolve_movement_id(movement_name, session, Movement)
+                    if resolved_id is not None:
+                        return resolved_id
+
+            # Strategy 2: Check aliases
             for movement_name, aliases_list in aliases_config.items():
                 for alias in aliases_list:
-                    if isinstance(alias, str):
+                    if alias.lower() in text_lower:
+                        resolved_id = _resolve_movement_id(movement_name, session, Movement)
+                        if resolved_id is not None:
+                            return resolved_id
+
+            # Strategy 3: Fuzzy matching on canonical names
+            for movement_name in known_movements:
+                score = fuzz.partial_ratio(movement_name.lower(), text_lower)
+                if score >= min_score and score > best_score:
+                    resolved_id = _resolve_movement_id(movement_name, session, Movement)
+                    if resolved_id is not None:
+                        best_score = score
+                        best_match_id = resolved_id
+
+            # Strategy 4: Fuzzy matching on aliases
+            if best_match_id is None:
+                for movement_name, aliases_list in aliases_config.items():
+                    for alias in aliases_list:
                         score = fuzz.partial_ratio(alias.lower(), text_lower)
-                        if score >= min_score:
-                            movement = session.query(Movement).filter(Movement.canonical_name == movement_name).first()
-                            if movement is not None and score > best_score:
+                        if score >= min_score and score > best_score:
+                            resolved_id = _resolve_movement_id(movement_name, session, Movement)
+                            if resolved_id is not None:
                                 best_score = score
-                                best_match_id = int(movement.id)  # type: ignore[arg-type]
-        
-        session.close()
-        return best_match_id
-        
+                                best_match_id = resolved_id
+
+            return best_match_id
+        finally:
+            if session is not None:
+                session.close()
+
     except ImportError:
         logger.warning("fuzzywuzzy not installed - movement matching disabled")
         return None
@@ -177,16 +257,27 @@ def get_movement_name_by_id(movement_id: int) -> Optional[str]:
         from database.db_loader import DBConnector, Movement
         db = DBConnector()
         session = db.get_session()
-        movement = session.query(Movement).filter(Movement.id == movement_id).first()
-        # Explicit None check for SQLAlchemy Column type
-        if movement is not None and movement.canonical_name is not None:
-            name = str(movement.canonical_name)
-        else:
-            name = None
-        session.close()
-        return name
+        try:
+            movement = session.query(Movement).filter(Movement.id == movement_id).first()
+            if movement is not None:
+                movement_name = _movement_name_from_row(movement)
+                if movement_name:
+                    return movement_name
+        finally:
+            session.close()
+
+        if movement_id == 282:
+            return "Neidentifikované hnutí"
+
+        if not FALLBACK_MOVEMENT_NAME_BY_ID:
+            known_movements, aliases_config = _read_movement_config()
+            _ensure_fallback_movement_maps(known_movements, aliases_config)
+
+        return FALLBACK_MOVEMENT_NAME_BY_ID.get(movement_id)
     except Exception:
-        return None
+        if movement_id == 282:
+            return "Neidentifikované hnutí"
+        return FALLBACK_MOVEMENT_NAME_BY_ID.get(movement_id)
 
 
 # ============================================================

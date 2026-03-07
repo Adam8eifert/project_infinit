@@ -136,17 +136,17 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Set up Python
-        uses: actions/setup-python@v2
+      - uses: actions/checkout@v4
+      - name: Prepare CI environment file
+        run: sed '/^prefix:/d' environment.yml > environment.ci.yml
+      - name: Set up micromamba environment
+        uses: mamba-org/setup-micromamba@v2
         with:
-          python-version: "3.10"
-      - name: Install dependencies
-        run: |
-          pip install -r requirements.txt
-          pip install pytest pytest-cov pytest-mock
-      - name: Run tests
-        run: pytest -v --cov=scraping --cov=database --cov=processing testing/
+          environment-name: project_infinit-ci
+          environment-file: environment.ci.yml
+          cache-environment: true
+      - name: Run tests (strict warnings)
+        run: micromamba run -n project_infinit-ci python -m pytest -W error -v testing/
 ```
 
 ## Best practices
