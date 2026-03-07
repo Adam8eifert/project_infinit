@@ -183,23 +183,35 @@ class CzechTextAnalyzer:
             if result:
                 first = result[0]
                 if isinstance(first, list):
-                    best = first[0]
+                    best = max(first, key=lambda item: float(item.get('score', 0.0))) if first else {}
                 else:
                     best = first
                 
                 label = str(best.get('label', 'NEUTRAL')).lower()
                 score_value = float(best.get('score', 0.0))
-                
-                # Convert label to internal format and score to -1..1 range
-                if 'positive' in label:
-                    sentiment_label = 'positive'
-                    sentiment_score = abs(score_value)
-                elif 'negative' in label:
-                    sentiment_label = 'negative'
-                    sentiment_score = -abs(score_value)
+
+                star_match = re.search(r"([1-5])\s*star", label)
+                if star_match:
+                    stars = int(star_match.group(1))
+                    # 1 star -> -1.0, 3 stars -> 0.0, 5 stars -> +1.0
+                    sentiment_score = (stars - 3) / 2
+                    if stars <= 2:
+                        sentiment_label = 'negative'
+                    elif stars >= 4:
+                        sentiment_label = 'positive'
+                    else:
+                        sentiment_label = 'neutral'
                 else:
-                    sentiment_label = 'neutral'
-                    sentiment_score = 0.0
+                    # Convert label to internal format and score to -1..1 range
+                    if 'positive' in label:
+                        sentiment_label = 'positive'
+                        sentiment_score = abs(score_value)
+                    elif 'negative' in label:
+                        sentiment_label = 'negative'
+                        sentiment_score = -abs(score_value)
+                    else:
+                        sentiment_label = 'neutral'
+                        sentiment_score = 0.0
                 
                 return {
                     'score': max(-1.0, min(1.0, sentiment_score)),

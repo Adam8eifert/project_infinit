@@ -6,7 +6,7 @@ from urllib.parse import quote
 from datetime import datetime
 import lxml.etree as ET # Useful for cleaner XML parsing
 
-from extracting.keywords import SEARCH_TERMS, EXCLUDE_TERMS
+from extracting.keywords import SEARCH_TERMS, EXCLUDE_TERMS, contains_relevant_keywords, is_excluded_content
 from extracting.csv_utils import get_output_csv_for_source, append_row, ensure_csv_header
 
 class GoogleNewsRSSSpider(scrapy.Spider):
@@ -49,7 +49,12 @@ class GoogleNewsRSSSpider(scrapy.Spider):
 
         for term in SEARCH_TERMS:
             # RSS endpoint is different from the web search endpoint
-            query = quote(term + ' ' + ' '.join(EXCLUDE_TERMS))
+            exclude_query = " ".join(
+                f"-{exclude.strip().lstrip('-')}"
+                for exclude in EXCLUDE_TERMS
+                if isinstance(exclude, str) and exclude.strip()
+            )
+            query = quote(f"{term} {exclude_query}".strip())
             # Added /rss/ to the path
             url = f"https://news.google.com/rss/search?q={query}&hl=cs&gl=CZ&ceid=CZ%3Acs"
 
@@ -96,6 +101,12 @@ class GoogleNewsRSSSpider(scrapy.Spider):
         if len(full_text) < 100:
             # Likely a paywall or cookie wall on the target site itself
             full_text = "[Content extraction failed or limited - possible paywall]"
+
+        combined = f"{response.meta.get('title', '')} {full_text}".strip()
+        if not contains_relevant_keywords(combined):
+            return
+        if is_excluded_content(combined):
+            return
 
         item = {
             "source_name": response.meta.get('source_name') or "Google News",

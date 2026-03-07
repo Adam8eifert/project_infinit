@@ -7,7 +7,7 @@ from sqlalchemy.exc import IntegrityError
 from database.db_loader import DBConnector, Article, Movement
 from datetime import datetime
 import logging
-from typing import Union, Optional
+from typing import Union, Optional, Any, Dict
 import json
 import re
 from fuzzywuzzy import fuzz
@@ -15,6 +15,11 @@ import sys
 
 # Add parent directory to path for imports
 sys.path.insert(0, str(Path(__file__).parent.parent))
+
+try:
+    from extracting.config_loader import SourcesConfigLoader
+except ImportError:
+    SourcesConfigLoader = None
 
 class CSVtoDatabaseLoader:
     """Load CSV articles to database with new schema (Article → M:N Movements)"""
@@ -24,6 +29,13 @@ class CSVtoDatabaseLoader:
         self.session = self.db.get_session()
         self.setup_logging()
         self.movement_cache = {}  # Cache for movement fuzzy matching
+        
+        # Load sources config for require_movement_id checks
+        try:
+            self.sources_config = SourcesConfigLoader() if SourcesConfigLoader else None
+        except Exception as e:
+            self.logger.warning(f"Could not load sources config: {e}")
+            self.sources_config = None
 
     def setup_logging(self):
         """Setup logging for import tracking"""
@@ -129,6 +141,7 @@ class CSVtoDatabaseLoader:
             text = str(row.get("text", "")).strip()
             url = str(row.get("url", "")).strip()
             source_name = str(row.get("source_name", "")).strip()
+            source_type = str(row.get("source_type", "")).strip().lower()
             scraped_at = pd.to_datetime(row.get("scraped_at"), errors="coerce")
 
             categories_raw = row.get("categories", [])
@@ -169,10 +182,61 @@ class CSVtoDatabaseLoader:
                 "published_at": scraped_at if not pd.isna(scraped_at) else datetime.utcnow(),
                 "keywords_found": keywords_found,
                 "movement_id": movement_id,
+                "source_type": source_type,
             }
         except Exception as e:
             self.logger.error(f"Error cleaning row: {e}")
             return None
+
+    def _source_requires_movement_id(self, csv_path: Path) -> bool:
+        """Check if source requires movement_id based on sources_config.yaml
+        
+        Args:
+            csv_path: Path to the CSV file being imported
+            
+        Returns:
+            True if source requires movement_id, False otherwise
+        """
+        if not self.sources_config:
+            return False
+        
+        # Extract source key from CSV filename (e.g., "blesk_rss_raw.csv" -> "blesk")
+        filename = csv_path.stem  # e.g., "blesk_rss_raw"
+        # Remove common suffixes
+        source_key = filename.replace("_rss_raw", "").replace("_raw", "").replace("_web_raw", "")
+        
+        try:
+            sources = self.sources_config.get_all_sources()
+            source_config = sources.get(source_key, {})
+            return source_config.get("require_movement_id", False)
+        except Exception as e:
+            self.logger.debug(f"Could not check require_movement_id for {source_key}: {e}")
+            return False
+
+    def _is_article_relevant(self, cleaned: Dict[str, Any], csv_path: Optional[Path] = None) -> bool:
+        """Decide whether article should be imported into articles table."""
+        movement_id = cleaned.get("movement_id")
+        source_type = str(cleaned.get("source_type", "")).strip().lower()
+        combined_text = f"{cleaned.get('title', '')} {cleaned.get('content', '')}".strip()
+        
+        # Check source-level require_movement_id setting
+        if csv_path and self._source_requires_movement_id(csv_path):
+            if movement_id is None:
+                self.logger.debug(f"Skipping article from strict source without movement: {cleaned.get('title', '')[:80]}")
+                return False
+
+        # For broad aggregators (Google News), require explicit movement match.
+        if source_type == "news_aggregator":
+            return movement_id is not None
+
+        try:
+            from extracting.keywords import contains_relevant_keywords, is_excluded_content
+            if is_excluded_content(combined_text):
+                return False
+            return movement_id is not None or contains_relevant_keywords(combined_text, min_hits=2)
+        except Exception:
+            # Safe fallback when keyword module is unavailable.
+            return movement_id is not None
 
     def load_csv_to_articles(self, csv_path: Union[str, Path]) -> int:
         """Import CSV to Articles table
@@ -216,6 +280,11 @@ class CSVtoDatabaseLoader:
                         # Clean data
                         cleaned = self.clean_row(row)
                         if not cleaned:
+                            skipped += 1
+                            continue
+
+                        if not self._is_article_relevant(cleaned, csv_path):
+                            self.logger.debug(f"Skipping non-relevant article: {cleaned.get('title', '')[:80]}")
                             skipped += 1
                             continue
                         

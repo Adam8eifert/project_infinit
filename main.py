@@ -9,7 +9,8 @@ import unicodedata
 import yaml
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple, cast
-from database.db_loader import DBConnector, Article, Movement, Person, Location
+from sqlalchemy import or_
+from database.db_loader import DBConnector, Article, Movement, Person, Location, SentimentLabel, RiskLevel
 from processing.nlp_analysis import CzechTextAnalyzer
 from processing.import_csv_to_db import CSVtoDatabaseLoader
 from fuzzywuzzy import fuzz
@@ -95,7 +96,14 @@ def analyze_sentiment_and_risk(db):
         analyzer = CzechTextAnalyzer()
         
         session = db.get_session()
-        articles = session.query(Article).filter(Article.sentiment_label.is_(None)).all()
+        articles = session.query(Article).filter(
+            or_(
+                Article.sentiment_label.is_(None),
+                Article.sentiment_score.is_(None),
+                Article.risk_level.is_(None),
+                Article.risk_score.is_(None),
+            )
+        ).all()
         
         print(f"📝 Analyzing {len(articles)} articles...")
         
@@ -105,13 +113,21 @@ def analyze_sentiment_and_risk(db):
                 # Sentiment analysis
                 sentiment_result = analyzer.analyze_sentiment(article.content)
                 if sentiment_result:
-                    article.sentiment_score = sentiment_result.get('score')
-                    article.sentiment_label = sentiment_result.get('label')
+                    sentiment_value = float(sentiment_result.get('score', 0.0))
+                    sentiment_label_raw = str(sentiment_result.get('label', 'neutral')).lower()
+                    if sentiment_label_raw not in SentimentLabel._value2member_map_:
+                        sentiment_label_raw = 'neutral'
+
+                    article.sentiment_score = sentiment_value
+                    article.sentiment_label = SentimentLabel(sentiment_label_raw)
                 
                 # Risk analysis (basic - can be expanded)
-                risk_score = analyzer.calculate_risk_score(article.content)
+                risk_score = float(analyzer.calculate_risk_score(article.content))
                 article.risk_score = risk_score
-                article.risk_level = analyzer.get_risk_level(risk_score)
+                risk_level_raw = analyzer.get_risk_level(risk_score)
+                if risk_level_raw not in RiskLevel._value2member_map_:
+                    risk_level_raw = 'low'
+                article.risk_level = RiskLevel(risk_level_raw)
                 
                 analyzed += 1
                 
@@ -130,6 +146,37 @@ def analyze_sentiment_and_risk(db):
     except Exception as e:
         print(f"❌ Error in NLP analysis: {e}")
         raise
+
+
+def prune_irrelevant_articles(db):
+    """Remove articles that are not linked to any movement and fail relevance checks."""
+    try:
+        from extracting.keywords import contains_relevant_keywords, is_excluded_content
+
+        print("\n🧹 Pruning irrelevant articles...")
+        session = db.get_session()
+        candidates = session.query(Article).filter(~Article.movements.any()).all()
+
+        removed = 0
+        for article in candidates:
+            combined = f"{article.title or ''} {article.content or ''}".strip()
+            if not combined:
+                session.delete(article)
+                removed += 1
+                continue
+
+            if is_excluded_content(combined) or not contains_relevant_keywords(combined, min_hits=2):
+                session.delete(article)
+                removed += 1
+
+        session.commit()
+        session.close()
+
+        print(f"✅ Irrelevant article prune completed: removed {removed} / {len(candidates)}")
+        return removed
+    except Exception as e:
+        print(f"⚠️  Error pruning irrelevant articles: {e}")
+        return 0
 
 
 def _normalize_text(value: str) -> str:
@@ -735,6 +782,9 @@ def main():
         
         # Step 3: Import CSV data
         import_csv_data(db)
+
+        # Step 3.5: Remove off-topic articles without movement linkage
+        prune_irrelevant_articles(db)
         
         # Step 4: NLP analysis (sentiment & risk)
         analyze_sentiment_and_risk(db)

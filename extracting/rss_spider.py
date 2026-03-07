@@ -8,7 +8,7 @@ from w3lib.html import remove_tags # For cleaning HTML from RSS feeds
 
 # Internal project imports
 from extracting.config_loader import get_config_loader
-from extracting.keywords import contains_relevant_keywords
+from extracting.keywords import contains_relevant_keywords, is_excluded_content
 from extracting.spider_settings import ETHICAL_SCRAPING_SETTINGS, CSV_EXPORT_SETTINGS
 from extracting.csv_utils import get_output_csv_for_source, append_row
 
@@ -121,6 +121,8 @@ class RSSSpider(scrapy.Spider):
                 # 4. Relevance check using your custom keyword logic
                 combined_text = f"{clean_title} {clean_text}"
                 if not contains_relevant_keywords(combined_text):
+                    continue
+                if is_excluded_content(combined_text):
                     continue
                 
                 # 5. Metadata extraction
