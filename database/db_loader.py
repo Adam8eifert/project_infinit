@@ -3,25 +3,25 @@
 # Project Infinit - Religious Movements Analysis
 
 import os
-from sqlalchemy import create_engine, Column, Integer, String, Text, TIMESTAMP, Numeric, ForeignKey, Enum, DateTime, Table
+from typing import Optional
+from sqlalchemy import create_engine, Column, Integer, String, Text, TIMESTAMP, Numeric, ForeignKey, Enum, DateTime, Table, Index
 from sqlalchemy.orm import declarative_base, sessionmaker, relationship
 from datetime import datetime
 import enum
 
-try:
-    import config as app_config
-    CONFIG_DB_URI = getattr(app_config, 'DB_URI', None)
-except Exception:
-    CONFIG_DB_URI = None
+DEFAULT_DB_URI = 'postgresql+psycopg2://username:20665166@localhost:5432/nsm_db'
 
-# Database connection setup
-DB_URI = os.getenv(
-    'DB_URI',
-    CONFIG_DB_URI or 'postgresql+psycopg2://username:20665166@localhost:5432/nsm_db'
-)
 
-engine = create_engine(DB_URI, echo=False)
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+def _resolve_db_uri() -> str:
+    try:
+        import config as app_config
+        config_db_uri = getattr(app_config, 'DB_URI', None)
+    except Exception:
+        config_db_uri = None
+
+    return os.getenv('DB_URI', config_db_uri or DEFAULT_DB_URI)
+
+
 Base = declarative_base()
 
 
@@ -51,21 +51,27 @@ article_movements = Table(
     'article_movements',
     Base.metadata,
     Column('article_id', Integer, ForeignKey('articles.id', ondelete='CASCADE'), primary_key=True),
-    Column('movement_id', Integer, ForeignKey('movements.id', ondelete='CASCADE'), primary_key=True)
+    Column('movement_id', Integer, ForeignKey('movements.id', ondelete='CASCADE'), primary_key=True),
+    Index('idx_article_movements_article', 'article_id'),
+    Index('idx_article_movements_movement', 'movement_id')
 )
 
 article_persons = Table(
     'article_persons',
     Base.metadata,
     Column('article_id', Integer, ForeignKey('articles.id', ondelete='CASCADE'), primary_key=True),
-    Column('person_id', Integer, ForeignKey('persons.id', ondelete='CASCADE'), primary_key=True)
+    Column('person_id', Integer, ForeignKey('persons.id', ondelete='CASCADE'), primary_key=True),
+    Index('idx_article_persons_article', 'article_id'),
+    Index('idx_article_persons_person', 'person_id')
 )
 
 article_locations = Table(
     'article_locations',
     Base.metadata,
     Column('article_id', Integer, ForeignKey('articles.id', ondelete='CASCADE'), primary_key=True),
-    Column('location_id', Integer, ForeignKey('locations.id', ondelete='CASCADE'), primary_key=True)
+    Column('location_id', Integer, ForeignKey('locations.id', ondelete='CASCADE'), primary_key=True),
+    Index('idx_article_locations_article', 'article_id'),
+    Index('idx_article_locations_location', 'location_id')
 )
 
 
@@ -83,6 +89,8 @@ class Article(Base):
     title = Column(Text, nullable=False)
     content = Column(Text, nullable=False)
     source = Column(String(255), nullable=True)
+    source_id = Column(Integer, ForeignKey('sources.id', ondelete='SET NULL'), nullable=True, index=True)
+    language = Column(String(10), nullable=True)
     url = Column(String(500), nullable=True, index=True, unique=True)
     published_at = Column(TIMESTAMP, nullable=True)
     
@@ -95,7 +103,8 @@ class Article(Base):
     # Metadata
     created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
     
-    # Relationships (M:N)
+    # Relationships
+    source_record = relationship("Source", back_populates="articles")
     movements = relationship(
         "Movement",
         secondary="article_movements",
@@ -123,6 +132,8 @@ class Movement(Base):
     name = Column(String(255), nullable=False, unique=True, index=True)
     alias = Column(String(255), nullable=True)
     category = Column(String(100), nullable=True)
+    founded_year = Column(Integer, nullable=True)
+    concepts = Column(Text, nullable=True)
     
     # Relationships
     articles = relationship(
@@ -170,19 +181,88 @@ class Location(Base):
 
 class Source(Base):
     """
-    Legacy Source model kept for compatibility with existing tests and scripts.
+    Source registry + legacy content fields for backward compatibility.
     """
     __tablename__ = "sources"
 
     id = Column(Integer, primary_key=True, index=True)
     movement_id = Column(Integer, ForeignKey('movements.id'), nullable=True)
+    source_key = Column(String(255), nullable=True, unique=True, index=True)
     source_name = Column(String(255), nullable=True)
     source_type = Column(String(100), nullable=True)
+    domain = Column(String(255), nullable=True)
+    language = Column(String(16), nullable=True)
     publication_date = Column(TIMESTAMP, nullable=True)
     sentiment_rating = Column(String(50), nullable=True)
     url = Column(String(500), nullable=False, unique=True, index=True)
     content_full = Column(Text, nullable=True)
     created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
+
+    articles = relationship("Article", back_populates="source_record")
+
+
+class SocialMediaPost(Base):
+    """
+    Social media posts from Reddit, YouTube, Telegram, Mastodon
+    Both discussion ABOUT NRM and content FROM NRM
+    """
+    __tablename__ = "social_media_posts"
+
+    id = Column(Integer, primary_key=True, index=True)
+    platform = Column(String(50), nullable=False, index=True)  # reddit, youtube, telegram, mastodon
+    author = Column(String(255), nullable=True)
+    text = Column(Text, nullable=False)
+    url = Column(String(1000), nullable=False, unique=True, index=True)
+    created_at = Column(TIMESTAMP, nullable=True)
+    
+    # Engagement metrics
+    likes = Column(Integer, nullable=True, default=0)
+    comments = Column(Integer, nullable=True, default=0)
+    shares = Column(Integer, nullable=True, default=0)
+    
+    # Collection metadata
+    query = Column(String(500), nullable=True)  # Search query used
+    raw_json = Column(Text, nullable=True)  # Full API response for future analysis
+    collected_at = Column(DateTime, default=datetime.utcnow, nullable=False)
+    
+    # Movement linkage (detected by NLP or manual tagging)
+    movement_id = Column(Integer, ForeignKey('movements.id', ondelete='SET NULL'), nullable=True, index=True)
+    
+    # NLP Analysis
+    sentiment_score = Column(Numeric(4, 3), nullable=True)
+    sentiment_label = Column(Enum(SentimentLabel), nullable=True)
+    risk_score = Column(Numeric(4, 3), nullable=True)
+    risk_level = Column(Enum(RiskLevel), nullable=True)
+    
+    # Relationships
+    movement = relationship("Movement")
+
+
+class GoogleTrend(Base):
+    """
+    Google Trends data for tracking search interest in religious movements
+    """
+    __tablename__ = "google_trends"
+
+    id = Column(Integer, primary_key=True, index=True)
+    keyword = Column(String(255), nullable=False, index=True)
+    date = Column(TIMESTAMP, nullable=False, index=True)
+    interest_value = Column(Integer, nullable=False)  # 0-100 scale
+    region = Column(String(10), nullable=True)  # CZ, SK, etc.
+    
+    # Movement linkage
+    movement_id = Column(Integer, ForeignKey('movements.id', ondelete='SET NULL'), nullable=True, index=True)
+    
+    collected_at = Column(DateTime, default=datetime.utcnow, nullable=False)
+    
+    # Relationships
+    movement = relationship("Movement")
+    
+    # Composite index for efficient time-series queries
+    __table_args__ = (
+        Index('idx_trends_keyword_date', 'keyword', 'date'),
+        Index('idx_trends_movement_date', 'movement_id', 'date'),
+    )
 
 
 # ============================================================
@@ -194,9 +274,10 @@ class DBConnector:
     Database management and helper methods
     """
     
-    def __init__(self):
-        self.engine = engine
-        self.SessionLocal = SessionLocal
+    def __init__(self, db_uri: Optional[str] = None):
+        self.db_uri = db_uri or _resolve_db_uri()
+        self.engine = create_engine(self.db_uri, echo=False)
+        self.SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=self.engine)
     
     def create_tables(self):
         """Create all tables from models"""
@@ -220,7 +301,7 @@ class DBConnector:
         """Get new database session"""
         return self.SessionLocal()
     
-    def add_article(self, title, content, source=None, url=None, published_at=None):
+    def add_article(self, title, content, source=None, url=None, published_at=None, source_id=None, language=None):
         """Add new article"""
         session = self.get_session()
         try:
@@ -236,12 +317,13 @@ class DBConnector:
                 title=title,
                 content=content,
                 source=source,
+                source_id=source_id,
+                language=language,
                 url=url,
                 published_at=published_at
             )
             session.add(article)
             session.commit()
-            article_id = article.id
             session.close()
             return article
         except Exception as e:
@@ -264,8 +346,11 @@ class DBConnector:
 
             allowed_keys = {
                 'movement_id',
+                'source_key',
                 'source_name',
                 'source_type',
+                'domain',
+                'language',
                 'publication_date',
                 'sentiment_rating',
                 'url',
@@ -284,7 +369,7 @@ class DBConnector:
             print(f"❌ Error adding source: {e}")
             raise
     
-    def add_movement(self, name, alias=None, category=None):
+    def add_movement(self, name, alias=None, category=None, founded_year=None, concepts=None):
         """Add or get movement"""
         session = self.get_session()
         try:
@@ -295,7 +380,13 @@ class DBConnector:
                 return movement
             
             # Create new
-            movement = Movement(name=name, alias=alias, category=category)
+            movement = Movement(
+                name=name,
+                alias=alias,
+                category=category,
+                founded_year=founded_year,
+                concepts=concepts,
+            )
             session.add(movement)
             session.commit()
             session.close()
@@ -483,5 +574,5 @@ if __name__ == "__main__":
     # Test connection
     db = DBConnector()
     db.create_tables()
-    print(f"✅ Database initialized: {DB_URI}")
+    print(f"✅ Database initialized: {db.db_uri}")
 

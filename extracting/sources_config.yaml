@@ -137,7 +137,7 @@ sources:
     name: "iDNES.cz - Domaci"
     domain: "idnes.cz"
     url: "https://servis.idnes.cz/rss.aspx?c=zpravodaj_domaci"
-    enabled: true
+    enabled: false # DISABLED: No entries found - RSS feed returns empty results
     type: "rss"
     require_movement_id: true # Only import if movement assigned (mainstream source)
     output_csv: "export/csv/idnes_domaci_rss_raw.csv"
@@ -287,12 +287,6 @@ sources:
     type: "social_api"
     subreddits: ["r/cults", "r/spirituality"]
     output_csv: "export/csv/reddit_raw.csv"
-
-  x_twitter:
-    name: "X (Twitter) API"
-    enabled: false
-    type: "social_api"
-    output_csv: "export/csv/x_twitter_raw.csv"
 
 # --- GLOBAL SCRAPING SETTINGS ---
 scraping_settings:

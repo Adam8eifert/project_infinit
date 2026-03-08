@@ -30,6 +30,8 @@ CREATE TABLE articles (
     title TEXT NOT NULL,
     content TEXT NOT NULL,
     source VARCHAR(255),
+    source_id INT,
+    language VARCHAR(10),
     url VARCHAR(500) UNIQUE,
     published_at TIMESTAMP,
     
@@ -44,7 +46,9 @@ CREATE TABLE articles (
     created_at TIMESTAMP DEFAULT NOW(),
     
     INDEX idx_articles_url (url),
-    INDEX idx_articles_created_at (created_at)
+    INDEX idx_articles_created_at (created_at),
+    INDEX idx_articles_source_id (source_id),
+    INDEX idx_articles_language (language)
 );
 
 
@@ -57,8 +61,11 @@ CREATE TABLE movements (
     name VARCHAR(255) NOT NULL UNIQUE,
     alias VARCHAR(255),
     category VARCHAR(100),
+    founded_year INT,
+    concepts TEXT,
     
-    INDEX idx_movements_name (name)
+    INDEX idx_movements_name (name),
+    INDEX idx_movements_founded_year (founded_year)
 );
 
 
@@ -90,7 +97,36 @@ CREATE TABLE locations (
 
 
 -- ============================================================
--- 6️⃣ ASSOCIATION TABLES (M:N Relationships with CASCADE)
+-- 6️⃣ SOURCES TABLE (normalized media/source registry)
+-- ============================================================
+
+CREATE TABLE sources (
+    id SERIAL PRIMARY KEY,
+    movement_id INT REFERENCES movements(id) ON DELETE SET NULL,
+    source_key VARCHAR(255) UNIQUE,
+    source_name VARCHAR(255),
+    source_type VARCHAR(100),
+    domain VARCHAR(255),
+    language VARCHAR(16),
+    publication_date TIMESTAMP,
+    sentiment_rating VARCHAR(50),
+    url VARCHAR(500) UNIQUE,
+    content_full TEXT,
+    created_at TIMESTAMP DEFAULT NOW(),
+
+    INDEX idx_sources_source_key (source_key),
+    INDEX idx_sources_source_name (source_name),
+    INDEX idx_sources_source_type (source_type)
+);
+
+ALTER TABLE articles
+ADD CONSTRAINT fk_articles_source
+FOREIGN KEY (source_id)
+REFERENCES sources(id);
+
+
+-- ============================================================
+-- 7️⃣ ASSOCIATION TABLES (M:N Relationships with CASCADE)
 -- ============================================================
 
 -- Article ↔ Movements
@@ -99,8 +135,8 @@ CREATE TABLE article_movements (
     movement_id INT NOT NULL REFERENCES movements(id) ON DELETE CASCADE,
     PRIMARY KEY (article_id, movement_id),
     
-    INDEX idx_am_article (article_id),
-    INDEX idx_am_movement (movement_id)
+    INDEX idx_article_movements_article (article_id),
+    INDEX idx_article_movements_movement (movement_id)
 );
 
 -- Article ↔ Persons
@@ -109,8 +145,8 @@ CREATE TABLE article_persons (
     person_id INT NOT NULL REFERENCES persons(id) ON DELETE CASCADE,
     PRIMARY KEY (article_id, person_id),
     
-    INDEX idx_ap_article (article_id),
-    INDEX idx_ap_person (person_id)
+    INDEX idx_article_persons_article (article_id),
+    INDEX idx_article_persons_person (person_id)
 );
 
 -- Article ↔ Locations
@@ -119,8 +155,8 @@ CREATE TABLE article_locations (
     location_id INT NOT NULL REFERENCES locations(id) ON DELETE CASCADE,
     PRIMARY KEY (article_id, location_id),
     
-    INDEX idx_al_article (article_id),
-    INDEX idx_al_location (location_id)
+    INDEX idx_article_locations_article (article_id),
+    INDEX idx_article_locations_location (location_id)
 );
 
 

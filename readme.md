@@ -10,7 +10,7 @@ An ETL pipeline for collecting, analyzing, and visualizing information about new
 - Automated data collection from multiple sources:
   - RSS feeds from specialized websites
   - REST APIs (Wikipedia, SOCCAS)
-  - Social media APIs (Reddit, X/Twitter)
+  - Social media APIs (Reddit)
   - Web scraping for news aggregators
 - Natural Language Processing:
   - Czech language support via spaCy
@@ -190,7 +190,7 @@ DB_URI = "postgresql+psycopg2://username:password@localhost/nsm_db"
 
 ### 4. Configure Social Media APIs (Optional)
 
-To enable Reddit and X (Twitter) data collection:
+To enable Reddit data collection:
 
 ```bash
 # Copy environment template
@@ -216,7 +216,7 @@ scrapy runspider extracting/social_media_spider.py
 1. **Data Collection**
    - Scrape RSS feeds from specialized websites
    - Query REST APIs (Wikipedia, SOCCAS)
-   - Collect posts from Reddit and X (Twitter)
+   - Collect posts from Reddit
    - Web scraping for news aggregators
    - Process academic documents (PDF, Word documents)
 
@@ -254,7 +254,6 @@ The pipeline collects data from multiple sources configured in `extracting/sourc
 | API        | Wikipedia (Czech)           | MediaWiki API | ✅ Active     | Encyclopedia articles        |
 | Search API | Google News                 | Custom API    | ⏸️ Legacy     | News aggregation             |
 | Social API | Reddit                      | PRAW          | ✅ Configured | Community discussions        |
-| Social API | X (Twitter)                 | Tweepy        | ✅ Configured | Social media posts           |
 
 ## 🧪 Testing
 
@@ -291,7 +290,6 @@ pytest testing/test_nlp_analysis.py -v
 ### API Clients
 
 - praw 7.8+ (Reddit)
-- tweepy 4.14+ (X/Twitter)
 - requests 2.31+
 - feedparser 6.0+
 
@@ -382,7 +380,7 @@ ETL pipeline pro sběr, analýzu a vizualizaci informací o nových nábožensk�
 - Automatizovaný sběr dat z více zdrojů:
   - RSS feedy ze specializovaných webů
   - REST API (Wikipedia, SOCCAS)
-  - Sociální média API (Reddit, X/Twitter)
+  - Sociální média API (Reddit)
   - Web scraping pro news agregátory
 - Zpracování přirozeného jazyka:
   - Podpora češtiny přes spaCy
@@ -545,7 +543,7 @@ DB_URI = "postgresql+psycopg2://username:password@localhost/nsm_db"
 
 ### 4. Konfigurace sociálních médií API (volitelné)
 
-Pro povolení sběru dat z Redditu a X (Twitter):
+Pro povolení sběru dat z Redditu:
 
 ```bash
 # Zkopírování šablony prostředí
@@ -571,7 +569,7 @@ scrapy runspider extracting/social_media_spider.py
 1. **Sběr dat**
    - Scraping RSS feedů ze specializovaných webů
    - Dotazování REST API (Wikipedia, SOCCAS)
-   - Sběr příspěvků z Redditu a X (Twitter)
+   - Sběr příspěvků z Redditu
    - Web scraping pro news agregátory
 
 2. **Zpracování dat**
@@ -607,7 +605,6 @@ Pipeline sbírá data z více zdrojů nakonfigurovaných v `extracting/sources_c
 | API          | Wikipedia (Czech)           | MediaWiki API | ✅ Aktivní         | Encyklopedické články              |
 | Search API   | Google News                 | Custom API    | ⏸️ Legacy          | Agregace novinek                   |
 | Sociální API | Reddit                      | PRAW          | ✅ Nakonfigurováno | Komunitní diskuze                  |
-| Sociální API | X (Twitter)                 | Tweepy        | ✅ Nakonfigurováno | Příspěvky na sociálních sítích     |
 
 ## 🧪 Testování
 
@@ -644,7 +641,6 @@ pytest testing/test_nlp_analysis.py -v
 ### API klienti
 
 - praw 7.8+ (Reddit)
-- tweepy 4.14+ (X/Twitter)
 - requests 2.31+
 - feedparser 6.0+
 
@@ -727,7 +723,7 @@ Databáze používá SQLAlchemy ORM s následujícími hlavními entitami:
 
 ### Setting Up Social Media Sources
 
-To enable Reddit and X (Twitter) data collection:
+To enable Reddit data collection:
 
 1. **Create `.env` file**
 
@@ -744,15 +740,6 @@ To enable Reddit and X (Twitter) data collection:
      REDDIT_CLIENT_ID=your_client_id
      REDDIT_CLIENT_SECRET=your_client_secret
      REDDIT_USER_AGENT=ProjectInfinit/1.0 (by your_username)
-     ```
-
-3. **X/Twitter API Setup**
-   - Register at <https://developer.twitter.com/>
-   - Create an app with API v2 access
-   - Copy Bearer Token to `.env`:
-
-     ```bash
-     X_BEARER_TOKEN=your_bearer_token
      ```
 
 ---

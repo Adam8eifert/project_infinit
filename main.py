@@ -22,7 +22,7 @@ def run_spiders():
         "extracting/rss_spider.py",              # Universal RSS spider
         "extracting/api_spider.py",              # Universal API spider
         "extracting/sekty_tv_spider.py",         # Sekty.TV web scraper
-        "extracting/social_media_spider.py",     # Reddit + X/Twitter
+        "extracting/social_media_spider.py",     # Reddit spider
         "extracting/medium_seznam_spider.py",    # Medium.seznam.cz
         "extracting/google_spider.py"            # Google News search
     ]

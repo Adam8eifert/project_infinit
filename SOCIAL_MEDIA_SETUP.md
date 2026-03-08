@@ -1,6 +1,6 @@
 # 🌐 Sociální Média Setup - Project Infinit
 
-Průvodce nastavením API klíčů pro sběr dat z Redditu a X (Twitter).
+Průvodce nastavením API klíčů pro sběr dat z Redditu.
 
 ## 🔐 Bezpečnost API klíčů
 
@@ -24,7 +24,7 @@ env:
   REDDIT_CLIENT_ID: ${{ secrets.REDDIT_CLIENT_ID }}
   REDDIT_CLIENT_SECRET: ${{ secrets.REDDIT_CLIENT_SECRET }}
   REDDIT_USER_AGENT: ProjectInfinit/1.0
-  X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
+
 ```
 
 ---
@@ -86,67 +86,6 @@ Náš spider automaticky dodržuje tyto limity.
 
 ---
 
-## 🐦 X (Twitter) API v2 Setup
-
-### Krok 1: Developer Account Setup
-
-1. Jděte na https://developer.twitter.com/
-2. Klikněte **"Sign up"** nebo **"Sign in"**
-3. Vyplňte formulář s detaily o vašem projektu
-4. Proveďte ověření e-mailu
-
-### Krok 2: Vytvoření aplikace
-
-1. V Developer Portal jděte na **"Apps"**
-2. Klikněte **"Create an app"**
-3. Zvolte název aplikace (např. `ProjectInfinit`)
-4. Vyberte **"Development"** prostředí
-5. Vyplňte popis (např. "Sbírání tweetů o náboženských hnutích")
-6. Klikněte **"Create"**
-
-### Krok 3: Povolení API v2
-
-1. Jděte na záložku **"Keys and tokens"**
-2. Ujistěte se, že máte API v2 přístup
-3. Pod **"Bearer Token"** klikněte **"Generate"**
-4. Zkopíruj Bearer Token do `.env`:
-
-```bash
-X_BEARER_TOKEN=AAAAAAAAAAAAAAAAAAAAAAAAxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-```
-
-### Krok 4: Testování připojení
-
-```bash
-python3 -c "
-import requests
-
-headers = {
-    'Authorization': 'Bearer YOUR_BEARER_TOKEN',
-    'User-Agent': 'ProjectInfinit/1.0'
-}
-
-response = requests.get(
-    'https://api.twitter.com/2/tweets/search/recent?query=test&max_results=10',
-    headers=headers
-)
-
-if response.status_code == 200:
-    print('✅ X/Twitter API připojeno')
-else:
-    print(f'❌ Chyba: {response.status_code}')
-    print(response.json())
-"
-```
-
-### X API v2 Limity
-
-- **Free tier**: 300 tweetů za 15 minut (900s window)
-- **Rate limit**: Viz `rate_limit_reset: 900` v `sources_config.yaml`
-- **Timeout**: Po dosažení limitu čeká spider 15 minut
-
-Náš spider automaticky dodržuje tyto limity.
-
 ---
 
 ## 🔄 Spuštění Sociálních Médií Spiderů
@@ -160,13 +99,7 @@ python main.py
 ### Spuštění jen Reddit spideru
 
 ```bash
-scrapy runspider scraping/social_media_spider.py -a spider_type=reddit
-```
-
-### Spuštění jen X spideru
-
-```bash
-scrapy runspider scraping/social_media_spider.py -a spider_type=x_twitter
+scrapy runspider scraping/social_media_spider.py
 ```
 
 ### Spuštění se debug logem
@@ -187,9 +120,6 @@ pytest -v testing/test_social_media_spider.py
 
 # Spustit jen Reddit testy
 pytest -v testing/test_social_media_spider.py::TestRedditSpider
-
-# Spustit jen X testy
-pytest -v testing/test_social_media_spider.py::TestXTwitterSpider
 
 # S coverage reportem
 pytest --cov=scraping.social_media_spider testing/test_social_media_spider.py
@@ -238,38 +168,6 @@ reddit:
     user_agent: ProjectInfinit/1.0
 ```
 
-### X/Twitter Konfigurace
-
-```yaml
-x_twitter:
-  name: X (Twitter)
-  description: Tweets about Czech religious movements
-  type: social_api
-  api_method: search_tweets
-  url: https://api.twitter.com/2
-  
-  # Hledané dotazy (všechny s českým jazykem filtrem)
-  search_queries:
-    - "sekta lang:cs"
-    - "kult lang:cs"
-    - "nové náboženské hnutí lang:cs"
-    - "spirituální hnutí lang:cs"
-  
-  # Parametry API
-  api_params:
-    max_results: 100
-    tweet_fields: created_at,public_metrics,author_id
-    expansions: author_id
-    user_fields: username,created_at
-  
-  # Bezpečnostní nastavení
-  rate_limit_reset: 900  # 15 minut
-  
-  # API klíč
-  auth:
-    bearer_token: ${X_BEARER_TOKEN}
-```
-
 ---
 
 ## 🐛 Troubleshooting
@@ -292,23 +190,9 @@ x_twitter:
 - Vyčkejte 10+ minut
 - Spider má vestavěný retry mechanismus
 
-### X/Twitter
-
-**Chyba: "Unauthorized Bearer Token"**
-- Zkontrolujte, že Bearer Token není příliš starý
-- Regenerujte token na https://developer.twitter.com/
-
-**Chyba: "The `query` parameter value [xyz] is invalid"**
-- Zkontrolujte search queries v `sources_config.yaml`
-- České znaky musí být správně zakódovány
-
-**Chyba: "Too Many Requests (429)"**
-- Vyčkejte 15 minut (rate limit window)
-- Spider má vestavěný rate limit handler
-
 ### Obecné
 
-**Chyba: "No module named praw" nebo "No module named tweepy"**
+**Chyba: "No module named praw"**
 ```bash
 pip install -r requirements.txt
 ```
@@ -322,11 +206,10 @@ pip install -r requirements.txt
 
 ## 📊 Výstupy
 
-Příspěvky a tweety jsou uloženy do CSV souborů:
+Příspěvky jsou uloženy do CSV souboru:
 
 ```bash
 export/csv/reddit_raw.csv
-export/csv/x_twitter_raw.csv
 ```
 
 Struktura dat:
@@ -341,10 +224,267 @@ source_name,source_type,title,url,text,scraped_at,author,created,score/metrics
 
 - **Reddit Developer Docs**: https://www.reddit.com/dev/api/
 - **PRAW Documentation**: https://praw.readthedocs.io/
-- **X/Twitter API v2 Docs**: https://developer.twitter.com/en/docs/twitter-api
-- **HTTP Status Codes**: https://developer.twitter.com/en/docs/twitter-api/errors/messages
 
 ---
 
-**Last Updated**: 2025-01-08
-**Verze**: 1.0
+# 📺 YouTube Data API v3 Setup
+
+## Krok 1: Google Cloud Console
+
+1. Jděte na https://console.cloud.google.com/
+2. Vytvořte nový projekt nebo vyberte existující
+3. Pojmenujte projekt (např. "NRM Research")
+
+## Krok 2: Aktivace YouTube Data API
+
+1. V konzoli přejděte na **"APIs & Services"** > **"Library"**
+2. Vyhledejte **"YouTube Data API v3"**
+3. Klikněte na **"Enable"**
+
+## Krok 3: Vytvoření API klíče
+
+1. Přejděte na **"APIs & Services"** > **"Credentials"**
+2. Klikněte **"Create Credentials"** > **"API Key"**
+3. Zkopírujte API klíč
+4. (Doporučeno) Omezit klíč:
+   - Klikněte **"Edit API key"**
+   - V sekci **"API restrictions"** vyberte **"Restrict key"**
+   - Zaškrtněte pouze **"YouTube Data API v3"**
+
+## Konfigurace v `.env`
+
+```bash
+YOUTUBE_API_KEY="váš_youtube_api_klíč"
+```
+
+## Kvóty a limity
+
+- **Denní kvóta**: 10,000 jednotek zdarma
+- **Vyhledávání**: 100 jednotek/dotaz
+- **Video details**: 1 jednotka/dotaz
+- **Sledování kvóty**: Google Cloud Console > APIs & Services > Dashboard
+
+**Tip**: Pokud potřebujete více kvóty, můžete požádat o navýšení přes formulář v konzoli.
+
+---
+
+# 📨 Telegram API Setup
+
+## Krok 1: Registrace Telegram aplikace
+
+1. Jděte na https://my.telegram.org/auth
+2. Přihlaste se telefonním číslem (obdržete SMS kód)
+3. Přejděte na **"API development tools"**
+4. Vyplňte formulář:
+   - **App title**: NRM Research
+   - **Short name**: nrm_research
+   - **Platform**: Other
+5. Klikněte **"Create application"**
+6. Zkopírujte **api_id** a **api_hash**
+
+## Krok 2: První připojení
+
+Při prvním spuštění Telegram spideru budete vyzváni k zadání:
+- Telefonního čísla
+- Ověřovacího kódu (přijde přes Telegram app)
+
+To vytvoří `telegram_session.session` soubor pro budoucí připojení.
+
+## Konfigurace v `.env`
+
+```bash
+TELEGRAM_API_ID="váš_api_id"
+TELEGRAM_API_HASH="váš_api_hash"
+TELEGRAM_PHONE="+420..."  # Váš telefon
+```
+
+## Bezpečnostní pravidla
+
+- ⚠️ Přidejte `telegram_session.session*` do `.gitignore`
+- ⚠️ Nikdy nesdílejte session soubory (obsahují přístupové tokeny)
+- ✅ Rate limiting: ~1-2 požadavky/sekundu (API nemá oficiální limit, ale buďte opatrní)
+
+---
+
+# 🐘 Mastodon API Setup
+
+Mastodon je decentralizovaná síť - potřebujete kredenciály pro každou instanci zvlášť.
+
+## Metoda A: Přes webové rozhraní (doporučeno)
+
+1. Přihlaste se na Mastodon instanci (např. https://mastodon.social)
+2. Přejděte na **Settings** > **Development** > **New Application**
+3. Vyplňte:
+   - **Application name**: NRM Research
+   - **Scopes**: Zaškrtněte `read:statuses`, `read:search`
+4. Klikněte **"Submit"**
+5. Zkopírujte **Access token**
+
+## Metoda B: Programaticky
+
+```python
+from mastodon import Mastodon
+
+# Registrace aplikace
+Mastodon.create_app(
+    'NRM Research Bot',
+    api_base_url='https://mastodon.social',
+    to_file='mastodon_clientcred.secret'
+)
+
+# Získání tokenu
+mastodon = Mastodon(client_id='mastodon_clientcred.secret')
+mastodon.log_in(
+    'vas_email@example.com',
+    'vase_heslo',
+    to_file='mastodon_usercred.secret'
+)
+```
+
+## Konfigurace v `.env`
+
+```bash
+MASTODON_ACCESS_TOKEN="váš_access_token"
+MASTODON_API_BASE_URL="https://mastodon.social"
+```
+
+## České a relevantní instance
+
+- https://mastodon.social (globální hlavní instance)
+- https://mas.to (evropská instance)
+- Hledejte české instance na https://instances.social/
+
+## Rate limity
+
+- Typicky **300 požadavků / 5 minut** (liší se podle instance)
+- Sledujte `X-RateLimit-*` headery v odpovědích
+
+---
+
+# 📈 Google Trends Setup
+
+## 🎉 Žádné API klíče potřeba!
+
+Google Trends přes knihovnu `pytrends` funguje **bez autentizace**.
+
+## Instalace
+
+```bash
+pip install pytrends
+```
+
+## Použití
+
+```python
+from pytrends.request import TrendReq
+
+pytrends = TrendReq(hl='cs-CZ', tz=60)
+```
+
+## Limity
+
+- **Rate limiting**: Přibližně 1 požadavek/sekundu
+- Google může dočasně blokovat při příliš rychlých dotazech
+- Implementujte pauzy mezi dotazy (v kódu už je `time.sleep(2)`)
+
+## Tipy pro reliable sběr
+
+- Neposílejte dotazy rychleji než 1/sekundu
+- Při chybě "429 Too Many Requests" čekejte 15-30 minut
+- Používejte time.sleep() mezi dávkami dotazů
+- Monitorujte logy a přizpůsobte frekvenci
+
+---
+
+# 🧪 Testování Připojení
+
+## Reddit Test
+
+```bash
+python -c "
+from scraping.reddit_spider import RedditSpider
+spider = RedditSpider()
+print('Reddit OK:', spider.reddit.user.me())
+"
+```
+
+## YouTube Test
+
+```bash
+python -c "
+from scraping.youtube_spider import YouTubeSpider
+spider = YouTubeSpider()
+results = spider.search_videos('scientologie', max_results=1)
+print('YouTube OK:', len(results), 'video found')
+"
+```
+
+## Telegram Test
+
+```bash
+python scraping/telegram_spider.py
+# Při prvním spuštění budete vyzváni k zadání telefonu a kódu
+```
+
+## Mastodon Test
+
+```bash
+python -c "
+from scraping.mastodon_spider import MastodonSpider
+spider = MastodonSpider()
+posts = spider.search_hashtag('cult', limit=1)
+print('Mastodon OK:', len(posts), 'post found')
+"
+```
+
+## Google Trends Test
+
+```bash
+python -c "
+from trends.google_trends_collector import GoogleTrendsCollector
+collector = GoogleTrendsCollector()
+data = collector.collect_trend_data('scientologie', timeframe='today 1-m')
+print('Google Trends OK:', len(data), 'data points')
+"
+```
+
+---
+
+# ✅ Kompletní Checklist
+
+## Před prvním spuštěním
+
+- [ ] Reddit: API klíče v `.env`
+- [ ] YouTube: API klíč v `.env` + API aktivováno v Google Cloud
+- [ ] Telegram: API credentials v `.env` + první připojení dokončeno
+- [ ] Mastodon: Access token v `.env`
+- [ ] Google Trends: knihovna `pytrends` nainstalována
+- [ ] `.env` soubor přidán do `.gitignore`
+- [ ] Session soubory Telegramu v `.gitignore`
+- [ ] Všechny balíčky nainstalovány: `pip install praw google-api-python-client telethon Mastodon.py pytrends python-dotenv`
+
+## Testování
+
+- [ ] Reddit test úspěšný
+- [ ] YouTube test úspěšný
+- [ ] Telegram test úspěšný (session vytvořen)
+- [ ] Mastodon test úspěšný
+- [ ] Google Trends test úspěšný
+
+## Databáze
+
+- [ ] Migrace 006 aplikována: `psql -f database/migrations/006_add_social_media_and_trends.sql`
+- [ ] Tabulky vytvořeny: `social_media_posts`, `google_trends`
+
+---
+
+# 📚 Další Dokumentace
+
+- **Hlavní README**: [readme.md](readme.md)
+- **Databázové schéma**: [database/schema.sql](database/schema.sql)
+- **GitHub Copilot instrukce**: [.github/copilot-instructions.md](.github/copilot-instructions.md)
+
+---
+
+**Last Updated**: 2026-03-18 (Extended with YouTube, Telegram, Mastodon, Google Trends)
+**Verze**: 2.0

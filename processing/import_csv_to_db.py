@@ -4,12 +4,13 @@
 import pandas as pd
 from pathlib import Path
 from sqlalchemy.exc import IntegrityError
-from database.db_loader import DBConnector, Article, Movement
+from database.db_loader import DBConnector, Article, Movement, Source
 from datetime import datetime
 import logging
 from typing import Union, Optional, Any, Dict
 import json
 import re
+from urllib.parse import urlparse
 from fuzzywuzzy import fuzz
 import sys
 
@@ -29,6 +30,7 @@ class CSVtoDatabaseLoader:
         self.session = self.db.get_session()
         self.setup_logging()
         self.movement_cache = {}  # Cache for movement fuzzy matching
+        self.source_cache: Dict[str, int] = {}  # Cache for source lookup
         
         # Load sources config for require_movement_id checks
         try:
@@ -142,6 +144,8 @@ class CSVtoDatabaseLoader:
             url = str(row.get("url", "")).strip()
             source_name = str(row.get("source_name", "")).strip()
             source_type = str(row.get("source_type", "")).strip().lower()
+            language_raw = str(row.get("language", "")).strip().lower()
+            language = language_raw[:10] if language_raw else "cs"
             scraped_at = pd.to_datetime(row.get("scraped_at"), errors="coerce")
 
             categories_raw = row.get("categories", [])
@@ -170,10 +174,19 @@ class CSVtoDatabaseLoader:
                 movement_id = None
 
             if movement_id is None:
-                matched_movement = self.match_movement_fuzzy(movement_text, threshold=70)
-                if matched_movement is not None:
-                    movement_id = int(matched_movement.id)  # type: ignore[arg-type]
+                try:
+                    matched_movement = self.match_movement_fuzzy(movement_text, threshold=70)
+                    if matched_movement is not None:
+                        movement_id = int(matched_movement.id)  # type: ignore[arg-type]
+                except Exception:
+                    movement_id = None
             
+            parsed_domain = ""
+            try:
+                parsed_domain = urlparse(url).netloc.lower()
+            except Exception:
+                parsed_domain = ""
+
             return {
                 "title": title[:500],  # Limit title length
                 "content": text[:10000],  # Limit content length
@@ -183,6 +196,8 @@ class CSVtoDatabaseLoader:
                 "keywords_found": keywords_found,
                 "movement_id": movement_id,
                 "source_type": source_type,
+                "language": language,
+                "domain": parsed_domain,
             }
         except Exception as e:
             self.logger.error(f"Error cleaning row: {e}")
@@ -212,6 +227,67 @@ class CSVtoDatabaseLoader:
         except Exception as e:
             self.logger.debug(f"Could not check require_movement_id for {source_key}: {e}")
             return False
+
+    @staticmethod
+    def _slugify_source_value(value: str) -> str:
+        normalized = re.sub(r"[^a-z0-9]+", "-", (value or "").strip().lower())
+        normalized = re.sub(r"-+", "-", normalized).strip("-")
+        return normalized or "unknown"
+
+    def _build_source_key(self, source_name: str, source_type: str) -> str:
+        name_part = self._slugify_source_value(source_name)
+        type_part = self._slugify_source_value(source_type)
+        return f"{type_part}__{name_part}"
+
+    def _get_or_create_source_id(self, cleaned: Dict[str, Any]) -> Optional[int]:
+        try:
+            source_name = str(cleaned.get("source", "")).strip()
+            source_type = str(cleaned.get("source_type", "")).strip().lower() or "unknown"
+            language = str(cleaned.get("language", "")).strip().lower() or None
+            domain = str(cleaned.get("domain", "")).strip().lower() or None
+
+            if not source_name:
+                return None
+
+            source_key = self._build_source_key(source_name, source_type)
+            cached_id = self.source_cache.get(source_key)
+            if cached_id is not None:
+                return cached_id
+
+            source_record = self.session.query(Source).filter(Source.source_key == source_key).first()
+            if source_record is None:
+                source_url = f"source://{source_key}"
+                source_record = self.session.query(Source).filter(Source.url == source_url).first()
+
+            if source_record is None:
+                source_record = Source(
+                    source_key=source_key,
+                    source_name=source_name,
+                    source_type=source_type,
+                    domain=domain,
+                    language=language,
+                    url=f"source://{source_key}",
+                    content_full=None,
+                )
+                self.session.add(source_record)
+                self.session.flush()
+            else:
+                # Backfill key/metadata for legacy rows when missing.
+                if not getattr(source_record, "source_key", None):
+                    source_record.source_key = source_key
+                if not getattr(source_record, "domain", None) and domain:
+                    source_record.domain = domain
+                if not getattr(source_record, "language", None) and language:
+                    source_record.language = language
+
+            source_id = int(source_record.id) if source_record.id is not None else None
+            if source_id is not None:
+                self.source_cache[source_key] = source_id
+            return source_id
+        except Exception as error:
+            self.logger.debug(f"Source normalization fallback to NULL source_id: {error}")
+            self.session.rollback()
+            return None
 
     def _is_article_relevant(self, cleaned: Dict[str, Any], csv_path: Optional[Path] = None) -> bool:
         """Decide whether article should be imported into articles table."""
@@ -298,11 +374,16 @@ class CSVtoDatabaseLoader:
                             skipped += 1
                             continue
                         
-                        # Create article (only Article fields)
+                        # Resolve normalized source record for FK link.
+                        source_id = self._get_or_create_source_id(cleaned)
+
+                        # Create article (Article fields + source FK)
                         article_payload = {
                             "title": cleaned["title"],
                             "content": cleaned["content"],
                             "source": cleaned["source"],
+                            "source_id": source_id,
+                            "language": cleaned.get("language"),
                             "url": cleaned["url"],
                             "published_at": cleaned["published_at"],
                         }

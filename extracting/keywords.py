@@ -138,10 +138,14 @@ def _find_db_movement_by_name(session, Movement, movement_name: str):
         query_candidates.append("name")
 
     for attr_name in query_candidates:
-        column = getattr(Movement, attr_name)
-        movement = session.query(Movement).filter(column == movement_name).first()
-        if movement is not None:
-            return movement
+        try:
+            column = getattr(Movement, attr_name)
+            movement = session.query(Movement).filter(column == movement_name).first()
+            if movement is not None:
+                return movement
+        except Exception as query_error:
+            logger.debug(f"Movement DB lookup skipped for '{movement_name}' on '{attr_name}': {query_error}")
+            return None
 
     return None
 

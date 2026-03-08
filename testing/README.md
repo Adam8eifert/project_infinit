@@ -18,7 +18,7 @@ testing/
 ├── test_config_loader.py      # Tests for YAML config loader
 ├── test_rss_spider.py         # Tests for RSS spider
 ├── test_api_spider.py         # Tests for API spider
-├── test_social_media_spider.py # Tests for Reddit and X/Twitter API
+├── test_social_media_spider.py # Tests for Reddit API
 └── README.md                  # This file
 ```
 
@@ -108,13 +108,12 @@ pytest -q testing/
 - ✅ `test_single_api_spider_specific_source` — SingleAPISpider with specific source
 - ✅ `test_single_api_spider_invalid_type` — Error on invalid type
 
-### 7. **test_social_media_spider.py** — Social media (Reddit & X/Twitter)
+### 7. **test_social_media_spider.py** — Social media (Reddit)
 
 - ✅ `test_reddit_spider_init` — Reddit spider initialization with API keys
 - ✅ `test_reddit_spider_missing_credentials` — Error on missing credentials
 - ✅ `test_reddit_spider_start_requests` — Generate initial requests
 - ✅ `test_reddit_parse_relevant_submission` — Parse relevant submission
-- ✅ `test_x_spider_init` — X/Twitter spider initialization with bearer token
 - ✅ `test_x_spider_missing_token` — Error on missing token
 - ✅ `test_x_spider_get_headers` — Generate headers with bearer token
 - ✅ `test_x_spider_start_requests` — Generate requests from search queries
