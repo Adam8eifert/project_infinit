@@ -23,8 +23,5 @@ dependencies:
   - pip
   - pip:
     - google-api-python-client  # YouTube Data API v3
-    - telethon  # Telegram API
-    - Mastodon.py  # Mastodon/Fediverse API
-    - pytrends  # Google Trends (unofficial API)
 
 prefix: "/home/adam/miniforge3/envs/project_infinit"

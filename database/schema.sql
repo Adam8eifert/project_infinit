@@ -18,6 +18,14 @@ CREATE TYPE risk_level_enum AS ENUM (
     'high'
 );
 
+CREATE TYPE source_type_enum AS ENUM (
+    'rss',
+    'website',
+    'api',
+    'manual',
+    'archive'
+);
+
 
 -- ============================================================
 -- 2️⃣ ARTICLES TABLE (Main table with NLP analysis)
@@ -29,10 +37,15 @@ CREATE TABLE articles (
     -- Content
     title TEXT NOT NULL,
     content TEXT NOT NULL,
-    source VARCHAR(255),
-    source_id INT,
-    language VARCHAR(10),
     url VARCHAR(500) UNIQUE,
+
+    -- Source metadata
+    source_name VARCHAR(255),
+    source_type source_type_enum,
+    author VARCHAR(255),
+    domain VARCHAR(255),
+    language VARCHAR(10),
+
     published_at TIMESTAMP,
     
     -- NLP Analysis
@@ -47,7 +60,9 @@ CREATE TABLE articles (
     
     INDEX idx_articles_url (url),
     INDEX idx_articles_created_at (created_at),
-    INDEX idx_articles_source_id (source_id),
+    INDEX idx_articles_source_name (source_name),
+    INDEX idx_articles_source_type (source_type),
+    INDEX idx_articles_domain (domain),
     INDEX idx_articles_language (language)
 );
 
@@ -97,36 +112,7 @@ CREATE TABLE locations (
 
 
 -- ============================================================
--- 6️⃣ SOURCES TABLE (normalized media/source registry)
--- ============================================================
-
-CREATE TABLE sources (
-    id SERIAL PRIMARY KEY,
-    movement_id INT REFERENCES movements(id) ON DELETE SET NULL,
-    source_key VARCHAR(255) UNIQUE,
-    source_name VARCHAR(255),
-    source_type VARCHAR(100),
-    domain VARCHAR(255),
-    language VARCHAR(16),
-    publication_date TIMESTAMP,
-    sentiment_rating VARCHAR(50),
-    url VARCHAR(500) UNIQUE,
-    content_full TEXT,
-    created_at TIMESTAMP DEFAULT NOW(),
-
-    INDEX idx_sources_source_key (source_key),
-    INDEX idx_sources_source_name (source_name),
-    INDEX idx_sources_source_type (source_type)
-);
-
-ALTER TABLE articles
-ADD CONSTRAINT fk_articles_source
-FOREIGN KEY (source_id)
-REFERENCES sources(id);
-
-
--- ============================================================
--- 7️⃣ ASSOCIATION TABLES (M:N Relationships with CASCADE)
+-- 6️⃣ ASSOCIATION TABLES (M:N Relationships with CASCADE)
 -- ============================================================
 
 -- Article ↔ Movements

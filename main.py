@@ -13,6 +13,7 @@ from sqlalchemy import or_
 from database.db_loader import DBConnector, Article, Movement, Person, Location, SentimentLabel, RiskLevel
 from processing.nlp_analysis import CzechTextAnalyzer
 from processing.import_csv_to_db import CSVtoDatabaseLoader
+from processing.relevance_report import print_suspicious_articles_report, export_suspicious_articles_csv
 from fuzzywuzzy import fuzz
 
 
@@ -22,6 +23,7 @@ def run_spiders():
         "extracting/rss_spider.py",              # Universal RSS spider
         "extracting/api_spider.py",              # Universal API spider
         "extracting/sekty_tv_spider.py",         # Sekty.TV web scraper
+        "extracting/idnes_archive_spider.py",    # iDNES archive rubric scraper
         "extracting/social_media_spider.py",     # Reddit spider
         "extracting/medium_seznam_spider.py",    # Medium.seznam.cz
         "extracting/google_spider.py"            # Google News search
@@ -149,15 +151,21 @@ def analyze_sentiment_and_risk(db):
 
 
 def prune_irrelevant_articles(db):
-    """Remove articles that are not linked to any movement and fail relevance checks."""
+    """Remove irrelevant articles and normalize wrong movement links."""
     try:
-        from extracting.keywords import contains_relevant_keywords, is_excluded_content
+        from extracting.keywords import (
+            contains_relevant_keywords,
+            is_excluded_content,
+            match_movement_from_text,
+        )
 
         print("\n🧹 Pruning irrelevant articles...")
         session = db.get_session()
-        candidates = session.query(Article).filter(~Article.movements.any()).all()
+        candidates = session.query(Article).all()
 
         removed = 0
+        relinked = 0
+        unlinked = 0
         for article in candidates:
             combined = f"{article.title or ''} {article.content or ''}".strip()
             if not combined:
@@ -165,14 +173,35 @@ def prune_irrelevant_articles(db):
                 removed += 1
                 continue
 
-            if is_excluded_content(combined) or not contains_relevant_keywords(combined, min_hits=2):
+            matched_movement_id = match_movement_from_text(combined, min_score=90)
+            has_keywords = contains_relevant_keywords(combined, min_hits=2)
+
+            if is_excluded_content(combined) or (matched_movement_id is None and not has_keywords):
                 session.delete(article)
                 removed += 1
+                continue
+
+            if matched_movement_id is None:
+                if article.movements:
+                    article.movements.clear()
+                    unlinked += 1
+                continue
+
+            matched_movement = session.query(Movement).filter(Movement.id == matched_movement_id).first()
+            if matched_movement is None:
+                continue
+
+            if len(article.movements) != 1 or matched_movement not in article.movements:
+                article.movements = [matched_movement]
+                relinked += 1
 
         session.commit()
         session.close()
 
-        print(f"✅ Irrelevant article prune completed: removed {removed} / {len(candidates)}")
+        print(
+            f"✅ Irrelevant prune completed: removed {removed}, "
+            f"relinked {relinked}, unlinked {unlinked} / {len(candidates)}"
+        )
         return removed
     except Exception as e:
         print(f"⚠️  Error pruning irrelevant articles: {e}")
@@ -791,6 +820,18 @@ def main():
         
         # Step 5: Entity extraction
         extract_entities(db)
+
+        # Step 5.5: Manual QA report for suspicious relevance
+        print_suspicious_articles_report(db, limit=20)
+        exported_rows = export_suspicious_articles_csv(
+            db,
+            output_csv="export/csv/suspicious_articles_report.csv",
+            limit=200,
+        )
+        print(
+            "🗂️ Suspicious relevance CSV exported: "
+            f"{exported_rows} rows -> export/csv/suspicious_articles_report.csv"
+        )
         
         # Step 6: Print statistics
         print_statistics(db)

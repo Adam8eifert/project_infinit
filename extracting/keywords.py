@@ -25,6 +25,7 @@ YEAR_PATTERNS: List[str] = []
 ALL_KNOWN_MOVEMENTS: List[str] = []
 FALLBACK_MOVEMENT_ID_BY_NAME: Dict[str, int] = {}
 FALLBACK_MOVEMENT_NAME_BY_ID: Dict[int, str] = {282: "Neidentifikované hnutí"}
+AMBIGUOUS_MOVEMENT_TERMS = {"rodina"}
 
 def _load_keywords_config() -> None:
     """Load keywords configuration from sources_config.yaml"""
@@ -165,7 +166,18 @@ def _resolve_movement_id(movement_name: str, session=None, Movement=None) -> Opt
 
     return FALLBACK_MOVEMENT_ID_BY_NAME.get(movement_name)
 
-def match_movement_from_text(text: str, min_score: int = 80) -> Optional[int]:
+
+def _contains_term(text: str, term: str) -> bool:
+    """Check term/phrase presence with word boundaries (avoids substring false positives)."""
+    normalized_term = (term or "").strip().lower()
+    if not normalized_term:
+        return False
+
+    escaped = re.escape(normalized_term).replace(r"\ ", r"\s+")
+    pattern = rf"(?<!\w){escaped}(?!\w)"
+    return re.search(pattern, text, flags=re.IGNORECASE) is not None
+
+def match_movement_from_text(text: str, min_score: int = 90) -> Optional[int]:
     """
     Match text to a known movement using keywords and aliases.
     Returns movement_id from database if found, None otherwise.
@@ -187,8 +199,6 @@ def match_movement_from_text(text: str, min_score: int = 80) -> Optional[int]:
         return None
         
     try:
-        from fuzzywuzzy import fuzz
-
         text_lower = text.lower()
         known_movements, aliases_config = _read_movement_config()
         _ensure_fallback_movement_maps(known_movements, aliases_config)
@@ -204,52 +214,33 @@ def match_movement_from_text(text: str, min_score: int = 80) -> Optional[int]:
             logger.debug(f"Movement DB lookup unavailable, using fallback map: {db_error}")
 
         try:
-            best_match_id = None
-            best_score = 0
-
-            # Strategy 1: Direct substring match on canonical names
+            # Strategy 1: Direct bounded match on canonical names
             for movement_name in known_movements:
-                if movement_name.lower() in text_lower:
+                movement_norm = movement_name.strip().lower()
+                if movement_norm in AMBIGUOUS_MOVEMENT_TERMS:
+                    continue
+                if _contains_term(text_lower, movement_norm):
                     resolved_id = _resolve_movement_id(movement_name, session, Movement)
                     if resolved_id is not None:
                         return resolved_id
 
-            # Strategy 2: Check aliases
+            # Strategy 2: Check aliases (bounded; avoid tiny alias noise)
             for movement_name, aliases_list in aliases_config.items():
                 for alias in aliases_list:
-                    if alias.lower() in text_lower:
+                    alias_norm = alias.strip().lower()
+                    if len(alias_norm) < 3:
+                        continue
+                    if alias_norm in AMBIGUOUS_MOVEMENT_TERMS:
+                        continue
+                    if _contains_term(text_lower, alias_norm):
                         resolved_id = _resolve_movement_id(movement_name, session, Movement)
                         if resolved_id is not None:
                             return resolved_id
-
-            # Strategy 3: Fuzzy matching on canonical names
-            for movement_name in known_movements:
-                score = fuzz.partial_ratio(movement_name.lower(), text_lower)
-                if score >= min_score and score > best_score:
-                    resolved_id = _resolve_movement_id(movement_name, session, Movement)
-                    if resolved_id is not None:
-                        best_score = score
-                        best_match_id = resolved_id
-
-            # Strategy 4: Fuzzy matching on aliases
-            if best_match_id is None:
-                for movement_name, aliases_list in aliases_config.items():
-                    for alias in aliases_list:
-                        score = fuzz.partial_ratio(alias.lower(), text_lower)
-                        if score >= min_score and score > best_score:
-                            resolved_id = _resolve_movement_id(movement_name, session, Movement)
-                            if resolved_id is not None:
-                                best_score = score
-                                best_match_id = resolved_id
-
-            return best_match_id
+            return None
         finally:
             if session is not None:
                 session.close()
 
-    except ImportError:
-        logger.warning("fuzzywuzzy not installed - movement matching disabled")
-        return None
     except Exception as e:
         logger.error(f"Error matching movement: {e}")
         return None
@@ -297,11 +288,14 @@ def contains_relevant_keywords(text: str, min_hits: int = 1) -> bool:
     hits = 0
 
     for kw in SEARCH_TERMS:
-        if kw.lower() in text:
+        if _contains_term(text, kw):
             hits += 1
 
     for movement in ALL_KNOWN_MOVEMENTS:
-        if movement.lower() in text:
+        movement_normalized = movement.strip().lower()
+        if movement_normalized in AMBIGUOUS_MOVEMENT_TERMS:
+            continue
+        if _contains_term(text, movement):
             hits += 2  # boost known entities
 
     return hits >= min_hits
@@ -315,7 +309,7 @@ def is_excluded_content(text: str) -> bool:
 
     # Simple term exclusion
     for term in EXCLUDE_TERMS:
-        if term in text:
+        if _contains_term(text, term):
             return True
 
     # Contextual regex exclusion

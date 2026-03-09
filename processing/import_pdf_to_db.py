@@ -5,8 +5,7 @@ from docx import Document  # type: ignore  # python-docx (Pylance stubs incomple
 from pathlib import Path
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import selectinload
-from database.db_loader import DBConnector
-from database.models.source import Source
+from database.db_loader import DBConnector, Article, SourceType
 from datetime import datetime
 import logging
 from typing import List, Optional, Dict, Tuple
@@ -363,12 +362,12 @@ class DocumentsToDatabase:
             # Calculate content hash early for duplicate detection
             content_hash = self.calculate_content_hash(text)
             
-            # Check for duplicates by content hash
-            existing_by_hash = self.session.query(Source).filter(Source.content_hash == content_hash).first()
-            if existing_by_hash:
-                self.logger.info(f"Duplicate content detected (hash match): {filename}")
-                self.logger.info(f"⏭️  Skipped: {filename} (duplicate content hash)")
-                self.last_skip_reason = "duplicate_content"
+            # Check for duplicates by content hash (using url for file:// URLs)
+            existing_by_url = self.session.query(Article).filter(Article.url == f"file://{file_path}").first()
+            if existing_by_url:
+                self.logger.info(f"Duplicate URL detected: {filename}")
+                self.logger.info(f"⏭️  Skipped: {filename} (duplicate URL)")
+                self.last_skip_reason = "duplicate_url"
                 return False
 
             # Validate content
@@ -399,7 +398,7 @@ class DocumentsToDatabase:
 
             # Determine document type from extension
             file_ext = doc_file.suffix.lower()
-            source_type = "academic_doc" if file_ext in ['.doc', '.docx'] else "academic_pdf"
+            source_type = SourceType.manual if file_ext in ['.doc', '.docx'] else SourceType.archive
 
             # Try to match to a known movement
             matched_movement_id = self.match_movement(text)
@@ -418,32 +417,36 @@ class DocumentsToDatabase:
                     self.logger.warning(f"  ⚠️  No movement match and no default movement available - skipping")
                     return None
 
-            # Create source record
-            source = Source(
-                movement_id=matched_movement_id,
-                source_name=metadata['title'],
+            # Create article record from academic document
+            article = Article(
+                title=metadata['title'][:500],  # Limit title length
+                content=text[:10000],  # Limit content length for database
+                source_name=f"Academic: {metadata['title']}",
                 source_type=source_type,
                 author=metadata.get('author'),
                 url=f"file://{file_path}",  # Local file URL
-                content_full=text,
-                content_excerpt=text[:500] + "..." if len(text) > 500 else text,
-                publication_date=datetime.now(),
                 language="cs",  # Assume Czech
-                word_count=word_count,
-                reading_time_minutes=reading_time,
-                content_hash=content_hash,
-                scraped_by="pdf_import"
+                published_at=datetime.now(),
             )
 
-            # Check for duplicates by URL
-            existing = self.session.query(Source).filter(Source.url == source.url).first()
+            # Check for duplicates by URL (double check)
+            existing = self.session.query(Article).filter(Article.url == article.url).first()
             if existing:
                 self.logger.info(f"Document already exists in database: {filename}")
                 self.logger.info(f"⏭️  Skipped: {filename} (duplicate URL)")
                 self.last_skip_reason = "duplicate_url"
                 return False
 
-            self.session.add(source)
+            self.session.add(article)
+            self.session.flush()  # Get article ID
+            
+            # Link to movement if matched
+            if matched_movement_id:
+                from database.models.movement import Movement
+                movement = self.session.query(Movement).filter_by(id=matched_movement_id).first()
+                if movement and movement not in article.movements:
+                    article.movements.append(movement)
+            
             self.session.commit()
             self.last_skip_reason = None
 
@@ -466,8 +469,6 @@ class DocumentsToDatabase:
             'successful': 0,
             'failed': 0,
             'skipped': 0,
-            'total_words': 0,
-            'total_reading_minutes': 0,
             'skipped_no_text': 0,
             'skipped_duplicate_content': 0,
             'skipped_validation_failed': 0,
@@ -501,11 +502,6 @@ class DocumentsToDatabase:
             try:
                 if self.create_source_from_document(doc_path):
                     stats['successful'] += 1
-                    # Get word count from database
-                    source = self.session.query(Source).filter(Source.url == f"file://{doc_path}").first()
-                    if source:
-                        stats['total_words'] += int(source.word_count or 0)  # type: ignore
-                        stats['total_reading_minutes'] += int(source.reading_time_minutes or 0)  # type: ignore
                 else:
                     stats['skipped'] += 1
                     reason = self.last_skip_reason or "other"
@@ -538,8 +534,6 @@ class DocumentsToDatabase:
         self.logger.info(f"     • Duplicate URL:  {stats['skipped_duplicate_url']}")
         self.logger.info(f"     • Other:          {stats['skipped_other']}")
         self.logger.info(f"  ❌ Failed:           {stats['failed']}")
-        self.logger.info(f"  Total words:        {stats['total_words']:,}")
-        self.logger.info(f"  Total reading time: {stats['total_reading_minutes']} minutes")
         self.logger.info(f"{'='*60}\n")
         
         return stats

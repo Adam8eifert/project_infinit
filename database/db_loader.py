@@ -43,6 +43,15 @@ class RiskLevel(str, enum.Enum):
     high = "high"
 
 
+class SourceType(str, enum.Enum):
+    """Source type classification"""
+    rss = "rss"
+    website = "website"
+    api = "api"
+    manual = "manual"
+    archive = "archive"
+
+
 # ============================================================
 # ASSOCIATION TABLES (M:N Relationships)
 # ============================================================
@@ -82,16 +91,21 @@ article_locations = Table(
 class Article(Base):
     """
     Main articles table - stores scraped content with sentiment & risk analysis
+    Consolidates both scraped web content and academic documents
     """
     __tablename__ = "articles"
     
     id = Column(Integer, primary_key=True, index=True)
     title = Column(Text, nullable=False)
     content = Column(Text, nullable=False)
-    source = Column(String(255), nullable=True)
-    source_id = Column(Integer, ForeignKey('sources.id', ondelete='SET NULL'), nullable=True, index=True)
-    language = Column(String(10), nullable=True)
     url = Column(String(500), nullable=True, index=True, unique=True)
+    
+    # Source metadata (previously in separate Source table)
+    source_name = Column(String(255), nullable=True)
+    source_type = Column(Enum(SourceType), nullable=True, index=True)
+    author = Column(String(255), nullable=True)
+    domain = Column(String(255), nullable=True, index=True)
+    language = Column(String(10), nullable=True, default='cs')
     published_at = Column(TIMESTAMP, nullable=True)
     
     # NLP Analysis
@@ -104,7 +118,6 @@ class Article(Base):
     created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
     
     # Relationships
-    source_record = relationship("Source", back_populates="articles")
     movements = relationship(
         "Movement",
         secondary="article_movements",
@@ -177,28 +190,6 @@ class Location(Base):
         secondary="article_locations",
         back_populates="locations"
     )
-
-
-class Source(Base):
-    """
-    Source registry + legacy content fields for backward compatibility.
-    """
-    __tablename__ = "sources"
-
-    id = Column(Integer, primary_key=True, index=True)
-    movement_id = Column(Integer, ForeignKey('movements.id'), nullable=True)
-    source_key = Column(String(255), nullable=True, unique=True, index=True)
-    source_name = Column(String(255), nullable=True)
-    source_type = Column(String(100), nullable=True)
-    domain = Column(String(255), nullable=True)
-    language = Column(String(16), nullable=True)
-    publication_date = Column(TIMESTAMP, nullable=True)
-    sentiment_rating = Column(String(50), nullable=True)
-    url = Column(String(500), nullable=False, unique=True, index=True)
-    content_full = Column(Text, nullable=True)
-    created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
-
-    articles = relationship("Article", back_populates="source_record")
 
 
 class SocialMediaPost(Base):
@@ -301,7 +292,8 @@ class DBConnector:
         """Get new database session"""
         return self.SessionLocal()
     
-    def add_article(self, title, content, source=None, url=None, published_at=None, source_id=None, language=None):
+    def add_article(self, title, content, url=None, source_name=None, source_type=None,
+                    author=None, domain=None, language='cs', published_at=None):
         """Add new article"""
         session = self.get_session()
         try:
@@ -316,10 +308,12 @@ class DBConnector:
             article = Article(
                 title=title,
                 content=content,
-                source=source,
-                source_id=source_id,
-                language=language,
                 url=url,
+                source_name=source_name,
+                source_type=source_type,
+                author=author,
+                domain=domain,
+                language=language,
                 published_at=published_at
             )
             session.add(article)
@@ -329,44 +323,6 @@ class DBConnector:
         except Exception as e:
             session.rollback()
             print(f"❌ Error adding article: {e}")
-            raise
-
-    def add_source(self, source_data):
-        """Add or get source record (legacy compatibility helper)"""
-        session = self.get_session()
-        try:
-            url = source_data.get('url')
-            if not url:
-                raise ValueError("Source URL is required")
-
-            existing = session.query(Source).filter(Source.url == url).first()
-            if existing:
-                session.close()
-                return existing
-
-            allowed_keys = {
-                'movement_id',
-                'source_key',
-                'source_name',
-                'source_type',
-                'domain',
-                'language',
-                'publication_date',
-                'sentiment_rating',
-                'url',
-                'content_full'
-            }
-            payload = {k: v for k, v in source_data.items() if k in allowed_keys}
-
-            source = Source(**payload)
-            session.add(source)
-            session.commit()
-            session.refresh(source)
-            session.close()
-            return source
-        except Exception as e:
-            session.rollback()
-            print(f"❌ Error adding source: {e}")
             raise
     
     def add_movement(self, name, alias=None, category=None, founded_year=None, concepts=None):

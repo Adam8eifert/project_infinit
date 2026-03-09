@@ -196,11 +196,12 @@ sources:
   denik_alarm:
     name: "Denik Alarm (RSS Feed)"
     domain: "denikalarm.cz"
-    url: "https://denikalarm.cz/rss"
+    url: "https://denikalarm.cz/feed/"  # FIXED: Use /feed/ instead of /rss (301 redirect)
     enabled: true
     type: "rss"
     require_movement_id: true # Only import if movement assigned (mainstream source)
     output_csv: "export/csv/denik_alarm_rss_raw.csv"
+    delay: 2
 
   blesk:
     name: "Blesk.cz (RSS Feed)"
@@ -244,6 +245,17 @@ sources:
       link: "a::attr(href)"
     output_csv: "export/csv/medium_seznam_web_raw.csv"
     delay: 3
+
+  idnes_archive_sekty:
+    name: "iDNES.cz Archiv - Sekty, kulty, mesiáši"
+    description: "Archive rubric focused on sects, cults and messianic movements"
+    domain: "idnes.cz"
+    url: "https://www.idnes.cz/zpravy/archiv/sekty-kulty-mesiasi.K64268"
+    enabled: true
+    type: "web"
+    require_movement_id: true # Mainstream source, keep movement mapping requirement
+    output_csv: "export/csv/idnes_archive_sekty_raw.csv"
+    delay: 2
 
   google_news:
     name: "Google News"

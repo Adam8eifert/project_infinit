@@ -4,7 +4,7 @@ This repository is an ETL pipeline for collecting and analysing articles about n
 
 - Entry point: `main.py` — orchestrates the ETL flow: `create_db()` → `run_spiders()` (`scrapy runspider scraping/<spider>.py`) → `process_csv()` → `process_academic_documents()` → `process_entities()` → `run_nlp()` → `load_scraped_csvs()`.
 - Configuration: edit `config.py` and set `DB_URI` (Postgres). The app uses SQLAlchemy via `database/db_loader.py`.
-- Outputs: scraped and intermediate CSV files live in `export/csv/`. Academic documents (PDF, DOC, DOCX) are processed from `academic_data/`. Final storage is PostgreSQL (see `database/db_loader.py` models: Movement, Alias, Location, Source).
+- Outputs: scraped and intermediate CSV files live in `export/csv/`. Academic documents (PDF, DOC, DOCX) are processed from `academic_data/`. Final storage is PostgreSQL (see `database/db_loader.py` models: Article, Movement, Person, Location).
 
 Important commands (copyable):
 
@@ -26,8 +26,8 @@ Repository conventions and patterns to follow
 
 - Spiders: each scraper is a single-file Scrapy spider under `scraping/`. They are invoked with `scrapy runspider scraping/<file>.py` (not via a Scrapy project). Use `export/csv/` for outputs and keep CSV columns consistent.
 - CSV ingestion: `processing/import_csv_to_db.py` expects these required columns: `source_name, source_type, title, url, text, scraped_at`. Keep that schema when producing CSVs.
-- PDF ingestion: `processing/import_pdf_to_db.py` processes academic documents (PDF, DOC, DOCX) from `academic_data/` directory, extracts text using PyMuPDF (PDF) and python-docx (Word documents), and creates Source records with metadata extraction from filenames.
-- DB models: `database/db_loader.py` uses SQLAlchemy declarative models. `Source.url` is unique — avoid inserting duplicates (CSV loader already catches IntegrityError).
+- PDF ingestion: `processing/import_pdf_to_db.py` processes academic documents (PDF, DOC, DOCX) from `academic_data/` directory, extracts text using PyMuPDF (PDF) and python-docx (Word documents), and creates Article records with `source_type` set to `archive`/`manual`.
+- DB models: `database/db_loader.py` uses SQLAlchemy declarative models. `Article.url` is unique — avoid inserting duplicates (CSV loader already catches IntegrityError).
 - NLP: `processing/nlp_analysis.py` initializes Stanza pipeline for Czech (`tokenize,mwt,pos,lemma,ner`) and uses HuggingFace `transformers` sentiment pipeline for short inputs (first 512 chars).
 
 Examples to reference when making edits

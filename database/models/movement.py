@@ -40,7 +40,6 @@ class Movement(Base):
     # Relationships
     aliases = relationship("Alias", back_populates="movement", cascade="all, delete-orphan")
     locations = relationship("Location", back_populates="movement", cascade="all, delete-orphan")
-    sources = relationship("Source", back_populates="movement", cascade="all, delete-orphan")
     temporal_analyses = relationship("TemporalAnalysis", back_populates="movement", cascade="all, delete-orphan")
 
     def __repr__(self):

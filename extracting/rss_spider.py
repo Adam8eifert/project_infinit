@@ -23,6 +23,8 @@ class RSSSpider(scrapy.Spider):
     custom_settings = {
         **ETHICAL_SCRAPING_SETTINGS,
         "ROBOTSTXT_OBEY": False, # Essential for mainstream RSS (Seznam, iRozhlas)
+        "REDIRECT_ENABLED": True, # Follow HTTP redirects (e.g., 301, 302)
+        "REDIRECT_MAX_TIMES": 5, # Maximum number of redirects to follow
         "FEEDS": {
             "export/csv/rss_combined_raw.csv": {
                 **CSV_EXPORT_SETTINGS,
@@ -89,6 +91,15 @@ class RSSSpider(scrapy.Spider):
         Parses RSS/Atom feed content and extracts relevant articles.
         """
         try:
+            # Check if response has text content (handle redirects/binary responses)
+            if not hasattr(response, 'text') or not isinstance(response.text, str):
+                self.logger.error(
+                    f"❌ Error parsing RSS for {response.meta.get('source_name')} "
+                    f"({response.meta.get('source_type')}): Response content isn't text. "
+                    f"Status: {response.status}. Check for redirects or incorrect URL."
+                )
+                return
+            
             # Parse the XML/Atom content using feedparser
             feed = feedparser.parse(response.text)
             
