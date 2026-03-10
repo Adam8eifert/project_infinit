@@ -5,14 +5,16 @@ import pandas as pd
 from pathlib import Path
 from sqlalchemy.exc import IntegrityError
 from database.db_loader import DBConnector, Article, Movement, SourceType
-from datetime import datetime
+from datetime import datetime, timezone
 import logging
 from typing import Union, Optional, Any, Dict
 import json
 import re
 from urllib.parse import urlparse
 from fuzzywuzzy import fuzz
+from time import perf_counter
 import sys
+from logging_utils import configure_project_logger
 
 # Add parent directory to path for imports
 sys.path.insert(0, str(Path(__file__).parent.parent))
@@ -40,22 +42,7 @@ class CSVtoDatabaseLoader:
 
     def setup_logging(self):
         """Setup logging for import tracking"""
-        self.logger = logging.getLogger(__name__)
-        if self.logger.handlers:
-            return
-
-        self.logger.setLevel(logging.INFO)
-        formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
-
-        file_handler = logging.FileHandler('import_log.txt')
-        file_handler.setFormatter(formatter)
-
-        stream_handler = logging.StreamHandler()
-        stream_handler.setFormatter(formatter)
-
-        self.logger.addHandler(file_handler)
-        self.logger.addHandler(stream_handler)
-        self.logger.propagate = False
+        self.logger = configure_project_logger(__name__, "imports/csv_import.log")
 
     def match_movement_fuzzy(self, text: str, threshold: float = 70) -> Optional[Movement]:
         """Fuzzy match article text to find related Movement
@@ -266,10 +253,76 @@ class CSVtoDatabaseLoader:
             # Safe fallback when keyword module is unavailable.
             return movement_id is not None
 
+    def _normalize_datetime(self, value: Any) -> Optional[datetime]:
+        """Normalize datetime-like values for safe comparisons and storage."""
+        if value is None:
+            return None
+
+        try:
+            if pd.isna(value):
+                return None
+        except Exception:
+            pass
+
+        if isinstance(value, pd.Timestamp):
+            value = value.to_pydatetime()
+        elif isinstance(value, str):
+            parsed = pd.to_datetime(value, errors="coerce")
+            if pd.isna(parsed):
+                return None
+            value = parsed.to_pydatetime() if isinstance(parsed, pd.Timestamp) else parsed
+
+        if not isinstance(value, datetime):
+            return None
+
+        if value.tzinfo is not None:
+            value = value.astimezone(timezone.utc).replace(tzinfo=None)
+
+        return value.replace(microsecond=0)
+
+    def _apply_article_updates(self, article: Article, cleaned: Dict[str, Any]) -> bool:
+        """Update mutable article fields and return True if anything changed."""
+        changed = False
+        field_map = {
+            "title": "title",
+            "content": "content",
+            "source_name": "source_name",
+            "source_type": "source_type",
+            "author": "author",
+            "domain": "domain",
+            "language": "language",
+        }
+
+        for article_field, cleaned_key in field_map.items():
+            current_value = getattr(article, article_field)
+            new_value = cleaned.get(cleaned_key)
+            if current_value != new_value:
+                setattr(article, article_field, new_value)
+                changed = True
+
+        current_published_at = self._normalize_datetime(article.published_at)
+        new_published_at = self._normalize_datetime(cleaned.get("published_at"))
+        if current_published_at != new_published_at:
+            article.published_at = new_published_at
+            changed = True
+
+        return changed
+
+    def _sync_article_movement(self, article: Article, matched_movement: Optional[Movement]) -> bool:
+        """Ensure article has exactly one matched movement (or none)."""
+        target_ids = [matched_movement.id] if matched_movement else []
+        current_ids = sorted(movement.id for movement in article.movements)
+
+        if current_ids == target_ids:
+            return False
+
+        article.movements = [matched_movement] if matched_movement else []
+        return True
+
     def load_csv_to_articles(self, csv_path: Union[str, Path]) -> int:
         """Import CSV to Articles table
         
-        Returns number of articles imported
+        Returns number of changed articles (inserted + updated)
         """
         csv_path = Path(csv_path)
         if not csv_path.exists():
@@ -291,12 +344,24 @@ class CSVtoDatabaseLoader:
                 missing = required_columns - set(df.columns)
                 raise ValueError(f"Missing columns: {missing}")
 
-            imported = 0
+            total_start = perf_counter()
+            total_rows = len(df)
+            inserted = 0
+            updated = 0
+            unchanged = 0
             skipped = 0
             batch_size = 100
+            total_batches = max(1, (total_rows + batch_size - 1) // batch_size)
 
             for batch_start in range(0, len(df), batch_size):
+                batch_number = (batch_start // batch_size) + 1
+                batch_timer_start = perf_counter()
                 batch = df.iloc[batch_start:batch_start + batch_size]
+                batch_row_count = len(batch)
+                prepared_rows = []
+                movement_ids = set()
+                batch_skipped_before = skipped
+                batch_unchanged_before = unchanged
                 
                 for _, row in batch.iterrows():
                     try:
@@ -315,46 +380,10 @@ class CSVtoDatabaseLoader:
                             self.logger.debug(f"Skipping non-relevant article: {cleaned.get('title', '')[:80]}")
                             skipped += 1
                             continue
-                        
-                        # Check for duplicate URL
-                        existing = self.session.query(Article).filter(
-                            Article.url == cleaned["url"]
-                        ).first()
-                        
-                        if existing:
-                            self.logger.debug(f"Skipping duplicate URL: {cleaned['url']}")
-                            skipped += 1
-                            continue
-                        
-                        # Create article with all metadata fields
-                        article_payload = {
-                            "title": cleaned["title"],
-                            "content": cleaned["content"],
-                            "url": cleaned["url"],
-                            "source_name": cleaned["source_name"],
-                            "source_type": cleaned["source_type"],
-                            "author": cleaned.get("author"),
-                            "domain": cleaned.get("domain"),
-                            "language": cleaned.get("language", "cs"),
-                            "published_at": cleaned.get("published_at"),
-                        }
-                        article = Article(**article_payload)
-                        self.session.add(article)
-                        self.session.flush()
-                        
-                        # Link movement only from strict movement matcher result.
-                        matched_movement = None
+                        prepared_rows.append(cleaned)
                         movement_id = cleaned.get("movement_id")
                         if movement_id is not None:
-                            matched_movement = self.session.query(Movement).filter(
-                                Movement.id == movement_id
-                            ).first()
-                        
-                        if matched_movement:
-                            article.movements.append(matched_movement)
-                            self.logger.debug(f"Linked article to movement: {matched_movement.name}")
-                        
-                        imported += 1
+                            movement_ids.add(movement_id)
                         
                     except IntegrityError as e:
                         self.session.rollback()
@@ -365,16 +394,108 @@ class CSVtoDatabaseLoader:
                         self.logger.error(f"Error processing row: {e}")
                         skipped += 1
                         continue
+
+                if not prepared_rows:
+                    batch_elapsed = perf_counter() - batch_timer_start
+                    batch_rate = (batch_row_count / batch_elapsed) if batch_elapsed > 0 else float(batch_row_count)
+                    batch_skipped = skipped - batch_skipped_before
+                    self.logger.info(
+                        f"Batch {batch_number}/{total_batches} for {csv_path.name}: "
+                        f"{batch_row_count} rows in {batch_elapsed:.2f}s ({batch_rate:.1f} rows/s), "
+                        f"0 changed, 0 unchanged, {batch_skipped} skipped"
+                    )
+                    continue
+
+                urls = {row["url"] for row in prepared_rows if row.get("url")}
+                existing_by_url = {}
+                if urls:
+                    existing_articles = self.session.query(Article).filter(Article.url.in_(urls)).all()
+                    existing_by_url = {article.url: article for article in existing_articles if article.url}
+
+                movement_map = {}
+                if movement_ids:
+                    matched_movements = self.session.query(Movement).filter(Movement.id.in_(movement_ids)).all()
+                    movement_map = {movement.id: movement for movement in matched_movements}
+
+                batch_inserted = 0
+                batch_updated = 0
+                pending_changes = 0
+
+                for cleaned in prepared_rows:
+                    try:
+                        existing = existing_by_url.get(cleaned["url"])
+                        movement_id = cleaned.get("movement_id")
+                        matched_movement = movement_map.get(movement_id) if movement_id is not None else None
+
+                        if existing:
+                            fields_changed = self._apply_article_updates(existing, cleaned)
+                            movement_changed = self._sync_article_movement(existing, matched_movement)
+
+                            if fields_changed or movement_changed:
+                                batch_updated += 1
+                                pending_changes += 1
+                            else:
+                                unchanged += 1
+                            continue
+
+                        article_payload = {
+                            "title": cleaned["title"],
+                            "content": cleaned["content"],
+                            "url": cleaned["url"],
+                            "source_name": cleaned["source_name"],
+                            "source_type": cleaned["source_type"],
+                            "author": cleaned.get("author"),
+                            "domain": cleaned.get("domain"),
+                            "language": cleaned.get("language", "cs"),
+                            "published_at": self._normalize_datetime(cleaned.get("published_at")),
+                        }
+                        article = Article(**article_payload)
+
+                        if matched_movement:
+                            article.movements = [matched_movement]
+
+                        self.session.add(article)
+                        if cleaned.get("url"):
+                            existing_by_url[cleaned["url"]] = article
+                        batch_inserted += 1
+                        pending_changes += 1
+
+                    except Exception as e:
+                        self.logger.error(f"Error processing row: {e}")
+                        skipped += 1
+                        continue
                 
                 # Commit batch
                 try:
                     self.session.commit()
+                    inserted += batch_inserted
+                    updated += batch_updated
                 except Exception as e:
                     self.session.rollback()
                     self.logger.error(f"Error saving batch: {e}")
+                    skipped += pending_changes
 
-            self.logger.info(f"Import completed: {imported} imported, {skipped} skipped from {csv_path}")
-            return imported
+                batch_elapsed = perf_counter() - batch_timer_start
+                batch_rate = (batch_row_count / batch_elapsed) if batch_elapsed > 0 else float(batch_row_count)
+                batch_skipped = skipped - batch_skipped_before
+                batch_unchanged = unchanged - batch_unchanged_before
+                batch_changed = batch_inserted + batch_updated
+                self.logger.info(
+                    f"Batch {batch_number}/{total_batches} for {csv_path.name}: "
+                    f"{batch_row_count} rows in {batch_elapsed:.2f}s ({batch_rate:.1f} rows/s), "
+                    f"{batch_changed} changed ({batch_inserted} inserted, {batch_updated} updated), "
+                    f"{batch_unchanged} unchanged, {batch_skipped} skipped"
+                )
+
+            changed = inserted + updated
+            total_elapsed = perf_counter() - total_start
+            total_rate = (total_rows / total_elapsed) if total_elapsed > 0 else float(total_rows)
+            self.logger.info(
+                f"Import completed in {total_elapsed:.2f}s ({total_rate:.1f} rows/s): "
+                f"{changed} changed ({inserted} inserted, {updated} updated), "
+                f"{unchanged} unchanged, {skipped} skipped from {csv_path}"
+            )
+            return changed
             
         except Exception as e:
             self.session.rollback()
@@ -382,3 +503,7 @@ class CSVtoDatabaseLoader:
             return 0
         finally:
             self.session.close()
+
+    def load_csv_to_sources(self, csv_path: Union[str, Path]) -> int:
+        """Backward-compatible alias for manual CSV pipeline."""
+        return self.load_csv_to_articles(csv_path)

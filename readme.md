@@ -87,6 +87,21 @@ Importér: `processing/import_csv_to_db.py`.
 python -m pytest testing/ -q
 ```
 
+## Logy
+
+Všechny průběžné logy jsou nově soustředěné v adresáři `logs/`.
+
+- `logs/imports/csv_import.log` — import článků z CSV,
+- `logs/imports/document_import.log` — import PDF/DOC/DOCX dokumentů,
+- `logs/imports/social_media_import.log` — import sociálních sítí.
+- `logs/pipeline/main.log` — orchestrace běhu `main.py`.
+
+Historické logy z rootu projektu jsou přesunuté do `logs/legacy/`.
+
+Importéry zároveň zapisují i na stdout, takže stejné zprávy uvidíš i přímo v terminálu při běhu pipeline.
+Log soubory se automaticky rotují (default 10 MB, 5 záloh) a limity můžeš změnit přes
+`PROJECT_LOG_MAX_BYTES` a `PROJECT_LOG_BACKUP_COUNT`.
+
 ## Struktura projektu
 
 ```text

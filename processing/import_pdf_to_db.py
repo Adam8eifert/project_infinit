@@ -14,6 +14,7 @@ import hashlib
 import shutil
 import subprocess
 import tempfile
+from logging_utils import configure_project_logger
 
 class DocumentsToDatabase:
     """Import academic documents (PDF, DOC, DOCX) to database with text extraction and validation"""
@@ -26,22 +27,7 @@ class DocumentsToDatabase:
 
     def setup_logging(self):
         """Setup logging for import tracking"""
-        self.logger = logging.getLogger(__name__)
-        if self.logger.handlers:
-            return
-
-        self.logger.setLevel(logging.INFO)
-        formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
-
-        file_handler = logging.FileHandler('document_import_log.txt')
-        file_handler.setFormatter(formatter)
-
-        stream_handler = logging.StreamHandler()
-        stream_handler.setFormatter(formatter)
-
-        self.logger.addHandler(file_handler)
-        self.logger.addHandler(stream_handler)
-        self.logger.propagate = False
+        self.logger = configure_project_logger(__name__, "imports/document_import.log")
 
     def preprocess_text(self, text: str) -> str:
         """Clean and normalize extracted text"""

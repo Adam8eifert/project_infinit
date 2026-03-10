@@ -12,6 +12,7 @@ from typing import Union, Optional
 import logging
 import json
 import sys
+from logging_utils import configure_project_logger
 
 # Add parent directory to path for imports
 sys.path.insert(0, str(Path(__file__).parent.parent))
@@ -29,22 +30,7 @@ class SocialMediaLoader:
 
     def setup_logging(self):
         """Setup logging for import tracking"""
-        self.logger = logging.getLogger(__name__)
-        if self.logger.handlers:
-            return
-
-        self.logger.setLevel(logging.INFO)
-        formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
-
-        file_handler = logging.FileHandler('social_media_import_log.txt')
-        file_handler.setFormatter(formatter)
-
-        stream_handler = logging.StreamHandler()
-        stream_handler.setFormatter(formatter)
-
-        self.logger.addHandler(file_handler)
-        self.logger.addHandler(stream_handler)
-        self.logger.propagate = False
+        self.logger = configure_project_logger(__name__, "imports/social_media_import.log")
 
     def validate_row(self, row, csv_path):
         """Validate individual data rows"""

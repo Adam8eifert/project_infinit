@@ -7,6 +7,7 @@ import os
 import re
 import unicodedata
 import yaml
+import builtins
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple, cast
 from sqlalchemy import or_
@@ -15,6 +16,22 @@ from processing.nlp_analysis import CzechTextAnalyzer
 from processing.import_csv_to_db import CSVtoDatabaseLoader
 from processing.relevance_report import print_suspicious_articles_report, export_suspicious_articles_csv
 from fuzzywuzzy import fuzz
+from logging_utils import configure_project_logger
+
+
+PIPELINE_LOGGER = configure_project_logger("pipeline.main", "pipeline/main.log")
+
+
+def print(*args, **kwargs):
+    """Mirror pipeline console output to a dedicated pipeline log file."""
+    builtins.print(*args, **kwargs)
+    try:
+        sep = kwargs.get("sep", " ")
+        message = sep.join(str(arg) for arg in args)
+        if message:
+            PIPELINE_LOGGER.info(message)
+    except Exception:
+        return
 
 
 def run_spiders():

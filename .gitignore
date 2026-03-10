@@ -149,7 +149,15 @@ csv_manual/
 import_log.txt
 document_import_log.txt
 pdf_import_log.txt
-logs/
+social_media_import_log.txt
+logs/**
+!logs/
+!logs/README.md
+!logs/.gitkeep
+!logs/imports/
+!logs/imports/.gitkeep
+!logs/pipeline/
+!logs/pipeline/.gitkeep
 
 # Scrapy cache
 .scrapy/
