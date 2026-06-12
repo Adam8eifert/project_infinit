@@ -251,7 +251,7 @@ sources:
     description: "Archive rubric focused on sects, cults and messianic movements"
     domain: "idnes.cz"
     url: "https://www.idnes.cz/zpravy/archiv/sekty-kulty-mesiasi.K64268"
-    enabled: true
+    enabled: false # DISABLED: source crawls the full iDNES archive rather than only the sekty/kulty/mesiáši rubric
     type: "web"
     require_movement_id: true # Mainstream source, keep movement mapping requirement
     output_csv: "export/csv/idnes_archive_sekty_raw.csv"
@@ -411,6 +411,7 @@ keywords:
       - "Církev univerzální a vítězná"
       - "Církev všech světů"
       - "Dohnalité"
+      - "Država Československo"
       - "Dvanáct kmenů"
       - "Děti Boží"
       - "Děti světla"
@@ -445,6 +446,7 @@ keywords:
       - "Kosmické bratrstvo"
       - "Kristadelfiáni"
       - "Kruh přátel Bruna Gröninga"
+      - "Kutnohorská sekta"
       - "Kuřimská sekta"
       - "Křesťanská věda"
       - "Křesťanské společenství Logos"
@@ -484,6 +486,7 @@ keywords:
       - "Subud"
       - "Svědkové Jehovovi"
       - "Světlonoši"
+      - "Světlík"
       - "TVIND"
       - "Tao Jóga"
       - "Temple of Set"
@@ -495,6 +498,7 @@ keywords:
       - "Universe People"
       - "Univerzální bratrstvo"
       - "Univerzální život"
+      - "Urantia"
       - "V lásce spolu"
       - "Velké Bílé bratrstvo"
       - "Vesmírní lidé"
