@@ -441,6 +441,7 @@ keywords:
       - "Jedi"
       - "Ježíšova armáda"
       - "Jóga v denním životě"
+      - "Kemetismus"
       - "Konopná církev"
       - "Kosmická univerzita"
       - "Kosmické bratrstvo"
@@ -455,7 +456,9 @@ keywords:
       - "Loving Hut"
       - "Mezinárodní škola Zlatého růžového kříže"
       - "Mlýn Radunka"
+      - "Místní církve"
       - "Most ke svobodě"
+      - "Nová Akropolis"
       - "Novija gána sepata"
       - "O9A"
       - "Osho"
@@ -470,12 +473,15 @@ keywords:
       - "Rodná víra"
       - "Rosenkruciánské hnutí AMORC"
       - "Sahadža jóga"
+      - "Sathya Sai organizace"
       - "Satanská církev"
       - "Science 21"
       - "Scientologická církev"
+      - "Siloovo hnutí"
       - "Silvova metoda"
       - "Slovanská košile"
       - "Slovanské rodnověří"
+      - "Slovo života"
       - "Služebníci světla"
       - "Soka Gakkai International"
       - "Společenství Bílého bratrstva"
@@ -599,7 +605,7 @@ keywords:
     "TVIND": ["Tvind Movement", "Teachers Group"]
     "Temple of Set": ["Setian Temple"]
     "Teosofická společnost": ["Theosophical Society"]
-    "Transcendentální meditace": ["TM", "Transcendental Meditation"]
+    "Transcendentální meditace": ["Sri Chinmoy Centres", "TM", "Transcendental Meditation", "Centra Šrí Činmoje"]
     "Tvořivá společnost": ["Creative Society", "Creative Society Project"]
     "Unarius": ["Unarius Academy of Science"]
     "Universe People": ["Vesmírní lidé", "Cosmic People"]
@@ -610,7 +616,30 @@ keywords:
     "Ánanda Márga": ["Ananda Marga", "AMURT"]
     "Ásatrú": ["Asatru", "Severské pohanství"]
     "Šinčchondží": ["Shincheonji", "SCJ", "New Heaven New Earth"]
-  
+  movement_categories:
+    "Scientologická církev": "psychospiritual"
+    "Raeliáni": "ufo"
+    "Hnutí Hare Kršna": "eastern"
+    "Anthroposofická společnost": "esoteric"
+    "Unarius": "new_age"
+    "Církev Ježíše Krista Svatých posledních dnů": "christian_derived"
+
+  google_trends:
+    keywords:
+      - "scientologie"
+      - "svědkové jehovovi"
+      - "mormoni"
+      - "hare krishna"
+      - "bhakti marga"
+      - "allatra"
+      - "osho"
+      - "transcendentální meditace"
+      - "sekty česko"
+      - "nová náboženská hnutí"
+    regions: ["CZ", "SK"]
+    timeframe: "today 12-m"
+    related_queries_seed: "sekty česko"
+
   known_persons_aliases:
     "Adi Da Samraj": ["Franklin Jones", "Bubba Free John", "Da Free John"]
     "Aleister Crowley": ["Edward Alexander Crowley", "To Mega Therion"]

@@ -10,6 +10,101 @@ from sqlalchemy import text
 from database.db_loader import DBConnector, Movement
 from database.models.alias import Alias
 
+
+def _infer_movement_category(movement_name: str) -> str:
+    """Infer a movement category from the movement name."""
+    if not movement_name:
+        return "nové náboženské hnutí"
+
+    normalized = movement_name.lower()
+    psychospiritual_terms = [
+        "scientolog",
+        "eckankar",
+        "happy science",
+        "teal swan",
+        "sadhguru",
+        "paramahansa",
+        "spirituální",
+        "psychospiritual",
+        "psychospirit",
+        "meditace",
+    ]
+    ufo_terms = [
+        "raeli",
+        "vesmír",
+        "unarius",
+        "universe",
+        "cosmic",
+        "ufo",
+        "extrater",
+        "alien",
+    ]
+    eastern_terms = [
+        "buddh",
+        "jóga",
+        "kršna",
+        "mait",
+        "guru",
+        "tibetsk",
+        "hind",
+        "zen",
+        "dharm",
+        "sahad",
+        "ved",
+        "shincheonji",
+        "osho",
+    ]
+    esoteric_terms = [
+        "esoter",
+        "anthroposof",
+        "teosof",
+        "rosicruc",
+        "satan",
+        "tempel",
+        "set",
+        "okult",
+        "magi",
+        "mystick",
+        "zlatého úsvitu",
+        "světlo",
+    ]
+    christian_terms = [
+        "církev",
+        "church",
+        "ježíš",
+        "christ",
+        "křesťan",
+        "evangel",
+        "rodina",
+        "poslední soud",
+        "jednota",
+    ]
+    new_age_terms = [
+        "nového věku",
+        "new age",
+        "alternativní náboženství",
+        "univerzální",
+        "zlatá éra",
+        "vesmírní",
+        "nová duchovní",
+    ]
+
+    if any(term in normalized for term in psychospiritual_terms):
+        return "psychospiritual"
+    if any(term in normalized for term in ufo_terms):
+        return "ufo"
+    if any(term in normalized for term in eastern_terms):
+        return "eastern"
+    if any(term in normalized for term in esoteric_terms):
+        return "esoteric"
+    if any(term in normalized for term in christian_terms):
+        return "christian_derived"
+    if any(term in normalized for term in new_age_terms):
+        return "new_age"
+
+    return "nové náboženské hnutí"
+
+
 def seed_movements():
     """Seed movements and aliases from YAML to database"""
     
@@ -31,6 +126,10 @@ def seed_movements():
     if not isinstance(known_movements, dict):
         print("❌ 'known_movements' section not found or invalid")
         return
+
+    movement_categories = keywords.get('movement_categories', {})
+    if not isinstance(movement_categories, dict):
+        movement_categories = {}
     
     movements_config = known_movements.get('new_religious_movements', [])
     if not isinstance(movements_config, list):
@@ -38,6 +137,7 @@ def seed_movements():
         return
     
     print(f"📊 Found {len(movements_config)} movements in YAML configuration")
+    print(f"📊 Loaded {len(movement_categories)} manual movement category mappings")
     
     # Connect to database
     db = DBConnector()
@@ -70,15 +170,20 @@ def seed_movements():
         
         # Check if already exists (canonical_name with diacritics)
         existing = session.query(Movement).filter(Movement.canonical_name == movement_name).first()
+        inferred_category = movement_categories.get(movement_name) or _infer_movement_category(movement_name)
         
         if existing:
+            current_category = (existing.category or "").strip().lower()
+            if current_category in ("", "religious", "nové náboženské hnutí"):
+                existing.category = inferred_category
+                print(f"  🔄 Updated category for existing movement: {movement_name} → {inferred_category}")
             skipped += 1
             continue
         
         # Create new movement
         movement = Movement(
             canonical_name=movement_name,  # Name with diacritics (single source of truth)
-            category="religious",
+            category=inferred_category,
             description="Seeded from extracting/sources_config.yaml",
             active_status="unknown"
         )

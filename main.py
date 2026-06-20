@@ -382,8 +382,8 @@ def _is_bad_person_entity(name: str) -> bool:
     return False
 
 
-def _load_entity_linking_config() -> Tuple[List[str], Dict[str, List[str]], Dict[str, List[str]]]:
-    """Load known movements, persons and their aliases from config."""
+def _load_entity_linking_config() -> Tuple[List[str], Dict[str, List[str]], Dict[str, str], Dict[str, List[str]]]:
+    """Load known movements, movement categories, persons and their aliases from config."""
     config_path = Path("extracting/sources_config.yaml")
     with open(config_path, "r", encoding="utf-8") as file:
         loaded = yaml.safe_load(file)
@@ -395,6 +395,7 @@ def _load_entity_linking_config() -> Tuple[List[str], Dict[str, List[str]], Dict
     known_movements = known_container.get("new_religious_movements", [])
 
     movement_aliases = keywords.get("movement_aliases", {})
+    movement_categories = keywords.get("movement_categories", {})
     if not movement_aliases:
         movement_aliases = known_container.get("movement_aliases", {})
 
@@ -407,16 +408,24 @@ def _load_entity_linking_config() -> Tuple[List[str], Dict[str, List[str]], Dict
         known_movements = []
     if not isinstance(movement_aliases, dict):
         movement_aliases = {}
+    if not isinstance(movement_categories, dict):
+        movement_categories = {}
 
     print(f"✅ Načteno {len(known_movements)} known_movements ze config")
     print(f"✅ Načteno {len(movement_aliases)} movement_aliases ze config")
+    print(f"✅ Načteno {len(movement_categories)} movement_categories ze config")
     print(f"✅ Načteno {len(person_aliases)} known_persons_aliases ze config")
 
-    return known_movements, movement_aliases, person_aliases
+    return known_movements, movement_aliases, movement_categories, person_aliases
 
 
-def _seed_known_movements(session, known_movements: List[str], movement_aliases: Dict[str, List[str]]) -> Dict[str, Movement]:
-    """Seed known movements into DB with aliases and category"""
+def _seed_known_movements(
+    session,
+    known_movements: List[str],
+    movement_aliases: Dict[str, List[str]],
+    movement_categories: Dict[str, str],
+) -> Dict[str, Movement]:
+    """Seed known movements into DB with aliases and category."""
     movement_by_name: Dict[str, Movement] = {
         movement.name: movement for movement in session.query(Movement).all()
     }
@@ -425,26 +434,26 @@ def _seed_known_movements(session, known_movements: List[str], movement_aliases:
         name = (movement_name or "").strip()
         if not name:
             continue
-        
+
+        explicit_category = movement_categories.get(name) if movement_categories else None
+        category = explicit_category or _infer_movement_category(name)
+
         if name not in movement_by_name:
-            # Get aliases for this movement from config
             aliases = movement_aliases.get(name, [])
             alias_str = ", ".join(aliases) if aliases else None
-            
-            # Create movement with alias and default category
+
             movement = Movement(
                 name=name,
                 alias=alias_str,
-                category="nové náboženské hnutí"
+                category=category,
             )
             session.add(movement)
             session.flush()
             movement_by_name[name] = movement
-            
+
             if aliases:
                 print(f"  ➕ {name} (aliasy: {len(aliases)})")
         else:
-            # Update existing movement with aliases if they don't have any
             movement = movement_by_name[name]
             current_alias = cast(Optional[str], getattr(movement, "alias", None))
             if not current_alias:
@@ -453,12 +462,113 @@ def _seed_known_movements(session, known_movements: List[str], movement_aliases:
                     setattr(movement, "alias", ", ".join(aliases))
                     print(f"  🔄 Aktualizováno aliasy pro: {name} ({len(aliases)} aliasů)")
             current_category = cast(Optional[str], getattr(movement, "category", None))
-            if not current_category:
-                setattr(movement, "category", "nové náboženské hnutí")
+            if not current_category or str(current_category).strip().lower() == "nové náboženské hnutí":
+                setattr(movement, "category", category)
 
     session.commit()
     print(f"\n✅ Celkem movements v DB: {len(movement_by_name)}")
     return movement_by_name
+
+
+def _infer_movement_category(movement_name: str) -> str:
+    """Infer a movement category from its canonical name.
+
+    This is a lightweight fallback. For reliable categories, add explicit
+    mappings in extracting/sources_config.yaml under keywords.movement_categories.
+    """
+    name = (movement_name or "").strip().lower()
+    if not name:
+        return "nové náboženské hnutí"
+
+    psychospiritual_terms = [
+        "scientolog",
+        "eckankar",
+        "happy science",
+        "teal swan",
+        "sadhguru",
+        "paramahansa",
+        "spirituální",
+        "psychospiritual",
+        "psychospirit",
+        "meditace",
+    ]
+    ufo_terms = [
+        "raeli",
+        "vesmír",
+        "unarius",
+        "universe",
+        "cosmic",
+        "ufo",
+        "extrater",
+        "alien",
+        "zkoumat",
+    ]
+    eastern_terms = [
+        "buddh",
+        "jóga",
+        "kršna",
+        "mait",
+        "guru",
+        "tibetsk",
+        "hind",
+        "zen",
+        "dharm",
+        "sahad",
+        "ved",
+        "shincheonji",
+        "osho",
+        "parama",
+    ]
+    esoteric_terms = [
+        "esoter",
+        "anthroposof",
+        "teosof",
+        "rosicruc",
+        "satan",
+        "tempel",
+        "set",
+        "okult",
+        "magi",
+        "mystick",
+        "zlatého úsvitu",
+        "světlo",
+        "čaroděj",
+    ]
+    christian_terms = [
+        "církev",
+        "church",
+        "ježíš",
+        "christ",
+        "křesťan",
+        "evangel",
+        "rodina",
+        "poslední soud",
+        "jednota",
+    ]
+    new_age_terms = [
+        "nového věku",
+        "new age",
+        "alternativní náboženství",
+        "univerzální",
+        "zlatá éra",
+        "vesmírní",
+        "nová duchovní",
+    ]
+
+    if any(term in name for term in psychospiritual_terms):
+        return "psychospiritual"
+    if any(term in name for term in ufo_terms):
+        return "ufo"
+    if any(term in name for term in eastern_terms):
+        return "eastern"
+    if any(term in name for term in esoteric_terms):
+        return "esoteric"
+    if any(term in name for term in christian_terms):
+        return "christian_derived"
+    if any(term in name for term in new_age_terms):
+        return "new_age"
+
+    return "nové náboženské hnutí"
 
 
 def _seed_known_persons(session, person_aliases: Dict[str, List[str]]) -> Dict[str, Person]:
@@ -672,13 +782,14 @@ def extract_entities(db):
         print("\n🔍 Extracting entities...")
         analyzer = CzechTextAnalyzer()
 
-        known_movements, movement_aliases, person_aliases = _load_entity_linking_config()
+        known_movements, movement_aliases, movement_categories, person_aliases = _load_entity_linking_config()
         print(f"📋 Loaded {len(known_movements)} known movements from config")
         print(f"📋 Loaded {len(movement_aliases)} movement alias groups")
+        print(f"📋 Loaded {len(movement_categories)} movement category mappings")
         print(f"📋 Loaded {len(person_aliases)} known persons from config")
 
         session = db.get_session()
-        movement_by_name = _seed_known_movements(session, known_movements, movement_aliases)
+        movement_by_name = _seed_known_movements(session, known_movements, movement_aliases, movement_categories)
         person_by_canonical = _seed_known_persons(session, person_aliases)
 
         articles = session.query(Article).all()

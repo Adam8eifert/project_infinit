@@ -14,6 +14,7 @@ import time
 # Add parent directory to path for imports
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
+from extracting.config_loader import get_config_loader
 from database.db_loader import DBConnector, GoogleTrend, Movement
 
 logging.basicConfig(level=logging.INFO)
@@ -30,9 +31,32 @@ class GoogleTrendsCollector:
     - Regional patterns (CZ, SK, etc.)
     """
     
+    DEFAULT_KEYWORDS = [
+        'scientologie',
+        'svědkové jehovovi',
+        'mormoni',
+        'hare krishna',
+        'bhakti marga',
+        'allatra',
+        'osho',
+        'transcendentální meditace',
+        'sekty česko',
+        'nová náboženská hnutí',
+    ]
+
+    DEFAULT_REGIONS = ['CZ', 'SK']
+    DEFAULT_TIMEFRAME = 'today 12-m'
+    DEFAULT_RELATED_QUERIES_SEED = 'sekty česko'
+
     def __init__(self, output_csv="export/csv/google_trends_raw.csv"):
         self.output_csv = output_csv
         self.trends_data = []
+        self.config_loader = get_config_loader()
+        self.trends_config = self._load_trends_config()
+        self.trend_keywords = self._load_trend_keywords()
+        self.trend_regions = self._load_trend_regions()
+        self.trend_timeframe = self._load_trend_timeframe()
+        self.related_queries_seed = self._load_related_queries_seed()
         
         try:
             # Initialize pytrends client
@@ -45,6 +69,75 @@ class GoogleTrendsCollector:
         # Database connection for movement lookup
         self.db = DBConnector()
         self.session = self.db.get_session()
+
+    def _load_trends_config(self):
+        config = self.config_loader.config if self.config_loader else {}
+        keywords_cfg = config.get('keywords', {}) if isinstance(config.get('keywords', {}), dict) else {}
+        trends_cfg = keywords_cfg.get('google_trends', {})
+        if isinstance(trends_cfg, dict):
+            return trends_cfg
+        if isinstance(trends_cfg, list):
+            return {'keywords': trends_cfg}
+        return {}
+
+    def _load_trend_keywords(self):
+        explicit_keywords = []
+        if isinstance(self.trends_config.get('keywords'), list):
+            explicit_keywords = [str(k).strip() for k in self.trends_config.get('keywords') if isinstance(k, str) and k.strip()]
+
+        config_keywords = self._load_keywords_from_full_config()
+        merged = []
+        for keyword in explicit_keywords + config_keywords:
+            if keyword not in merged:
+                merged.append(keyword)
+
+        return merged if merged else self.DEFAULT_KEYWORDS
+
+    def _load_keywords_from_full_config(self):
+        config = self.config_loader.config if self.config_loader else {}
+        keywords_cfg = config.get('keywords', {}) if isinstance(config.get('keywords', {}), dict) else {}
+        content_cfg = config.get('content_filters', {}) if isinstance(config.get('content_filters', {}), dict) else {}
+
+        candidates = []
+        candidates.extend([str(k).strip() for k in keywords_cfg.get('required', []) if isinstance(k, str) and k.strip()])
+        candidates.extend([str(k).strip() for k in content_cfg.get('required_keywords', []) if isinstance(k, str) and k.strip()])
+
+        known_movements = keywords_cfg.get('known_movements', {})
+        if isinstance(known_movements, dict):
+            for value in known_movements.values():
+                if isinstance(value, list):
+                    candidates.extend([str(entry).strip() for entry in value if isinstance(entry, str) and entry.strip()])
+
+        movement_aliases = keywords_cfg.get('movement_aliases', {})
+        if isinstance(movement_aliases, dict):
+            for aliases in movement_aliases.values():
+                if isinstance(aliases, list):
+                    candidates.extend([str(alias).strip() for alias in aliases if isinstance(alias, str) and alias.strip()])
+
+        # If explicit google_trends cfg is not present, also use generic search terms
+        if not self.trends_config:
+            candidates.extend(self.DEFAULT_KEYWORDS)
+
+        deduped = []
+        for keyword in candidates:
+            if keyword and keyword not in deduped:
+                deduped.append(keyword)
+
+        return deduped
+
+    def _load_trend_regions(self):
+        regions = self.trends_config.get('regions') if isinstance(self.trends_config.get('regions'), list) else None
+        if regions:
+            return [str(r).strip() for r in regions if isinstance(r, str) and r.strip()]
+        return self.DEFAULT_REGIONS
+
+    def _load_trend_timeframe(self):
+        timeframe = self.trends_config.get('timeframe')
+        return str(timeframe).strip() if isinstance(timeframe, str) and timeframe.strip() else self.DEFAULT_TIMEFRAME
+
+    def _load_related_queries_seed(self):
+        seed = self.trends_config.get('related_queries_seed')
+        return str(seed).strip() if isinstance(seed, str) and seed.strip() else self.DEFAULT_RELATED_QUERIES_SEED
     
     def collect_trend_data(self, keyword, timeframe='today 12-m', region='CZ'):
         """
@@ -121,34 +214,11 @@ class GoogleTrendsCollector:
             logger.warning(f"Could not match keyword to movement: {e}")
             return None
     
-    def collect_top_nrm_keywords(self, timeframe='today 12-m'):
-        """Collect trends for major NRM movements"""
-        # Major movements to track
-        keywords = [
-            # International movements with Czech presence
-            'scientologie',
-            'svědkové jehovovi',
-            'mormoni',
-            'hare krishna',
-            
-            # Newer movements
-            'bhakti marga',
-            'allatra',
-            
-            # Historical/known movements
-            'osho',
-            'transcendentální meditace',
-            
-            # General terms
-            'sekty česko',
-            'nová náboženská hnutí',
-        ]
-        
-        for keyword in keywords:
-            self.collect_trend_data(keyword, timeframe=timeframe, region='CZ')
-            
-            # Also collect for Slovakia
-            self.collect_trend_data(keyword, timeframe=timeframe, region='SK')
+    def collect_top_nrm_keywords(self):
+        """Collect trends for configured NRM keywords."""
+        for keyword in self.trend_keywords:
+            for region in self.trend_regions:
+                self.collect_trend_data(keyword, timeframe=self.trend_timeframe, region=region)
     
     def collect_related_queries(self, seed_keyword):
         """Get related queries that people search for"""
@@ -247,10 +317,11 @@ class GoogleTrendsCollector:
         logger.info("Starting Google Trends collector...")
         
         # Collect trends data
-        self.collect_top_nrm_keywords(timeframe='today 12-m')
+        self.collect_top_nrm_keywords()
         
-        # Optionally analyze related queries
-        self.collect_related_queries('sekty česko')
+        # Optionally analyze related queries from config
+        if self.related_queries_seed:
+            self.collect_related_queries(self.related_queries_seed)
         
         # Save results
         self.save_to_csv()
