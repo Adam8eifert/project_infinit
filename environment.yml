@@ -23,5 +23,6 @@ dependencies:
   - pip
   - pip:
     - google-api-python-client  # YouTube Data API v3
+    - pytrends
 
 prefix: "/home/adam/miniforge3/envs/project_infinit"
