@@ -45,6 +45,30 @@ class SourcesConfigLoader:
         """Return content filters."""
         return self.config.get('content_filters', {})
     
+    def get_sources_by_type(self, source_type: str) -> Dict[str, Any]:
+        """Return sources matching a specific declared source type."""
+        source_type = (source_type or '').strip().lower()
+        return {
+            key: source
+            for key, source in self.get_all_sources().items()
+            if str(source.get('type', '')).strip().lower() == source_type
+        }
+
+    def get_sources_by_acquisition(self, acquisition_method: str) -> Dict[str, Any]:
+        """Return sources using a specific acquisition method from config."""
+        acquisition_method = (acquisition_method or '').strip().lower()
+        result = {}
+        for key, source in self.get_all_sources().items():
+            acquisition = source.get('acquisition') or {}
+            if str(acquisition.get('method', '')).strip().lower() == acquisition_method:
+                result[key] = source
+        return result
+
+    def get_source_acquisition(self, source_key: str) -> Dict[str, Any]:
+        """Return acquisition settings for a specific source, if present."""
+        source = self.get_source(source_key)
+        return source.get('acquisition', {}) if source else {}
+
     def get_source_urls(self) -> Dict[str, str]:
         """Return all source URLs (name -> URL)."""
         return {

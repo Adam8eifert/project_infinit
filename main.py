@@ -17,6 +17,7 @@ from processing.import_csv_to_db import CSVtoDatabaseLoader
 from processing.relevance_report import print_suspicious_articles_report, export_suspicious_articles_csv
 from fuzzywuzzy import fuzz
 from logging_utils import configure_project_logger
+from extracting.configured_collectors import run_configured_collectors
 
 
 PIPELINE_LOGGER = configure_project_logger("pipeline.main", "pipeline/main.log")
@@ -32,6 +33,33 @@ def print(*args, **kwargs):
             PIPELINE_LOGGER.info(message)
     except Exception:
         return
+
+
+def run_configured_acquisition_sources():
+    """Run config-driven sitemap/API/Wayback collectors before Scrapy spiders."""
+    print("📦 Running config-driven acquisition sources...")
+    summary = run_configured_collectors()
+    if summary:
+        print(f"   ✅ Collected from {len(summary)} configured source(s): {summary}")
+    else:
+        print("   ℹ️  No enabled sitemap/API/Wayback sources found")
+
+
+def run_google_trends(save_to_db=True):
+    """Run the Google Trends collector at the end of the pipeline."""
+    print("📈 Running Google Trends collection...")
+    try:
+        from trends.google_trends_collector import GoogleTrendsCollector
+    except ImportError as e:
+        print(f"   ⚠️  Google Trends module not available: {e}")
+        return
+
+    try:
+        collector = GoogleTrendsCollector()
+        collector.run(save_to_db=save_to_db)
+        print("   ✅ Google Trends collection completed")
+    except Exception as e:
+        print(f"   ❌ Google Trends collection failed: {e}")
 
 
 def run_spiders():
@@ -934,7 +962,8 @@ def main():
         # Step 1: Create database
         db = create_db()
         
-        # Step 2: Run spiders
+        # Step 2: Run config-driven acquisition sources and spiders
+        run_configured_acquisition_sources()
         run_spiders()
         
         # Step 3: Import CSV data
@@ -963,6 +992,9 @@ def main():
         
         # Step 6: Print statistics
         print_statistics(db)
+
+        # Step 7: Optional Google Trends collection
+        run_google_trends(save_to_db=True)
         
         print("\n" + "=" * 60)
         print("✅ ETL Pipeline completed successfully!")

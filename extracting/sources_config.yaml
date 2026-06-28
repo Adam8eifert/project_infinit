@@ -282,15 +282,58 @@ sources:
     url: "https://rg-encyklopedie.soc.cas.cz/api.php"
     enabled: true
     type: "api"
+    acquisition:
+      method: "api"
+      url: "https://rg-encyklopedie.soc.cas.cz/api.php"
+      response_path: "query.search"
+      params:
+        action: "query"
+        list: "search"
+        srsearch: "sekta"
+        format: "json"
+        srlimit: 5
     output_csv: "export/csv/soccas_api_raw.csv"
 
   wikipedia:
     name: "Wikipedia (Czech)"
     domain: "cs.wikipedia.org"
     url: "https://cs.wikipedia.org/w/api.php"
-    enabled: false # Disabled by default until page list is ready
+    enabled: true # Disabled by default until page list is ready
     type: "api"
     output_csv: "export/csv/wikipedia_raw.csv"
+
+  sekty_tv_sitemap:
+    name: "Sekty.TV sitemap"
+    description: "Deterministic sitemap ingestion for Sekty.TV"
+    domain: "sekty.tv"
+    url: "https://sekty.tv/sitemap.xml"
+    enabled: true
+    type: "sitemap"
+    acquisition:
+      method: "sitemap"
+      url: "https://sekty.tv/sitemap.xml"
+      parser: "xml"
+      include_patterns:
+        - "sekty.tv"
+      limit: 50
+    output_csv: "export/csv/sekty_tv_sitemap_raw.csv"
+    delay: 2
+
+  dingir_wayback:
+    name: "Dingir.cz Wayback snapshots"
+    description: "Wayback snapshots for Dingir.cz pages"
+    domain: "dingir.cz"
+    url: "https://www.dingir.cz/"
+    enabled: true
+    type: "wayback"
+    acquisition:
+      method: "wayback"
+      url: "https://www.dingir.cz/"
+      start_year: 2020
+      end_year: 2024
+      limit: 10
+    output_csv: "export/csv/dingir_wayback_raw.csv"
+    delay: 2
 
   # --- SOCIAL MEDIA (Keep for future setup) ---
   reddit:
@@ -437,6 +480,7 @@ keywords:
       - "Hnutí přirozeného zákona"
       - "Hnutí vnitřního světla"
       - "Imanuelité"
+      - "Ista"
       - "Jarilo"
       - "Jedi"
       - "Ježíšova armáda"
@@ -461,6 +505,7 @@ keywords:
       - "Nová Akropolis"
       - "Novija gána sepata"
       - "O9A"
+      - "One love"
       - "Osho"
       - "Plaváček"
       - "Poetrie"
@@ -631,18 +676,9 @@ keywords:
     "Církev Ježíše Krista Svatých posledních dnů": "christian_derived"
 
   google_trends:
-    keywords:
-      - "scientologie"
-      - "svědkové jehovovi"
-      - "mormoni"
-      - "hare krishna"
-      - "bhakti marga"
-      - "allatra"
-      - "osho"
-      - "transcendentální meditace"
-      - "sekty česko"
-      - "nová náboženská hnutí"
-    regions: ["CZ", "SK"]
+    # Google Trends keywords are derived from shared keyword configuration
+    # in `keywords.required`, movement names and aliases, and content filters.
+    regions: ["CZ"]
     timeframe: "today 12-m"
     related_queries_seed: "sekty česko"
 

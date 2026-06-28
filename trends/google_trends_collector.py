@@ -7,9 +7,11 @@ from pytrends.request import TrendReq
 import pandas as pd
 from datetime import datetime, timedelta
 import logging
+import re
 import sys
 from pathlib import Path
 import time
+from typing import List
 
 # Add parent directory to path for imports
 sys.path.insert(0, str(Path(__file__).parent.parent))
@@ -44,7 +46,7 @@ class GoogleTrendsCollector:
         'nová náboženská hnutí',
     ]
 
-    DEFAULT_REGIONS = ['CZ', 'SK']
+    DEFAULT_REGIONS = ['CZ']
     DEFAULT_TIMEFRAME = 'today 12-m'
     DEFAULT_RELATED_QUERIES_SEED = 'sekty česko'
 
@@ -83,15 +85,74 @@ class GoogleTrendsCollector:
     def _load_trend_keywords(self):
         explicit_keywords = []
         if isinstance(self.trends_config.get('keywords'), list):
-            explicit_keywords = [str(k).strip() for k in self.trends_config.get('keywords') if isinstance(k, str) and k.strip()]
+            explicit_keywords = [
+                str(k).strip()
+                for k in self.trends_config.get('keywords')
+                if isinstance(k, str) and k.strip()
+            ]
 
         config_keywords = self._load_keywords_from_full_config()
+        exclude_keywords = self._load_trend_exclude_keywords()
+
         merged = []
         for keyword in explicit_keywords + config_keywords:
+            if not keyword:
+                continue
+            if self._keyword_is_excluded(keyword, exclude_keywords):
+                continue
             if keyword not in merged:
                 merged.append(keyword)
 
         return merged if merged else self.DEFAULT_KEYWORDS
+
+    def _load_trend_exclude_keywords(self):
+        config = self.config_loader.config if self.config_loader else {}
+        keywords_cfg = config.get('keywords', {}) if isinstance(config.get('keywords', {}), dict) else {}
+        content_cfg = config.get('content_filters', {}) if isinstance(config.get('content_filters', {}), dict) else {}
+
+        excludes = []
+        if isinstance(self.trends_config.get('exclude'), list):
+            excludes.extend([
+                str(k).strip()
+                for k in self.trends_config.get('exclude')
+                if isinstance(k, str) and k.strip()
+            ])
+        if isinstance(self.trends_config.get('exclude_keywords'), list):
+            excludes.extend([
+                str(k).strip()
+                for k in self.trends_config.get('exclude_keywords')
+                if isinstance(k, str) and k.strip()
+            ])
+
+        excludes.extend([
+            str(k).strip()
+            for k in keywords_cfg.get('exclude', [])
+            if isinstance(k, str) and k.strip()
+        ])
+        excludes.extend([
+            str(k).strip()
+            for k in content_cfg.get('exclude_keywords', [])
+            if isinstance(k, str) and k.strip()
+        ])
+
+        return [kw.lower() for kw in dict.fromkeys([e for e in excludes if e])]
+
+    def _keyword_is_excluded(self, keyword: str, exclude_keywords: List[str]) -> bool:
+        if not exclude_keywords:
+            return False
+
+        value = str(keyword).strip().lower()
+        for exclude in exclude_keywords:
+            if not exclude:
+                continue
+            exclude = exclude.lower()
+            if " " in exclude:
+                if exclude in value:
+                    return True
+            else:
+                if re.search(rf"\b{re.escape(exclude)}\b", value):
+                    return True
+        return False
 
     def _load_keywords_from_full_config(self):
         config = self.config_loader.config if self.config_loader else {}

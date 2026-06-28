@@ -110,3 +110,19 @@ def test_source_list_as_table():
     assert isinstance(table, list)
     assert len(table) > 0
     assert all('key' in item and 'name' in item and 'url' in item for item in table)
+
+
+def test_get_sources_by_type():
+    """Test filtering sources by declared source type."""
+    loader = SourcesConfigLoader("extracting/sources_config.yaml")
+    api_sources = loader.get_sources_by_type('api')
+    assert isinstance(api_sources, dict)
+    assert 'soccas' in api_sources
+
+
+def test_get_sources_by_acquisition_method():
+    """Test filtering sources by acquisition method from config."""
+    loader = SourcesConfigLoader("extracting/sources_config.yaml")
+    sitemap_sources = loader.get_sources_by_acquisition('sitemap')
+    assert isinstance(sitemap_sources, dict)
+    assert 'sekty_tv_sitemap' in sitemap_sources
