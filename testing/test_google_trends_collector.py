@@ -1,5 +1,6 @@
 import sys
 import types
+from datetime import datetime
 
 # Stub pytrends if it is not installed to allow unit tests to import the collector.
 if 'pytrends' not in sys.modules:
@@ -12,6 +13,10 @@ if 'pytrends' not in sys.modules:
     sys.modules['pytrends'] = pytrends
     sys.modules['pytrends.request'] = pytrends.request
 
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+
+from database.db_loader import Base, GoogleTrend
 from trends.google_trends_collector import GoogleTrendsCollector
 
 
@@ -67,3 +72,25 @@ def test_load_trend_keywords_filters_global_excludes():
     assert "politika" not in keywords
     assert "sekta" in keywords
     assert "explicit" in keywords
+
+
+def test_clear_existing_trend_rows_removes_stale_regions_and_current_keywords():
+    engine = create_engine("sqlite:///:memory:")
+    Base.metadata.create_all(engine)
+    Session = sessionmaker(bind=engine)
+    session = Session()
+
+    session.add_all([
+        GoogleTrend(keyword="sekta", date=datetime(2024, 1, 1), interest_value=10, region="CZ"),
+        GoogleTrend(keyword="sekta", date=datetime(2024, 1, 2), interest_value=20, region="SK"),
+        GoogleTrend(keyword="scientologie", date=datetime(2024, 1, 3), interest_value=30, region="CZ"),
+    ])
+    session.commit()
+
+    collector = object.__new__(GoogleTrendsCollector)
+    collector.session = session
+
+    collector._clear_existing_trend_rows()
+
+    remaining = session.query(GoogleTrend).all()
+    assert remaining == []

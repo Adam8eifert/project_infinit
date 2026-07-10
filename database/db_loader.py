@@ -146,7 +146,6 @@ class Movement(Base):
     alias = Column(String(255), nullable=True)
     category = Column(String(100), nullable=True)
     founded_year = Column(Integer, nullable=True)
-    concepts = Column(Text, nullable=True)
     
     # Relationships
     articles = relationship(
@@ -182,7 +181,6 @@ class Location(Base):
     
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String(255), nullable=False, index=True)
-    country = Column(String(100), nullable=True)
     
     # Relationships
     articles = relationship(
@@ -341,7 +339,6 @@ class DBConnector:
                 alias=alias,
                 category=category,
                 founded_year=founded_year,
-                concepts=concepts,
             )
             session.add(movement)
             session.commit()
@@ -377,17 +374,14 @@ class DBConnector:
         """Add or get location"""
         session = self.get_session()
         try:
-            # Check if exists (not unique to allow duplicates with different countries)
-            location = session.query(Location).filter(
-                Location.name == name,
-                Location.country == country
-            ).first()
+            # Check if exists (not unique to allow duplicates with different locations)
+            location = session.query(Location).filter(Location.name == name).first()
             if location:
                 session.close()
                 return location
             
             # Create new
-            location = Location(name=name, country=country)
+            location = Location(name=name)
             session.add(location)
             session.commit()
             session.close()

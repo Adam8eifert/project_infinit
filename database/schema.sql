@@ -77,7 +77,6 @@ CREATE TABLE movements (
     alias VARCHAR(255),
     category VARCHAR(100),
     founded_year INT,
-    concepts TEXT,
     
     INDEX idx_movements_name (name),
     INDEX idx_movements_founded_year (founded_year)
@@ -104,10 +103,8 @@ CREATE TABLE persons (
 CREATE TABLE locations (
     id SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
-    country VARCHAR(100),
     
-    INDEX idx_locations_name (name),
-    INDEX idx_locations_country (country)
+    INDEX idx_locations_name (name)
 );
 
 

@@ -383,6 +383,7 @@ keywords:
     "náboženský směr",
     "nová náboženská hnutí",
     "nové náboženské hnutí",
+    "nové náboženské směry",
     "NNH",
     "NRM",
     "NDH",
@@ -674,6 +675,13 @@ keywords:
     "Anthroposofická společnost": "esoteric"
     "Unarius": "new_age"
     "Církev Ježíše Krista Svatých posledních dnů": "christian_derived"
+  founded_years:
+    "Scientologická církev": 1954
+    "Svědkové Jehovovi": 1872
+    "Hnutí Hare Kršna": 1966
+    "Církev Ježíše Krista Svatých posledních dnů": 1830
+    "Teosofická společnost": 1875
+    "Baháʼí víra": 1863
 
   google_trends:
     # Google Trends keywords are derived from shared keyword configuration

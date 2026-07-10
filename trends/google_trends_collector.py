@@ -12,6 +12,7 @@ import sys
 from pathlib import Path
 import time
 from typing import List
+from sqlalchemy import or_
 
 # Add parent directory to path for imports
 sys.path.insert(0, str(Path(__file__).parent.parent))
@@ -320,6 +321,19 @@ class GoogleTrendsCollector:
         except Exception as e:
             logger.error(f"Error getting regional interest: {e}")
     
+    def _clear_existing_trend_rows(self):
+        """Remove stale Google Trends rows before repopulating from the current run."""
+        if not getattr(self, 'session', None):
+            return
+
+        try:
+            self.session.query(GoogleTrend).delete(synchronize_session=False)
+            self.session.commit()
+            logger.info("Cleared previous Google Trends rows before repopulation")
+        except Exception as e:
+            self.session.rollback()
+            logger.warning(f"Could not clear previous Google Trends rows: {e}")
+
     def save_to_csv(self):
         """Save collected trends to CSV"""
         if not self.trends_data:
@@ -376,6 +390,8 @@ class GoogleTrendsCollector:
     def run(self, save_to_db=True):
         """Main execution method"""
         logger.info("Starting Google Trends collector...")
+
+        self._clear_existing_trend_rows()
         
         # Collect trends data
         self.collect_top_nrm_keywords()

@@ -410,7 +410,7 @@ def _is_bad_person_entity(name: str) -> bool:
     return False
 
 
-def _load_entity_linking_config() -> Tuple[List[str], Dict[str, List[str]], Dict[str, str], Dict[str, List[str]]]:
+def _load_entity_linking_config() -> Tuple[List[str], Dict[str, List[str]], Dict[str, str], Dict[str, List[str]], Dict[str, int]]:
     """Load known movements, movement categories, persons and their aliases from config."""
     config_path = Path("extracting/sources_config.yaml")
     with open(config_path, "r", encoding="utf-8") as file:
@@ -424,6 +424,7 @@ def _load_entity_linking_config() -> Tuple[List[str], Dict[str, List[str]], Dict
 
     movement_aliases = keywords.get("movement_aliases", {})
     movement_categories = keywords.get("movement_categories", {})
+    founded_years = keywords.get("founded_years", {})
     if not movement_aliases:
         movement_aliases = known_container.get("movement_aliases", {})
 
@@ -438,13 +439,23 @@ def _load_entity_linking_config() -> Tuple[List[str], Dict[str, List[str]], Dict
         movement_aliases = {}
     if not isinstance(movement_categories, dict):
         movement_categories = {}
+    if not isinstance(founded_years, dict):
+        founded_years = {}
+
+    normalized_founded_years: Dict[str, int] = {}
+    for movement_name, year_value in founded_years.items():
+        try:
+            normalized_founded_years[str(movement_name)] = int(year_value)
+        except (TypeError, ValueError):
+            continue
 
     print(f"✅ Načteno {len(known_movements)} known_movements ze config")
     print(f"✅ Načteno {len(movement_aliases)} movement_aliases ze config")
     print(f"✅ Načteno {len(movement_categories)} movement_categories ze config")
+    print(f"✅ Načteno {len(normalized_founded_years)} founded_years ze config")
     print(f"✅ Načteno {len(person_aliases)} known_persons_aliases ze config")
 
-    return known_movements, movement_aliases, movement_categories, person_aliases
+    return known_movements, movement_aliases, movement_categories, person_aliases, normalized_founded_years
 
 
 def _seed_known_movements(
@@ -452,8 +463,9 @@ def _seed_known_movements(
     known_movements: List[str],
     movement_aliases: Dict[str, List[str]],
     movement_categories: Dict[str, str],
+    movement_founded_years: Optional[Dict[str, int]] = None,
 ) -> Dict[str, Movement]:
-    """Seed known movements into DB with aliases and category."""
+    """Seed known movements into DB with aliases, category and founding year."""
     movement_by_name: Dict[str, Movement] = {
         movement.name: movement for movement in session.query(Movement).all()
     }
@@ -465,6 +477,10 @@ def _seed_known_movements(
 
         explicit_category = movement_categories.get(name) if movement_categories else None
         category = explicit_category or _infer_movement_category(name)
+        founded_year = _infer_movement_founded_year(
+            name,
+            {"keywords": {"founded_years": movement_founded_years or {}}},
+        )
 
         if name not in movement_by_name:
             aliases = movement_aliases.get(name, [])
@@ -474,6 +490,7 @@ def _seed_known_movements(
                 name=name,
                 alias=alias_str,
                 category=category,
+                founded_year=founded_year,
             )
             session.add(movement)
             session.flush()
@@ -493,9 +510,59 @@ def _seed_known_movements(
             if not current_category or str(current_category).strip().lower() == "nové náboženské hnutí":
                 setattr(movement, "category", category)
 
+            current_founded_year = cast(Optional[int], getattr(movement, "founded_year", None))
+            if current_founded_year is None and founded_year is not None:
+                setattr(movement, "founded_year", founded_year)
+
     session.commit()
     print(f"\n✅ Celkem movements v DB: {len(movement_by_name)}")
     return movement_by_name
+
+
+def _infer_movement_founded_year(movement_name: str, config_data: Optional[Dict] = None) -> Optional[int]:
+    """Infer a movement founding year from config data.
+
+    This stays lightweight and config-driven so the project can keep a small
+    explicit list of well-known movements without introducing a heavyweight
+    knowledge base.
+    """
+    if isinstance(config_data, dict):
+        keywords = config_data.get("keywords", {}) if isinstance(config_data.get("keywords", {}), dict) else {}
+        founded_years = keywords.get("founded_years", {}) if isinstance(keywords.get("founded_years", {}), dict) else {}
+    else:
+        founded_years = {}
+
+    if not founded_years:
+        try:
+            config_path = Path("extracting/sources_config.yaml")
+            with open(config_path, "r", encoding="utf-8") as file:
+                loaded = yaml.safe_load(file)
+            loaded_config = loaded if isinstance(loaded, dict) else {}
+            keywords = loaded_config.get("keywords", {}) if isinstance(loaded_config.get("keywords", {}), dict) else {}
+            founded_years = keywords.get("founded_years", {}) if isinstance(keywords.get("founded_years", {}), dict) else {}
+        except Exception:
+            founded_years = {}
+
+    name = (movement_name or "").strip()
+    if not name:
+        return None
+
+    direct_match = founded_years.get(name)
+    if direct_match is not None:
+        try:
+            return int(direct_match)
+        except (TypeError, ValueError):
+            return None
+
+    normalized_name = name.lower()
+    for candidate_name, year_value in founded_years.items():
+        if str(candidate_name).lower() == normalized_name:
+            try:
+                return int(year_value)
+            except (TypeError, ValueError):
+                return None
+
+    return None
 
 
 def _infer_movement_category(movement_name: str) -> str:
@@ -810,14 +877,21 @@ def extract_entities(db):
         print("\n🔍 Extracting entities...")
         analyzer = CzechTextAnalyzer()
 
-        known_movements, movement_aliases, movement_categories, person_aliases = _load_entity_linking_config()
+        known_movements, movement_aliases, movement_categories, person_aliases, movement_founded_years = _load_entity_linking_config()
         print(f"📋 Loaded {len(known_movements)} known movements from config")
         print(f"📋 Loaded {len(movement_aliases)} movement alias groups")
         print(f"📋 Loaded {len(movement_categories)} movement category mappings")
+        print(f"📋 Loaded {len(movement_founded_years)} movement founding-year mappings")
         print(f"📋 Loaded {len(person_aliases)} known persons from config")
 
         session = db.get_session()
-        movement_by_name = _seed_known_movements(session, known_movements, movement_aliases, movement_categories)
+        movement_by_name = _seed_known_movements(
+            session,
+            known_movements,
+            movement_aliases,
+            movement_categories,
+            movement_founded_years,
+        )
         person_by_canonical = _seed_known_persons(session, person_aliases)
 
         articles = session.query(Article).all()

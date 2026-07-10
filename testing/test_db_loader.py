@@ -3,6 +3,23 @@ import datetime
 import pytest
 
 
+def test_infer_movement_founded_year_uses_config_mapping():
+    from main import _infer_movement_founded_year
+
+    config_data = {
+        "keywords": {
+            "founded_years": {
+                "Scientologická církev": 1954,
+                "Svědkové Jehovovi": 1872,
+            }
+        }
+    }
+
+    assert _infer_movement_founded_year("Scientologická církev", config_data) == 1954
+    assert _infer_movement_founded_year("Svědkové Jehovovi", config_data) == 1872
+    assert _infer_movement_founded_year("Neznámé hnutí", config_data) is None
+
+
 def test_dbconnector_insert_and_query(monkeypatch):
     # Use in-memory SQLite for tests
     monkeypatch.setattr(config, 'DB_URI', 'sqlite:///:memory:')
