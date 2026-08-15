@@ -28,42 +28,27 @@ from database.utils import slugify
 
 def load_movements_from_yaml() -> Dict[str, str]:
     """
-    Load canonical -> display mapping from sources_config.yaml
-    
+    Load canonical -> display mapping from sources_config.yaml using KeywordsAccessor.
+
     Returns:
         Dict mapping canonical_slug -> display_name
     """
-    config_path = Path("extracting/sources_config.yaml")
-    
     try:
-        with open(config_path, 'r', encoding='utf-8') as f:
-            config = yaml.safe_load(f)
-            if not isinstance(config, dict):
-                return {}
-            
-            keywords = config.get('keywords', {})
-            if not isinstance(keywords, dict):
-                return {}
-            
-            known_movements = keywords.get('known_movements', {})
-            if not isinstance(known_movements, dict):
-                return {}
-            
-            known = known_movements.get('new_religious_movements', [])
-            if not isinstance(known, list):
-                return {}
-            
-            mapping = {}
-            for entry in known:
-                if isinstance(entry, dict):
-                    canonical = entry.get('canonical', '').strip()
-                    display = entry.get('display', '').strip()
-                    if canonical and display:
-                        mapping[canonical] = display
-            
-            return mapping
+        from extracting.config_loader import get_config_loader, KeywordsAccessor
+        from database.utils import slugify
+
+        loader = get_config_loader()
+        ka = KeywordsAccessor(loader.config)
+        movements_map = ka.movements_map()
+
+        mapping: Dict[str, str] = {}
+        for display_name in movements_map.keys():
+            slug = slugify(display_name)
+            mapping[slug] = display_name
+
+        return mapping
     except Exception as e:
-        print(f"❌ Failed to load YAML: {e}")
+        print(f"❌ Failed to load movements via KeywordsAccessor: {e}")
         return {}
 
 

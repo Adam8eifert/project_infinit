@@ -4,7 +4,233 @@
 
 sources:
   # --- RSS FEEDS (Specialized) ---
+  religionistika_muni:
+    name: "Religionistika MU (Novinky)"
+    domain: "religionistika.phil.muni.cz"
+    url: "https://religionistika.phil.muni.cz/rss"
+    enabled: true
+    type: "rss"
+    output_csv: "export/csv/religionistika_muni_rss_raw.csv"
+    delay: 2
   
+  dingir_main:
+    name: "Dingir.cz (Main RSS)"
+    domain: "dingir.cz"
+    url: "https://www.dingir.cz/feed/"
+    enabled: false # DISABLED: Returns 404, use info_dingir instead which works (11 items)
+    type: "rss"
+    output_csv: "export/csv/dingir_main_rss_raw.csv"
+    delay: 2
+  
+  apologet:
+    name: "Apologet.cz (RSS Feed)"
+    domain: "apologet.cz"
+    url: "https://www.apologet.cz/?feed=rss2"
+    enabled: false # DISABLED: Returns malformed/broken RSS (XML parse error)
+    type: "rss"
+    output_csv: "export/csv/apologet_rss_raw.csv"
+    delay: 2
+
+  sekty_tv:
+    name: "Sekty.TV (RSS Feed)"
+    description: "Specialist website about cults and religious movements in CZ"
+    domain: "sekty.tv"
+    url: "https://sekty.tv/feed/"
+    enabled: true
+    type: "rss"
+    selectors:
+      item: "item"
+      title: "title::text"
+      link: "link::text"
+      content: "content:encoded::text"
+      date: "pubDate::text"
+      author: "dc:creator::text"
+    output_csv: "export/csv/sekty_tv_rss_raw.csv"
+    delay: 2
+
+  sekty_cz:
+    name: "Sekty.cz"
+    description: "Information portal on new religious movements"
+    domain: "sekty.cz"
+    url: "https://sekty.cz/novinky?feed=rss2/"
+    enabled: false # Disabled bad rss feed with missing content - consider re-enabling if feed is fixed
+    type: "rss"
+    selectors:
+      item: "item"
+      title: "title::text"
+      link: "link::text"
+      content: "content:encoded::text"
+      date: "pubDate::text"
+    output_csv: "export/csv/sekty_cz_rss_raw.csv"
+    delay: 2
+
+  info_dingir:
+    name: "Dingir.cz (RSS Feed)"
+    description: "Expert website dedicated to new religious movements"
+    domain: "info.dingir.cz"
+    url: "https://info.dingir.cz/feed/"
+    enabled: true
+    type: "rss"
+    selectors:
+      item: "item"
+      title: "title::text"
+      link: "link::text"
+      content: "content:encoded::text"
+      date: "pubDate::text"
+    output_csv: "export/csv/info_dingir_rss_raw.csv"
+    delay: 2
+
+  pastorace:
+    name: "Pastorace.cz (RSS Feed)"
+    description: "Pastoral care articles on cults"
+    domain: "pastorace.cz"
+    url: "https://www.pastorace.cz/rss/canal.xml"
+    enabled: true
+    type: "rss"
+    selectors:
+      item: "item"
+      title: "title::text"
+      link: "link::text"
+      content: "description::text"
+      date: "pubDate::text"
+    output_csv: "export/csv/pastorace_rss_raw.csv"
+    delay: 2
+
+  vira_cz:
+    name: "Vira.cz (RSS Feed)"
+    description: "Religious portal providing general Christian perspectives and news"
+    domain: "vira.cz"
+    url: "https://www.vira.cz/rss/canal.xml"
+    enabled: true
+    type: "rss"
+    selectors:
+      item: "item"
+      title: "title::text"
+      link: "link::text"
+      # Note: vira.cz usually provides summary in 'description'
+      content: "description::text" 
+      date: "pubDate::text"
+    output_csv: "export/csv/vira_cz_rss_raw.csv"
+    delay: 2  
+  
+  justice:
+    name: "Ministerstvo spravedlnosti - Aktuality"
+    domain: "justice.cz"
+    url: "https://justice.cz/web/msp/rss"
+    enabled: false # DISABLED: Returns 404, no RSS available from justice ministry
+    type: "rss"
+    output_csv: "export/csv/justice_rss_raw.csv"
+    delay: 2
+
+  # --- RSS FEEDS (Mainstream Media) ---
+  denik_cz:
+    name: "Deník.cz (RSS Feed)"
+    domain: "denik.cz"
+    url: "https://www.denik.cz/rss/zpravy.html"
+    enabled: true # FIXED: Corrected URL from /rss.html to /rss/zpravy.html (25 items)
+    type: "rss"
+    require_movement_id: true # Only import if movement assigned (mainstream source)
+    output_csv: "export/csv/denik_cz_rss_raw.csv"
+    delay: 2
+  
+  idnes_domaci:
+    name: "iDNES.cz - Domaci"
+    domain: "idnes.cz"
+    url: "https://servis.idnes.cz/rss.aspx?c=zpravodaj_domaci"
+    enabled: false # DISABLED: No entries found - RSS feed returns empty results
+    type: "rss"
+    require_movement_id: true # Only import if movement assigned (mainstream source)
+    output_csv: "export/csv/idnes_domaci_rss_raw.csv"
+    delay: 2
+  
+  ct24_domaci:
+    name: "ČT24 - Domaci"
+    domain: "ct24.ceskatelevize.cz"
+    url: "https://ct24.ceskatelevize.cz/rss/domaci"
+    enabled: true
+    type: "rss"
+    require_movement_id: true # Only import if movement assigned (mainstream source)
+    output_csv: "export/csv/ct24_domaci_rss_raw.csv"
+    delay: 2
+
+  seznam_zpravy:
+    name: "Seznam Zpravy (RSS Feed)"
+    domain: "seznamzpravy.cz"
+    url: "https://www.seznamzpravy.cz/rss"
+    enabled: true
+    type: "rss"
+    require_movement_id: true # Only import if movement assigned (mainstream source)
+    output_csv: "export/csv/seznam_zpravy_rss_raw.csv"
+    delay: 2
+  
+  irozhlas:
+    name: "iRozhlas.cz (RSS Feed)"
+    domain: "irozhlas.cz"
+    url: "https://www.irozhlas.cz/rss/irozhlas"
+    enabled: true
+    type: "rss"
+    require_movement_id: true # Only import if movement assigned (mainstream source)
+    output_csv: "export/csv/irozhlas_rss_raw.csv"
+    delay: 2
+
+  aktualne:
+    name: "Aktualne.cz (RSS Feed)"
+    domain: "aktualne.cz"
+    url: "https://www.aktualne.cz/rss/"
+    enabled: true
+    type: "rss"
+    require_movement_id: true # Only import if movement assigned (mainstream source)
+    output_csv: "export/csv/aktualne_rss_raw.csv"
+    delay: 2
+
+  forum24:
+    name: "Forum24.cz (RSS Feed)"
+    domain: "forum24.cz"
+    url: "https://www.forum24.cz/feed/"
+    enabled: true
+    type: "rss"
+    require_movement_id: true # Only import if movement assigned (mainstream source)
+    output_csv: "export/csv/forum24_rss_raw.csv"
+    delay: 2
+
+  denik_alarm:
+    name: "Denik Alarm (RSS Feed)"
+    domain: "denikalarm.cz"
+    url: "https://denikalarm.cz/feed/"  # FIXED: Use /feed/ instead of /rss (301 redirect)
+    enabled: true
+    type: "rss"
+    require_movement_id: true # Only import if movement assigned (mainstream source)
+    output_csv: "export/csv/denik_alarm_rss_raw.csv"
+    delay: 2
+
+  blesk:
+    name: "Blesk.cz (RSS Feed)"
+    domain: "blesk.cz"
+    url: "https://www.blesk.cz/rss"
+    enabled: true
+    type: "rss"
+    require_movement_id: true # Only import if movement assigned (mainstream source)
+    output_csv: "export/csv/blesk_rss_raw.csv"
+  
+  medium_seznam:
+    name: "Médium.cz (RSS Feed)"
+    domain: "medium.seznam.cz"
+    url: "https://medium.seznam.cz/rss"
+    enabled: true
+    type: "rss"
+    output_csv: "export/csv/medium_seznam_rss_raw.csv"
+    delay: 2
+
+  medium_seznam_rss:
+    name: "Medium Seznam (RSS Feed)"
+    description: "Blogging platform by Seznam.cz featuring diverse opinion pieces and articles"
+    domain: "medium.seznam.cz"
+    url: "https://www.seznam.cz/zdroj/4123-medium/rss"
+    enabled: false # DISABLED: Returns malformed XML (invalid token), use medium_seznam instead
+    type: "rss"
+    output_csv: "export/csv/medium_seznam2_rss_raw.csv"
+    delay: 2
+
   # --- WEB SCRAPING & DYNAMIC SOURCES ---
   medium_seznam_web:
     name: "Medium.seznam.cz (Web Scraping)"

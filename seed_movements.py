@@ -108,35 +108,21 @@ def _infer_movement_category(movement_name: str) -> str:
 def seed_movements():
     """Seed movements and aliases from YAML to database"""
     
-    # Load configuration
-    with open('extracting/sources_config.yaml', 'r', encoding='utf-8') as f:
-        config = yaml.safe_load(f)
-    
-    # Safely extract movements config with type checking
-    if not isinstance(config, dict):
-        print("❌ Config is not a dictionary")
+    # Load configuration using KeywordsAccessor for compatibility with merged format
+    try:
+        from extracting.config_loader import get_config_loader, KeywordsAccessor
+        loader = get_config_loader()
+        ka = KeywordsAccessor(loader.config)
+        movements_map = ka.movements_map()
+        movement_categories = ka.get_keywords().get('movement_categories', {}) or {}
+        # movements_config: list of canonical display names
+        movements_config = list(movements_map.keys())
+        aliases_config = {name: list(entry.get('aliases') or []) for name, entry in movements_map.items()}
+    except Exception as e:
+        print(f"❌ Failed to load config via KeywordsAccessor: {e}")
         return
     
-    keywords = config.get('keywords', {})
-    if not isinstance(keywords, dict):
-        print("❌ 'keywords' section not found or invalid")
-        return
-    
-    known_movements = keywords.get('known_movements', {})
-    if not isinstance(known_movements, dict):
-        print("❌ 'known_movements' section not found or invalid")
-        return
-
-    movement_categories = keywords.get('movement_categories', {})
-    if not isinstance(movement_categories, dict):
-        movement_categories = {}
-    
-    movements_config = known_movements.get('new_religious_movements', [])
-    if not isinstance(movements_config, list):
-        print("❌ 'new_religious_movements' not found or invalid")
-        return
-    
-    print(f"📊 Found {len(movements_config)} movements in YAML configuration")
+    print(f"📊 Found {len(movements_config)} movements in configuration")
     print(f"📊 Loaded {len(movement_categories)} manual movement category mappings")
     
     # Connect to database
@@ -219,20 +205,6 @@ def seed_movements():
     # Now seed aliases
     print("🔗 Seeding aliases from movement_aliases configuration...")
     print()
-    
-    # Safely extract aliases config with type checking
-    movement_aliases = keywords.get('movement_aliases', {})
-    if not isinstance(movement_aliases, dict):
-        print("⚠️  No movement_aliases found in config or invalid format")
-        session.close()
-        return
-    
-    aliases_config = movement_aliases
-    
-    if not aliases_config:
-        print("⚠️  No movement_aliases found in config")
-        session.close()
-        return
     
     print(f"📊 Found {len(aliases_config)} movement alias groups")
     

@@ -411,51 +411,43 @@ def _is_bad_person_entity(name: str) -> bool:
 
 
 def _load_entity_linking_config() -> Tuple[List[str], Dict[str, List[str]], Dict[str, str], Dict[str, List[str]], Dict[str, int]]:
-    """Load known movements, movement categories, persons and their aliases from config."""
-    config_path = Path("extracting/sources_config.yaml")
-    with open(config_path, "r", encoding="utf-8") as file:
-        loaded = yaml.safe_load(file)
+    """Load known movements, movement categories, persons and their aliases from config.
 
-    config = loaded if isinstance(loaded, dict) else {}
-    keywords = config.get("keywords", {}) if isinstance(config.get("keywords", {}), dict) else {}
-    known_container = keywords.get("known_movements", {}) if isinstance(keywords.get("known_movements", {}), dict) else {}
+    This function now uses the `extracting.config_loader` KeywordsAccessor which
+    supports both the merged `keywords.movements` layout and the legacy layout.
+    """
+    from extracting.config_loader import get_config_loader, KeywordsAccessor
 
-    known_movements = known_container.get("new_religious_movements", [])
+    loader = get_config_loader()
+    ka = KeywordsAccessor(loader.config)
+    movements_map = ka.movements_map()
 
-    movement_aliases = keywords.get("movement_aliases", {})
-    movement_categories = keywords.get("movement_categories", {})
-    founded_years = keywords.get("founded_years", {})
-    if not movement_aliases:
-        movement_aliases = known_container.get("movement_aliases", {})
+    # Build outputs expected by the rest of the pipeline
+    known_movements = list(movements_map.keys())
+    movement_aliases: Dict[str, List[str]] = {}
+    movement_categories: Dict[str, str] = {}
+    founded_years: Dict[str, int] = {}
 
-    # Load known persons and their aliases
-    person_aliases = keywords.get("known_persons_aliases", {})
-    if not isinstance(person_aliases, dict):
-        person_aliases = {}
+    for name, entry in movements_map.items():
+        aliases = entry.get('aliases') or []
+        movement_aliases[name] = aliases
+        if entry.get('category'):
+            movement_categories[name] = entry.get('category')
+        if entry.get('founded_year') is not None:
+            try:
+                founded_years[name] = int(entry.get('founded_year'))
+            except Exception:
+                pass
 
-    if not isinstance(known_movements, list):
-        known_movements = []
-    if not isinstance(movement_aliases, dict):
-        movement_aliases = {}
-    if not isinstance(movement_categories, dict):
-        movement_categories = {}
-    if not isinstance(founded_years, dict):
-        founded_years = {}
-
-    normalized_founded_years: Dict[str, int] = {}
-    for movement_name, year_value in founded_years.items():
-        try:
-            normalized_founded_years[str(movement_name)] = int(year_value)
-        except (TypeError, ValueError):
-            continue
+    person_aliases = ka.person_aliases() or {}
 
     print(f"✅ Načteno {len(known_movements)} known_movements ze config")
     print(f"✅ Načteno {len(movement_aliases)} movement_aliases ze config")
     print(f"✅ Načteno {len(movement_categories)} movement_categories ze config")
-    print(f"✅ Načteno {len(normalized_founded_years)} founded_years ze config")
+    print(f"✅ Načteno {len(founded_years)} founded_years ze config")
     print(f"✅ Načteno {len(person_aliases)} known_persons_aliases ze config")
 
-    return known_movements, movement_aliases, movement_categories, person_aliases, normalized_founded_years
+    return known_movements, movement_aliases, movement_categories, person_aliases, founded_years
 
 
 def _seed_known_movements(
@@ -1014,14 +1006,31 @@ def extract_entities(db):
         raise
 
 
-def print_statistics(db):
-    """Print database statistics"""
+def print_statistics(db, initial_counts: Optional[Dict[str, int]] = None):
+    """Print database statistics and optional deltas compared to `initial_counts`."""
     try:
+        current = {
+            'articles': db.get_article_count(),
+            'movements': db.get_movement_count(),
+            'persons': db.get_person_count(),
+            'locations': db.get_location_count(),
+        }
+
         print("\n📊 Database Statistics:")
-        print(f"   • Articles: {db.get_article_count()}")
-        print(f"   • Movements: {db.get_movement_count()}")
-        print(f"   • Persons: {db.get_person_count()}")
-        print(f"   • Locations: {db.get_location_count()}")
+        print(f"   • Articles: {current['articles']}")
+        print(f"   • Movements: {current['movements']}")
+        print(f"   • Persons: {current['persons']}")
+        print(f"   • Locations: {current['locations']}")
+
+        if initial_counts:
+            print("\n📈 Changes during this run:")
+            for key in ['articles', 'movements', 'persons', 'locations']:
+                before = int(initial_counts.get(key, 0))
+                after = int(current.get(key, 0))
+                delta = after - before
+                sign = '+' if delta >= 0 else ''
+                print(f"   • {key.capitalize()}: {after} ({sign}{delta})")
+
     except Exception as e:
         print(f"⚠️  Error getting statistics: {e}")
 
@@ -1035,6 +1044,16 @@ def main():
         
         # Step 1: Create database
         db = create_db()
+        # Capture initial counts to report deltas at the end of this run
+        try:
+            initial_counts = {
+                'articles': db.get_article_count(),
+                'movements': db.get_movement_count(),
+                'persons': db.get_person_count(),
+                'locations': db.get_location_count(),
+            }
+        except Exception:
+            initial_counts = None
         
         # Step 2: Run config-driven acquisition sources and spiders
         run_configured_acquisition_sources()
@@ -1064,8 +1083,8 @@ def main():
             f"{exported_rows} rows -> export/csv/suspicious_articles_report.csv"
         )
         
-        # Step 6: Print statistics
-        print_statistics(db)
+        # Step 6: Print statistics (including deltas)
+        print_statistics(db, initial_counts=initial_counts)
 
         # Step 7: Optional Google Trends collection
         run_google_trends(save_to_db=True)

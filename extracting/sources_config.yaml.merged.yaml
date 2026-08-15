@@ -1,0 +1,690 @@
+keywords:
+  required:
+  - sekta
+  - kult
+  - destruktivní kult
+  - kontroverzní náboženská společnost
+  - náboženské hnutí
+  - duchovní hnutí
+  - spirituální hnutí
+  - nové náboženství
+  - nová religiozita
+  - alternativní náboženství
+  - alternativní religiozita
+  - ezoterické hnutí
+  - esoterické hnutí
+  - náboženská skupina
+  - náboženská komunita
+  - náboženská společnost
+  - registrovaná náboženská společnost
+  - neregistrovaná náboženská společnost
+  - církev a náboženská společnost
+  - duchovní centrum
+  - náboženský směr
+  - nová náboženská hnutí
+  - nové náboženské hnutí
+  - nové náboženské směry
+  - NNH
+  - NRM
+  - NDH
+  - nové duchovní hnutí
+  - nová duchovní hnutí
+  - nové spirituální hnutí
+  exclude:
+  - film
+  - seriál
+  - videohra
+  - pc hra
+  - hudební skupina
+  - kapela
+  - album
+  - počítačová hra
+  - politika
+  - politiky
+  - politické
+  - volby
+  exclude_context_patterns:
+  - recenze\\s+filmu
+  - hra\\s+roku
+  - herní\\s+recenze
+  - soundtrack
+  - trailer
+  movements:
+    AROPAL:
+      aliases:
+      - Aropal
+      - Hnutí AROPAL
+    Alan Jarkovský:
+      aliases:
+      - Hnutí Alana Jarkovského
+      - Skupina Alan Jarkovský
+    AllatRa:
+      aliases:
+      - Hnutí AllatRa
+      - Sekta AllatRa
+      - Allatra International
+    Anastasianismus:
+      aliases:
+      - Anastasia
+      - Hnutí Anastasia
+      - Anastasiáni
+      - Ringing Cedars
+    Anthroposofická společnost:
+      aliases:
+      - Antroposofie
+      - Anthroposophy
+      - Rudolf Steiner hnutí
+      category: esoteric
+    Ariadné:
+      aliases:
+      - Hnutí Ariadné
+      - Skupina Ariadné
+    Arnold Varvarinec:
+      aliases:
+      - Hnutí Arnolda Varvarince
+      - Skupina Arnold Varvarinec
+    Avenna:
+      aliases:
+      - Hnutí Avenna
+      - Skupina Avenna
+    Baháʼí víra:
+      aliases:
+      - Bahai
+      - Baháʼí
+      - Baháismus
+      - Bahai Faith
+      founded_year: 1863
+    Bhakti Marga:
+      aliases:
+      - Bhakti Marga Czech
+      - Paramahamsa Vishwananda hnutí
+    Boží kanál:
+      aliases:
+      - Bozi kanal
+      - Boží channel
+    Boží mír:
+      aliases:
+      - Bozi mir
+      - Hnutí Boží mír
+    Boží rodina:
+      aliases:
+      - Bozi rodina
+      - God's Family
+    Boží světlo:
+      aliases:
+      - Bozi svetlo
+      - God's Light
+    Boží světlo – rodina:
+      aliases:
+      - Bozi svetlo rodina
+      - God's Light Family
+    Brahma Kumaris:
+      aliases:
+      - Brahma Kumaris World Spiritual University
+      - BKWSU
+    Buddhismus Diamantové cesty:
+      aliases:
+      - Diamantová cesta
+      - Diamond Way Buddhism
+      - Lama Ole Nydahl
+    Cesta Guru Járy:
+      aliases:
+      - Guru Jára
+      - Hnutí Guru Járy
+      - Jára Dobeš
+    Chrám Satanův:
+      aliases:
+      - Satanův chrám
+      - The Satanic Temple
+      - TST
+    Chrám Setův:
+      aliases:
+      - Temple of Set
+      - Setiané
+    Calvary Roudnice:
+      aliases:
+      - Calvary Chapel Roudnice
+      - Calvary Chapel
+    CIT:
+      aliases:
+      - Centrum integrální transformace
+    Církev Armagedon:
+      aliases:
+      - Church of Armageddon
+    Církev Boží celosvětová:
+      aliases:
+      - Worldwide Church of God
+    Církev Boží v Kristu:
+      aliases:
+      - Church of God in Christ
+      - COGIC
+    Církev Ježíše Krista Svatých posledních dnů:
+      aliases:
+      - Mormoni
+      - LDS
+      - Mormon Church
+      category: christian_derived
+      founded_year: 1830
+    Církev Kristova vědomí:
+      aliases:
+      - Kristovo vědomí
+      - Christ Consciousness Church
+    Církev Maitreya:
+      aliases:
+      - Maitréja
+      - Maitreya Movement
+    Církev Posledního soudu:
+      aliases:
+      - Process Church
+      - The Process Church of the Final Judgment
+    Církev Světla:
+      aliases:
+      - Church of Light
+    Církev Všemohoucího Boha:
+      aliases:
+      - Eastern Lightning
+      - Church of Almighty God
+    Církev jednoty:
+      aliases:
+      - Unity Church
+      - Unity Movement
+    Církev militantního ateismu:
+      aliases:
+      - Militantní ateisté
+    Církev sjednocené vědy:
+      aliases:
+      - Unified Science Church
+    Církev sjednoceného rodinného života:
+      aliases:
+      - Unified Family Church
+    Církev sjednoceného vědomí:
+      aliases:
+      - Unified Consciousness Church
+    Církev sjednocení:
+      aliases:
+      - Moon
+      - Munisté
+      - Unification Church
+    Církev univerzální a vítězná:
+      aliases:
+      - Church Universal and Triumphant
+      - CUT
+    Církev všech světů:
+      aliases:
+      - Church of All Worlds
+    Dohnalité:
+      aliases:
+      - Dohnalovci
+      - Skupina Marka Dohnala
+    Država Československo:
+      aliases: []
+    Dvanáct kmenů:
+      aliases:
+      - 12 kmenů
+      - Twelve Tribes
+    Děti Boží:
+      aliases:
+      - Children of God
+      - The Family International
+    Děti světla:
+      aliases:
+      - Children of Light
+    Eckankar:
+      aliases:
+      - Eckankar Religion of the Light and Sound of God
+    Fa-lun-kung:
+      aliases:
+      - Falun Gong
+      - Falun Dafa
+    Farma Lovětín:
+      aliases: []
+    Happy Science:
+      aliases:
+      - Kofuku no Kagaku
+    Hnutí Dvanáct paprsků:
+      aliases: []
+    Hnutí Grálu:
+      aliases:
+      - Grálové hnutí
+      - Grál
+      - Abd-ru-shin
+    Hnutí Hare Kršna:
+      aliases:
+      - ISKCON
+      - Hare Krishna
+      - International Society for Krishna Consciousness
+      category: eastern
+      founded_year: 1966
+    Hnutí I AM:
+      aliases:
+      - I AM Movement
+      - Saint Germain Movement
+    Hnutí Jednota vědomí:
+      aliases: []
+    Hnutí Maitréja:
+      aliases: []
+    Hnutí Most:
+      aliases: []
+    Hnutí Nové země:
+      aliases: []
+    Hnutí Nového věku:
+      aliases:
+      - New Age
+      - New Age Movement
+    Hnutí Ohnivý keř:
+      aliases: []
+    Hnutí Poselství Světla:
+      aliases: []
+    Hnutí Sjednocená rodina:
+      aliases: []
+    Hnutí Svatého Ducha pro sjednocení světového křesťanství:
+      aliases: []
+    Hnutí Univerzální energie:
+      aliases: []
+    Hnutí Zlatého úsvitu:
+      aliases: []
+    Hnutí přirozeného zákona:
+      aliases: []
+    Hnutí vnitřního světla:
+      aliases: []
+    Imanuelité:
+      aliases:
+      - Immanuelité
+    Ista:
+      aliases: []
+    Jarilo:
+      aliases:
+      - Hnutí Jarilo
+    Jedi:
+      aliases:
+      - Jediismus
+      - Jedi Order
+    Ježíšova armáda:
+      aliases:
+      - Jesus Army
+    Jóga v denním životě:
+      aliases:
+      - Yoga in Daily Life
+      - Swami Maheshwarananda
+    Kemetismus:
+      aliases:
+      - Kemeticism
+      - Per Ankh
+      - Egyptské novopohanství
+      - Egyptské pohanství
+    Konopná církev:
+      aliases:
+      - Church of Cannabis
+    Kosmická univerzita:
+      aliases: []
+    Kosmické bratrstvo:
+      aliases: []
+    Kristadelfiáni:
+      aliases:
+      - Christadelphians
+    Kruh přátel Bruna Gröninga:
+      aliases:
+      - Bruno Gröning Circle of Friends
+    Kutnohorská sekta:
+      aliases: []
+    Kuřimská sekta:
+      aliases:
+      - Kuřimská kauza
+      - Skupina Kuřim
+    Křesťanská věda:
+      aliases:
+      - Christian Science
+    Křesťanské společenství Logos:
+      aliases: []
+    LaVeyův satanismus:
+      aliases:
+      - Church of Satan
+      - Anton LaVey
+    Lectorium Rosicrucianum:
+      aliases:
+      - Mezinárodní škola Zlatého růžového kříže
+    Loving Hut:
+      aliases:
+      - Supreme Master Ching Hai Movement
+    Mezinárodní škola Zlatého růžového kříže:
+      aliases: []
+    Mlýn Radunka:
+      aliases: []
+    Místní církve:
+      aliases:
+      - Místní církev
+      - Neeovci
+      - The Local Churches
+      - Proud živé vody
+    Most ke svobodě:
+      aliases: []
+    Nová Akropolis:
+      aliases:
+      - Nova Akropolis
+      - New Acropolis
+      - Asociace Nová Akropolis
+    Novija gána sepata:
+      aliases: []
+    O9A:
+      aliases:
+      - Order of Nine Angles
+    One love:
+      aliases: []
+    Osho:
+      aliases:
+      - Bhagwan
+      - Rajneesh
+      - Osho Movement
+    Plaváček:
+      aliases: []
+    Poetrie:
+      aliases: []
+    Protestantská církev Svaté korony:
+      aliases: []
+    Radomír Wolf:
+      aliases: []
+    Raeliáni:
+      aliases:
+      - Raëlian Movement
+      - Rael Movement
+      category: ufo
+    Rezonance:
+      aliases: []
+    Rodina:
+      aliases:
+      - The Family
+      - Rodina International
+    Rodina světla:
+      aliases: []
+    Rodná víra:
+      aliases:
+      - Rodnověří
+      - Slovanské rodnověří
+    Rosenkruciánské hnutí AMORC:
+      aliases:
+      - AMORC
+      - Rosicrucian Order
+    Sahadža jóga:
+      aliases:
+      - Sahaja Yoga
+      - Shri Mataji
+    Sathya Sai organizace:
+      aliases:
+      - Hnutí Satja Sáí Báby
+      - Sathya Sai Baba
+      - Satja Sáí Bába
+      - Sathya Sai International Organisation
+    Satanská církev:
+      aliases:
+      - Church of Satan
+      - LaVeyan Satanism
+    Science 21:
+      aliases: []
+    Scientologická církev:
+      aliases:
+      - Scientologie
+      - Scientology Church
+      category: psychospiritual
+      founded_year: 1954
+    Siloovo hnutí:
+      aliases:
+      - Humanistické hnutí
+      - Siloovo poselství
+      - Silo Movement
+      - Siloisté
+    Silvova metoda:
+      aliases:
+      - Silva Method
+      - Silva Mind Control
+    Síla propojení:
+      aliases:
+      - Zdravá rodina
+    Slovanská košile:
+      aliases: []
+    Slovanské rodnověří:
+      aliases:
+      - Rodnověří
+      - Slavic Native Faith
+    Slovo života:
+      aliases:
+      - Slovo Života
+      - Word of Life
+      - Hnutí Slovo života
+    Služebníci světla:
+      aliases: []
+    Soka Gakkai International:
+      aliases:
+      - Soka Gakkai
+      - SGI
+    Společenství Bílého bratrstva:
+      aliases: []
+    Společenství Josefa Zezulky:
+      aliases: []
+    Společenství Nový Jeruzalém:
+      aliases: []
+    Společenství Světlo života:
+      aliases: []
+    Společenství legitimních věřitelů České republiky:
+      aliases: []
+    Subud:
+      aliases:
+      - Susila Dharma
+      - Muhammad Subuh
+    Svědkové Jehovovi:
+      aliases:
+      - Jehovah's Witnesses
+      - JW
+      founded_year: 1872
+    Světlonoši:
+      aliases: []
+    Světlík:
+      aliases: []
+    TVIND:
+      aliases:
+      - Tvind Movement
+      - Teachers Group
+    Tao Jóga:
+      aliases: []
+    Temple of Set:
+      aliases:
+      - Setian Temple
+    Teosofická společnost:
+      aliases:
+      - Theosophical Society
+      founded_year: 1875
+    The Revelation Spiritual Home:
+      aliases: []
+    Transcendentální meditace:
+      aliases:
+      - Sri Chinmoy Centres
+      - TM
+      - Transcendental Meditation
+      - Centra Šrí Činmoje
+    Tvořivá společnost:
+      aliases:
+      - Creative Society
+      - Creative Society Project
+    Unarius:
+      aliases:
+      - Unarius Academy of Science
+      category: new_age
+    Universe People:
+      aliases:
+      - Vesmírní lidé
+      - Cosmic People
+    Univerzální bratrstvo:
+      aliases: []
+    Univerzální život:
+      aliases:
+      - Universal Life
+      - Universelles Leben
+    Urantia:
+      aliases: []
+    V lásce spolu:
+      aliases: []
+    Velké Bílé bratrstvo:
+      aliases:
+      - Great White Brotherhood
+    Vesmírní lidé:
+      aliases:
+      - Universe People
+      - Cosmic People
+    Wicca:
+      aliases:
+      - Wiccan religion
+      - Novopohanství Wicca
+    Zlatá éra:
+      aliases: []
+    Zodiakální škola:
+      aliases: []
+    Zprávy z galaxie:
+      aliases: []
+    Ánanda Márga:
+      aliases:
+      - Ananda Marga
+      - AMURT
+    Ásatrú:
+      aliases:
+      - Asatru
+      - Severské pohanství
+    Ček Árya Sabhá – Árjasamádž:
+      aliases: []
+    Česká pohanská společnost:
+      aliases: []
+    Řád ochránců Boží vůle na Zemi:
+      aliases: []
+    Řád zlatého úsvitu:
+      aliases: []
+    Šinčchondží:
+      aliases:
+      - Shincheonji
+      - SCJ
+      - New Heaven New Earth
+    Škola Aria:
+      aliases: []
+    Škola ekonomické vědy:
+      aliases: []
+    Život v Radosti:
+      aliases: []
+    Život v srdci:
+      aliases: []
+  known_persons_aliases:
+    Adi Da Samraj:
+    - Franklin Jones
+    - Bubba Free John
+    - Da Free John
+    Aleister Crowley:
+    - Edward Alexander Crowley
+    - To Mega Therion
+    Anton Szandor LaVey:
+    - Anton LaVey
+    - Howard Stanton Levey
+    Bikram Choudhury:
+    - Bikram
+    Bruno Gröning:
+    - Bruno Groening
+    Claude Vorilhon:
+    - Raël
+    - Rael
+    David Brandt Berg:
+    - Moses David
+    - Mo
+    - Father David
+    David Koresh:
+    - Vernon Wayne Howell
+    Eduard Albert Meier:
+    - Billy Meier
+    Elisabeth Clare Prophet:
+    - Elizabeth Clare Prophet
+    - Guru Ma
+    Georg Friedrich Händel:
+    - George Frideric Handel
+    Gregoriana Bivolaru:
+    - Grieg
+    - Gregorian Bivolaru
+    Hak Ja Han:
+    - Hak Ja Han Moon
+    Helena Petrovna Blavatsky:
+    - H. P. Blavatsky
+    - Helena Blavatsky
+    Igor Danilov:
+    - Rigden Džappo
+    - Rigden Djappo
+    Jaggi Vasudev:
+    - Sadhguru
+    Jim Jones:
+    - James Warren Jones
+    João Teixeira de Faria:
+    - João de Deus
+    - John of God
+    Josef Zezulka:
+    - Zakladatel biotroniky
+    Joseph Smith:
+    - Joseph Smith Jr.
+    JZ Knight:
+    - Judith Darlene Hampton
+    - Ramtha
+    Karolína Kostrouňová:
+    - kerolajnaa
+    Lee Man-hee:
+    - Man Hee Lee
+    Lafayette Ronald Hubbard:
+    - L. Ron Hubbard
+    Lukáš Stančík:
+    - Bůh Šašek
+    - Ježíš Švamberecký
+    Maharishi Mahesh Yogi:
+    - Mahesh Prasad Varma
+    Marshall Applewhite:
+    - Bo
+    - Do
+    Marshall Vian Summers:
+    - Marshall Summers
+    Mark L. Prophet:
+    - Mark Prophet
+    Mata Amritanandamayi:
+    - Amma
+    Michael Aquino:
+    - Michael A. Aquino
+    Muhammad Subuh:
+    - Bapak Subuh
+    Osho:
+    - Bhagwan Shree Rajneesh
+    - Rajneesh
+    Paramahansa Yogananda:
+    - Mukunda Lal Ghosh
+    Paul Twitchell:
+    - Peddar Zaskq
+    Peter Deunov:
+    - Beinsa Douno
+    Prabhat Ranjan Sarkar:
+    - Shrii Shrii Anandamurti
+    Prem Rawat:
+    - Maharaji
+    Rjúho Okawa:
+    - Ryuho Okawa
+    Satya Sai Baba:
+    - Sathya Sai Baba
+    Shoko Asahara:
+    - Chizuo Matsumoto
+    Sri Chinmoy:
+    - Chinmoy Kumar Ghose
+    Sun Myung Moon:
+    - Reverend Moon
+    Swami Vishwananda:
+    - Paramahamsa Vishwananda
+    Teal Swan:
+    - Mary Teal Bosworth
+    Vladimir Megre:
+    - Vladimir Nikolaevič Megre
+    William Branham:
+    - William Marrion Branham
+  year_patterns:
+  - založen[aáoý]\\s+v\\s+roce\\s+(\\d{4})
+  - vznik(?:lo|la|l)\\s+v\\s+roce\\s+(\\d{4})
+  - vznikl[ao]?\\s+kolem\\s+roku\\s+(\\d{4})
+  - od\\s+roku\\s+(\\d{4})
+  - působí\\s+od\\s+roku\\s+(\\d{4})
+  - činnost\\s+zahájena\\s+v\\s+roce\\s+(\\d{4})
+  - registrován[aáoý]\\s+v\\s+(?:ČR|České\\s+republice)\\s+v\\s+roce\\s+(\\d{4})
+  - zaregistrován[ao]?\\s+dne\\s+\\d{1,2}\\.\\s*\\d{1,2}\\.\\s*(\\d{4})

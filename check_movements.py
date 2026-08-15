@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
 """Check movements count in database vs YAML"""
 
-import yaml
 from database.db_loader import DBConnector, Movement
+from extracting.config_loader import get_config_loader, KeywordsAccessor
 
-# Check YAML
-with open('extracting/sources_config.yaml', 'r', encoding='utf-8') as f:
-    config = yaml.safe_load(f)
-    yaml_movements = config.get('keywords', {}).get('known_movements', {}).get('new_religious_movements', [])
+# Check config via KeywordsAccessor
+loader = get_config_loader()
+ka = KeywordsAccessor(loader.config)
+yaml_movements = list(ka.movements_map().keys())
 
-print(f"📊 Movements in YAML config: {len(yaml_movements)}")
+print(f"📊 Movements in config: {len(yaml_movements)}")
 
 # Check database
 db = DBConnector()

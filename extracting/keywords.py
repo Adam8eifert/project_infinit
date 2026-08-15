@@ -4,61 +4,64 @@
 
 from typing import List, Dict, Optional, Tuple
 import re
-import os
-import yaml
 import logging
+
+from extracting.config_loader import get_config_loader, KeywordsAccessor
 
 logger = logging.getLogger(__name__)
 
-# ============================================================
-# LOAD CONFIG FROM sources_config.yaml
-# ============================================================
-
-CONFIG_PATH = os.path.join(os.path.dirname(__file__), "sources_config.yaml")
-
-# Default fallback values
+# Default fallback values (will be populated on import)
 SEARCH_TERMS: List[str] = []
 EXCLUDE_TERMS: List[str] = []
 EXCLUDE_CONTEXT_PATTERNS: List[str] = []
-KNOWN_MOVEMENTS: Dict = {}
 YEAR_PATTERNS: List[str] = []
 ALL_KNOWN_MOVEMENTS: List[str] = []
-FALLBACK_MOVEMENT_ID_BY_NAME: Dict[str, int] = {}
+FALLBACK_MOVEMENT_ID_BY_NAME: Dict = {}
 FALLBACK_MOVEMENT_NAME_BY_ID: Dict[int, str] = {282: "Neidentifikované hnutí"}
 AMBIGUOUS_MOVEMENT_TERMS = {"rodina"}
 
+
 def _load_keywords_config() -> None:
-    """Load keywords configuration from sources_config.yaml"""
-    global SEARCH_TERMS, EXCLUDE_TERMS, EXCLUDE_CONTEXT_PATTERNS, KNOWN_MOVEMENTS, YEAR_PATTERNS, ALL_KNOWN_MOVEMENTS
-    
+    """Load keywords configuration using KeywordsAccessor for compatibility.
+
+    Populates module-level SEARCH_TERMS, EXCLUDE_TERMS, EXCLUDE_CONTEXT_PATTERNS,
+    YEAR_PATTERNS and ALL_KNOWN_MOVEMENTS.
+    """
+    global SEARCH_TERMS, EXCLUDE_TERMS, EXCLUDE_CONTEXT_PATTERNS, YEAR_PATTERNS, ALL_KNOWN_MOVEMENTS
     try:
-        with open(CONFIG_PATH, "r", encoding="utf8") as f:
-            cfg = yaml.safe_load(f) or {}
-            if not isinstance(cfg, dict):
-                logger.warning(f"⚠️  Config is not a dict, got {type(cfg).__name__}")
-                return
-            kw_cfg = cfg.get("keywords", {})
-            
-            if isinstance(kw_cfg, dict):
-                SEARCH_TERMS = kw_cfg.get("required", [])
-                EXCLUDE_TERMS = kw_cfg.get("exclude", [])
-                EXCLUDE_CONTEXT_PATTERNS = kw_cfg.get("exclude_context_patterns", [])
-                KNOWN_MOVEMENTS = kw_cfg.get("known_movements", {})
-                YEAR_PATTERNS = kw_cfg.get("year_patterns", [])
-                
-                # Flatten known movements (simple list format with diacritics)
-                if isinstance(KNOWN_MOVEMENTS, dict):
-                    for group_movements in KNOWN_MOVEMENTS.values():
-                        if isinstance(group_movements, list):
-                            for entry in group_movements:
-                                if isinstance(entry, str):
-                                    ALL_KNOWN_MOVEMENTS.append(entry)
-                
-                logger.info(f"✓ Loaded {len(SEARCH_TERMS)} search terms, {len(ALL_KNOWN_MOVEMENTS)} known movements from sources_config.yaml")
-    except FileNotFoundError:
-        logger.error(f"❌ Config file not found: {CONFIG_PATH}")
+        loader = get_config_loader()
+        ka = KeywordsAccessor(loader.config)
+        kw = ka.get_keywords()
+
+        SEARCH_TERMS = list(kw.get('required') or [])
+        EXCLUDE_TERMS = list(kw.get('exclude') or [])
+        EXCLUDE_CONTEXT_PATTERNS = list(kw.get('exclude_context_patterns') or [])
+        YEAR_PATTERNS = list(kw.get('year_patterns') or [])
+
+        # Build ALL_KNOWN_MOVEMENTS from movements map (keys + aliases)
+        ALL_KNOWN_MOVEMENTS = []
+        movements_map = ka.movements_map()
+        for name, entry in movements_map.items():
+            ALL_KNOWN_MOVEMENTS.append(name)
+            for a in entry.get('aliases') or []:
+                if isinstance(a, str):
+                    ALL_KNOWN_MOVEMENTS.append(a)
+
+        # Deduplicate and keep ordering
+        seen = set()
+        deduped = []
+        for v in ALL_KNOWN_MOVEMENTS:
+            norm = (v or '').strip()
+            if not norm or norm in seen:
+                continue
+            seen.add(norm)
+            deduped.append(norm)
+        ALL_KNOWN_MOVEMENTS = deduped
+
+        logger.info(f"✓ Loaded {len(SEARCH_TERMS)} search terms, {len(ALL_KNOWN_MOVEMENTS)} known movements from sources_config.yaml")
     except Exception as e:
-        logger.error(f"❌ Error loading keywords config: {e}")
+        logger.error(f"❌ Error loading keywords config via KeywordsAccessor: {e}")
+
 
 # Load on import
 _load_keywords_config()
@@ -69,28 +72,18 @@ _load_keywords_config()
 
 def _read_movement_config() -> Tuple[List[str], Dict[str, List[str]]]:
     """Read known movements and aliases from YAML config."""
+    # Use KeywordsAccessor to provide a unified view
     known_movements: List[str] = []
     aliases_config: Dict[str, List[str]] = {}
-
     try:
-        with open(CONFIG_PATH, 'r', encoding='utf-8') as f:
-            config = yaml.safe_load(f)
-            if isinstance(config, dict):
-                keywords = config.get('keywords', {})
-                if isinstance(keywords, dict):
-                    known = keywords.get('known_movements', {}).get('new_religious_movements', [])
-                    if isinstance(known, list):
-                        known_movements = [entry.strip() for entry in known if isinstance(entry, str)]
-
-                    loaded_aliases = keywords.get('movement_aliases', {})
-                    if isinstance(loaded_aliases, dict):
-                        aliases_config = {
-                            name: [alias for alias in aliases if isinstance(alias, str)]
-                            for name, aliases in loaded_aliases.items()
-                            if isinstance(name, str) and isinstance(aliases, list)
-                        }
+        loader = get_config_loader()
+        ka = KeywordsAccessor(loader.config)
+        movements_map = ka.movements_map()
+        known_movements = list(movements_map.keys())
+        for name, entry in movements_map.items():
+            aliases_config[name] = list(entry.get('aliases') or [])
     except Exception as e:
-        logger.warning(f"Failed to load movement config: {e}")
+        logger.warning(f"Failed to load movement config via KeywordsAccessor: {e}")
 
     return known_movements, aliases_config
 
